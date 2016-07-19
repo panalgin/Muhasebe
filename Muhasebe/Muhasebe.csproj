@@ -1,0 +1,804 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AE628E7C-5908-437A-A765-F767189CA39A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Muhasebe</RootNamespace>
+    <AssemblyName>Muhasebe</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>daflanicon2.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DirectShowLib">
+      <HintPath>..\..\..\..\..\Downloads\DirectShowSamples-2010-February (1)\Samples\Capture\DxSnap\bin\Debug\DirectShowLib.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=6.8.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.8.1\Assemblies\v4.5\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.8.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.8.1\Assemblies\v4.5\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About_Mdi.Designer.cs">
+      <DependentUpon>About_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add_Account_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_Account_Mdi.Designer.cs">
+      <DependentUpon>Add_Account_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add_Expenditure_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_Expenditure_Pop.Designer.cs">
+      <DependentUpon>Add_Expenditure_Pop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add_Inventory_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_Inventory_Pop.Designer.cs">
+      <DependentUpon>Add_Inventory_Pop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add_Item_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_Item_Pop.Designer.cs">
+      <DependentUpon>Add_Item_Pop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add_PaymentType_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_PaymentType_Pop.Designer.cs">
+      <DependentUpon>Add_PaymentType_Pop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add_Reminder_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_Reminder_Pop.Designer.cs">
+      <DependentUpon>Add_Reminder_Pop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add_Revenue_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_Revenue_Pop.Designer.cs">
+      <DependentUpon>Add_Revenue_Pop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add_Sales_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_Sales_Mdi.Designer.cs">
+      <DependentUpon>Add_Sales_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add_UnitType_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_UnitType_Pop.Designer.cs">
+      <DependentUpon>Add_UnitType_Pop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add_User_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_User_Mdi.Designer.cs">
+      <DependentUpon>Add_User_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Camera.cs" />
+    <Compile Include="Company.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Device.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceType.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Inventory_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit_Inventory_Pop.Designer.cs">
+      <DependentUpon>Edit_Inventory_Pop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Reminder_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit_Reminder_Pop.Designer.cs">
+      <DependentUpon>Edit_Reminder_Pop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Revenue_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit_Revenue_Pop.Designer.cs">
+      <DependentUpon>Edit_Revenue_Pop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\ToolStripEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Custom\Item.partial.cs" />
+    <Compile Include="Custom\ListViewEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Custom\User.partial.cs" />
+    <Compile Include="DeviceManager.cs" />
+    <Compile Include="Context.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Context.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Context.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Device_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit_Device_Pop.Designer.cs">
+      <DependentUpon>Edit_Device_Pop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Expenditure_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit_Expenditure_Pop.Designer.cs">
+      <DependentUpon>Edit_Expenditure_Pop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Item_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit_Item_Pop.Designer.cs">
+      <DependentUpon>Edit_Item_Pop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_PaymentType_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit_PaymentType_Pop.Designer.cs">
+      <DependentUpon>Edit_PaymentType_Pop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_UnitType_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit_UnitType_Pop.Designer.cs">
+      <DependentUpon>Edit_UnitType_Pop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_User_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit_User_Pop.Designer.cs">
+      <DependentUpon>Edit_User_Pop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Event.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventCategory.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Events\EventArgs.cs" />
+    <Compile Include="Events\EventHandlers.cs" />
+    <Compile Include="Events\EventSink.cs" />
+    <Compile Include="Expenditure.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExpenditureType.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Income.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IncomeType.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceNode.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Item.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JobPosition.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Manage_Accounts_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_Accounts_Mdi.Designer.cs">
+      <DependentUpon>Manage_Accounts_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manage_Expenditure_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_Expenditure_Mdi.Designer.cs">
+      <DependentUpon>Manage_Expenditure_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gumplings\Item_Set_Amount_Gumpling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gumplings\Item_Set_Amount_Gumpling.Designer.cs">
+      <DependentUpon>Item_Set_Amount_Gumpling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logger.cs" />
+    <Compile Include="Login_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login_Mdi.Designer.cs">
+      <DependentUpon>Login_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manage_Devices_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_Devices_Mdi.Designer.cs">
+      <DependentUpon>Manage_Devices_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manage_Events_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_Events_Mdi.Designer.cs">
+      <DependentUpon>Manage_Events_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manage_Inventory_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_Inventory_Mdi.Designer.cs">
+      <DependentUpon>Manage_Inventory_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manage_Items_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_Items_Mdi.Designer.cs">
+      <DependentUpon>Manage_Items_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manage_PaymentType_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_PaymentType_Mdi.Designer.cs">
+      <DependentUpon>Manage_PaymentType_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manage_Reminder_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_Reminder_Mdi.Designer.cs">
+      <DependentUpon>Manage_Reminder_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manage_Revenue_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_Revenue_Mdi.Designer.cs">
+      <DependentUpon>Manage_Revenue_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manage_Sales_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_Sales_Mdi.Designer.cs">
+      <DependentUpon>Manage_Sales_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manage_Statistics_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_Statistics_Mdi.Designer.cs">
+      <DependentUpon>Manage_Statistics_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manage_UnitTypes_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_UnitTypes_Mdi.Designer.cs">
+      <DependentUpon>Manage_UnitTypes_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manage_Users_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_Users_Mdi.Designer.cs">
+      <DependentUpon>Manage_Users_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Options_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Options_Mdi.Designer.cs">
+      <DependentUpon>Options_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentType.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyReminder.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PropertyRemindingMethod.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Register_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Register_Mdi.Designer.cs">
+      <DependentUpon>Register_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\AutoStarter.cs" />
+    <Compile Include="UnitType.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="About_Mdi.resx">
+      <DependentUpon>About_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_Account_Mdi.resx">
+      <DependentUpon>Add_Account_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_Expenditure_Pop.resx">
+      <DependentUpon>Add_Expenditure_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_Inventory_Pop.resx">
+      <DependentUpon>Add_Inventory_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_Item_Pop.resx">
+      <DependentUpon>Add_Item_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_PaymentType_Pop.resx">
+      <DependentUpon>Add_PaymentType_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_Reminder_Pop.resx">
+      <DependentUpon>Add_Reminder_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_Revenue_Pop.resx">
+      <DependentUpon>Add_Revenue_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_Sales_Mdi.resx">
+      <DependentUpon>Add_Sales_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_UnitType_Pop.resx">
+      <DependentUpon>Add_UnitType_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_User_Mdi.resx">
+      <DependentUpon>Add_User_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit_Inventory_Pop.resx">
+      <DependentUpon>Edit_Inventory_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit_Reminder_Pop.resx">
+      <DependentUpon>Edit_Reminder_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit_Revenue_Pop.resx">
+      <DependentUpon>Edit_Revenue_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit_Device_Pop.resx">
+      <DependentUpon>Edit_Device_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit_Expenditure_Pop.resx">
+      <DependentUpon>Edit_Expenditure_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit_Item_Pop.resx">
+      <DependentUpon>Edit_Item_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit_PaymentType_Pop.resx">
+      <DependentUpon>Edit_PaymentType_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit_UnitType_Pop.resx">
+      <DependentUpon>Edit_UnitType_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit_User_Pop.resx">
+      <DependentUpon>Edit_User_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_Accounts_Mdi.resx">
+      <DependentUpon>Manage_Accounts_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_Expenditure_Mdi.resx">
+      <DependentUpon>Manage_Expenditure_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gumplings\Item_Set_Amount_Gumpling.resx">
+      <DependentUpon>Item_Set_Amount_Gumpling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login_Mdi.resx">
+      <DependentUpon>Login_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_Devices_Mdi.resx">
+      <DependentUpon>Manage_Devices_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_Events_Mdi.resx">
+      <DependentUpon>Manage_Events_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_Inventory_Mdi.resx">
+      <DependentUpon>Manage_Inventory_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_Items_Mdi.resx">
+      <DependentUpon>Manage_Items_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_PaymentType_Mdi.resx">
+      <DependentUpon>Manage_PaymentType_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_Reminder_Mdi.resx">
+      <DependentUpon>Manage_Reminder_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_Revenue_Mdi.resx">
+      <DependentUpon>Manage_Revenue_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_Sales_Mdi.resx">
+      <DependentUpon>Manage_Sales_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_Statistics_Mdi.resx">
+      <DependentUpon>Manage_Statistics_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_UnitTypes_Mdi.resx">
+      <DependentUpon>Manage_UnitTypes_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_Users_Mdi.resx">
+      <DependentUpon>Manage_Users_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options_Mdi.resx">
+      <DependentUpon>Options_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Register_Mdi.resx">
+      <DependentUpon>Register_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="Context.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Context.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Context.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Context.edmx</DependentUpon>
+      <LastGenOutput>Context.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Context.edmx.diagram">
+      <DependentUpon>Context.edmx</DependentUpon>
+    </None>
+    <None Include="Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Context.edmx</DependentUpon>
+      <LastGenOutput>Context.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\daflan2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wallpaper-daflan2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wallpaper-daflan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\app-space.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\house.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\server_components.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\webcam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\magnifier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\items.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Apps-preferences-desktop-user-password-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coins_in_hand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\export_excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acorn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Faq-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Exclamation_Point_Emoticon.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clipboard_invoice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cart_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\basket_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\basket-valid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\safe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cash_register_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marketwatch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\finance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coins_dec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chart_bar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\question.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\infocard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\what_if_analysis.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_rhombus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sort_descending.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\daflan-logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\daflan-logo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\daflan-logo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\daflan-logo3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\daflan-logo4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\daflan-logo5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\daflan-logo6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\daflan-logo7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\phone_handset.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\phone_sound.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\phone1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\phone2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\radar_chart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\map_torn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\google_web_elements.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yeni3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-pic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\daflan-logo8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\innerbg-login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\outerbg-login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon-user1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="daflanicon2.ico" />
+    <None Include="Resources\reseller_programm.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\pencil.png" />
+    <None Include="Resources\add.png" />
+    <None Include="Resources\cancel1.png" />
+    <None Include="Resources\cross.png" />
+    <None Include="Resources\accept1.png" />
+    <None Include="Resources\accept.png" />
+    <None Include="Resources\logo.png" />
+    <None Include="Resources\setting_tools.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

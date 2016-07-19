@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ce920f38ce644c588213a7226d186d85" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="MicroModel.Product" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="MicroModel.User" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="MicroModel.Inventory" Width="1.5" PointX="12.875" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="MicroModel.Item" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <AssociationConnector Association="MicroModel.ItemProduct" />
+        <AssociationConnector Association="MicroModel.ItemInventory" />
+        <EntityTypeShape EntityType="MicroModel.Company" Width="1.5" PointX="9.625" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="MicroModel.UserCompany" />
+        <EntityTypeShape EntityType="MicroModel.UnitType" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="false" />
+        <AssociationConnector Association="MicroModel.UnitTypeCompany" />
+        <AssociationConnector Association="MicroModel.InventoryCompany" />
+        <EntityTypeShape EntityType="MicroModel.Device" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="MicroModel.DeviceType" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="false" />
+        <AssociationConnector Association="MicroModel.DeviceDeviceType" />
+        <AssociationConnector Association="MicroModel.ItemUnitType" />
+        <AssociationConnector Association="MicroModel.DeviceCompany" />
+        <EntityTypeShape EntityType="MicroModel.InvoiceNode" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="MicroModel.Invoice" Width="1.5" PointX="3" PointY="2.75" IsExpanded="false" />
+        <AssociationConnector Association="MicroModel.InvoiceCompany" />
+        <AssociationConnector Association="MicroModel.InvoiceUser" />
+        <AssociationConnector Association="MicroModel.InvoiceNodeInvoice" />
+        <AssociationConnector Association="MicroModel.InvoiceNodeItem" />
+        <EntityTypeShape EntityType="MicroModel.PaymentType" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="false" />
+        <AssociationConnector Association="MicroModel.InvoicePaymentType" />
+        <AssociationConnector Association="MicroModel.PaymentTypeCompany" />
+        <EntityTypeShape EntityType="MicroModel.Income" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="false" />
+        <AssociationConnector Association="MicroModel.IncomeCompany" />
+        <AssociationConnector Association="MicroModel.IncomeUser" />
+        <AssociationConnector Association="MicroModel.IncomeInvoice" />
+        <AssociationConnector Association="MicroModel.IncomePaymentType" />
+        <EntityTypeShape EntityType="MicroModel.IncomeType" Width="1.5" PointX="3" PointY="6.25" IsExpanded="false" />
+        <AssociationConnector Association="MicroModel.IncomeIncomeType" />
+        <EntityTypeShape EntityType="MicroModel.Expenditure" Width="1.5" PointX="3" PointY="1" IsExpanded="false" />
+        <EntityTypeShape EntityType="MicroModel.ExpenditureType" Width="1.75" PointX="5" PointY="11.5" IsExpanded="false" />
+        <AssociationConnector Association="MicroModel.ExpenditureTypeCompany" />
+        <AssociationConnector Association="MicroModel.ExpenditureUser" />
+        <AssociationConnector Association="MicroModel.ExpenditureCompany" />
+        <AssociationConnector Association="MicroModel.ExpenditureExpenditureType" />
+        <AssociationConnector Association="MicroModel.ExpenditurePaymentType" />
+        <EntityTypeShape EntityType="MicroModel.JobPosition" Width="1.5" PointX="7.75" PointY="7.5" IsExpanded="false" />
+        <AssociationConnector Association="MicroModel.UserJobPosition" />
+        <EntityTypeShape EntityType="MicroModel.Event" Width="1.5" PointX="3" PointY="4.125" IsExpanded="false" />
+        <AssociationConnector Association="MicroModel.EventUser" />
+        <EntityTypeShape EntityType="MicroModel.EventCategory" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="false" />
+        <AssociationConnector Association="MicroModel.EventEventCategory" />
+        <EntityTypeShape EntityType="MicroModel.PropertyReminder" Width="1.5" PointX="8.875" PointY="9.125" />
+        <EntityTypeShape EntityType="MicroModel.PropertyRemindingMethod" Width="1.5" PointX="11.875" PointY="10.625" />
+        <AssociationConnector Association="MicroModel.PropertyReminderCompany" />
+        <AssociationConnector Association="MicroModel.PropertyReminderItem" />
+        <AssociationConnector Association="MicroModel.PropertyReminderUser" />
+        <AssociationConnector Association="MicroModel.PropertyReminderPropertyRemindingMethod" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,128 @@
+<?php	
+	session_start();
+	$base = $_SERVER['DOCUMENT_ROOT'];
+	require_once($base . "/bin/utility.class.inc"); // debug mode = kibris otherwise null
+	
+	if ($_GET['uid'] > 0 && $_GET['tid'] > 0) { // ajax side
+		$uid = (int) db::escape($_GET['uid']);
+		$tid = (int) db::escape($_GET['tid']);
+		$user = utility::getuserfromid($uid);
+		$target = utility::getuserfromid($tid);
+	}
+	else {
+		global $user;
+		global $target;
+	}
+?>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(this).attr("title", "<?php print(utility::getfixedtitle(sprintf("Mesajlar - %s %s", $target->name, $target->surname))); ?>");
+		$('div#back-button').click(function(event) {
+			event.preventDefault();
+			$("a[href='?act=messages']").click();
+		});
+		
+		var mozspace = $.browser.mozilla ? 3 : 0;
+		$('textarea#reply-box').autoResize({
+			maxHeight: 400,
+			minHeight: 14,
+			extraSpace: mozspace}).focusout( function() {
+						if ($(this).val() == "") {
+							$(this).toggleClass('inactive');
+							$(this).val("Yanıt yaz...");
+						}
+					}).focusin( function() {
+						if ($(this).hasClass('inactive') && $(this).val() == "Yanıt yaz...") {
+							$(this).toggleClass('inactive');
+							$(this).val("");
+						}
+					});
+					
+		$("input#reply-button").click(function(event) {
+			event.preventDefault();
+				
+			if ($('#reply-box').val().replace(/\n/g, "").length > 0) {
+				if ($(this).is(':animated'))
+					return;
+					
+				$(this).animate({opacity : 1.0}, 3000);
+				
+				var value = $('#reply-box').val();
+				
+				var uid = <?php print($user->id); ?>;
+				var tid = <?php print($target->id); ?>;
+				var request = $.ajax({
+					url: "ajax.php",
+					type: "POST",
+					dataType: "json",
+					contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+					data: { 
+						"do" : "add-message",
+						"value" : value,
+						"authorid" : uid,
+						"beholderid" : tid,
+						"beholdertype" : "User" }
+				});
+
+				request.done(function(reply) {
+					if (reply  == "true") {
+						var template = 
+						"<div class='item'>" +
+							"<div class='left'>" +
+								"<a class='avatar' href='profile.php?id=<?php print($user->id); ?>'><img class='midi' src='<?php print($user->avatar("midi")); ?>' alt='<?php printf("%s %s", $user->name, $user->surname); ?>' /></a>" +
+							"</div>" +
+							"<div class='right'>" +
+								"<a class='user' href='profile.php?id=<?php print($user->id); ?>'><?php printf("%s %s", $user->name, $user->surname); ?></a></br />" +
+									"<span>" + value + "</span><br />" +
+							"</div>" +
+						"</div>";
+						
+						$('div.base').append(template);
+						$('textarea#reply-box').val('');
+					}
+				});
+			}
+		});
+	});
+</script>
+<div id="messages-all" class="messages-con conversation">
+	<div class="header">
+		<i class="messages-item"></i><?php printf("%s %s", $target->name, $target->surname); ?>
+		<div class="button-white" id="back-button"><img src="img/message-friend.png" alt="Mesajlar" />Mesajlar</div>
+	</div>
+	<?php 
+		$conversation = $user->get('conversation', $target->id); ?>
+	<div class="content base">
+	<?php
+		foreach($conversation as $messages): ?>
+			<div class="item">
+		<?php			
+			$author = $messages[0]['BaseID'] == $user->id ? $user : $target; ?>
+			
+			<div class="left">
+				<a class="avatar" href="profile.php?id=<?php print($author->id); ?>"><img class="midi" src="<?php print($author->avatar("midi")); ?>" alt="<?php printf("%s %s", $author->name, $author->surname); ?>" /></a>
+			</div>
+				<div class="right">
+						<label><?php print(utility::countdown($messages[0]['CreatedAt'])); ?></label>
+						<a class="user" href="profile.php?id=<?php print($author->id); ?>"><?php printf("%s %s", $author->name, $author->surname); ?></a></br />
+					<?php
+						$count = count($messages);
+						for($i = 0; $i < $count; $i++): ?>
+						<span><?php print($messages[$i]['Value']); ?></span><br />
+					<?php
+						endfor; ?>
+				</div>
+			</div>			
+	<?php
+		endforeach; ?>
+	</div>
+	<div class="content reply">
+		<div class="left"></div>
+		<div class="right">
+			<div class="reply-hold">
+				<textarea id="reply-box" class="inactive" spellcheck="false">Yanıt yaz...</textarea>
+			</div>
+			<input id="reply-button" type="submit" class="button-black" value="Yanıtla" />
+		</div>
+	</div>
+</div>

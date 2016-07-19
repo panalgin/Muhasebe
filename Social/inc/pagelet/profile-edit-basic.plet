@@ -1,0 +1,437 @@
+<?php
+	session_start();
+	require_once($_SERVER['DOCUMENT_ROOT'] . "/bin/utility.class.inc"); // debug mode = kibris otherwise null
+	$user = utility::getcurrentuser();
+	$basic_info = $user->get('basic-info');
+?>
+
+<div id="basic-edit" class="profile-edit-con">
+	<input type="hidden" id="location-info" value="<?php 
+	if ($basic_info['Location'] != null) {
+		$locations = array("Location" => $basic_info['Location']);
+		
+		print(db::escape(utility::json_encode($locations)));
+	} ?>" />
+	<div class="row">
+		<div class="cell left">Yaşadığın Şehir:</div>
+		<div class="cell right">
+			<input id="lives-in-loc" class="edit-box" type="text" maxlength="15" />
+			<div id="lives-in-loc-over" class="edit-box-over" <?php if ($basic_info['Location']['LivesIn'] != null) print("style='display: block'"); ?> >
+				<span><?php if ($basic_info['Location']['LivesIn'] != null) print($basic_info['Location']['LivesIn']['Name']); ?></span>
+				<img src="img/cross.png" />
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="cell left">Memleket:</div>
+		<div class="cell right">
+			<input id="born-in-loc" class="edit-box" type="text" maxlength="15" />
+			<div id="born-in-loc-over" class="edit-box-over" <?php if ($basic_info['Location']['BornIn'] != null) print("style='display: block'"); ?>>
+				<span><?php if ($basic_info['Location']['BornIn'] != null) print($basic_info['Location']['BornIn']['Name']); ?></span>
+				<img src="img/cross.png" />
+			</div>
+		</div>
+	</div>
+	<hr />
+	<div class="row">
+		<div class="cell left">Cinsiyet:</div>
+		<div class="cell right">
+			<select id="gender-select">
+				<?php
+					$genders = array("Female" => "Kadın", "Male" => "Erkek");
+					$gender = $basic_info['Gender'];
+					
+					foreach($genders as $key => $value) {
+						if ($gender != $key)
+							printf("<option value=\"%s\">%s</option>", $key, $value);
+						else
+							printf("<option value=\"%s\" selected=\"selected\">%s</option>", $key, $value);
+					}
+				?>
+			</select>
+			<?php printf("<input id=\"gender-info\" type=\"hidden\" value=\"%s\" />", db::escape(utility::json_encode(array("Gender" => $basic_info['Gender'])))); ?>
+		</div>
+	</div>
+	<div class="row">
+		<div class="cell left"></div>
+		<div class="cell right">
+			<input id="gender-type-check" type="checkbox"
+			<?php
+				if ($basic_info['Privacy']['ShowGender'] == "True")
+					print("checked=\"checked\"");
+			?>
+			/> Profilimde cinsiyetimi göster
+		</div>
+	</div>
+	<hr />
+	<div class="row"><div class="cell left">Doğum Tarihi:</div>
+		<div class="cell right">
+					<select id="day-select" type="select-one" class="validate[required]">
+						<?php 	$born = date_parse($basic_info['BornAt']);
+								$day = sprintf("%02d", $born['day']);
+								$month = sprintf("%02d", $born['month']);
+								$year = $born['year']; ?>
+						<?php 	for($i = 1; $i < 31; $i++) {
+									if ($i != $day)
+										print(sprintf("<option value=\"%02d\">%02d</option>", $i, $i));
+									else
+										print(sprintf("<option value=\"%02d\" selected=\"selected\">%02d</option>", $i, $i));
+								}
+						?>
+					</select>
+					<select id="month-select" type="select-one" class="validate[required]">
+						<?php
+								$months = array("01" => "Ocak", "02" => "Şubat", "03" => "Mart", "04" => "Nisan", "05" => "Mayıs", "06" => "Haziran", "07" => "Temmuz",
+									  "08" => "Ağustos", "09" => "Eylül", "10" => "Ekim", "11" => "Kasım", "12" => "Aralık");
+									
+								foreach($months as $key => $value) {
+									if ($key != $month)
+										print(sprintf("<option value=\"%s\">%s</option>", $key, $value));
+									else
+										print(sprintf("<option value=\"%s\" selected=\"selected\">%s</option>", $key, $value));
+								}
+						?>
+					</select>
+					<select id="year-select" type="select-one" class="validate[required]">
+						<?php
+								for($i = 2011; $i >= 1905; $i--) {
+									if ($i != $year)
+										print(sprintf("<option value=\"%s\">%s</option>", $i, $i));
+									else
+										print(sprintf("<option value=\"%s\" selected=\"selected\">%s</option>", $i, $i));
+								}
+						?>
+					</select>
+					
+					<?php printf("<input id=\"bornat-info\" type=\"hidden\" value=\"%s\" />", db::escape(utility::json_encode(array("BornAt" => $year . "-" . $month . "-" . $day)))); ?>
+		</div>
+	</div>
+	<div class="row">
+		<div class="cell left"></div>
+		<div class="cell right">
+			<select id="born-type-select">
+				<?php
+					$bornoptions = array("Full" => "Profilimde tam doğum tarihimi göster",
+										 "DayAndMonth" => "Profilimde sadece ay ve günü göster",
+										 "None" => "Profilimde doğum tarihimi gösterme");
+					$showbirthtype = $basic_info['Privacy']['ShowBirthday'];
+
+					foreach($bornoptions as $key => $value) {
+						if ($showbirthtype != $key)
+							print(sprintf("<option value=\"%s\">%s</option>", $key, $value));
+						else
+							print(sprintf("<option value=\"%s\" selected=\"selected\">%s</option>", $key, $value));
+					}
+				?>
+			</select>
+			<input id="privacy-info" type="hidden" value="<?php if ($basic_info['Privacy'] != null) print(db::escape(utility::json_encode($basic_info['Privacy']))); ?>" />
+		</div>
+	</div>
+	<hr />
+	<div class="row">
+		<div class="cell left">İlgilendikleri:</div>
+		<div class="cell right">
+			<input id="women-check" type="checkbox" <?php if ($basic_info['InterestedIn'] == "Women" || $basic_info['InterestedIn'] == "Both") print("checked=\"checked\""); ?> /> Kadınlar 
+			<input id="men-check" type="checkbox" <?php if ($basic_info['InterestedIn'] == "Men" || $basic_info['InterestedIn'] == "Both") print("checked=\"checked\""); ?> /> Erkekler
+			<input id="interested-in-info" type="hidden" value="<?php if ($basic_info['InterestedIn'] != null) print(db::escape(utility::json_encode(array("InterestedIn" => $basic_info['InterestedIn'])))); ?>" />
+		</div>
+	</div>
+	<hr />
+	<div class="row">
+		<div class="cell left">Diller:</div>
+		<div class="cell right">
+			<div class="list-control-box">
+				<?php 
+					$languages = $basic_info['Languages'];
+					
+					if (count($languages) > 0) {
+						$total = count($languages);
+						
+						$template = "";
+						for($i = 0; $i < $total; $i++) {
+							$lang = $languages[$i];
+							
+							$template = "";
+							
+							$template = sprintf("<div class=\"list-control-item\">".
+													"%s" .
+													"<img src=\"img/cross.png\" />" .
+													"<input id=\"language-item-%s\" type=\"hidden\" value=\"%s\" />" .
+												"</div>", $lang['Name'], $lang['ID'], db::escape(utility::json_encode($lang)));
+							
+							print($template);
+						}
+					}
+				?>
+				<input id="known-lan" type="text" class="edit-box-inline" maxlength="12" />
+				<input type="hidden" id="language-info" value="<?php 
+				if ($basic_info['Languages'] != null) 
+					print(db::escape(utility::json_encode(array("Languages" => $basic_info['Languages']))));
+				
+				?>" />
+			</div>
+		</div>
+	</div>
+	<hr />
+	<div class="row">
+		<div class="cell left">Hakkımda:</div>
+		<div class="cell right">
+			<textarea id="about-box" maxlength="500" spellcheck="false"><?php 			
+			if ($basic_info['About'] != null) print(html_entity_decode($basic_info['About'], ENT_COMPAT, "UTF-8")); ?></textarea>
+			<input id="about-info" type="hidden" value="<?php if ($basic_info['About'] != null) print(str_replace("\\\\", "\\", db::escape(utility::json_encode(array("About" => html_entity_decode($basic_info['About'], ENT_COMPAT, "UTF-8")))))); ?>" />
+		</div>
+	</div>
+	<hr />
+	<div class="row">
+		<div class="cell left"></div>
+		<div class="cell right">
+			<input type="submit" class="button-black" id="save-button" value="Kaydet" />
+			<img class="hidden x16" id="save-load" src="img/ajax-load.gif" />
+			<img class="hidden x16" id="save-success" src="img/ajax-success.png" />
+		</div>
+	</div>
+	
+	<input id="json-old" type="hidden" value="<?php echo(db::escape(json_encode($basic_info))); ?>" />
+	<input id="json-new" type="hidden" value="" />
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('div.row').on("click", "input#save-button", function() {
+			$('img#save-load').removeClass('hidden');
+			$('img#save-success').addClass('hidden');
+			
+			var data = $.parseJSON(unescape($('input#location-info').val()));
+			
+			if ($("input#lives-in-loc").val().replace(/\s/g, "").length > 2) {
+				if (data)
+					data.Location.LivesIn = { "ID" : "New", "Name" : $("input#lives-in-loc").val() };
+				else
+					data = { "Location" : { "LivesIn" : { "ID" : "New", "Name" : $("input#lives-in-loc").val() }}};
+			}
+			else {
+				if ($("div#lives-in-loc-over").css("display") != "block") {
+					if (data && data.Location)
+						delete data.Location.LivesIn;
+				}
+			}
+			if ($("input#born-in-loc").val().replace(/\s/g, "").length > 2) {
+				if (data)
+					data.Location.BornIn = { "ID" : "New", "Name" : $("input#born-in-loc").val() };
+				else
+					data = { "Location" : { "BornIn" : { "ID" : "New", "Name" : $("input#born-in-loc").val() }}};
+			}
+			else {
+				if ($("div#born-in-loc-over").css("display") != "block") {
+					if (data && data.Location)
+						delete data.Location.BornIn;
+				}
+			}
+				
+			if (data != "") {
+				$("input[id='location-info']").val(escape($.toJSON(data)));
+				Prepare();
+			}
+			
+			$(this).off("click", $(this)).animate({
+				opacity: 1.0,
+			}, 500);
+			
+			var request = $.ajax({
+					url: "ajax.php",
+					type: "POST",
+					dataType: "json",
+					contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+					data: { 
+						"do" : "edit-profile",
+						"value" : "basic",
+						"authorid" : <?php print($user->id); ?>,
+						"beholderid" : <?php print($user->id); ?>,
+						"beholdertype" : "User",
+						"json" : $.toJSON($.parseJSON(unescape($("input#json-new").val()))) }
+					});
+
+			request.done(function(reply) {
+				$('img#save-load').addClass('hidden');
+				
+				if (reply) {
+					$('img#save-success').removeClass('hidden');
+				}
+			});
+		});
+		$('textarea#about-box[maxlength]').keyup(function(){  
+			var limit = parseInt($(this).attr('maxlength'));  
+			var text = $(this).val();   
+			var chars = text.length;  
+			
+			if(chars > limit){  
+				var new_text = text.substr(0, limit); 
+				$(this).val(new_text);  
+			}  
+		});
+		var mozspace = $.browser.mozilla ? 3 : 0;
+		$('textarea#about-box').autoResize({
+						maxHeight: 400,
+						minHeight: 50,
+						extraSpace: mozspace
+		});
+		$('div.list-control-box').on("click", "img", function(event) {
+			$(this).parent().remove();
+			$("input.edit-box-inline").change();
+		});
+		$('div.edit-box-over > img').click(function(event) {
+			$(this).prev().text('');
+			$(this).parent().css('display', 'none');
+			
+			var data = $.parseJSON(unescape($('input#location-info').val()));
+			
+			
+			if ($(this).parent().attr('id') == "lives-in-loc-over")
+				if (data.Location.LivesIn) {
+					delete data.Location.LivesIn;
+					
+					if (!data.Location.BornIn)
+						data = "";
+						
+						
+					$("input#lives-in-loc").removeAttr('readonly').val('').focus();
+				}
+						
+			if ($(this).parent().attr('id') == "born-in-loc-over")
+				if (data.Location.BornIn) {
+					delete data.Location.BornIn;
+					
+					if (!data.Location.LivesIn)
+						data = "";
+						
+					$("input#born-in-loc").removeAttr('readonly').val('').focus();
+				}
+					
+			if (data != "")
+				$('input#location-info').val(escape($.toJSON(data)));
+			else
+				$('input#location-info').val('');
+				
+			Prepare();
+		});
+		$('select#gender-select').change(function() {
+			var data = {};
+			data.Gender = $(this).val();
+			
+			$('input#gender-info').val(escape($.toJSON(data)));
+			Prepare();
+		});
+		$('input#gender-type-check, select#born-type-select').change(function() {
+			var data = { "Privacy" : { "ShowGender" : "" , "ShowBirthday" : ""} };
+			var checked = "";
+			
+			if ($('input#gender-type-check').is(':checked'))
+				checked = "True";
+			else
+				checked = "False";
+				
+			data.Privacy.ShowGender = checked;
+			data.Privacy.ShowBirthday = $('select#born-type-select').val();
+
+			$('input#privacy-info').val(escape($.toJSON(data)));
+			Prepare();
+		});
+		$("input#women-check, input#men-check").change(function() {
+			var data = { "InterestedIn" : "" };
+			
+			if ($("input#women-check").is(":checked"))
+				data.InterestedIn = "Women";
+			if ($("input#men-check").is(":checked"))
+				data.InterestedIn = "Men";
+			if ($("input#women-check").is(":checked") && $("input#men-check").is(":checked"))
+				data.InterestedIn = "Both";
+				
+			$("input#interested-in-info").val(escape($.toJSON(data)));
+			Prepare();
+		});
+		$('select#day-select, select#month-select, select#year-select').change(function() {
+			var data = {};
+			data.BornAt = $('select#year-select').val() + "-" + $('select#month-select').val() + "-" + $('select#day-select').val();
+			$('input#bornat-info').val(escape($.toJSON(data)));
+			Prepare();
+		});
+		$('div.list-control-box').click(function(event) {
+			event.preventDefault();
+			$(this).children('input').focus();
+		});
+		
+		$('input.edit-box-inline').change(function(event) {
+			
+			event.stopPropagation();
+			
+			var data = {};
+			data.Languages = {};
+			var i = 0;
+			$("input[id^='language-item']").each(function() {
+				var parsed = $.parseJSON(unescape($(this).val()));
+				data.Languages[i] = { 'ID' : parsed.ID, 'Name' : parsed.Name };
+				i++;
+			});
+			
+			if ($(this).val().replace(/\s/g, '').length > 0)
+				data.Languages[i] = { 'ID' : 'New', 'Name' : $(this).val() };
+				
+			if (!data.Languages[0])
+				data = "";
+				
+			$('input#language-info').val(escape($.toJSON(data)));
+			Prepare();
+		});
+		
+		$('textarea#about-box').change(function() {
+			var data = {};
+			data.About = $(this).val();
+			
+			$('input#about-info').val(escape($.toJSON(data)));
+			Prepare();
+		});
+		
+		$(document).mousemove(function(e){
+			window.mouseXPos = e.pageX;
+			window.mouseYPos = e.pageY;
+		}); 
+		
+		$("input#lives-in-loc").sublay('location', 'lives-in');
+		$("input#born-in-loc").sublay('location', 'born-in');
+		$("input#known-lan").sublay('language', '');
+		
+		Prepare();
+	});
+	
+	function Prepare() {
+		var data = {};
+
+		$("input[type='hidden'][id$='-info']").each(function() {
+			if ($(this).val() != "" && $(this).val() != null) {
+				var parsed =  $.parseJSON(unescape($(this).val()));
+				
+				if (parsed.Location)
+					data['Location'] = parsed['Location'];
+					
+				if (parsed.BornAt)
+					data['BornAt'] = parsed['BornAt'];
+					
+				if (parsed.Gender)
+					data['Gender'] = parsed['Gender'];
+					
+				if (parsed.Languages)
+					data['Languages'] = parsed['Languages'];
+					
+				if (parsed.Privacy)
+					data['Privacy'] = parsed['Privacy'];
+					
+				if (parsed.About)
+					data['About'] = parsed['About'];
+					
+				if (parsed.InterestedIn)
+					data['InterestedIn'] = parsed['InterestedIn'];
+			}
+		});
+
+		$("input#json-new").val(escape($.toJSON(data)));
+	}
+</script>
