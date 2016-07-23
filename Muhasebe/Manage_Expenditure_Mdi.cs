@@ -121,7 +121,12 @@ namespace Muhasebe
                     m_Item.SubItems.Add(m_Expenditure.ExpenditureType.Name);
                     m_Item.SubItems.Add(m_Expenditure.Amount.Value.ToString());
                     m_Item.SubItems.Add(m_Expenditure.PaymentType.Name);
-                    m_Item.SubItems.Add(string.Format("{0} {1}", m_Expenditure.Author.Name, m_Expenditure.Author.Surname));
+
+                    if (m_Expenditure.Author != null)
+                        m_Item.SubItems.Add(string.Format("{0} {1}", m_Expenditure.Author.Name, m_Expenditure.Author.Surname));
+                    else
+                        m_Item.SubItems.Add("Bilinmeyen");
+
                     m_Item.SubItems.Add(m_Expenditure.Description);
 
                     this.listView1.Items.Add(m_Item);
