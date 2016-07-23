@@ -124,7 +124,11 @@ namespace Muhasebe
                     else
                         m_Item.SubItems.Add("Hata");
 
-                    m_Item.SubItems.Add(string.Format("{0} {1}", m_Income.Author.Name, m_Income.Author.Surname));
+                    if (m_Income.Author != null)
+                        m_Item.SubItems.Add(string.Format("{0} {1}", m_Income.Author.Name, m_Income.Author.Surname));
+                    else
+                        m_Item.SubItems.Add("Bilinmeyen");
+
                     m_Item.SubItems.Add(m_Income.Description);
 
                     this.Revenue_List.Items.Add(m_Item);
