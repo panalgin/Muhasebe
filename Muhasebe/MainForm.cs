@@ -14,6 +14,7 @@ using System.Threading;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity;
+using RawInputInterface;
 
 namespace Muhasebe
 {
@@ -49,6 +50,8 @@ namespace Muhasebe
         private void MainForm_Load(object sender, EventArgs e)
         {
             SetLastFormState();
+
+            BarcodeListener.Initialize(this.Handle);
 
             this.Menu_Strip.Enabled = false;
             this.Navigation_Strip.Enabled = false;

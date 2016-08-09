@@ -81,10 +81,10 @@ ServiceBinary=%12%\%DRIVERFILENAME%.sys
 [SourceDisksFiles]
 [SourceDisksNames]
 [DeviceList]
-%DESCRIPTION%=DriverInstall,USB\VID_24EA&PID_0187
+%DESCRIPTION%=DriverInstall,USB\VID_1D57&PID_001C
 
 [DeviceList.NTamd64]
-%DESCRIPTION%=DriverInstall,USB\VID_24EA&PID_0187
+%DESCRIPTION%=DriverInstall,USB\VID_1D57&PID_001C
 
 
 ;------------------------------------------------------------------------------

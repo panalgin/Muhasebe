@@ -78,6 +78,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.8.1\Assemblies\v4.5\MySql.Data.Entity.EF6.dll</HintPath>
     </Reference>
+    <Reference Include="RawInput, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\RawInput.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -161,6 +165,7 @@
     <Compile Include="Add_User_Mdi.Designer.cs">
       <DependentUpon>Add_User_Mdi.cs</DependentUpon>
     </Compile>
+    <Compile Include="BarcodeListener.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Company.cs">
       <DependentUpon>Context.tt</DependentUpon>
