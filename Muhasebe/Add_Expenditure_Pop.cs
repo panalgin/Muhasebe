@@ -22,7 +22,7 @@ namespace Muhasebe
 
         private void Add_Expenditure_Pop_Load(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             var m_ExpenditureTypes = m_Context.ExpenditureTypes.Where(q => q.OwnerID == null || q.OwnerID == Program.User.WorksAtID).ToList();
 
             this.Expenditure_Combo.DataSource = m_ExpenditureTypes;
@@ -44,7 +44,7 @@ namespace Muhasebe
 
         private void Save_Btn_Click(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             Expenditure m_Expenditure = new Expenditure();
 
             m_Expenditure.CreatedAt = this.CreatedAt_Picker.Value;

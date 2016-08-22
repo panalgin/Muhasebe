@@ -1,0 +1,1294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MuhasebeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Sector" Type="nvarchar" MaxLength="200" />
+          <Property Name="OwnerID" Type="int" />
+          <Property Name="CreatedAt" Type="smalldatetime" />
+          <Property Name="Biography" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Province" Type="nvarchar" MaxLength="45" />
+          <Property Name="District" Type="nvarchar" MaxLength="45" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="11" />
+          <Property Name="Gsm" Type="nvarchar" MaxLength="11" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="Devices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeID" Type="int" Nullable="false" />
+          <Property Name="OwnerID" Type="int" Nullable="false" />
+          <Property Name="Port" Type="nvarchar" MaxLength="45" />
+          <Property Name="BaudRate" Type="int" />
+          <Property Name="VendorID" Type="nvarchar" MaxLength="45" />
+          <Property Name="ProductID" Type="nvarchar" MaxLength="45" />
+          <Property Name="ConnectionType" Type="nvarchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="DeviceTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Universal" Type="nvarchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventCategories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuthorID" Type="int" />
+          <Property Name="CreatedAt" Type="smalldatetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CategoryID" Type="int" />
+        </EntityType>
+        <EntityType Name="Expenditures">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedAt" Type="smalldatetime" />
+          <Property Name="OwnerID" Type="int" />
+          <Property Name="AuthorID" Type="int" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ExpenditureTypeID" Type="int" />
+          <Property Name="PaymentTypeID" Type="int" />
+        </EntityType>
+        <EntityType Name="ExpenditureTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="OwnerID" Type="int" />
+        </EntityType>
+        <EntityType Name="Incomes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedAt" Type="smalldatetime" />
+          <Property Name="OwnerID" Type="int" />
+          <Property Name="AuthorID" Type="int" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="InvoiceID" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="IncomeTypeID" Type="int" />
+          <Property Name="PaymentTypeID" Type="int" />
+        </EntityType>
+        <EntityType Name="IncomeTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="45" />
+          <Property Name="OwnerID" Type="int" />
+        </EntityType>
+        <EntityType Name="Inventories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OwnerID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="45" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="InvoiceNodes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoiceID" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="BasePrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="FinalPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Tax" Type="int" />
+        </EntityType>
+        <EntityType Name="Invoices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OwnerID" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="smalldatetime" Nullable="false" />
+          <Property Name="AuthorID" Type="int" Nullable="false" />
+          <Property Name="TargetID" Type="int" />
+          <Property Name="PaymentTypeID" Type="int" />
+          <Property Name="State" Type="nvarchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="InventoryID" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="BasePrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Tax" Type="int" />
+          <Property Name="FinalPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CreatedAt" Type="smalldatetime" />
+          <Property Name="UnitTypeID" Type="int" Nullable="false" />
+          <Property Name="LocalImagePath" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="JobPositions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="PaymentTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="OwnerID" Type="int" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Barcode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PublicImagePath" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PropertyReminders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemID" Type="int" />
+          <Property Name="Minimum" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Maximum" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="OwnerID" Type="int" />
+          <Property Name="ResponsibleID" Type="int" />
+          <Property Name="PropertyReminderMethodID" Type="int" />
+        </EntityType>
+        <EntityType Name="PropertyRemindingMethods">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="UnitTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Abbreviation" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="DecimalPlaces" Type="int" Nullable="false" />
+          <Property Name="OwnerID" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="45" />
+          <Property Name="BornAt" Type="smalldatetime" />
+          <Property Name="CreatedAt" Type="smalldatetime" />
+          <Property Name="LastLoginAt" Type="smalldatetime" />
+          <Property Name="Level" Type="nvarchar" MaxLength="45" />
+          <Property Name="State" Type="nvarchar" MaxLength="45" />
+          <Property Name="Auth" Type="nvarchar" MaxLength="100" />
+          <Property Name="WorksAtID" Type="int" />
+          <Property Name="PositionID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="60" />
+        </EntityType>
+        <EntityContainer Name="MuhasebeModelStoreContainer">
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Devices" EntityType="Self.Devices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeviceTypes" EntityType="Self.DeviceTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventCategories" EntityType="Self.EventCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Expenditures" EntityType="Self.Expenditures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpenditureTypes" EntityType="Self.ExpenditureTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Incomes" EntityType="Self.Incomes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IncomeTypes" EntityType="Self.IncomeTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventories" EntityType="Self.Inventories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvoiceNodes" EntityType="Self.InvoiceNodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobPositions" EntityType="Self.JobPositions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentTypes" EntityType="Self.PaymentTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyReminders" EntityType="Self.PropertyReminders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyRemindingMethods" EntityType="Self.PropertyRemindingMethods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnitTypes" EntityType="Self.UnitTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MuhasebeModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MuhasebeEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Products" EntityType="MuhasebeModel.Product" />
+          <EntitySet Name="Users" EntityType="MuhasebeModel.User" />
+          <EntitySet Name="Inventories" EntityType="MuhasebeModel.Inventory" />
+          <EntitySet Name="Items" EntityType="MuhasebeModel.Item" />
+          <AssociationSet Name="ItemProduct" Association="MuhasebeModel.ItemProduct">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="ItemInventory" Association="MuhasebeModel.ItemInventory">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="Inventory" EntitySet="Inventories" />
+          </AssociationSet>
+          <EntitySet Name="Companies" EntityType="MuhasebeModel.Company" />
+          <AssociationSet Name="UserCompany" Association="MuhasebeModel.UserCompany">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <EntitySet Name="UnitTypes" EntityType="MuhasebeModel.UnitType" />
+          <AssociationSet Name="UnitTypeCompany" Association="MuhasebeModel.UnitTypeCompany">
+            <End Role="UnitType" EntitySet="UnitTypes" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="InventoryCompany" Association="MuhasebeModel.InventoryCompany">
+            <End Role="Inventory" EntitySet="Inventories" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <EntitySet Name="Devices" EntityType="MuhasebeModel.Device" />
+          <EntitySet Name="DeviceTypes" EntityType="MuhasebeModel.DeviceType" />
+          <AssociationSet Name="DeviceDeviceType" Association="MuhasebeModel.DeviceDeviceType">
+            <End Role="Device" EntitySet="Devices" />
+            <End Role="DeviceType" EntitySet="DeviceTypes" />
+          </AssociationSet>
+          <AssociationSet Name="ItemUnitType" Association="MuhasebeModel.ItemUnitType">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="UnitType" EntitySet="UnitTypes" />
+          </AssociationSet>
+          <AssociationSet Name="DeviceCompany" Association="MuhasebeModel.DeviceCompany">
+            <End Role="Device" EntitySet="Devices" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <EntitySet Name="InvoiceNodes" EntityType="MuhasebeModel.InvoiceNode" />
+          <EntitySet Name="Invoices" EntityType="MuhasebeModel.Invoice" />
+          <AssociationSet Name="InvoiceCompany" Association="MuhasebeModel.InvoiceCompany">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="InvoiceUser" Association="MuhasebeModel.InvoiceUser">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="InvoiceNodeInvoice" Association="MuhasebeModel.InvoiceNodeInvoice">
+            <End Role="InvoiceNode" EntitySet="InvoiceNodes" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="InvoiceNodeItem" Association="MuhasebeModel.InvoiceNodeItem">
+            <End Role="InvoiceNode" EntitySet="InvoiceNodes" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <EntitySet Name="PaymentTypes" EntityType="MuhasebeModel.PaymentType" />
+          <AssociationSet Name="InvoicePaymentType" Association="MuhasebeModel.InvoicePaymentType">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="PaymentType" EntitySet="PaymentTypes" />
+          </AssociationSet>
+          <AssociationSet Name="PaymentTypeCompany" Association="MuhasebeModel.PaymentTypeCompany">
+            <End Role="PaymentType" EntitySet="PaymentTypes" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <EntitySet Name="Incomes" EntityType="MuhasebeModel.Income" />
+          <AssociationSet Name="IncomeCompany" Association="MuhasebeModel.IncomeCompany">
+            <End Role="Income" EntitySet="Incomes" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="IncomeUser" Association="MuhasebeModel.IncomeUser">
+            <End Role="Income" EntitySet="Incomes" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="IncomeInvoice" Association="MuhasebeModel.IncomeInvoice">
+            <End Role="Income" EntitySet="Incomes" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="IncomePaymentType" Association="MuhasebeModel.IncomePaymentType">
+            <End Role="Income" EntitySet="Incomes" />
+            <End Role="PaymentType" EntitySet="PaymentTypes" />
+          </AssociationSet>
+          <EntitySet Name="IncomeTypes" EntityType="MuhasebeModel.IncomeType" />
+          <AssociationSet Name="IncomeIncomeType" Association="MuhasebeModel.IncomeIncomeType">
+            <End Role="Income" EntitySet="Incomes" />
+            <End Role="IncomeType" EntitySet="IncomeTypes" />
+          </AssociationSet>
+          <EntitySet Name="Expenditures" EntityType="MuhasebeModel.Expenditure" />
+          <EntitySet Name="ExpenditureTypes" EntityType="MuhasebeModel.ExpenditureType" />
+          <AssociationSet Name="ExpenditureTypeCompany" Association="MuhasebeModel.ExpenditureTypeCompany">
+            <End Role="ExpenditureType" EntitySet="ExpenditureTypes" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="ExpenditureUser" Association="MuhasebeModel.ExpenditureUser">
+            <End Role="Expenditure" EntitySet="Expenditures" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="ExpenditureCompany" Association="MuhasebeModel.ExpenditureCompany">
+            <End Role="Expenditure" EntitySet="Expenditures" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="ExpenditureExpenditureType" Association="MuhasebeModel.ExpenditureExpenditureType">
+            <End Role="Expenditure" EntitySet="Expenditures" />
+            <End Role="ExpenditureType" EntitySet="ExpenditureTypes" />
+          </AssociationSet>
+          <AssociationSet Name="ExpenditurePaymentType" Association="MuhasebeModel.ExpenditurePaymentType">
+            <End Role="Expenditure" EntitySet="Expenditures" />
+            <End Role="PaymentType" EntitySet="PaymentTypes" />
+          </AssociationSet>
+          <EntitySet Name="JobPositions" EntityType="MuhasebeModel.JobPosition" />
+          <AssociationSet Name="UserJobPosition" Association="MuhasebeModel.UserJobPosition">
+            <End Role="User" EntitySet="Users" />
+            <End Role="JobPosition" EntitySet="JobPositions" />
+          </AssociationSet>
+          <EntitySet Name="Events" EntityType="MuhasebeModel.Event" />
+          <AssociationSet Name="EventUser" Association="MuhasebeModel.EventUser">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="EventCategories" EntityType="MuhasebeModel.EventCategory" />
+          <AssociationSet Name="EventEventCategory" Association="MuhasebeModel.EventEventCategory">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="EventCategory" EntitySet="EventCategories" />
+          </AssociationSet>
+          <EntitySet Name="PropertyReminders" EntityType="MuhasebeModel.PropertyReminder" />
+          <EntitySet Name="PropertyRemindingMethods" EntityType="MuhasebeModel.PropertyRemindingMethod" />
+          <AssociationSet Name="PropertyReminderCompany" Association="MuhasebeModel.PropertyReminderCompany">
+            <End Role="PropertyReminder" EntitySet="PropertyReminders" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="PropertyReminderItem" Association="MuhasebeModel.PropertyReminderItem">
+            <End Role="PropertyReminder" EntitySet="PropertyReminders" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="PropertyReminderUser" Association="MuhasebeModel.PropertyReminderUser">
+            <End Role="PropertyReminder" EntitySet="PropertyReminders" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="PropertyReminderPropertyRemindingMethod" Association="MuhasebeModel.PropertyReminderPropertyRemindingMethod">
+            <End Role="PropertyReminder" EntitySet="PropertyReminders" />
+            <End Role="PropertyRemindingMethod" EntitySet="PropertyRemindingMethods" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Barcode" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="PublicImagePath" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="BornAt" Type="DateTime" />
+          <Property Name="CreatedAt" Type="DateTime" />
+          <Property Name="LastLoginAt" Type="DateTime" />
+          <Property Name="Level" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="Auth" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="PositionID" />
+          <Property Type="Int32" Name="WorksAtID" />
+          <NavigationProperty Name="WorksAt" Relationship="MuhasebeModel.UserCompany" FromRole="User" ToRole="Company" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Surname" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Position" Relationship="MuhasebeModel.UserJobPosition" FromRole="User" ToRole="JobPosition" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="OwnerID" />
+          <NavigationProperty Name="Items" Relationship="MuhasebeModel.ItemInventory" FromRole="Inventory" ToRole="Item" />
+          <NavigationProperty Name="Owner" Relationship="MuhasebeModel.InventoryCompany" FromRole="Inventory" ToRole="Company" />
+          <Property Type="String" Name="Name" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ProductID" Nullable="false" />
+          <Property Type="Int32" Name="InventoryID" Nullable="false" />
+          <Property Type="Int32" Name="Tax" />
+          <Property Type="DateTime" Name="CreatedAt" />
+          <NavigationProperty Name="Product" Relationship="MuhasebeModel.ItemProduct" FromRole="Item" ToRole="Product" />
+          <NavigationProperty Name="Inventory" Relationship="MuhasebeModel.ItemInventory" FromRole="Item" ToRole="Inventory" />
+          <Property Type="Decimal" Name="BasePrice" />
+          <Property Type="Decimal" Name="FinalPrice" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" />
+          <Property Type="Int32" Name="UnitTypeID" Nullable="false" />
+          <NavigationProperty Name="UnitType" Relationship="MuhasebeModel.ItemUnitType" FromRole="Item" ToRole="UnitType" />
+          <Property Type="String" Name="LocalImagePath" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="ItemProduct">
+          <End Type="MuhasebeModel.Item" Role="Item" Multiplicity="*" />
+          <End Type="MuhasebeModel.Product" Role="Product" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ItemInventory">
+          <End Type="MuhasebeModel.Item" Role="Item" Multiplicity="*" />
+          <End Type="MuhasebeModel.Inventory" Role="Inventory" Multiplicity="1" >
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="InventoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Sector" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedAt" />
+          <Property Type="String" Name="Biography" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Province" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="District" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Phone" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Gsm" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Fax" MaxLength="11" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Workers" Relationship="MuhasebeModel.UserCompany" FromRole="Company" ToRole="User" />
+          <NavigationProperty Name="Inventories" Relationship="MuhasebeModel.InventoryCompany" FromRole="Company" ToRole="Inventory" />
+          <Property Type="Int32" Name="OwnerID" />
+          <NavigationProperty Name="Devices" Relationship="MuhasebeModel.DeviceCompany" FromRole="Company" ToRole="Device" />
+          <NavigationProperty Name="Invoices" Relationship="MuhasebeModel.InvoiceCompany" FromRole="Company" ToRole="Invoice" />
+          <NavigationProperty Name="PaymentTypes" Relationship="MuhasebeModel.PaymentTypeCompany" FromRole="Company" ToRole="PaymentType" />
+          <NavigationProperty Name="ExpenditureTypes" Relationship="MuhasebeModel.ExpenditureTypeCompany" FromRole="Company" ToRole="ExpenditureType" />
+        </EntityType>
+        <Association Name="UserCompany">
+          <End Type="MuhasebeModel.User" Role="User" Multiplicity="*" />
+          <End Type="MuhasebeModel.Company" Role="Company" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="WorksAtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UnitType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Abbreviation" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="DecimalPlaces" Nullable="false" />
+          <Property Type="Int32" Name="OwnerID" />
+          <NavigationProperty Name="Owner" Relationship="MuhasebeModel.UnitTypeCompany" FromRole="UnitType" ToRole="Company" />
+        </EntityType>
+        <Association Name="UnitTypeCompany">
+          <End Type="MuhasebeModel.UnitType" Role="UnitType" Multiplicity="*" />
+          <End Type="MuhasebeModel.Company" Role="Company" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UnitType">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InventoryCompany">
+          <End Type="MuhasebeModel.Inventory" Role="Inventory" Multiplicity="*" />
+          <End Type="MuhasebeModel.Company" Role="Company" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Device">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="TypeID" Nullable="false" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+          <Property Type="String" Name="Port" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="BaudRate" />
+          <NavigationProperty Name="Type" Relationship="MuhasebeModel.DeviceDeviceType" FromRole="Device" ToRole="DeviceType" />
+          <NavigationProperty Name="Company" Relationship="MuhasebeModel.DeviceCompany" FromRole="Device" ToRole="Company" />
+        </EntityType>
+        <EntityType Name="DeviceType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Universal" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="DeviceDeviceType">
+          <End Type="MuhasebeModel.Device" Role="Device" Multiplicity="*" />
+          <End Type="MuhasebeModel.DeviceType" Role="DeviceType" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ItemUnitType">
+          <End Type="MuhasebeModel.Item" Role="Item" Multiplicity="*" />
+          <End Type="MuhasebeModel.UnitType" Role="UnitType" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="UnitType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="UnitTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DeviceCompany">
+          <End Type="MuhasebeModel.Device" Role="Device" Multiplicity="*" />
+          <End Type="MuhasebeModel.Company" Role="Company" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="InvoiceNode">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="InvoiceID" Nullable="false" />
+          <Property Type="Int32" Name="ItemID" Nullable="false" />
+          <Property Type="Decimal" Name="Amount" />
+          <Property Type="Decimal" Name="BasePrice" />
+          <Property Type="Decimal" Name="FinalPrice" />
+          <Property Type="Int32" Name="Tax" />
+          <NavigationProperty Name="Invoice" Relationship="MuhasebeModel.InvoiceNodeInvoice" FromRole="InvoiceNode" ToRole="Invoice" />
+          <NavigationProperty Name="Item" Relationship="MuhasebeModel.InvoiceNodeItem" FromRole="InvoiceNode" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="false" />
+          <Property Type="Int32" Name="AuthorID" Nullable="false" />
+          <Property Type="Int32" Name="TargetID" />
+          <Property Type="Int32" Name="PaymentTypeID" />
+          <NavigationProperty Name="Owner" Relationship="MuhasebeModel.InvoiceCompany" FromRole="Invoice" ToRole="Company" />
+          <NavigationProperty Name="Author" Relationship="MuhasebeModel.InvoiceUser" FromRole="Invoice" ToRole="User" />
+          <NavigationProperty Name="Nodes" Relationship="MuhasebeModel.InvoiceNodeInvoice" FromRole="Invoice" ToRole="InvoiceNode" />
+          <Property Type="String" Name="State" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PaymentType" Relationship="MuhasebeModel.InvoicePaymentType" FromRole="Invoice" ToRole="PaymentType" />
+        </EntityType>
+        <Association Name="InvoiceCompany">
+          <End Type="MuhasebeModel.Invoice" Role="Invoice" Multiplicity="*" />
+          <End Type="MuhasebeModel.Company" Role="Company" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InvoiceUser">
+          <End Type="MuhasebeModel.Invoice" Role="Invoice" Multiplicity="*" />
+          <End Type="MuhasebeModel.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InvoiceNodeInvoice">
+          <End Type="MuhasebeModel.InvoiceNode" Role="InvoiceNode" Multiplicity="*" />
+          <End Type="MuhasebeModel.Invoice" Role="Invoice" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InvoiceNode">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InvoiceNodeItem">
+          <End Type="MuhasebeModel.InvoiceNode" Role="InvoiceNode" Multiplicity="*" />
+          <End Type="MuhasebeModel.Item" Role="Item" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InvoiceNode">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PaymentType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="OwnerID" />
+          <NavigationProperty Name="Owner" Relationship="MuhasebeModel.PaymentTypeCompany" FromRole="PaymentType" ToRole="Company" />
+        </EntityType>
+        <Association Name="InvoicePaymentType">
+          <End Type="MuhasebeModel.Invoice" Role="Invoice" Multiplicity="*" />
+          <End Type="MuhasebeModel.PaymentType" Role="PaymentType" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="PaymentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PaymentTypeCompany">
+          <End Type="MuhasebeModel.PaymentType" Role="PaymentType" Multiplicity="*" />
+          <End Type="MuhasebeModel.Company" Role="Company" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PaymentType">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Income">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="CreatedAt" />
+          <Property Type="Int32" Name="OwnerID" />
+          <Property Type="Int32" Name="AuthorID" />
+          <Property Type="Decimal" Name="Amount" />
+          <Property Type="Int32" Name="InvoiceID" />
+          <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="IncomeTypeID" />
+          <Property Type="Int32" Name="PaymentTypeID" />
+          <NavigationProperty Name="Owner" Relationship="MuhasebeModel.IncomeCompany" FromRole="Income" ToRole="Company" />
+          <NavigationProperty Name="Author" Relationship="MuhasebeModel.IncomeUser" FromRole="Income" ToRole="User" />
+          <NavigationProperty Name="Invoice" Relationship="MuhasebeModel.IncomeInvoice" FromRole="Income" ToRole="Invoice" />
+          <NavigationProperty Name="PaymentType" Relationship="MuhasebeModel.IncomePaymentType" FromRole="Income" ToRole="PaymentType" />
+          <NavigationProperty Name="IncomeType" Relationship="MuhasebeModel.IncomeIncomeType" FromRole="Income" ToRole="IncomeType" />
+        </EntityType>
+        <Association Name="IncomeCompany">
+          <End Type="MuhasebeModel.Income" Role="Income" Multiplicity="*" />
+          <End Type="MuhasebeModel.Company" Role="Company" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Income">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IncomeUser">
+          <End Type="MuhasebeModel.Income" Role="Income" Multiplicity="*" />
+          <End Type="MuhasebeModel.User" Role="User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Income">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IncomeInvoice">
+          <End Type="MuhasebeModel.Income" Role="Income" Multiplicity="*" />
+          <End Type="MuhasebeModel.Invoice" Role="Invoice" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Income">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IncomePaymentType">
+          <End Type="MuhasebeModel.Income" Role="Income" Multiplicity="*" />
+          <End Type="MuhasebeModel.PaymentType" Role="PaymentType" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Income">
+              <PropertyRef Name="PaymentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="IncomeType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="OwnerID" />
+        </EntityType>
+        <Association Name="IncomeIncomeType">
+          <End Type="MuhasebeModel.Income" Role="Income" Multiplicity="*" />
+          <End Type="MuhasebeModel.IncomeType" Role="IncomeType" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="IncomeType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Income">
+              <PropertyRef Name="IncomeTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Expenditure">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="CreatedAt" />
+          <Property Type="Int32" Name="OwnerID" />
+          <Property Type="Int32" Name="AuthorID" />
+          <Property Type="Decimal" Name="Amount" />
+          <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ExpenditureTypeID" />
+          <Property Type="Int32" Name="PaymentTypeID" />
+          <NavigationProperty Name="Author" Relationship="MuhasebeModel.ExpenditureUser" FromRole="Expenditure" ToRole="User" />
+          <NavigationProperty Name="Owner" Relationship="MuhasebeModel.ExpenditureCompany" FromRole="Expenditure" ToRole="Company" />
+          <NavigationProperty Name="ExpenditureType" Relationship="MuhasebeModel.ExpenditureExpenditureType" FromRole="Expenditure" ToRole="ExpenditureType" />
+          <NavigationProperty Name="PaymentType" Relationship="MuhasebeModel.ExpenditurePaymentType" FromRole="Expenditure" ToRole="PaymentType" />
+        </EntityType>
+        <EntityType Name="ExpenditureType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="OwnerID" />
+          <NavigationProperty Name="Owner" Relationship="MuhasebeModel.ExpenditureTypeCompany" FromRole="ExpenditureType" ToRole="Company" />
+        </EntityType>
+        <Association Name="ExpenditureTypeCompany">
+          <End Type="MuhasebeModel.ExpenditureType" Role="ExpenditureType" Multiplicity="*" />
+          <End Type="MuhasebeModel.Company" Role="Company" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ExpenditureType">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ExpenditureUser">
+          <End Type="MuhasebeModel.Expenditure" Role="Expenditure" Multiplicity="*" />
+          <End Type="MuhasebeModel.User" Role="User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Expenditure">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ExpenditureCompany">
+          <End Type="MuhasebeModel.Expenditure" Role="Expenditure" Multiplicity="*" />
+          <End Type="MuhasebeModel.Company" Role="Company" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Expenditure">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ExpenditureExpenditureType">
+          <End Type="MuhasebeModel.Expenditure" Role="Expenditure" Multiplicity="*" />
+          <End Type="MuhasebeModel.ExpenditureType" Role="ExpenditureType" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ExpenditureType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Expenditure">
+              <PropertyRef Name="ExpenditureTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ExpenditurePaymentType">
+          <End Type="MuhasebeModel.Expenditure" Role="Expenditure" Multiplicity="*" />
+          <End Type="MuhasebeModel.PaymentType" Role="PaymentType" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Expenditure">
+              <PropertyRef Name="PaymentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="JobPosition">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="UserJobPosition">
+          <End Type="MuhasebeModel.User" Role="User" Multiplicity="*" />
+          <End Type="MuhasebeModel.JobPosition" Role="JobPosition" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="JobPosition">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="PositionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="AuthorID" />
+          <Property Type="DateTime" Name="CreatedAt" />
+          <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Author" Relationship="MuhasebeModel.EventUser" FromRole="Event" ToRole="User" />
+          <Property Type="Int32" Name="CategoryID" />
+          <NavigationProperty Name="Category" Relationship="MuhasebeModel.EventEventCategory" FromRole="Event" ToRole="EventCategory" />
+        </EntityType>
+        <Association Name="EventUser">
+          <End Type="MuhasebeModel.Event" Role="Event" Multiplicity="*" />
+          <End Type="MuhasebeModel.User" Role="User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EventCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="EventEventCategory">
+          <End Type="MuhasebeModel.Event" Role="Event" Multiplicity="*" />
+          <End Type="MuhasebeModel.EventCategory" Role="EventCategory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="EventCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PropertyReminder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ItemID" />
+          <Property Type="Decimal" Name="Minimum" />
+          <Property Type="Decimal" Name="Maximum" />
+          <Property Type="Int32" Name="OwnerID" />
+          <Property Type="Int32" Name="ResponsibleID" />
+          <Property Type="Int32" Name="PropertyReminderMethodID" />
+          <NavigationProperty Name="Owner" Relationship="MuhasebeModel.PropertyReminderCompany" FromRole="PropertyReminder" ToRole="Company" />
+          <NavigationProperty Name="Item" Relationship="MuhasebeModel.PropertyReminderItem" FromRole="PropertyReminder" ToRole="Item" />
+          <NavigationProperty Name="Responsible" Relationship="MuhasebeModel.PropertyReminderUser" FromRole="PropertyReminder" ToRole="User" />
+          <NavigationProperty Name="PropertyRemindingMethod" Relationship="MuhasebeModel.PropertyReminderPropertyRemindingMethod" FromRole="PropertyReminder" ToRole="PropertyRemindingMethod" />
+        </EntityType>
+        <EntityType Name="PropertyRemindingMethod">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="PropertyReminderCompany">
+          <End Type="MuhasebeModel.PropertyReminder" Role="PropertyReminder" Multiplicity="*" />
+          <End Type="MuhasebeModel.Company" Role="Company" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyReminder">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PropertyReminderItem">
+          <End Type="MuhasebeModel.PropertyReminder" Role="PropertyReminder" Multiplicity="*" >
+          </End>
+          <End Type="MuhasebeModel.Item" Role="Item" Multiplicity="0..1" >
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyReminder">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PropertyReminderUser">
+          <End Type="MuhasebeModel.PropertyReminder" Role="PropertyReminder" Multiplicity="*" />
+          <End Type="MuhasebeModel.User" Role="User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyReminder">
+              <PropertyRef Name="ResponsibleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PropertyReminderPropertyRemindingMethod">
+          <End Type="MuhasebeModel.PropertyReminder" Role="PropertyReminder" Multiplicity="*" />
+          <End Type="MuhasebeModel.PropertyRemindingMethod" Role="PropertyRemindingMethod" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyRemindingMethod">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyReminder">
+              <PropertyRef Name="PropertyReminderMethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MuhasebeModelStoreContainer" CdmEntityContainer="MuhasebeEntities">
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.Invoice)">
+              <MappingFragment StoreEntitySet="Invoices">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentTypeID" />
+                <ScalarProperty Name="TargetID" ColumnName="TargetID" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnitTypes">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.UnitType)">
+              <MappingFragment StoreEntitySet="UnitTypes">
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="DecimalPlaces" ColumnName="DecimalPlaces" />
+                <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.User)">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="WorksAtID" ColumnName="WorksAtID" />
+                <ScalarProperty Name="Auth" ColumnName="Auth" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="LastLoginAt" ColumnName="LastLoginAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="BornAt" ColumnName="BornAt" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.Company)">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Gsm" ColumnName="Gsm" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="Biography" ColumnName="Biography" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentTypes">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.PaymentType)">
+              <MappingFragment StoreEntitySet="PaymentTypes">
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Incomes">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.Income)">
+              <MappingFragment StoreEntitySet="Incomes">
+                <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentTypeID" />
+                <ScalarProperty Name="IncomeTypeID" ColumnName="IncomeTypeID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobPositions">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.JobPosition)">
+              <MappingFragment StoreEntitySet="JobPositions">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceNodes">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.InvoiceNode)">
+              <MappingFragment StoreEntitySet="InvoiceNodes">
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="FinalPrice" ColumnName="FinalPrice" />
+                <ScalarProperty Name="BasePrice" ColumnName="BasePrice" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expenditures">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.Expenditure)">
+              <MappingFragment StoreEntitySet="Expenditures">
+                <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentTypeID" />
+                <ScalarProperty Name="ExpenditureTypeID" ColumnName="ExpenditureTypeID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IncomeTypes">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.IncomeType)">
+              <MappingFragment StoreEntitySet="IncomeTypes">
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpenditureTypes">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.ExpenditureType)">
+              <MappingFragment StoreEntitySet="ExpenditureTypes">
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.Event)">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyRemindingMethods">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.PropertyRemindingMethod)">
+              <MappingFragment StoreEntitySet="PropertyRemindingMethods">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyReminders">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.PropertyReminder)">
+              <MappingFragment StoreEntitySet="PropertyReminders">
+                <ScalarProperty Name="PropertyReminderMethodID" ColumnName="PropertyReminderMethodID" />
+                <ScalarProperty Name="ResponsibleID" ColumnName="ResponsibleID" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="Maximum" ColumnName="Maximum" />
+                <ScalarProperty Name="Minimum" ColumnName="Minimum" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.Item)">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="LocalImagePath" ColumnName="LocalImagePath" />
+                <ScalarProperty Name="UnitTypeID" ColumnName="UnitTypeID" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="FinalPrice" ColumnName="FinalPrice" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="BasePrice" ColumnName="BasePrice" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="InventoryID" ColumnName="InventoryID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventories">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.Inventory)">
+              <MappingFragment StoreEntitySet="Inventories">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Devices">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.Device)">
+              <MappingFragment StoreEntitySet="Devices">
+                <ScalarProperty Name="BaudRate" ColumnName="BaudRate" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeviceTypes">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.DeviceType)">
+              <MappingFragment StoreEntitySet="DeviceTypes">
+                <ScalarProperty Name="Universal" ColumnName="Universal" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventCategories">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.EventCategory)">
+              <MappingFragment StoreEntitySet="EventCategories">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.Product)">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="PublicImagePath" ColumnName="PublicImagePath" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="DDLGenerationTemplate" Value="$(VSEFTools)\DBGen\SSDLToSQL10.tt" />
+        <DesignerProperty Name="SynchronizePropertyFacets" Value="False" />
+        <DesignerProperty Name="DefaultDatabaseSchema" Value="dbo.Muhasebe" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

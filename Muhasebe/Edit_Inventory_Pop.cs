@@ -23,7 +23,7 @@ namespace Muhasebe
 
         private void Edit_Inventory_Pop_Load(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             this.Storge_Name_Box.Text = this.Inventory.Name;
             this.Storge_Adress_Box.Text = this.Inventory.Address;
@@ -35,7 +35,7 @@ namespace Muhasebe
         {
             if (Inventory != null)
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
                 Inventory m_Actual = m_Context.Inventories.Where(q => q.ID == this.Inventory.ID).FirstOrDefault();
 
                 if (m_Actual != null)

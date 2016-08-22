@@ -56,7 +56,7 @@ namespace Muhasebe
             this.Menu_Strip.Enabled = false;
             this.Navigation_Strip.Enabled = false;
 
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             EventSink.Error += EventSink_Error;
             EventSink.BarcodeScanned += EventSink_BarcodeScanned;
@@ -92,7 +92,7 @@ namespace Muhasebe
                 m_Event.CreatedAt = DateTime.Now;
                 m_Event.Description = "Kullanıcı oturumu sonlandırdı.";
 
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
                 m_Context.Events.Add(m_Event);
                 m_Context.SaveChangesAsync();
             }
@@ -118,7 +118,7 @@ namespace Muhasebe
                 m_Event.CreatedAt = DateTime.Now;
                 m_Event.Description = "Kullanıcı oturum açtı.";
 
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
                 m_Context.Events.Add(m_Event);
                 m_Context.SaveChangesAsync();
             }
@@ -132,7 +132,7 @@ namespace Muhasebe
         {
             if (args.Barcode != string.Empty)
             {
-                using (MicroEntities m_Context = new MicroEntities())
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
                     string m_Barcode = args.Barcode;
 
@@ -309,7 +309,7 @@ namespace Muhasebe
                 this.Username_Label.Text = string.Format("{0}: {1} {2}", Program.User.Position != null ? Program.User.Position.Name : "Kullanıcı", Program.User.Name, Program.User.Surname);
                 this.Company_Label.Text = string.Format("{0} / {1}", Program.User.WorksAt.Name, Program.User.WorksAt.Sector.ToString());
 
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
 
                 var m_Downwards = m_Context.PropertyReminders.Where(q => q.OwnerID == Program.User.WorksAtID && q.Item.Amount <= q.Minimum).ToList();
 

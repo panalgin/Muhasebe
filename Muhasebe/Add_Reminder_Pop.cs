@@ -22,7 +22,7 @@ namespace Muhasebe
 
         private void Save_Btn_Click(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             PropertyReminder m_Existing = m_Context.PropertyReminders.Where(q => q.OwnerID == Program.User.WorksAtID && q.Item.Product.Barcode == this.Product_Barcode_Box.Text).FirstOrDefault();
 
             if (m_Existing == null)
@@ -54,7 +54,7 @@ namespace Muhasebe
 
         private void Add_Reminder_Pop_Load(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             var m_Users = m_Context.Users.Where(q => q.WorksAtID == Program.User.WorksAtID).ToList();
             this.Responsible_Combo.DataSource = m_Users;
@@ -76,7 +76,7 @@ namespace Muhasebe
 
         private void Product_Barcode_Box_TextChanged(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             string m_Barcode = this.Product_Barcode_Box.Text;
 
             Product m_Product = m_Context.Products.Where(q => q.Barcode == m_Barcode).FirstOrDefault();

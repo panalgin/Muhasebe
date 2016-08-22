@@ -37,7 +37,7 @@ namespace Muhasebe
 
         private void Manage_Sales_Mdi_Load(object sender, EventArgs e)
         {
-            using (MicroEntities m_Context = new MicroEntities())
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
                 if (this.Invoice == null)
                 {
@@ -63,7 +63,7 @@ namespace Muhasebe
 
         private void PopulateListView()
         {
-            using (MicroEntities m_Context = new MicroEntities())
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
 
                 this.Node_List.Items.Clear();
@@ -204,7 +204,7 @@ namespace Muhasebe
 
         private void Sale_Button_Click(object sender, EventArgs e)
         {
-            using (MicroEntities m_Context = new MicroEntities())
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
                 if (this.Invoice != null && this.Invoice.Nodes.Count > 0)
                 {

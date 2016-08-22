@@ -65,7 +65,7 @@ namespace Muhasebe
 
             image.Save(Path.Combine(m_SavePath, m_FileName), ImageFormat.Png);
 
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             Item m_Item = m_Context.Items.Where(q => q.ID == this.ID).FirstOrDefault();
 
             if (m_Item != null)

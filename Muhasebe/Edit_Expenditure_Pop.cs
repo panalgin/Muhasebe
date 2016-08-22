@@ -23,7 +23,7 @@ namespace Muhasebe
 
         private void Edit_Expenditure_Pop_Load(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             var m_ExpenditureType = m_Context.ExpenditureTypes.Where(q => q.OwnerID == null || q.OwnerID == Program.User.WorksAtID).ToList();
 
@@ -57,7 +57,7 @@ namespace Muhasebe
         {
             if (this.Expenditure != null)
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
 
                 Expenditure m_Actual = m_Context.Expenditures.Where(q => q.ID == this.Expenditure.ID).FirstOrDefault();
 

@@ -27,7 +27,7 @@ namespace Muhasebe
 
         private void Barcode_Box_Leave(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             string m_Barcode = this.Barcode_Box.Text;
             Product m_Product = m_Context.Products.Where(q => q.Barcode == m_Barcode).FirstOrDefault();
 
@@ -72,7 +72,7 @@ namespace Muhasebe
 
         private void Amount_Num_Leave(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             string m_Barcode = this.Barcode_Box.Text;
             Product m_Product = m_Context.Products.Where(q => q.Barcode == m_Barcode).FirstOrDefault();
 

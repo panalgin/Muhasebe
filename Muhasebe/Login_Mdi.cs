@@ -21,7 +21,7 @@ namespace Muhasebe
 
         private void Login_Btn_Click(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             User m_User = m_Context.Users.Where(q => q.Email == this.Email_Text.Text && q.Password == this.Password_Text.Text).FirstOrDefault();
 

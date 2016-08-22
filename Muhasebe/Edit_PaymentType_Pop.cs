@@ -23,7 +23,7 @@ namespace Muhasebe
 
         private void Edit_PaymentType_Pop_Load(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             this.Name_Box.Text = this.PaymentType.Name;
         }
@@ -32,7 +32,7 @@ namespace Muhasebe
         {
             if (this.PaymentType != null)
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
                 PaymentType m_Actual = m_Context.PaymentTypes.Where(q => q.ID == this.PaymentType.ID).FirstOrDefault();
 
                 if (m_Actual != null)

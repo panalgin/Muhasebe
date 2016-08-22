@@ -27,7 +27,7 @@ namespace Muhasebe
 
         private void Save_Button_Click(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             Inventory m_Inventory = new Inventory();
 
             m_Inventory.Name = this.Storge_Name_Box.Text;

@@ -44,7 +44,7 @@ namespace Muhasebe
 
         private void PopulateListView()
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             DateTime m_Now = DateTime.Now;
 
             DateTime m_Begin = new DateTime(m_Now.Year, m_Now.Month, m_Now.Day, 0, 0, 0);
@@ -185,7 +185,7 @@ namespace Muhasebe
 
                 if (m_Selected.Tag != null)
                 {
-                    MicroEntities m_Context = new MicroEntities();
+                    MuhasebeEntities m_Context = new MuhasebeEntities();
                     int m_ItemID = Convert.ToInt32(m_Selected.Tag);
                     Income m_Income = m_Context.Incomes.Where(q => q.ID == m_ItemID).FirstOrDefault();
 
@@ -215,7 +215,7 @@ namespace Muhasebe
         {
             if (this.Revenue_List.SelectedItems.Count > 0)
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
                 ListViewItem m_Selected = this.Revenue_List.SelectedItems[0];
                 int m_ItemID = Convert.ToInt32(m_Selected.Tag);
 

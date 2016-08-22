@@ -29,76 +29,131 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ComputerName_Box = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.PrinterAddress_Box = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.ConnectionType_Combo = new System.Windows.Forms.ComboBox();
+            this.Cancel_Button = new System.Windows.Forms.Button();
+            this.Save_Button = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.DefaultTemplate_Combo = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 13);
+            this.label1.Location = new System.Drawing.Point(28, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Bilgisayar Adı:";
             // 
-            // textBox1
+            // ComputerName_Box
             // 
-            this.textBox1.Location = new System.Drawing.Point(108, 10);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(185, 20);
-            this.textBox1.TabIndex = 1;
+            this.ComputerName_Box.Location = new System.Drawing.Point(106, 12);
+            this.ComputerName_Box.Name = "ComputerName_Box";
+            this.ComputerName_Box.Size = new System.Drawing.Size(188, 20);
+            this.ComputerName_Box.TabIndex = 0;
+            this.ComputerName_Box.TextChanged += new System.EventHandler(this.ComputerName_Box_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 39);
+            this.label2.Location = new System.Drawing.Point(8, 41);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 13);
+            this.label2.Size = new System.Drawing.Size(92, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Yazıcı Adı [Ağ]:";
+            this.label2.Text = "Yazıcı Adresi [Ağ]:";
             // 
-            // textBox2
+            // PrinterAddress_Box
             // 
-            this.textBox2.Location = new System.Drawing.Point(108, 36);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(185, 20);
-            this.textBox2.TabIndex = 3;
+            this.PrinterAddress_Box.Location = new System.Drawing.Point(106, 38);
+            this.PrinterAddress_Box.Name = "PrinterAddress_Box";
+            this.PrinterAddress_Box.Size = new System.Drawing.Size(188, 20);
+            this.PrinterAddress_Box.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 65);
+            this.label3.Location = new System.Drawing.Point(27, 67);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Bağlantı Türü:";
             // 
-            // comboBox1
+            // ConnectionType_Combo
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(172, 62);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 5;
+            this.ConnectionType_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ConnectionType_Combo.FormattingEnabled = true;
+            this.ConnectionType_Combo.Location = new System.Drawing.Point(173, 64);
+            this.ConnectionType_Combo.Name = "ConnectionType_Combo";
+            this.ConnectionType_Combo.Size = new System.Drawing.Size(121, 21);
+            this.ConnectionType_Combo.TabIndex = 2;
+            // 
+            // Cancel_Button
+            // 
+            this.Cancel_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Cancel_Button.Location = new System.Drawing.Point(219, 197);
+            this.Cancel_Button.Name = "Cancel_Button";
+            this.Cancel_Button.Size = new System.Drawing.Size(75, 23);
+            this.Cancel_Button.TabIndex = 5;
+            this.Cancel_Button.Text = "İptal";
+            this.Cancel_Button.UseVisualStyleBackColor = true;
+            // 
+            // Save_Button
+            // 
+            this.Save_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Save_Button.Location = new System.Drawing.Point(138, 197);
+            this.Save_Button.Name = "Save_Button";
+            this.Save_Button.Size = new System.Drawing.Size(75, 23);
+            this.Save_Button.TabIndex = 4;
+            this.Save_Button.Text = "Kaydet";
+            this.Save_Button.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 94);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(88, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Varsayılan Etiket:";
+            // 
+            // DefaultTemplate_Combo
+            // 
+            this.DefaultTemplate_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DefaultTemplate_Combo.FormattingEnabled = true;
+            this.DefaultTemplate_Combo.Location = new System.Drawing.Point(106, 91);
+            this.DefaultTemplate_Combo.Name = "DefaultTemplate_Combo";
+            this.DefaultTemplate_Combo.Size = new System.Drawing.Size(188, 21);
+            this.DefaultTemplate_Combo.TabIndex = 3;
             // 
             // Add_BarcodeWriter_Mdi
             // 
+            this.AcceptButton = this.Save_Button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(311, 391);
-            this.Controls.Add(this.comboBox1);
+            this.CancelButton = this.Cancel_Button;
+            this.ClientSize = new System.Drawing.Size(306, 232);
+            this.Controls.Add(this.DefaultTemplate_Combo);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.Save_Button);
+            this.Controls.Add(this.Cancel_Button);
+            this.Controls.Add(this.ConnectionType_Combo);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.PrinterAddress_Box);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.ComputerName_Box);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Add_BarcodeWriter_Mdi";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Barkod Yazıcı Ekle";
+            this.Load += new System.EventHandler(this.Add_BarcodeWriter_Mdi_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -107,10 +162,14 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox ComputerName_Box;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox PrinterAddress_Box;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox ConnectionType_Combo;
+        private System.Windows.Forms.Button Cancel_Button;
+        private System.Windows.Forms.Button Save_Button;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox DefaultTemplate_Combo;
     }
 }

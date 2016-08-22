@@ -22,7 +22,7 @@ namespace Muhasebe
 
         private void Save_Btn_Click(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             Income m_Income = new Income();
             m_Income.CreatedAt = this.Revenue_Date_Picker.Value;
@@ -48,7 +48,7 @@ namespace Muhasebe
 
         private void Add_Revenue_Pop_Load(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             var m_RevenueTypes = m_Context.IncomeTypes.Where(q => q.OwnerID == null || q.OwnerID == Program.User.WorksAtID).ToList();
 
             this.Revenue_Type_Combo.DataSource = m_RevenueTypes;

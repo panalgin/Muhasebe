@@ -26,7 +26,7 @@ namespace Muhasebe
         {
             if (this.Item != null)
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
 
                 Income m_Actual = m_Context.Incomes.Where(q => q.ID == this.Item.ID).FirstOrDefault();
 
@@ -56,7 +56,7 @@ namespace Muhasebe
 
         private void Edit_Revenue_Pop_Load(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             var m_RevenueTypes = m_Context.IncomeTypes.Where(q => q.OwnerID == null || q.OwnerID == Program.User.WorksAtID).ToList();
 
             this.Revenue_Type_Combo.DataSource = m_RevenueTypes;

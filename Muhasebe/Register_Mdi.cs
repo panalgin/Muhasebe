@@ -22,7 +22,7 @@ namespace Muhasebe
         {
             if (ValidateInput())
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
 
                 Company m_Company = new Company();
                 m_Company.Name = this.Comp_Name_Box.Text;
@@ -124,7 +124,7 @@ namespace Muhasebe
                 return false;
             }
 
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             User m_Existing = m_Context.Users.Where(q => q.Email == this.Email_Box.Text).FirstOrDefault();
             if (m_Existing != null)
             {

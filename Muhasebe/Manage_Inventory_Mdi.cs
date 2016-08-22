@@ -26,7 +26,7 @@ namespace Muhasebe
         {
             this.listView1.Items.Clear();
 
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             var m_Inventories = m_Context.Inventories.Where(q => q.OwnerID == Program.User.WorksAtID).ToList();
 
@@ -61,7 +61,7 @@ namespace Muhasebe
         {
             if (this.listView1.SelectedItems.Count > 0)
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
                 ListViewItem m_Select = this.listView1.SelectedItems[0];
                 int m_ItemID = Convert.ToInt32(m_Select.Tag);
 
@@ -104,7 +104,7 @@ namespace Muhasebe
 
                 if (m_Item.Tag != null)
                 {
-                    MicroEntities m_Context = new MicroEntities();
+                    MuhasebeEntities m_Context = new MuhasebeEntities();
                     int m_ItemID = Convert.ToInt32(m_Item.Tag);
                     Inventory m_Inventory = m_Context.Inventories.Where(q => q.ID == m_ItemID).FirstOrDefault();
 

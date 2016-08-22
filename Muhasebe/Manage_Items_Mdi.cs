@@ -24,7 +24,7 @@ namespace Muhasebe
 
         private void PopulateListView(List<Item> list)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             if (list == null)
                 list = m_Context.Items.Where(q => q.Inventory.Owner.ID == Program.User.WorksAtID).OrderByDescending(q => q.CreatedAt).Take(100).ToList();
@@ -100,7 +100,7 @@ namespace Muhasebe
             {
                 if (MessageBox.Show("Seçili ürün(leri) silmek istediğinizden emin misiniz?", "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    MicroEntities m_Context = new MicroEntities();
+                    MuhasebeEntities m_Context = new MuhasebeEntities();
                     ListViewItem m_Select = this.listView1.SelectedItems[0];
                     int m_ItemID = Convert.ToInt32(m_Select.Tag);
 
@@ -143,7 +143,7 @@ namespace Muhasebe
         {
             if (this.listView1.SelectedItems.Count > 0)
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
                 ListViewItem m_Select = this.listView1.SelectedItems[0];
                 int m_ItemID = Convert.ToInt32(m_Select.Tag);
 
@@ -177,7 +177,7 @@ namespace Muhasebe
             {
                 string m_Keyword = this.Search_Box.Text.Trim();
 
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
 
                 var m_Result = m_Context.Items.Where(q => q.Inventory.Owner.ID == Program.User.WorksAtID && q.Product.Name.Contains(m_Keyword) || q.Product.Barcode == m_Keyword).ToList();
                 this.PopulateListView(m_Result);

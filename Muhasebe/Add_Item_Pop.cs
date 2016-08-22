@@ -64,7 +64,7 @@ namespace Muhasebe
         {
             if (ValidateInput())
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
 
                 Product m_Product = m_Context.Products.Where(q => q.Barcode == this.Barcode_Box.Text).FirstOrDefault();
 
@@ -145,7 +145,7 @@ namespace Muhasebe
 
         private void Add_Item_Pop_Load(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             var m_UnitTypes = m_Context.UnitTypes.Where(q => q.OwnerID == null || q.OwnerID == Program.User.WorksAtID).ToList();
 
             this.Unit_Type_Combo.DataSource = m_UnitTypes;
@@ -168,7 +168,7 @@ namespace Muhasebe
 
         private void Barcode_Box_TextChanged(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             string m_Barcode = this.Barcode_Box.Text;
 
             Product m_Product = m_Context.Products.Where(q => q.Barcode == m_Barcode).FirstOrDefault();
@@ -231,7 +231,7 @@ namespace Muhasebe
         {
             if (this.Unit_Type_Combo.SelectedValue != null)
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
                 int m_ID = 0;
 
                 if (int.TryParse(this.Unit_Type_Combo.SelectedValue.ToString(), out m_ID))

@@ -26,7 +26,7 @@ namespace Muhasebe
         {
             this.listView1.Items.Clear();
 
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             var m_Items = m_Context.PropertyReminders.Where(q => q.Owner.ID == Program.User.WorksAtID).ToList();
 
@@ -67,7 +67,7 @@ namespace Muhasebe
         {
             if (this.listView1.SelectedItems.Count > 0)
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
                 ListViewItem m_Select = this.listView1.SelectedItems[0];
                 int m_ItemID = Convert.ToInt32(m_Select.Tag);
 
@@ -109,7 +109,7 @@ namespace Muhasebe
             {
                 if (MessageBox.Show("Seçili nesne(leri) silmek istediğinizden emin misiniz?", "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    MicroEntities m_Context = new MicroEntities();
+                    MuhasebeEntities m_Context = new MuhasebeEntities();
                     ListViewItem m_Select = this.listView1.SelectedItems[0];
                     int m_ItemID = Convert.ToInt32(m_Select.Tag);
 

@@ -23,7 +23,7 @@ namespace Muhasebe
 
         private void Edit_Reminder_Pop_Load(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             var m_Users = m_Context.Users.Where(q => q.WorksAtID == Program.User.WorksAtID).ToList();
             this.Responsible_Combo.DataSource = m_Users;
             this.Responsible_Combo.ValueMember = "ID";
@@ -67,7 +67,7 @@ namespace Muhasebe
         {
             if (this.PropertyReminder != null)
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
 
                 PropertyReminder m_Actual = m_Context.PropertyReminders.Where(q => q.ItemID == this.PropertyReminder.Item.ID).FirstOrDefault();
 

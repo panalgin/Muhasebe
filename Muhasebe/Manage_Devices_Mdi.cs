@@ -20,7 +20,7 @@ namespace Muhasebe
 
         private void Manage_Devices_Mdi_Load(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             var m_DeviceTypes = m_Context.DeviceTypes.ToList();
 
@@ -45,7 +45,7 @@ namespace Muhasebe
 
         private void Connect_Button_Click(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             byte[] m_Buffer = new byte[128];
 
             try
@@ -112,7 +112,7 @@ namespace Muhasebe
         {
             this.Device_List.Items.Clear();
 
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             var m_Devices = m_Context.Devices.Where(q => q.OwnerID == Program.User.WorksAtID).ToList();
 
@@ -141,7 +141,7 @@ namespace Muhasebe
         {
             if (this.Device_List.SelectedItems.Count > 0)
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
                 ListViewItem m_Item = this.Device_List.SelectedItems[0];
                 int m_ItemID = Convert.ToInt32(m_Item.Tag);
 
@@ -171,7 +171,7 @@ namespace Muhasebe
         {
             if (this.Device_List.SelectedItems.Count > 0)
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
                 ListViewItem m_Item = this.Device_List.SelectedItems[0];
                 int m_ItemID = Convert.ToInt32(m_Item.Tag);
 
@@ -211,6 +211,12 @@ namespace Muhasebe
                 this.Edit_Button.Enabled = false;
                 this.Delete_Button.Enabled = false;
             }
+        }
+
+        private void Add_Printer_Button_Click(object sender, EventArgs e)
+        {
+            Add_BarcodeWriter_Mdi m_Mdi = new Add_BarcodeWriter_Mdi();
+            m_Mdi.ShowDialog();
         }
     }
 }

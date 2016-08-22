@@ -24,7 +24,7 @@ namespace Muhasebe
             this.Begin_Picker.Value = DateTime.Now.Subtract(TimeSpan.FromDays(90.0));
             this.End_Picker.Value = DateTime.Now;
 
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             var m_Categories = m_Context.EventCategories.ToList();
 
@@ -54,7 +54,7 @@ namespace Muhasebe
         private void PopulateListView()
         {
             this.Event_List.Items.Clear();
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             DateTime m_Now = DateTime.Now;
 
             DateTime m_Begin = new DateTime(m_Now.Year, m_Now.Month, m_Now.Day, 0, 0, 0);

@@ -23,7 +23,7 @@ namespace Muhasebe
 
         private void Edit_UnitType_Pop_Load(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             this.Name_Box.Text = this.UnitType.Name;
             this.Abbreviation_Box.Text = this.UnitType.Abbreviation;
@@ -35,7 +35,7 @@ namespace Muhasebe
         {
             if (this.UnitType != null)
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
                 UnitType m_Actual = m_Context.UnitTypes.Where(q => q.ID == this.UnitType.ID).FirstOrDefault();
 
                 if (m_Actual != null)

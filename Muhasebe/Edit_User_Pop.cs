@@ -24,7 +24,7 @@ namespace Muhasebe
 
         private void Edit_User_Pop_Load(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             var m_Position = m_Context.JobPositions.ToList();
 
             this.Position_Combo.DataSource = m_Position;
@@ -50,7 +50,7 @@ namespace Muhasebe
             {
                 if (ValidateInput())
                 {
-                    MicroEntities m_Context = new MicroEntities();
+                    MuhasebeEntities m_Context = new MuhasebeEntities();
 
                     User m_Actual = m_Context.Users.Where(q => q.ID == this.User.ID).FirstOrDefault();
 
@@ -101,7 +101,7 @@ namespace Muhasebe
 
            /* 
             Sorusu Düzenlenecek !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             User m_Existing = m_Context.Users.Where(q => q.Email == this.Email_Box.Text).FirstOrDefault();
             if (m_Existing != null)
             {

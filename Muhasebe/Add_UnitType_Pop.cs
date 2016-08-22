@@ -30,7 +30,7 @@ namespace Muhasebe
                 m_Type.DecimalPlaces = Convert.ToInt32(this.DecimalPlaces_Num.Value);
                 m_Type.OwnerID = Program.User.WorksAtID;
 
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
                 m_Context.UnitTypes.Add(m_Type);
                 m_Context.SaveChanges();
                 InvokeUnitTypeAdded(m_Type);
@@ -47,7 +47,7 @@ namespace Muhasebe
 
         private bool ValidateInput()
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             if (this.Name_Box.Text.Length < 2)
             {

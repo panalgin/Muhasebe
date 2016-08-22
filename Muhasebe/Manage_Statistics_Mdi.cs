@@ -41,7 +41,7 @@ namespace Muhasebe
             DateTime m_Monthly = m_Begin.Subtract(TimeSpan.FromDays(30.0));
             this.chart1.Series.Clear();
 
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             var m_RevData = m_Context.Incomes.Where(q => q.OwnerID == Program.User.WorksAtID && q.CreatedAt >= m_Monthly).
                     GroupBy(q => new { Year = q.CreatedAt.Value.Year, Month = q.CreatedAt.Value.Month, Day = q.CreatedAt.Value.Day }).
                     Select(q => new

@@ -26,7 +26,7 @@ namespace Muhasebe
             m_PaymentType.Name = this.Name_Box.Text;
             m_PaymentType.OwnerID = Convert.ToInt32(Program.User.WorksAtID.ToString());
 
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             m_Context.PaymentTypes.Add(m_PaymentType);
             m_Context.SaveChanges();
 

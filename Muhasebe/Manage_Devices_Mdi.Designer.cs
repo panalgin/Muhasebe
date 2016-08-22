@@ -49,6 +49,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.Output_Box = new System.Windows.Forms.TextBox();
+            this.Add_Printer_Button = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -169,6 +170,7 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.Add_Printer_Button);
             this.groupBox2.Controls.Add(this.Edit_Button);
             this.groupBox2.Controls.Add(this.Delete_Button);
             this.groupBox2.Controls.Add(this.Device_List);
@@ -276,6 +278,16 @@
             this.Output_Box.Size = new System.Drawing.Size(509, 63);
             this.Output_Box.TabIndex = 0;
             // 
+            // Add_Printer_Button
+            // 
+            this.Add_Printer_Button.Location = new System.Drawing.Point(262, 171);
+            this.Add_Printer_Button.Name = "Add_Printer_Button";
+            this.Add_Printer_Button.Size = new System.Drawing.Size(75, 23);
+            this.Add_Printer_Button.TabIndex = 3;
+            this.Add_Printer_Button.Text = "Yazıcı Ekle";
+            this.Add_Printer_Button.UseVisualStyleBackColor = true;
+            this.Add_Printer_Button.Click += new System.EventHandler(this.Add_Printer_Button_Click);
+            // 
             // Manage_Devices_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -322,5 +334,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.TextBox Output_Box;
+        private System.Windows.Forms.Button Add_Printer_Button;
     }
 }

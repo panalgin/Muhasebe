@@ -15,7 +15,7 @@ namespace Muhasebe
 
         public static void Initialize()
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             if (Program.User != null)
             {
@@ -54,7 +54,7 @@ namespace Muhasebe
             m_Connection.PortName = port;
             m_Connection.BaudRate = baudrate;
 
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             if (m_Connection.IsOpen)
                 return false;
@@ -77,7 +77,7 @@ namespace Muhasebe
 
         public static void DisconnectAll()
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             try
             {
@@ -97,7 +97,7 @@ namespace Muhasebe
 
         public static void Disconnect(int deviceid)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             Device m_Device = m_Context.Devices.Where(q => q.ID == deviceid).FirstOrDefault();
 
             if (m_Device != null && m_Device.Type != null)
@@ -131,7 +131,7 @@ namespace Muhasebe
 
         public static void Connect(int deviceid)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             Device m_Device = m_Context.Devices.Where(q => q.ID == deviceid).FirstOrDefault();
 
             if (m_Device != null && m_Device.Type != null)

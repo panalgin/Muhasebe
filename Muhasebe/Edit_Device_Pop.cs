@@ -24,7 +24,7 @@ namespace Muhasebe
 
         private void Edit_Device_Pop_Load(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             var m_DeviceTypes = m_Context.DeviceTypes.ToList();
 
@@ -51,7 +51,7 @@ namespace Muhasebe
         {
             if (this.Device != null)
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
                 Device m_Actual = m_Context.Devices.Where(q => q.ID == this.Device.ID).FirstOrDefault();
 
                 if (m_Actual != null)

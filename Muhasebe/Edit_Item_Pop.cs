@@ -81,7 +81,7 @@ namespace Muhasebe
 
         private void Edit_Item_Pop_Load(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             var m_Inventories = m_Context.Inventories.Where(q => q.OwnerID == Program.User.WorksAtID).ToList();
 
@@ -120,7 +120,7 @@ namespace Muhasebe
         {
             if (this.Unit_Type_Combo.SelectedValue != null)
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
                 int m_ID = 0;
 
                 if (int.TryParse(this.Unit_Type_Combo.SelectedValue.ToString(), out m_ID))
@@ -139,7 +139,7 @@ namespace Muhasebe
         {
             if (this.Item != null)
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
                 Item m_Actual = m_Context.Items.Where(q => q.ID == this.Item.ID).FirstOrDefault();
 
                 if (m_Actual != null)

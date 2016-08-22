@@ -30,7 +30,7 @@ namespace Muhasebe
 
         private void Add_Users_Mdi_Load(object sender, EventArgs e)
         {
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             var m_Positions = m_Context.JobPositions.ToList();
 
             this.Position_Combo.DataSource = m_Positions;
@@ -47,7 +47,7 @@ namespace Muhasebe
         {
             if (ValidateInput())
             {
-                MicroEntities m_Context = new MicroEntities();
+                MuhasebeEntities m_Context = new MuhasebeEntities();
                 User m_User = new User();
 
                 m_User.Name = this.Name_Box.Text;
@@ -90,7 +90,7 @@ namespace Muhasebe
                 return false;
             }
 
-            MicroEntities m_Context = new MicroEntities();
+            MuhasebeEntities m_Context = new MuhasebeEntities();
             User m_Existing = m_Context.Users.Where(q => q.Email == this.Email_Box.Text).FirstOrDefault();
             if (m_Existing != null)
             {

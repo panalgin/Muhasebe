@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="77ff789032bb42378e8fb0399c51bfd2" Name="Diagram1" ZoomLevel="72" >
+        <EntityTypeShape EntityType="MuhasebeModel.Product" Width="1.5" PointX="6" PointY="23.5" />
+        <EntityTypeShape EntityType="MuhasebeModel.User" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="MuhasebeModel.Inventory" Width="1.5" PointX="6" PointY="20.375" />
+        <EntityTypeShape EntityType="MuhasebeModel.Item" Width="1.5" PointX="3.75" PointY="19.625" />
+        <EntityTypeShape EntityType="MuhasebeModel.Company" Width="1.5" PointX="8.25" PointY="5.125" />
+        <EntityTypeShape EntityType="MuhasebeModel.UnitType" Width="1.5" PointX="6" PointY="1.5" />
+        <EntityTypeShape EntityType="MuhasebeModel.Device" Width="1.5" PointX="6" PointY="16.875" />
+        <EntityTypeShape EntityType="MuhasebeModel.DeviceType" Width="1.5" PointX="8.25" PointY="17.125" />
+        <EntityTypeShape EntityType="MuhasebeModel.InvoiceNode" Width="1.5" PointX="1.5" PointY="10.125" />
+        <EntityTypeShape EntityType="MuhasebeModel.Invoice" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.PaymentType" Width="1.5" PointX="6" PointY="6.25" />
+        <EntityTypeShape EntityType="MuhasebeModel.Income" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="MuhasebeModel.IncomeType" Width="1.5" PointX="3" PointY="14.25" />
+        <EntityTypeShape EntityType="MuhasebeModel.Expenditure" Width="1.5" PointX="0.75" PointY="13.5" />
+        <EntityTypeShape EntityType="MuhasebeModel.ExpenditureType" Width="1.5" PointX="5.25" PointY="13.875" />
+        <EntityTypeShape EntityType="MuhasebeModel.JobPosition" Width="1.5" PointX="5.25" PointY="11.75" />
+        <EntityTypeShape EntityType="MuhasebeModel.Event" Width="1.5" PointX="0.75" PointY="17" IsExpanded="false" />
+        <EntityTypeShape EntityType="MuhasebeModel.EventCategory" Width="1.5" PointX="3" PointY="24.375" />
+        <EntityTypeShape EntityType="MuhasebeModel.PropertyReminder" Width="1.5" PointX="0.75" PointY="19.875" />
+        <EntityTypeShape EntityType="MuhasebeModel.PropertyRemindingMethod" Width="1.5" PointX="3" PointY="16.625" />
+        <AssociationConnector Association="MuhasebeModel.ItemProduct" />
+        <AssociationConnector Association="MuhasebeModel.UserCompany" />
+        <AssociationConnector Association="MuhasebeModel.InvoiceUser" />
+        <AssociationConnector Association="MuhasebeModel.IncomeUser" />
+        <AssociationConnector Association="MuhasebeModel.ExpenditureUser" />
+        <AssociationConnector Association="MuhasebeModel.UserJobPosition" />
+        <AssociationConnector Association="MuhasebeModel.EventUser" />
+        <AssociationConnector Association="MuhasebeModel.PropertyReminderUser" />
+        <AssociationConnector Association="MuhasebeModel.ItemInventory" />
+        <AssociationConnector Association="MuhasebeModel.InventoryCompany" />
+        <AssociationConnector Association="MuhasebeModel.UnitTypeCompany" />
+        <AssociationConnector Association="MuhasebeModel.ItemUnitType" />
+        <AssociationConnector Association="MuhasebeModel.DeviceDeviceType" />
+        <AssociationConnector Association="MuhasebeModel.DeviceCompany" />
+        <AssociationConnector Association="MuhasebeModel.InvoiceNodeInvoice" />
+        <AssociationConnector Association="MuhasebeModel.InvoiceNodeItem" />
+        <AssociationConnector Association="MuhasebeModel.InvoiceCompany" />
+        <AssociationConnector Association="MuhasebeModel.InvoicePaymentType" />
+        <AssociationConnector Association="MuhasebeModel.PaymentTypeCompany" />
+        <AssociationConnector Association="MuhasebeModel.IncomePaymentType" />
+        <AssociationConnector Association="MuhasebeModel.ExpenditurePaymentType" />
+        <AssociationConnector Association="MuhasebeModel.IncomeCompany" />
+        <AssociationConnector Association="MuhasebeModel.IncomeIncomeType" />
+        <AssociationConnector Association="MuhasebeModel.ExpenditureTypeCompany" />
+        <AssociationConnector Association="MuhasebeModel.ExpenditureExpenditureType" />
+        <AssociationConnector Association="MuhasebeModel.EventEventCategory" />
+        <AssociationConnector Association="MuhasebeModel.PropertyReminderCompany" />
+        <AssociationConnector Association="MuhasebeModel.PropertyReminderItem" />
+        <AssociationConnector Association="MuhasebeModel.PropertyReminderPropertyRemindingMethod" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
