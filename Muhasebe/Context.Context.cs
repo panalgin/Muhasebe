@@ -16,8 +16,7 @@ namespace Muhasebe
     public partial class MicroEntities : DbContext
     {
         public MicroEntities()
-            
-            : base("metadata=res://*/Context.csdl|res://*/Context.ssdl|res://*/Context.msl;provider=MySql.Data.MySqlClient;provider connection string=\"server=daflan.ctmvpzo6x3ix.eu-central-1.rds.amazonaws.com;user id=mashadow;password=Thisis2ndtime?;persistsecurityinfo=True;database=muhasebe\"")
+            : base("name=MicroEntities")
         {
         }
     

@@ -111,6 +111,12 @@
     <Compile Include="Add_Account_Mdi.Designer.cs">
       <DependentUpon>Add_Account_Mdi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Add_BarcodeWriter_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_BarcodeWriter_Mdi.Designer.cs">
+      <DependentUpon>Add_BarcodeWriter_Mdi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Add_Expenditure_Pop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -425,6 +431,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Add_Account_Mdi.resx">
       <DependentUpon>Add_Account_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_BarcodeWriter_Mdi.resx">
+      <DependentUpon>Add_BarcodeWriter_Mdi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Add_Expenditure_Pop.resx">
       <DependentUpon>Add_Expenditure_Pop.cs</DependentUpon>

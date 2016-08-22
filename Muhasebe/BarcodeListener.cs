@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using RawInputInterface;
 using System.Windows.Forms;
 using System.Diagnostics;
+using Muhasebe.Events;
 
 namespace Muhasebe
 {
@@ -49,6 +50,10 @@ namespace Muhasebe
                     if (e.KeyPressEvent.VKey == (int)Keys.Enter)
                     {
                         Debug.WriteLine(Buffer);
+                        BarcodeScannedEventArgs m_Args = new BarcodeScannedEventArgs();
+                        m_Args.Barcode = Buffer;
+                        m_Args.ScannedAt = DateTime.Now;
+                        EventSink.InvokeBarcodeScanned(e.KeyPressEvent.DeviceName, m_Args);
                         Buffer = "";
                     }
                 }

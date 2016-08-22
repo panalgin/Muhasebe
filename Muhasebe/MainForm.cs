@@ -150,32 +150,22 @@ namespace Muhasebe
                     {
                         if (!this.MdiChildren.Any(q => q is Manage_Sales_Mdi))
                         {
-                            if (this.InvokeRequired)
-                            {
-                                this.BeginInvoke((MethodInvoker)(delegate()
-                                {
-                                    Manage_Sales_Mdi m_Mdi = new Manage_Sales_Mdi();
-                                    m_Mdi.MdiParent = this;
-                                    m_Mdi.WindowState = FormWindowState.Maximized;
-                                    m_Mdi.Show();
-
-                                    m_Mdi.Shown += (s, a) =>
-                                    {
-                                        InvoiceNode m_Node = new InvoiceNode();
-                                        m_Node.ItemID = m_Item.ID;
-                                        m_Node.Amount = 1;
-                                        m_Mdi.Append(m_Node);
-                                    };
-
-                                }));
-                            }
-                            else
+                            this.BeginInvoke((MethodInvoker)(delegate ()
                             {
                                 Manage_Sales_Mdi m_Mdi = new Manage_Sales_Mdi();
                                 m_Mdi.MdiParent = this;
                                 m_Mdi.WindowState = FormWindowState.Maximized;
                                 m_Mdi.Show();
-                            }
+
+                                m_Mdi.Shown += (s, a) =>
+                                {
+                                    InvoiceNode m_Node = new InvoiceNode();
+                                    m_Node.ItemID = m_Item.ID;
+                                    m_Node.Amount = 1;
+                                    m_Mdi.Append(m_Node);
+                                };
+
+                            }));
                         }
                         else
                         {
@@ -184,7 +174,7 @@ namespace Muhasebe
                             if (m_Existing != null)
                             {
                                 Manage_Sales_Mdi m_Mdi = m_Existing as Manage_Sales_Mdi;
-                                m_Mdi.BeginInvoke((MethodInvoker)delegate() { m_Mdi.Append(new InvoiceNode() { ItemID = m_Item.ID, Amount = 1 }); });
+                                m_Mdi.BeginInvoke((MethodInvoker)delegate () { m_Mdi.Append(new InvoiceNode() { ItemID = m_Item.ID, Amount = 1 }); });
                             }
                         }
                     }

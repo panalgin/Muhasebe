@@ -22,5 +22,10 @@ namespace Muhasebe
             Add_Account_Mdi m_Mdi = new Add_Account_Mdi();
             m_Mdi.ShowDialog();
         }
+
+        private void Manage_Accounts_Mdi_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

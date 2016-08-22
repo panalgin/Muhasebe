@@ -78,3 +78,4 @@ C:\Users\Mashadow\Documents\Visual Studio 2012\Projects\Muhasebe\Muhasebe\obj\De
 C:\Users\Mashadow\Documents\Visual Studio 2012\Projects\Muhasebe\Muhasebe\obj\Debug\Muhasebe.exe
 C:\Users\Mashadow\Documents\Visual Studio 2012\Projects\Muhasebe\Muhasebe\obj\Debug\Muhasebe.pdb
 C:\Users\Mashadow\Documents\Visual Studio 2012\Projects\Muhasebe\Muhasebe\obj\Debug\Muhasebe.csprojResolveAssemblyReference.cache
+C:\Users\Mashadow\Documents\Visual Studio 2012\Projects\Muhasebe\Muhasebe\obj\Debug\Muhasebe.Add_BarcodeWriter_Mdi.resources
