@@ -103,6 +103,12 @@
     <Compile Include="Add_Account_Mdi.Designer.cs">
       <DependentUpon>Add_Account_Mdi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Add_BarcodeTemplate_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_BarcodeTemplate_Mdi.Designer.cs">
+      <DependentUpon>Add_BarcodeTemplate_Mdi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Add_BarcodeWriter_Mdi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +170,9 @@
       <DependentUpon>Add_User_Mdi.cs</DependentUpon>
     </Compile>
     <Compile Include="BarcodeListener.cs" />
+    <Compile Include="BarcodeTemplate.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
     <Compile Include="Camera.cs" />
     <Compile Include="Company.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
@@ -279,6 +288,12 @@
     </Compile>
     <Compile Include="Manage_Accounts_Mdi.Designer.cs">
       <DependentUpon>Manage_Accounts_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manage_BarcodeTemplates_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_BarcodeTemplates_Mdi.Designer.cs">
+      <DependentUpon>Manage_BarcodeTemplates_Mdi.cs</DependentUpon>
     </Compile>
     <Compile Include="Manage_Expenditure_Mdi.cs">
       <SubType>Form</SubType>
@@ -425,6 +440,9 @@
     <EmbeddedResource Include="Add_Account_Mdi.resx">
       <DependentUpon>Add_Account_Mdi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Add_BarcodeTemplate_Mdi.resx">
+      <DependentUpon>Add_BarcodeTemplate_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Add_BarcodeWriter_Mdi.resx">
       <DependentUpon>Add_BarcodeWriter_Mdi.cs</DependentUpon>
     </EmbeddedResource>
@@ -484,6 +502,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Manage_Accounts_Mdi.resx">
       <DependentUpon>Manage_Accounts_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_BarcodeTemplates_Mdi.resx">
+      <DependentUpon>Manage_BarcodeTemplates_Mdi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Manage_Expenditure_Mdi.resx">
       <DependentUpon>Manage_Expenditure_Mdi.cs</DependentUpon>

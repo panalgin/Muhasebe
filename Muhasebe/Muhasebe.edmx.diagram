@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="77ff789032bb42378e8fb0399c51bfd2" Name="Diagram1" ZoomLevel="72" >
+      <Diagram DiagramId="77ff789032bb42378e8fb0399c51bfd2" Name="Diagram1" ZoomLevel="124" >
         <EntityTypeShape EntityType="MuhasebeModel.Product" Width="1.5" PointX="6" PointY="23.5" />
         <EntityTypeShape EntityType="MuhasebeModel.User" Width="1.5" PointX="3" PointY="5.125" />
         <EntityTypeShape EntityType="MuhasebeModel.Inventory" Width="1.5" PointX="6" PointY="20.375" />
         <EntityTypeShape EntityType="MuhasebeModel.Item" Width="1.5" PointX="3.75" PointY="19.625" />
-        <EntityTypeShape EntityType="MuhasebeModel.Company" Width="1.5" PointX="8.25" PointY="5.125" />
+        <EntityTypeShape EntityType="MuhasebeModel.Company" Width="1.5" PointX="10" PointY="4.25" />
         <EntityTypeShape EntityType="MuhasebeModel.UnitType" Width="1.5" PointX="6" PointY="1.5" />
         <EntityTypeShape EntityType="MuhasebeModel.Device" Width="1.5" PointX="6" PointY="16.875" />
         <EntityTypeShape EntityType="MuhasebeModel.DeviceType" Width="1.5" PointX="8.25" PointY="17.125" />
@@ -54,6 +54,8 @@
         <AssociationConnector Association="MuhasebeModel.PropertyReminderCompany" />
         <AssociationConnector Association="MuhasebeModel.PropertyReminderItem" />
         <AssociationConnector Association="MuhasebeModel.PropertyReminderPropertyRemindingMethod" />
+        <EntityTypeShape EntityType="MuhasebeModel.BarcodeTemplate" Width="1.5" PointX="8.375" PointY="0.75" />
+        <AssociationConnector Association="MuhasebeModel.BarcodeTemplateCompany" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

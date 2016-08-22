@@ -22,6 +22,14 @@ namespace Muhasebe
         private void Add_BarcodeWriter_Mdi_Load(object sender, EventArgs e)
         {
             this.ComputerName_Box.Text = this.GetFQDN();
+
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
+            {
+                var m_Templates = Program.User.WorksAt.BarcodeTemplates;
+                this.DefaultTemplate_Combo.DataSource = m_Templates;
+                this.DefaultTemplate_Combo.ValueMember = "ID";
+                this.DefaultTemplate_Combo.DisplayMember = "Name";
+            }
         }
 
         private string GetFQDN()

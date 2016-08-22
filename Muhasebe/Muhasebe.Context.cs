@@ -45,5 +45,6 @@ namespace Muhasebe
         public virtual DbSet<EventCategory> EventCategories { get; set; }
         public virtual DbSet<PropertyReminder> PropertyReminders { get; set; }
         public virtual DbSet<PropertyRemindingMethod> PropertyRemindingMethods { get; set; }
+        public virtual DbSet<BarcodeTemplate> BarcodeTemplates { get; set; }
     }
 }
