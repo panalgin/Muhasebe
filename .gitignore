@@ -48,3 +48,4 @@ Temporary Items
 *.user
 *.exe
 Muhasebe/bin/
+/Muhasebe/obj/Debug
