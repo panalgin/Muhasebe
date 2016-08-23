@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Remove_Cam_Button = new System.Windows.Forms.Button();
-            this.Camera_Box = new System.Windows.Forms.PictureBox();
-            this.Browse_Button = new System.Windows.Forms.Button();
-            this.Webcam_Button = new System.Windows.Forms.Button();
-            this.Picture_Box = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Abbreviation_Label = new System.Windows.Forms.Label();
             this.Barcode_Box = new System.Windows.Forms.TextBox();
@@ -52,17 +47,24 @@
             this.label6 = new System.Windows.Forms.Label();
             this.Amount_Num = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
+            this.Print_Barcode_Button = new System.Windows.Forms.Button();
+            this.Remove_Cam_Button = new System.Windows.Forms.Button();
+            this.Camera_Box = new System.Windows.Forms.PictureBox();
+            this.Browse_Button = new System.Windows.Forms.Button();
+            this.Webcam_Button = new System.Windows.Forms.Button();
+            this.Picture_Box = new System.Windows.Forms.PictureBox();
             this.Cancel_Button = new System.Windows.Forms.Button();
             this.Save_Button = new System.Windows.Forms.Button();
-            this.Print_Barcode_Button = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.Group_Combo = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Camera_Box)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Picture_Box)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Base_Price_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Tax_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Final_Price_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Amount_Num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Camera_Box)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Picture_Box)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -74,10 +76,223 @@
             this.groupBox1.Controls.Add(this.Picture_Box);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(175, 239);
+            this.groupBox1.Size = new System.Drawing.Size(175, 266);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ürün Fotoğrafı";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.Group_Combo);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.Abbreviation_Label);
+            this.groupBox2.Controls.Add(this.Barcode_Box);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.Unit_Type_Combo);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.Name_Box);
+            this.groupBox2.Controls.Add(this.Base_Price_Num);
+            this.groupBox2.Controls.Add(this.Tax_Num);
+            this.groupBox2.Controls.Add(this.Final_Price_Num);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.Inventory_Combo);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.Amount_Num);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Location = new System.Drawing.Point(193, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(236, 266);
+            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Ürün Bilgileri";
+            // 
+            // Abbreviation_Label
+            // 
+            this.Abbreviation_Label.BackColor = System.Drawing.SystemColors.Window;
+            this.Abbreviation_Label.Location = new System.Drawing.Point(163, 155);
+            this.Abbreviation_Label.Name = "Abbreviation_Label";
+            this.Abbreviation_Label.Size = new System.Drawing.Size(47, 13);
+            this.Abbreviation_Label.TabIndex = 15;
+            this.Abbreviation_Label.Text = "birim";
+            this.Abbreviation_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // Barcode_Box
+            // 
+            this.Barcode_Box.Location = new System.Drawing.Point(91, 18);
+            this.Barcode_Box.Name = "Barcode_Box";
+            this.Barcode_Box.ReadOnly = true;
+            this.Barcode_Box.Size = new System.Drawing.Size(139, 20);
+            this.Barcode_Box.TabIndex = 0;
+            this.Barcode_Box.TextChanged += new System.EventHandler(this.Barcode_Box_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(41, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Barkod:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(28, 205);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(57, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Kdv Oranı:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(34, 47);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Ürün Adı:";
+            // 
+            // Unit_Type_Combo
+            // 
+            this.Unit_Type_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Unit_Type_Combo.FormattingEnabled = true;
+            this.Unit_Type_Combo.Location = new System.Drawing.Point(91, 124);
+            this.Unit_Type_Combo.Name = "Unit_Type_Combo";
+            this.Unit_Type_Combo.Size = new System.Drawing.Size(139, 21);
+            this.Unit_Type_Combo.TabIndex = 4;
+            this.Unit_Type_Combo.SelectedValueChanged += new System.EventHandler(this.Unit_Type_Combo_SelectedValueChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(53, 127);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(32, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Birim:";
+            // 
+            // Name_Box
+            // 
+            this.Name_Box.Location = new System.Drawing.Point(91, 44);
+            this.Name_Box.Name = "Name_Box";
+            this.Name_Box.Size = new System.Drawing.Size(139, 20);
+            this.Name_Box.TabIndex = 1;
+            // 
+            // Base_Price_Num
+            // 
+            this.Base_Price_Num.DecimalPlaces = 2;
+            this.Base_Price_Num.Location = new System.Drawing.Point(91, 177);
+            this.Base_Price_Num.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.Base_Price_Num.Name = "Base_Price_Num";
+            this.Base_Price_Num.Size = new System.Drawing.Size(139, 20);
+            this.Base_Price_Num.TabIndex = 6;
+            // 
+            // Tax_Num
+            // 
+            this.Tax_Num.Location = new System.Drawing.Point(91, 203);
+            this.Tax_Num.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.Tax_Num.Name = "Tax_Num";
+            this.Tax_Num.Size = new System.Drawing.Size(139, 20);
+            this.Tax_Num.TabIndex = 7;
+            // 
+            // Final_Price_Num
+            // 
+            this.Final_Price_Num.DecimalPlaces = 2;
+            this.Final_Price_Num.Location = new System.Drawing.Point(91, 229);
+            this.Final_Price_Num.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.Final_Price_Num.Name = "Final_Price_Num";
+            this.Final_Price_Num.Size = new System.Drawing.Size(139, 20);
+            this.Final_Price_Num.TabIndex = 8;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(46, 153);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(39, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Miktar:";
+            // 
+            // Inventory_Combo
+            // 
+            this.Inventory_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Inventory_Combo.Location = new System.Drawing.Point(91, 70);
+            this.Inventory_Combo.Name = "Inventory_Combo";
+            this.Inventory_Combo.Size = new System.Drawing.Size(139, 21);
+            this.Inventory_Combo.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(32, 73);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Envanter:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(32, 179);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Alış Fiyatı:";
+            // 
+            // Amount_Num
+            // 
+            this.Amount_Num.DecimalPlaces = 2;
+            this.Amount_Num.Location = new System.Drawing.Point(91, 151);
+            this.Amount_Num.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.Amount_Num.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
+            this.Amount_Num.Name = "Amount_Num";
+            this.Amount_Num.Size = new System.Drawing.Size(139, 20);
+            this.Amount_Num.TabIndex = 5;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(25, 231);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(60, 13);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Satış Fiyatı:";
+            // 
+            // Print_Barcode_Button
+            // 
+            this.Print_Barcode_Button.Image = global::Muhasebe.Properties.Resources._195_barcode_icon;
+            this.Print_Barcode_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Print_Barcode_Button.Location = new System.Drawing.Point(12, 306);
+            this.Print_Barcode_Button.Name = "Print_Barcode_Button";
+            this.Print_Barcode_Button.Size = new System.Drawing.Size(101, 23);
+            this.Print_Barcode_Button.TabIndex = 8;
+            this.Print_Barcode_Button.Text = "Barkod Yazdır";
+            this.Print_Barcode_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Print_Barcode_Button.UseVisualStyleBackColor = true;
+            this.Print_Barcode_Button.Click += new System.EventHandler(this.Print_Barcode_Button_Click);
             // 
             // Remove_Cam_Button
             // 
@@ -131,209 +346,11 @@
             this.Picture_Box.TabIndex = 18;
             this.Picture_Box.TabStop = false;
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.Abbreviation_Label);
-            this.groupBox2.Controls.Add(this.Barcode_Box);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.Unit_Type_Combo);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.Name_Box);
-            this.groupBox2.Controls.Add(this.Base_Price_Num);
-            this.groupBox2.Controls.Add(this.Tax_Num);
-            this.groupBox2.Controls.Add(this.Final_Price_Num);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.Inventory_Combo);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.Amount_Num);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(193, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(236, 239);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Ürün Bilgileri";
-            // 
-            // Abbreviation_Label
-            // 
-            this.Abbreviation_Label.BackColor = System.Drawing.SystemColors.Window;
-            this.Abbreviation_Label.Location = new System.Drawing.Point(163, 128);
-            this.Abbreviation_Label.Name = "Abbreviation_Label";
-            this.Abbreviation_Label.Size = new System.Drawing.Size(47, 13);
-            this.Abbreviation_Label.TabIndex = 15;
-            this.Abbreviation_Label.Text = "birim";
-            this.Abbreviation_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // Barcode_Box
-            // 
-            this.Barcode_Box.Location = new System.Drawing.Point(91, 18);
-            this.Barcode_Box.Name = "Barcode_Box";
-            this.Barcode_Box.ReadOnly = true;
-            this.Barcode_Box.Size = new System.Drawing.Size(139, 20);
-            this.Barcode_Box.TabIndex = 0;
-            this.Barcode_Box.TextChanged += new System.EventHandler(this.Barcode_Box_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Barkod:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(28, 178);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(57, 13);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Kdv Oranı:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(34, 47);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Ürün Adı:";
-            // 
-            // Unit_Type_Combo
-            // 
-            this.Unit_Type_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Unit_Type_Combo.FormattingEnabled = true;
-            this.Unit_Type_Combo.Location = new System.Drawing.Point(91, 97);
-            this.Unit_Type_Combo.Name = "Unit_Type_Combo";
-            this.Unit_Type_Combo.Size = new System.Drawing.Size(139, 21);
-            this.Unit_Type_Combo.TabIndex = 3;
-            this.Unit_Type_Combo.SelectedValueChanged += new System.EventHandler(this.Unit_Type_Combo_SelectedValueChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(53, 100);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Birim:";
-            // 
-            // Name_Box
-            // 
-            this.Name_Box.Location = new System.Drawing.Point(91, 44);
-            this.Name_Box.Name = "Name_Box";
-            this.Name_Box.Size = new System.Drawing.Size(139, 20);
-            this.Name_Box.TabIndex = 1;
-            // 
-            // Base_Price_Num
-            // 
-            this.Base_Price_Num.DecimalPlaces = 2;
-            this.Base_Price_Num.Location = new System.Drawing.Point(91, 150);
-            this.Base_Price_Num.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.Base_Price_Num.Name = "Base_Price_Num";
-            this.Base_Price_Num.Size = new System.Drawing.Size(139, 20);
-            this.Base_Price_Num.TabIndex = 5;
-            // 
-            // Tax_Num
-            // 
-            this.Tax_Num.Location = new System.Drawing.Point(91, 176);
-            this.Tax_Num.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.Tax_Num.Name = "Tax_Num";
-            this.Tax_Num.Size = new System.Drawing.Size(139, 20);
-            this.Tax_Num.TabIndex = 6;
-            // 
-            // Final_Price_Num
-            // 
-            this.Final_Price_Num.DecimalPlaces = 2;
-            this.Final_Price_Num.Location = new System.Drawing.Point(91, 202);
-            this.Final_Price_Num.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.Final_Price_Num.Name = "Final_Price_Num";
-            this.Final_Price_Num.Size = new System.Drawing.Size(139, 20);
-            this.Final_Price_Num.TabIndex = 7;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(46, 126);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(39, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Miktar:";
-            // 
-            // Inventory_Combo
-            // 
-            this.Inventory_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Inventory_Combo.Location = new System.Drawing.Point(91, 70);
-            this.Inventory_Combo.Name = "Inventory_Combo";
-            this.Inventory_Combo.Size = new System.Drawing.Size(139, 21);
-            this.Inventory_Combo.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(32, 73);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Envanter:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(32, 152);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Alış Fiyatı:";
-            // 
-            // Amount_Num
-            // 
-            this.Amount_Num.DecimalPlaces = 2;
-            this.Amount_Num.Location = new System.Drawing.Point(91, 124);
-            this.Amount_Num.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.Amount_Num.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.Amount_Num.Name = "Amount_Num";
-            this.Amount_Num.Size = new System.Drawing.Size(139, 20);
-            this.Amount_Num.TabIndex = 4;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(25, 204);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(60, 13);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Satış Fiyatı:";
-            // 
             // Cancel_Button
             // 
             this.Cancel_Button.Image = global::Muhasebe.Properties.Resources.cancel;
             this.Cancel_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Cancel_Button.Location = new System.Drawing.Point(330, 277);
+            this.Cancel_Button.Location = new System.Drawing.Point(330, 306);
             this.Cancel_Button.Name = "Cancel_Button";
             this.Cancel_Button.Size = new System.Drawing.Size(99, 23);
             this.Cancel_Button.TabIndex = 7;
@@ -345,7 +362,7 @@
             // 
             this.Save_Button.Image = global::Muhasebe.Properties.Resources.tick;
             this.Save_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Save_Button.Location = new System.Drawing.Point(225, 277);
+            this.Save_Button.Location = new System.Drawing.Point(225, 306);
             this.Save_Button.Name = "Save_Button";
             this.Save_Button.Size = new System.Drawing.Size(99, 23);
             this.Save_Button.TabIndex = 6;
@@ -353,24 +370,29 @@
             this.Save_Button.UseVisualStyleBackColor = true;
             this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
             // 
-            // Print_Barcode_Button
+            // label9
             // 
-            this.Print_Barcode_Button.Image = global::Muhasebe.Properties.Resources._195_barcode_icon;
-            this.Print_Barcode_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Print_Barcode_Button.Location = new System.Drawing.Point(12, 277);
-            this.Print_Barcode_Button.Name = "Print_Barcode_Button";
-            this.Print_Barcode_Button.Size = new System.Drawing.Size(101, 23);
-            this.Print_Barcode_Button.TabIndex = 8;
-            this.Print_Barcode_Button.Text = "Barkod Yazdır";
-            this.Print_Barcode_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Print_Barcode_Button.UseVisualStyleBackColor = true;
-            this.Print_Barcode_Button.Click += new System.EventHandler(this.Print_Barcode_Button_Click);
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(52, 100);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(33, 13);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Grup:";
+            // 
+            // Group_Combo
+            // 
+            this.Group_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Group_Combo.FormattingEnabled = true;
+            this.Group_Combo.Location = new System.Drawing.Point(91, 97);
+            this.Group_Combo.Name = "Group_Combo";
+            this.Group_Combo.Size = new System.Drawing.Size(139, 21);
+            this.Group_Combo.TabIndex = 3;
             // 
             // Edit_Item_Pop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(441, 312);
+            this.ClientSize = new System.Drawing.Size(441, 341);
             this.Controls.Add(this.Print_Barcode_Button);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Cancel_Button);
@@ -385,14 +407,14 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Edit_Item_Pop_FormClosed);
             this.Load += new System.EventHandler(this.Edit_Item_Pop_Load);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Camera_Box)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Picture_Box)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Base_Price_Num)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Tax_Num)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Final_Price_Num)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Amount_Num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Camera_Box)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Picture_Box)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -426,5 +448,7 @@
         private System.Windows.Forms.PictureBox Camera_Box;
         private System.Windows.Forms.Button Remove_Cam_Button;
         private System.Windows.Forms.Button Print_Barcode_Button;
+        private System.Windows.Forms.ComboBox Group_Combo;
+        private System.Windows.Forms.Label label9;
     }
 }

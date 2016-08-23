@@ -59,6 +59,8 @@
             this.Webcam_Button = new System.Windows.Forms.Button();
             this.Picture_Box = new System.Windows.Forms.PictureBox();
             this.Generate_Barcode_Button = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.Group_Combo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.Amount_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Base_Price_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Tax_Num)).BeginInit();
@@ -103,7 +105,7 @@
             this.Name_Box.Location = new System.Drawing.Point(91, 44);
             this.Name_Box.Name = "Name_Box";
             this.Name_Box.Size = new System.Drawing.Size(159, 20);
-            this.Name_Box.TabIndex = 1;
+            this.Name_Box.TabIndex = 2;
             // 
             // label3
             // 
@@ -121,12 +123,12 @@
             this.Inventory_Combo.Location = new System.Drawing.Point(91, 70);
             this.Inventory_Combo.Name = "Inventory_Combo";
             this.Inventory_Combo.Size = new System.Drawing.Size(159, 21);
-            this.Inventory_Combo.TabIndex = 2;
+            this.Inventory_Combo.TabIndex = 3;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(53, 100);
+            this.label4.Location = new System.Drawing.Point(53, 127);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 13);
             this.label4.TabIndex = 6;
@@ -137,16 +139,16 @@
             this.Unit_Type_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Unit_Type_Combo.FormattingEnabled = true;
             this.Error_Provider.SetIconPadding(this.Unit_Type_Combo, -35);
-            this.Unit_Type_Combo.Location = new System.Drawing.Point(91, 97);
+            this.Unit_Type_Combo.Location = new System.Drawing.Point(91, 124);
             this.Unit_Type_Combo.Name = "Unit_Type_Combo";
             this.Unit_Type_Combo.Size = new System.Drawing.Size(159, 21);
-            this.Unit_Type_Combo.TabIndex = 3;
+            this.Unit_Type_Combo.TabIndex = 5;
             this.Unit_Type_Combo.SelectedValueChanged += new System.EventHandler(this.Unit_Type_Combo_SelectedValueChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(46, 126);
+            this.label5.Location = new System.Drawing.Point(46, 153);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 13);
             this.label5.TabIndex = 8;
@@ -155,7 +157,7 @@
             // Amount_Num
             // 
             this.Error_Provider.SetIconPadding(this.Amount_Num, -35);
-            this.Amount_Num.Location = new System.Drawing.Point(91, 124);
+            this.Amount_Num.Location = new System.Drawing.Point(91, 151);
             this.Amount_Num.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -168,12 +170,12 @@
             -2147483648});
             this.Amount_Num.Name = "Amount_Num";
             this.Amount_Num.Size = new System.Drawing.Size(159, 20);
-            this.Amount_Num.TabIndex = 4;
+            this.Amount_Num.TabIndex = 6;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(32, 152);
+            this.label6.Location = new System.Drawing.Point(32, 179);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 13);
             this.label6.TabIndex = 10;
@@ -183,7 +185,7 @@
             // 
             this.Base_Price_Num.DecimalPlaces = 2;
             this.Error_Provider.SetIconPadding(this.Base_Price_Num, -35);
-            this.Base_Price_Num.Location = new System.Drawing.Point(91, 150);
+            this.Base_Price_Num.Location = new System.Drawing.Point(91, 177);
             this.Base_Price_Num.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -191,12 +193,12 @@
             0});
             this.Base_Price_Num.Name = "Base_Price_Num";
             this.Base_Price_Num.Size = new System.Drawing.Size(159, 20);
-            this.Base_Price_Num.TabIndex = 5;
+            this.Base_Price_Num.TabIndex = 7;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(28, 178);
+            this.label7.Location = new System.Drawing.Point(28, 205);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(57, 13);
             this.label7.TabIndex = 12;
@@ -205,7 +207,7 @@
             // Tax_Num
             // 
             this.Error_Provider.SetIconPadding(this.Tax_Num, -35);
-            this.Tax_Num.Location = new System.Drawing.Point(91, 176);
+            this.Tax_Num.Location = new System.Drawing.Point(91, 203);
             this.Tax_Num.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -213,7 +215,7 @@
             0});
             this.Tax_Num.Name = "Tax_Num";
             this.Tax_Num.Size = new System.Drawing.Size(159, 20);
-            this.Tax_Num.TabIndex = 6;
+            this.Tax_Num.TabIndex = 8;
             this.Tax_Num.Value = new decimal(new int[] {
             18,
             0,
@@ -223,7 +225,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(25, 204);
+            this.label8.Location = new System.Drawing.Point(25, 231);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(60, 13);
             this.label8.TabIndex = 14;
@@ -233,7 +235,7 @@
             // 
             this.Final_Price_Num.DecimalPlaces = 2;
             this.Error_Provider.SetIconPadding(this.Final_Price_Num, -35);
-            this.Final_Price_Num.Location = new System.Drawing.Point(91, 202);
+            this.Final_Price_Num.Location = new System.Drawing.Point(91, 229);
             this.Final_Price_Num.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -241,7 +243,7 @@
             0});
             this.Final_Price_Num.Name = "Final_Price_Num";
             this.Final_Price_Num.Size = new System.Drawing.Size(159, 20);
-            this.Final_Price_Num.TabIndex = 7;
+            this.Final_Price_Num.TabIndex = 9;
             // 
             // groupBox1
             // 
@@ -251,13 +253,15 @@
             this.groupBox1.Controls.Add(this.Picture_Box);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(175, 239);
+            this.groupBox1.Size = new System.Drawing.Size(175, 267);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ürün Fotoğrafı";
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.Group_Combo);
+            this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.Generate_Barcode_Button);
             this.groupBox2.Controls.Add(this.Abbreviation_Label);
             this.groupBox2.Controls.Add(this.Barcode_Box);
@@ -278,7 +282,7 @@
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Location = new System.Drawing.Point(193, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(256, 239);
+            this.groupBox2.Size = new System.Drawing.Size(256, 267);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ürün Bilgileri";
@@ -286,7 +290,7 @@
             // Abbreviation_Label
             // 
             this.Abbreviation_Label.BackColor = System.Drawing.SystemColors.Window;
-            this.Abbreviation_Label.Location = new System.Drawing.Point(183, 128);
+            this.Abbreviation_Label.Location = new System.Drawing.Point(183, 155);
             this.Abbreviation_Label.Name = "Abbreviation_Label";
             this.Abbreviation_Label.Size = new System.Drawing.Size(47, 13);
             this.Abbreviation_Label.TabIndex = 15;
@@ -306,10 +310,10 @@
             // 
             this.Save_Button.Image = global::Muhasebe.Properties.Resources.tick;
             this.Save_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Save_Button.Location = new System.Drawing.Point(245, 277);
+            this.Save_Button.Location = new System.Drawing.Point(245, 307);
             this.Save_Button.Name = "Save_Button";
             this.Save_Button.Size = new System.Drawing.Size(99, 23);
-            this.Save_Button.TabIndex = 2;
+            this.Save_Button.TabIndex = 0;
             this.Save_Button.Text = "Kaydet";
             this.Save_Button.UseVisualStyleBackColor = true;
             this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
@@ -319,10 +323,10 @@
             this.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.Cancel_Button.Image = global::Muhasebe.Properties.Resources.cancel;
             this.Cancel_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Cancel_Button.Location = new System.Drawing.Point(350, 277);
+            this.Cancel_Button.Location = new System.Drawing.Point(350, 307);
             this.Cancel_Button.Name = "Cancel_Button";
             this.Cancel_Button.Size = new System.Drawing.Size(99, 23);
-            this.Cancel_Button.TabIndex = 3;
+            this.Cancel_Button.TabIndex = 1;
             this.Cancel_Button.Text = "İptal";
             this.Cancel_Button.UseVisualStyleBackColor = true;
             this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
@@ -331,10 +335,10 @@
             // 
             this.Print_Barcode_Button.Image = global::Muhasebe.Properties.Resources._195_barcode_icon;
             this.Print_Barcode_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Print_Barcode_Button.Location = new System.Drawing.Point(12, 277);
+            this.Print_Barcode_Button.Location = new System.Drawing.Point(12, 307);
             this.Print_Barcode_Button.Name = "Print_Barcode_Button";
             this.Print_Barcode_Button.Size = new System.Drawing.Size(101, 23);
-            this.Print_Barcode_Button.TabIndex = 4;
+            this.Print_Barcode_Button.TabIndex = 2;
             this.Print_Barcode_Button.Text = "Barkod Yazdır";
             this.Print_Barcode_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Print_Barcode_Button.UseVisualStyleBackColor = true;
@@ -389,9 +393,27 @@
             this.Generate_Barcode_Button.Location = new System.Drawing.Point(221, 18);
             this.Generate_Barcode_Button.Name = "Generate_Barcode_Button";
             this.Generate_Barcode_Button.Size = new System.Drawing.Size(29, 20);
-            this.Generate_Barcode_Button.TabIndex = 16;
+            this.Generate_Barcode_Button.TabIndex = 1;
             this.Generate_Barcode_Button.UseVisualStyleBackColor = false;
             this.Generate_Barcode_Button.Click += new System.EventHandler(this.Generate_Barcode_Button_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(52, 100);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(33, 13);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Grup:";
+            // 
+            // Group_Combo
+            // 
+            this.Group_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Group_Combo.FormattingEnabled = true;
+            this.Group_Combo.Location = new System.Drawing.Point(91, 97);
+            this.Group_Combo.Name = "Group_Combo";
+            this.Group_Combo.Size = new System.Drawing.Size(159, 21);
+            this.Group_Combo.TabIndex = 4;
             // 
             // Add_Item_Pop
             // 
@@ -399,7 +421,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.Cancel_Button;
-            this.ClientSize = new System.Drawing.Size(461, 312);
+            this.ClientSize = new System.Drawing.Size(461, 342);
             this.Controls.Add(this.Print_Barcode_Button);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Cancel_Button);
@@ -458,5 +480,7 @@
         private System.Windows.Forms.PictureBox Camera_Box;
         private System.Windows.Forms.Button Print_Barcode_Button;
         private System.Windows.Forms.Button Generate_Barcode_Button;
+        private System.Windows.Forms.ComboBox Group_Combo;
+        private System.Windows.Forms.Label label9;
     }
 }

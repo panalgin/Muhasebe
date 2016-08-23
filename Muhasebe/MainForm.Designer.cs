@@ -32,15 +32,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title6 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.Title title7 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Title title8 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.Menu_Strip = new System.Windows.Forms.MenuStrip();
             this.dosyaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.çıkışToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,6 +107,8 @@
             this.giderYönetimiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.istatistiklerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Events_Button = new System.Windows.Forms.ToolStripButton();
+            this.ürünGruplarıYönetimiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ürünGruplarıYönetimiToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_Strip.SuspendLayout();
             this.Status_Strip.SuspendLayout();
             this.Notify_Menu_Context.SuspendLayout();
@@ -160,6 +162,7 @@
             this.hesapMakinesiToolStripMenuItem,
             this.kullanıcıYönetimiToolStripMenuItem,
             this.barkodTasarımYönetimiToolStripMenuItem,
+            this.ürünGruplarıYönetimiToolStripMenuItem1,
             this.azalanÜrünYönetimiToolStripMenuItem,
             this.seçeneklerToolStripMenuItem});
             this.araclarToolStripMenuItem.Name = "araclarToolStripMenuItem";
@@ -545,55 +548,55 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chart2.BackColor = System.Drawing.SystemColors.Control;
-            chartArea1.Area3DStyle.Inclination = 45;
-            chartArea1.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
-            chartArea1.AxisX.IsLabelAutoFit = false;
-            chartArea1.BackColor = System.Drawing.SystemColors.Control;
-            chartArea1.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea1);
-            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend1.Name = "Legend1";
-            this.chart2.Legends.Add(legend1);
+            chartArea4.Area3DStyle.Inclination = 45;
+            chartArea4.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
+            chartArea4.AxisX.IsLabelAutoFit = false;
+            chartArea4.BackColor = System.Drawing.SystemColors.Control;
+            chartArea4.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea4);
+            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend3.Name = "Legend1";
+            this.chart2.Legends.Add(legend3);
             this.chart2.Location = new System.Drawing.Point(3, 360);
             this.chart2.Name = "chart2";
             this.chart2.Size = new System.Drawing.Size(556, 187);
             this.chart2.TabIndex = 2;
-            title1.Alignment = System.Drawing.ContentAlignment.TopLeft;
-            title1.DockedToChartArea = "ChartArea1";
-            title1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            title1.IsDockedInsideChartArea = false;
-            title1.Name = "Title1";
-            title1.Text = "En Çok Satılanlar";
-            this.chart2.Titles.Add(title1);
+            title5.Alignment = System.Drawing.ContentAlignment.TopLeft;
+            title5.DockedToChartArea = "ChartArea1";
+            title5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            title5.IsDockedInsideChartArea = false;
+            title5.Name = "Title1";
+            title5.Text = "En Çok Satılanlar";
+            this.chart2.Titles.Add(title5);
             // 
             // chart1
             // 
             this.chart1.BackColor = System.Drawing.SystemColors.Control;
-            chartArea2.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
-            chartArea2.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea2.AxisX.IsLabelAutoFit = false;
-            chartArea2.AxisX.LabelStyle.Angle = -90;
-            chartArea2.AxisX.LineColor = System.Drawing.Color.Empty;
-            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea2.AxisX.MajorTickMark.LineColor = System.Drawing.Color.DimGray;
-            chartArea2.AxisY.IsLabelAutoFit = false;
-            chartArea2.AxisY.LabelStyle.Format = "0.00 TL";
-            chartArea2.AxisY.LineColor = System.Drawing.Color.DimGray;
-            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea2.CursorX.IsUserEnabled = true;
-            chartArea2.CursorX.IsUserSelectionEnabled = true;
-            chartArea2.Name = "ChartArea1";
-            chartArea2.Position.Auto = false;
-            chartArea2.Position.Height = 94F;
-            chartArea2.Position.Width = 81.85239F;
-            chartArea2.Position.X = 3F;
-            chartArea2.Position.Y = 3F;
-            chartArea2.ShadowColor = System.Drawing.Color.Empty;
-            this.chart1.ChartAreas.Add(chartArea2);
+            chartArea5.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
+            chartArea5.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea5.AxisX.IsLabelAutoFit = false;
+            chartArea5.AxisX.LabelStyle.Angle = -90;
+            chartArea5.AxisX.LineColor = System.Drawing.Color.Empty;
+            chartArea5.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea5.AxisX.MajorTickMark.LineColor = System.Drawing.Color.DimGray;
+            chartArea5.AxisY.IsLabelAutoFit = false;
+            chartArea5.AxisY.LabelStyle.Format = "0.00 TL";
+            chartArea5.AxisY.LineColor = System.Drawing.Color.DimGray;
+            chartArea5.AxisY.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea5.CursorX.IsUserEnabled = true;
+            chartArea5.CursorX.IsUserSelectionEnabled = true;
+            chartArea5.Name = "ChartArea1";
+            chartArea5.Position.Auto = false;
+            chartArea5.Position.Height = 94F;
+            chartArea5.Position.Width = 81.85239F;
+            chartArea5.Position.X = 3F;
+            chartArea5.Position.Y = 3F;
+            chartArea5.ShadowColor = System.Drawing.Color.Empty;
+            this.chart1.ChartAreas.Add(chartArea5);
             this.tableLayoutPanel1.SetColumnSpan(this.chart1, 2);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            legend4.Name = "Legend1";
+            this.chart1.Legends.Add(legend4);
             this.chart1.Location = new System.Drawing.Point(3, 3);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
@@ -603,14 +606,14 @@
             this.chart1.Size = new System.Drawing.Size(963, 351);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
-            title2.Alignment = System.Drawing.ContentAlignment.TopRight;
-            title2.IsDockedInsideChartArea = false;
-            title2.Name = "Title1";
-            title3.Alignment = System.Drawing.ContentAlignment.MiddleRight;
-            title3.IsDockedInsideChartArea = false;
-            title3.Name = "Title2";
-            this.chart1.Titles.Add(title2);
-            this.chart1.Titles.Add(title3);
+            title6.Alignment = System.Drawing.ContentAlignment.TopRight;
+            title6.IsDockedInsideChartArea = false;
+            title6.Name = "Title1";
+            title7.Alignment = System.Drawing.ContentAlignment.MiddleRight;
+            title7.IsDockedInsideChartArea = false;
+            title7.Name = "Title2";
+            this.chart1.Titles.Add(title6);
+            this.chart1.Titles.Add(title7);
             // 
             // chart3
             // 
@@ -618,11 +621,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chart3.BackColor = System.Drawing.SystemColors.Control;
-            chartArea3.Area3DStyle.Inclination = 45;
-            chartArea3.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
-            chartArea3.BackColor = System.Drawing.SystemColors.Control;
-            chartArea3.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea3);
+            chartArea6.Area3DStyle.Inclination = 45;
+            chartArea6.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
+            chartArea6.BackColor = System.Drawing.SystemColors.Control;
+            chartArea6.Name = "ChartArea1";
+            this.chart3.ChartAreas.Add(chartArea6);
             this.chart3.Location = new System.Drawing.Point(565, 360);
             this.chart3.Name = "chart3";
             this.chart3.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
@@ -632,13 +635,13 @@
         System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))))};
             this.chart3.Size = new System.Drawing.Size(401, 187);
             this.chart3.TabIndex = 3;
-            title4.Alignment = System.Drawing.ContentAlignment.TopLeft;
-            title4.DockedToChartArea = "ChartArea1";
-            title4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            title4.IsDockedInsideChartArea = false;
-            title4.Name = "Title1";
-            title4.Text = "Ürün Kar Marjı";
-            this.chart3.Titles.Add(title4);
+            title8.Alignment = System.Drawing.ContentAlignment.TopLeft;
+            title8.DockedToChartArea = "ChartArea1";
+            title8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            title8.IsDockedInsideChartArea = false;
+            title8.Name = "Title1";
+            title8.Text = "Ürün Kar Marjı";
+            this.chart3.Titles.Add(title8);
             // 
             // panel5
             // 
@@ -791,7 +794,8 @@
             this.Inventory_Button.AutoToolTip = false;
             this.Inventory_Button.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Storage_Button,
-            this.Items_Button});
+            this.Items_Button,
+            this.ürünGruplarıYönetimiToolStripMenuItem});
             this.Inventory_Button.Image = global::Muhasebe.Properties.Resources.server_components;
             this.Inventory_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Inventory_Button.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -803,14 +807,14 @@
             // Storage_Button
             // 
             this.Storage_Button.Name = "Storage_Button";
-            this.Storage_Button.Size = new System.Drawing.Size(142, 22);
+            this.Storage_Button.Size = new System.Drawing.Size(180, 22);
             this.Storage_Button.Text = "Depo Yönetimi";
             this.Storage_Button.Click += new System.EventHandler(this.Storge_Control_Click);
             // 
             // Items_Button
             // 
             this.Items_Button.Name = "Items_Button";
-            this.Items_Button.Size = new System.Drawing.Size(142, 22);
+            this.Items_Button.Size = new System.Drawing.Size(180, 22);
             this.Items_Button.Text = "Stok Yönetimi";
             this.Items_Button.Click += new System.EventHandler(this.Item_Control_Click);
             // 
@@ -862,6 +866,20 @@
             this.Events_Button.Size = new System.Drawing.Size(134, 38);
             this.Events_Button.Text = "Hareketler";
             this.Events_Button.Click += new System.EventHandler(this.Events_Button_Click);
+            // 
+            // ürünGruplarıYönetimiToolStripMenuItem
+            // 
+            this.ürünGruplarıYönetimiToolStripMenuItem.Name = "ürünGruplarıYönetimiToolStripMenuItem";
+            this.ürünGruplarıYönetimiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ürünGruplarıYönetimiToolStripMenuItem.Text = "Ürün Grupları Yönetimi";
+            this.ürünGruplarıYönetimiToolStripMenuItem.Click += new System.EventHandler(this.ürünGruplarıYönetimiToolStripMenuItem_Click);
+            // 
+            // ürünGruplarıYönetimiToolStripMenuItem1
+            // 
+            this.ürünGruplarıYönetimiToolStripMenuItem1.Name = "ürünGruplarıYönetimiToolStripMenuItem1";
+            this.ürünGruplarıYönetimiToolStripMenuItem1.Size = new System.Drawing.Size(190, 22);
+            this.ürünGruplarıYönetimiToolStripMenuItem1.Text = "Ürün Grupları Yönetimi";
+            this.ürünGruplarıYönetimiToolStripMenuItem1.Click += new System.EventHandler(this.ürünGruplarıYönetimiToolStripMenuItem1_Click);
             // 
             // MainForm
             // 
@@ -979,6 +997,8 @@
         private System.Windows.Forms.ToolStripButton Accounts_Button;
         private System.Windows.Forms.ToolStripMenuItem seçeneklerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem barkodTasarımYönetimiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ürünGruplarıYönetimiToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem ürünGruplarıYönetimiToolStripMenuItem;
     }
 }
 

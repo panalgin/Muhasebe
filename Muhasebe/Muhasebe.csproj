@@ -127,6 +127,12 @@
     <Compile Include="Add_Inventory_Pop.Designer.cs">
       <DependentUpon>Add_Inventory_Pop.cs</DependentUpon>
     </Compile>
+    <Compile Include="Add_ItemGroup_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_ItemGroup_Mdi.Designer.cs">
+      <DependentUpon>Add_ItemGroup_Mdi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Add_Item_Pop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -348,6 +354,12 @@
     <Compile Include="Manage_Inventory_Mdi.Designer.cs">
       <DependentUpon>Manage_Inventory_Mdi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Manage_ItemGroups_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_ItemGroups_Mdi.Designer.cs">
+      <DependentUpon>Manage_ItemGroups_Mdi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Manage_Items_Mdi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -462,6 +474,9 @@
     <EmbeddedResource Include="Add_Inventory_Pop.resx">
       <DependentUpon>Add_Inventory_Pop.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Add_ItemGroup_Mdi.resx">
+      <DependentUpon>Add_ItemGroup_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Add_Item_Pop.resx">
       <DependentUpon>Add_Item_Pop.cs</DependentUpon>
     </EmbeddedResource>
@@ -537,6 +552,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Manage_Inventory_Mdi.resx">
       <DependentUpon>Manage_Inventory_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_ItemGroups_Mdi.resx">
+      <DependentUpon>Manage_ItemGroups_Mdi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Manage_Items_Mdi.resx">
       <DependentUpon>Manage_Items_Mdi.cs</DependentUpon>

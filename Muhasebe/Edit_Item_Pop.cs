@@ -95,6 +95,11 @@ namespace Muhasebe
             this.Unit_Type_Combo.ValueMember = "ID";
             this.Unit_Type_Combo.DisplayMember = "Name";
 
+            var m_ItemGroups = m_Context.ItemGroups.ToList();
+            this.Group_Combo.DataSource = m_ItemGroups;
+            this.Group_Combo.ValueMember = "ID";
+            this.Group_Combo.DisplayMember = "Name";
+
             this.Barcode_Box.Text = this.Item.Product.Barcode.ToString();
             this.Name_Box.Text = this.Item.Product.Name.ToString();
             this.Inventory_Combo.SelectedValue = this.Item.Inventory.ID;
@@ -103,6 +108,9 @@ namespace Muhasebe
             this.Base_Price_Num.Value = this.Item.BasePrice.Value;
             this.Tax_Num.Value = this.Item.Tax.Value;
             this.Final_Price_Num.Value = this.Item.FinalPrice.Value;
+
+            if (this.Item.GroupID != null)
+                this.Group_Combo.SelectedValue = this.Item.GroupID;
 
             if (this.Item.LocalImagePath.Length > 0 && File.Exists(this.Item.LocalImagePath))
                 this.Picture_Box.ImageLocation = this.Item.LocalImagePath;
@@ -151,6 +159,7 @@ namespace Muhasebe
                     m_Actual.Tax = Convert.ToInt32(this.Tax_Num.Value);
                     m_Actual.FinalPrice = this.Final_Price_Num.Value;
                     m_Actual.Product.Name = this.Name_Box.Text;
+                    m_Actual.GroupID = Convert.ToInt32(this.Group_Combo.SelectedValue);
 
                     if (this.Picture_Box.Image != null)
                     {

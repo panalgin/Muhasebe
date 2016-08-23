@@ -89,6 +89,7 @@ namespace Muhasebe
                 m_Item.Tax = Convert.ToInt32(this.Tax_Num.Value);
                 m_Item.UnitTypeID = Convert.ToInt32(this.Unit_Type_Combo.SelectedValue);
                 m_Item.ProductID = m_Product.ID;
+                m_Item.GroupID = Convert.ToInt32(this.Group_Combo.SelectedValue);
 
                 m_Context.Items.Add(m_Item);
                 m_Context.SaveChanges();
@@ -156,6 +157,11 @@ namespace Muhasebe
             this.Inventory_Combo.DataSource = m_Inventories;
             this.Inventory_Combo.ValueMember = "ID";
             this.Inventory_Combo.DisplayMember = "Name";
+
+            var m_ItemGroups = m_Context.ItemGroups.ToList();
+            this.Group_Combo.DataSource = m_ItemGroups;
+            this.Group_Combo.ValueMember = "ID";
+            this.Group_Combo.DisplayMember = "Name";
 
             EventSink.BarcodeScanned += EventSink_BarcodeScanned;
         }

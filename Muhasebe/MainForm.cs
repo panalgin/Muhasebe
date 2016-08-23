@@ -598,5 +598,21 @@ namespace Muhasebe
             m_Mdi.WindowState = FormWindowState.Maximized;
             m_Mdi.Show();
         }
+
+        private void ürünGruplarıYönetimiToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Manage_ItemGroups_Mdi m_Mdi = new Manage_ItemGroups_Mdi();
+            m_Mdi.MdiParent = this;
+            m_Mdi.WindowState = FormWindowState.Maximized;
+            m_Mdi.Show();
+        }
+
+        private void ürünGruplarıYönetimiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Manage_ItemGroups_Mdi m_Mdi = new Manage_ItemGroups_Mdi();
+            m_Mdi.MdiParent = this;
+            m_Mdi.WindowState = FormWindowState.Maximized;
+            m_Mdi.Show();
+        }
     }
 }

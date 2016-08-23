@@ -37,16 +37,17 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Add_Button = new System.Windows.Forms.Button();
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Edit_Button = new System.Windows.Forms.Button();
-            this.Delete_Button = new System.Windows.Forms.Button();
             this.Search_Box = new System.Windows.Forms.TextBox();
-            this.Search_Button = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.Total_Distinct_Item_Label = new System.Windows.Forms.ToolStripStatusLabel();
             this.Total_Cost_Label = new System.Windows.Forms.ToolStripStatusLabel();
             this.Potential_Final_Label = new System.Windows.Forms.ToolStripStatusLabel();
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Search_Button = new System.Windows.Forms.Button();
+            this.Delete_Button = new System.Windows.Forms.Button();
+            this.Add_Button = new System.Windows.Forms.Button();
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,6 +64,7 @@
             this.columnHeader5,
             this.columnHeader6,
             this.columnHeader7,
+            this.columnHeader9,
             this.columnHeader8});
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
@@ -121,18 +123,12 @@
             this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader7.Width = 78;
             // 
-            // Add_Button
+            // columnHeader8
             // 
-            this.Add_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Add_Button.Image = global::Muhasebe.Properties.Resources.add;
-            this.Add_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Add_Button.Location = new System.Drawing.Point(619, 12);
-            this.Add_Button.Name = "Add_Button";
-            this.Add_Button.Size = new System.Drawing.Size(75, 23);
-            this.Add_Button.TabIndex = 1;
-            this.Add_Button.Text = "Yeni";
-            this.Add_Button.UseVisualStyleBackColor = true;
-            this.Add_Button.Click += new System.EventHandler(this.Add_Button_Click);
+            this.columnHeader8.DisplayIndex = 0;
+            this.columnHeader8.Text = "#";
+            this.columnHeader8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader8.Width = 31;
             // 
             // Edit_Button
             // 
@@ -146,20 +142,6 @@
             this.Edit_Button.UseVisualStyleBackColor = true;
             this.Edit_Button.Click += new System.EventHandler(this.Edit_Button_Click);
             // 
-            // Delete_Button
-            // 
-            this.Delete_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Delete_Button.Enabled = false;
-            this.Delete_Button.Image = global::Muhasebe.Properties.Resources.delete;
-            this.Delete_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Delete_Button.Location = new System.Drawing.Point(619, 70);
-            this.Delete_Button.Name = "Delete_Button";
-            this.Delete_Button.Size = new System.Drawing.Size(75, 23);
-            this.Delete_Button.TabIndex = 3;
-            this.Delete_Button.Text = "Sil";
-            this.Delete_Button.UseVisualStyleBackColor = true;
-            this.Delete_Button.Click += new System.EventHandler(this.Delete_Button_Click);
-            // 
             // Search_Box
             // 
             this.Search_Box.Location = new System.Drawing.Point(12, 12);
@@ -167,18 +149,6 @@
             this.Search_Box.Size = new System.Drawing.Size(149, 20);
             this.Search_Box.TabIndex = 4;
             this.Search_Box.TextChanged += new System.EventHandler(this.Search_Box_TextChanged);
-            // 
-            // Search_Button
-            // 
-            this.Search_Button.Image = global::Muhasebe.Properties.Resources.magnifier;
-            this.Search_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Search_Button.Location = new System.Drawing.Point(167, 10);
-            this.Search_Button.Name = "Search_Button";
-            this.Search_Button.Size = new System.Drawing.Size(75, 23);
-            this.Search_Button.TabIndex = 5;
-            this.Search_Button.Text = "Ara";
-            this.Search_Button.UseVisualStyleBackColor = true;
-            this.Search_Button.Click += new System.EventHandler(this.Search_Button_Click);
             // 
             // statusStrip1
             // 
@@ -211,12 +181,50 @@
             this.Potential_Final_Label.Size = new System.Drawing.Size(159, 17);
             this.Potential_Final_Label.Text = "Potansiyel Satış Değeri: 0.00 TL";
             // 
-            // columnHeader8
+            // Search_Button
             // 
-            this.columnHeader8.DisplayIndex = 0;
-            this.columnHeader8.Text = "#";
-            this.columnHeader8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader8.Width = 31;
+            this.Search_Button.Image = global::Muhasebe.Properties.Resources.magnifier;
+            this.Search_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Search_Button.Location = new System.Drawing.Point(167, 10);
+            this.Search_Button.Name = "Search_Button";
+            this.Search_Button.Size = new System.Drawing.Size(75, 23);
+            this.Search_Button.TabIndex = 5;
+            this.Search_Button.Text = "Ara";
+            this.Search_Button.UseVisualStyleBackColor = true;
+            this.Search_Button.Click += new System.EventHandler(this.Search_Button_Click);
+            // 
+            // Delete_Button
+            // 
+            this.Delete_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Delete_Button.Enabled = false;
+            this.Delete_Button.Image = global::Muhasebe.Properties.Resources.delete;
+            this.Delete_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Delete_Button.Location = new System.Drawing.Point(619, 70);
+            this.Delete_Button.Name = "Delete_Button";
+            this.Delete_Button.Size = new System.Drawing.Size(75, 23);
+            this.Delete_Button.TabIndex = 3;
+            this.Delete_Button.Text = "Sil";
+            this.Delete_Button.UseVisualStyleBackColor = true;
+            this.Delete_Button.Click += new System.EventHandler(this.Delete_Button_Click);
+            // 
+            // Add_Button
+            // 
+            this.Add_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Add_Button.Image = global::Muhasebe.Properties.Resources.add;
+            this.Add_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Add_Button.Location = new System.Drawing.Point(619, 12);
+            this.Add_Button.Name = "Add_Button";
+            this.Add_Button.Size = new System.Drawing.Size(75, 23);
+            this.Add_Button.TabIndex = 1;
+            this.Add_Button.Text = "Yeni";
+            this.Add_Button.UseVisualStyleBackColor = true;
+            this.Add_Button.Click += new System.EventHandler(this.Add_Button_Click);
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.DisplayIndex = 8;
+            this.columnHeader9.Text = "Grup";
+            this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Manage_Items_Mdi
             // 
@@ -261,5 +269,6 @@
         private System.Windows.Forms.ToolStripStatusLabel Total_Cost_Label;
         private System.Windows.Forms.ToolStripStatusLabel Potential_Final_Label;
         private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
     }
 }

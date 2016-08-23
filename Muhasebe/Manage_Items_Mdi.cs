@@ -60,6 +60,12 @@ namespace Muhasebe
                 m_ViewItem.SubItems.Add("%" + m_Item.Tax.ToString());
                 m_ViewItem.SubItems.Add(m_Item.FinalPrice.ToString() + " TL");
                 m_ViewItem.SubItems.Add(m_Item.Inventory.Name);
+
+                if (m_Item.Group != null)
+                    m_ViewItem.SubItems.Add(m_Item.Group.Name);
+                else
+                    m_ViewItem.SubItems.Add("-");
+
                 m_ViewItem.SubItems.Add((i + 1).ToString());
                 m_ViewItem.Tag = m_Item.ID;
 
