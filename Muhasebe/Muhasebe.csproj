@@ -170,6 +170,9 @@
       <DependentUpon>Add_User_Mdi.cs</DependentUpon>
     </Compile>
     <Compile Include="BarcodeListener.cs" />
+    <Compile Include="BarcodePrinter.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
     <Compile Include="BarcodeTemplate.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>
@@ -177,6 +180,10 @@
     <Compile Include="Company.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>
+    <Compile Include="ConnectionType.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\BarcodePrinter.partial.cs" />
     <Compile Include="Device.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>
@@ -278,6 +285,9 @@
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>
     <Compile Include="Item.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemGroup.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>
     <Compile Include="JobPosition.cs">
@@ -789,6 +799,7 @@
       <DependentUpon>Muhasebe.edmx</DependentUpon>
       <LastGenOutput>Muhasebe.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\195-barcode-icon.png" />
     <None Include="Resources\reseller_programm.png" />
     <None Include="Resources\delete.png" />
     <None Include="Resources\pencil.png" />

@@ -188,6 +188,11 @@ namespace Muhasebe
                     this.Picture_Box.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
             }
+
+            if (this.Barcode_Box.Text.Length != 8)
+                this.Print_Barcode_Button.Enabled = false;
+            else
+                this.Print_Barcode_Button.Enabled = true;
         }
 
         private bool ValidateInput()
@@ -258,6 +263,50 @@ namespace Muhasebe
             {
                 this.Camera.Dispose();
             }
+        }
+
+        private void Print_Barcode_Button_Click(object sender, EventArgs e)
+        {
+            if (this.Barcode_Box.Text != string.Empty && this.Name_Box.Text != string.Empty)
+            {
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    BarcodePrinter m_Printer = Program.User.WorksAt.BarcodePrinters.FirstOrDefault();
+                    
+                    if (m_Printer != null)
+                    {
+                        m_Printer.Print(this.Name_Box.Text, this.Barcode_Box.Text);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ürün için bir barkod belirleyin ve ürün adını girdiğinizden emin olun.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Generate_Barcode_Button_Click(object sender, EventArgs e)
+        {
+            this.BeginInvoke(new MethodInvoker(delegate ()
+            {
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    Random m_Random = new Random();
+
+                    for (;;)
+                    {
+                        string m_Barcode = m_Random.Next(10000000, 99999999).ToString();
+                        if (m_Context.Products.Where(q => q.Barcode == m_Barcode).FirstOrDefault() != null)
+                            continue;
+                        else
+                        {
+                            this.Barcode_Box.Text = m_Barcode;
+
+                            break;
+                        }
+                    }
+                }
+            }));
         }
     }
 }

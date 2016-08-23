@@ -50,6 +50,7 @@
             this.ödemeSeçenekleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hesapMakinesiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kullanıcıYönetimiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.barkodTasarımYönetimiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.azalanÜrünYönetimiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seçeneklerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.yardımToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,10 +91,10 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.Grid_Panel = new System.Windows.Forms.Panel();
-            this.Image_List = new System.Windows.Forms.ImageList(this.components);
             this.Downward_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Image_List = new System.Windows.Forms.ImageList(this.components);
             this.Navigation_Strip = new Muhasebe.Custom.ToolStripEx();
             this.Home_Button = new System.Windows.Forms.ToolStripButton();
             this.Accounts_Button = new System.Windows.Forms.ToolStripButton();
@@ -158,6 +159,7 @@
             this.ödemeSeçenekleriToolStripMenuItem,
             this.hesapMakinesiToolStripMenuItem,
             this.kullanıcıYönetimiToolStripMenuItem,
+            this.barkodTasarımYönetimiToolStripMenuItem,
             this.azalanÜrünYönetimiToolStripMenuItem,
             this.seçeneklerToolStripMenuItem});
             this.araclarToolStripMenuItem.Name = "araclarToolStripMenuItem";
@@ -167,49 +169,56 @@
             // aygıtYöneticisiToolStripMenuItem
             // 
             this.aygıtYöneticisiToolStripMenuItem.Name = "aygıtYöneticisiToolStripMenuItem";
-            this.aygıtYöneticisiToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.aygıtYöneticisiToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.aygıtYöneticisiToolStripMenuItem.Text = "Aygıt Yöneticisi";
             this.aygıtYöneticisiToolStripMenuItem.Click += new System.EventHandler(this.aygıtYöneticisiToolStripMenuItem_Click);
             // 
             // ölçüBirimleriToolStripMenuItem
             // 
             this.ölçüBirimleriToolStripMenuItem.Name = "ölçüBirimleriToolStripMenuItem";
-            this.ölçüBirimleriToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.ölçüBirimleriToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.ölçüBirimleriToolStripMenuItem.Text = "Ölçü Birimleri";
             this.ölçüBirimleriToolStripMenuItem.Click += new System.EventHandler(this.ölçüBirimleriToolStripMenuItem_Click);
             // 
             // ödemeSeçenekleriToolStripMenuItem
             // 
             this.ödemeSeçenekleriToolStripMenuItem.Name = "ödemeSeçenekleriToolStripMenuItem";
-            this.ödemeSeçenekleriToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.ödemeSeçenekleriToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.ödemeSeçenekleriToolStripMenuItem.Text = "Ödeme Seçenekleri";
             this.ödemeSeçenekleriToolStripMenuItem.Click += new System.EventHandler(this.ödemeSeçenekleriToolStripMenuItem_Click);
             // 
             // hesapMakinesiToolStripMenuItem
             // 
             this.hesapMakinesiToolStripMenuItem.Name = "hesapMakinesiToolStripMenuItem";
-            this.hesapMakinesiToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.hesapMakinesiToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.hesapMakinesiToolStripMenuItem.Text = "Hesap Makinesi";
             this.hesapMakinesiToolStripMenuItem.Click += new System.EventHandler(this.hesapMakinesiToolStripMenuItem_Click);
             // 
             // kullanıcıYönetimiToolStripMenuItem
             // 
             this.kullanıcıYönetimiToolStripMenuItem.Name = "kullanıcıYönetimiToolStripMenuItem";
-            this.kullanıcıYönetimiToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.kullanıcıYönetimiToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.kullanıcıYönetimiToolStripMenuItem.Text = "Kullanıcı Yönetimi";
             this.kullanıcıYönetimiToolStripMenuItem.Click += new System.EventHandler(this.kullanıcıYönetimiToolStripMenuItem_Click);
+            // 
+            // barkodTasarımYönetimiToolStripMenuItem
+            // 
+            this.barkodTasarımYönetimiToolStripMenuItem.Name = "barkodTasarımYönetimiToolStripMenuItem";
+            this.barkodTasarımYönetimiToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.barkodTasarımYönetimiToolStripMenuItem.Text = "Barkod Tasarım Yönetimi";
+            this.barkodTasarımYönetimiToolStripMenuItem.Click += new System.EventHandler(this.barkodTasarımYönetimiToolStripMenuItem_Click);
             // 
             // azalanÜrünYönetimiToolStripMenuItem
             // 
             this.azalanÜrünYönetimiToolStripMenuItem.Name = "azalanÜrünYönetimiToolStripMenuItem";
-            this.azalanÜrünYönetimiToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.azalanÜrünYönetimiToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.azalanÜrünYönetimiToolStripMenuItem.Text = "Azalan Ürün Yönetimi";
             this.azalanÜrünYönetimiToolStripMenuItem.Click += new System.EventHandler(this.azalanÜrünYönetimiToolStripMenuItem_Click);
             // 
             // seçeneklerToolStripMenuItem
             // 
             this.seçeneklerToolStripMenuItem.Name = "seçeneklerToolStripMenuItem";
-            this.seçeneklerToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.seçeneklerToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.seçeneklerToolStripMenuItem.Text = "Seçenekler";
             this.seçeneklerToolStripMenuItem.Click += new System.EventHandler(this.seçeneklerToolStripMenuItem_Click);
             // 
@@ -690,12 +699,6 @@
             this.Grid_Panel.Visible = false;
             this.Grid_Panel.VisibleChanged += new System.EventHandler(this.Grid_Panel_VisibleChanged);
             // 
-            // Image_List
-            // 
-            this.Image_List.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Image_List.ImageStream")));
-            this.Image_List.TransparentColor = System.Drawing.Color.Transparent;
-            this.Image_List.Images.SetKeyName(0, "package.png");
-            // 
             // Downward_List
             // 
             this.Downward_List.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -721,6 +724,12 @@
             // 
             this.columnHeader1.Text = "Azalan Ürünler";
             this.columnHeader1.Width = 254;
+            // 
+            // Image_List
+            // 
+            this.Image_List.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Image_List.ImageStream")));
+            this.Image_List.TransparentColor = System.Drawing.Color.Transparent;
+            this.Image_List.Images.SetKeyName(0, "package.png");
             // 
             // Navigation_Strip
             // 
@@ -969,6 +978,7 @@
         private System.Windows.Forms.ToolStripMenuItem Items_Button;
         private System.Windows.Forms.ToolStripButton Accounts_Button;
         private System.Windows.Forms.ToolStripMenuItem seçeneklerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem barkodTasarımYönetimiToolStripMenuItem;
     }
 }
 

@@ -54,6 +54,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.Cancel_Button = new System.Windows.Forms.Button();
             this.Save_Button = new System.Windows.Forms.Button();
+            this.Print_Barcode_Button = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Camera_Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture_Box)).BeginInit();
@@ -173,6 +174,7 @@
             this.Barcode_Box.ReadOnly = true;
             this.Barcode_Box.Size = new System.Drawing.Size(139, 20);
             this.Barcode_Box.TabIndex = 0;
+            this.Barcode_Box.TextChanged += new System.EventHandler(this.Barcode_Box_TextChanged);
             // 
             // label1
             // 
@@ -224,7 +226,6 @@
             // 
             this.Name_Box.Location = new System.Drawing.Point(91, 44);
             this.Name_Box.Name = "Name_Box";
-            this.Name_Box.ReadOnly = true;
             this.Name_Box.Size = new System.Drawing.Size(139, 20);
             this.Name_Box.TabIndex = 1;
             // 
@@ -352,11 +353,25 @@
             this.Save_Button.UseVisualStyleBackColor = true;
             this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
             // 
+            // Print_Barcode_Button
+            // 
+            this.Print_Barcode_Button.Image = global::Muhasebe.Properties.Resources._195_barcode_icon;
+            this.Print_Barcode_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Print_Barcode_Button.Location = new System.Drawing.Point(12, 277);
+            this.Print_Barcode_Button.Name = "Print_Barcode_Button";
+            this.Print_Barcode_Button.Size = new System.Drawing.Size(101, 23);
+            this.Print_Barcode_Button.TabIndex = 8;
+            this.Print_Barcode_Button.Text = "Barkod Yazdır";
+            this.Print_Barcode_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Print_Barcode_Button.UseVisualStyleBackColor = true;
+            this.Print_Barcode_Button.Click += new System.EventHandler(this.Print_Barcode_Button_Click);
+            // 
             // Edit_Item_Pop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(441, 312);
+            this.Controls.Add(this.Print_Barcode_Button);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Cancel_Button);
             this.Controls.Add(this.Save_Button);
@@ -410,5 +425,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox Camera_Box;
         private System.Windows.Forms.Button Remove_Cam_Button;
+        private System.Windows.Forms.Button Print_Barcode_Button;
     }
 }

@@ -590,5 +590,13 @@ namespace Muhasebe
             Options_Mdi m_Mdi = new Options_Mdi();
             m_Mdi.ShowDialog();
         }
+
+        private void barkodTasarımYönetimiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Manage_BarcodeTemplates_Mdi m_Mdi = new Manage_BarcodeTemplates_Mdi();
+            m_Mdi.MdiParent = this;
+            m_Mdi.WindowState = FormWindowState.Maximized;
+            m_Mdi.Show();
+        }
     }
 }

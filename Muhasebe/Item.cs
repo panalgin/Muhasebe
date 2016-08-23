@@ -24,9 +24,11 @@ namespace Muhasebe
         public decimal Amount { get; set; }
         public int UnitTypeID { get; set; }
         public string LocalImagePath { get; set; }
+        public Nullable<int> GroupID { get; set; }
     
         public virtual Product Product { get; set; }
         public virtual Inventory Inventory { get; set; }
         public virtual UnitType UnitType { get; set; }
+        public virtual ItemGroup Group { get; set; }
     }
 }

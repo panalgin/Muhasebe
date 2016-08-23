@@ -150,6 +150,7 @@ namespace Muhasebe
                     m_Actual.BasePrice = this.Base_Price_Num.Value;
                     m_Actual.Tax = Convert.ToInt32(this.Tax_Num.Value);
                     m_Actual.FinalPrice = this.Final_Price_Num.Value;
+                    m_Actual.Product.Name = this.Name_Box.Text;
 
                     if (this.Picture_Box.Image != null)
                     {
@@ -210,6 +211,34 @@ namespace Muhasebe
                 this.Picture_Box.Image = Properties.Resources.items;
 
             m_Running = false;
+        }
+
+        private void Print_Barcode_Button_Click(object sender, EventArgs e)
+        {
+            if (this.Barcode_Box.Text != string.Empty)
+            {
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    BarcodePrinter m_Printer = Program.User.WorksAt.BarcodePrinters.FirstOrDefault();
+
+                    if (m_Printer != null)
+                    {
+                        m_Printer.Print(this.Name_Box.Text, this.Barcode_Box.Text);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ürün için bir barkod belirleyin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Barcode_Box_TextChanged(object sender, EventArgs e)
+        {
+            if (this.Barcode_Box.Text.Length != 8)
+                this.Print_Barcode_Button.Enabled = false;
+            else
+                this.Print_Barcode_Button.Enabled = true;
         }
     }
 }

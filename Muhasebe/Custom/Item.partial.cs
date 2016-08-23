@@ -114,7 +114,6 @@ namespace Muhasebe
                 {
                     Logger.Enqueue(ex);
                 }
-
             }
         }
 

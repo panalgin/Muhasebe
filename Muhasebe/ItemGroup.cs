@@ -12,16 +12,18 @@ namespace Muhasebe
     using System;
     using System.Collections.Generic;
     
-    public partial class BarcodeTemplate
+    public partial class ItemGroup
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ItemGroup()
+        {
+            this.Items = new HashSet<Item>();
+        }
+    
         public int ID { get; set; }
         public string Name { get; set; }
-        public string Path { get; set; }
-        public Nullable<System.DateTime> CreatedAt { get; set; }
-        public Nullable<int> OwnerID { get; set; }
-        public Nullable<int> Width { get; set; }
-        public Nullable<int> Height { get; set; }
     
-        public virtual Company Company { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Item> Items { get; set; }
     }
 }

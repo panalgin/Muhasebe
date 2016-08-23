@@ -5,15 +5,28 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="MuhasebeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BarcodePrinters">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="ConnectionTypeID" Type="int" />
+          <Property Name="BarcodeTemplateID" Type="int" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="OwnerID" Type="int" />
+        </EntityType>
         <EntityType Name="BarcodeTemplates">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="Data" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Path" Type="nvarchar" MaxLength="1000" />
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="OwnerID" Type="int" />
+          <Property Name="Width" Type="int" />
+          <Property Name="Height" Type="int" />
         </EntityType>
         <EntityType Name="Companies">
           <Key>
@@ -31,6 +44,13 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="11" />
           <Property Name="Gsm" Type="nvarchar" MaxLength="11" />
           <Property Name="Fax" Type="nvarchar" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="ConnectionTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Devices">
           <Key>
@@ -147,6 +167,13 @@
           <Property Name="PaymentTypeID" Type="int" />
           <Property Name="State" Type="nvarchar" MaxLength="45" />
         </EntityType>
+        <EntityType Name="ItemGroups">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="Items">
           <Key>
             <PropertyRef Name="ID" />
@@ -161,6 +188,7 @@
           <Property Name="CreatedAt" Type="smalldatetime" />
           <Property Name="UnitTypeID" Type="int" Nullable="false" />
           <Property Name="LocalImagePath" Type="nvarchar" MaxLength="1000" />
+          <Property Name="GroupID" Type="int" />
         </EntityType>
         <EntityType Name="JobPositions">
           <Key>
@@ -234,8 +262,10 @@
           <Property Name="Surname" Type="nvarchar" MaxLength="60" />
         </EntityType>
         <EntityContainer Name="MuhasebeModelStoreContainer">
+          <EntitySet Name="BarcodePrinters" EntityType="Self.BarcodePrinters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BarcodeTemplates" EntityType="Self.BarcodeTemplates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConnectionTypes" EntityType="Self.ConnectionTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Devices" EntityType="Self.Devices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeviceTypes" EntityType="Self.DeviceTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventCategories" EntityType="Self.EventCategories" Schema="dbo" store:Type="Tables" />
@@ -247,6 +277,7 @@
           <EntitySet Name="Inventories" EntityType="Self.Inventories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InvoiceNodes" EntityType="Self.InvoiceNodes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemGroups" EntityType="Self.ItemGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobPositions" EntityType="Self.JobPositions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentTypes" EntityType="Self.PaymentTypes" Schema="dbo" store:Type="Tables" />
@@ -410,6 +441,25 @@
             <End Role="BarcodeTemplate" EntitySet="BarcodeTemplates" />
             <End Role="Company" EntitySet="Companies" />
           </AssociationSet>
+          <EntitySet Name="BarcodePrinters" EntityType="MuhasebeModel.BarcodePrinter" />
+          <EntitySet Name="ConnectionTypes" EntityType="MuhasebeModel.ConnectionType" />
+          <AssociationSet Name="BarcodePrinterBarcodeTemplate" Association="MuhasebeModel.BarcodePrinterBarcodeTemplate">
+            <End Role="BarcodePrinter" EntitySet="BarcodePrinters" />
+            <End Role="BarcodeTemplate" EntitySet="BarcodeTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="BarcodePrinterCompany" Association="MuhasebeModel.BarcodePrinterCompany">
+            <End Role="BarcodePrinter" EntitySet="BarcodePrinters" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="BarcodePrinterConnectionType" Association="MuhasebeModel.BarcodePrinterConnectionType">
+            <End Role="BarcodePrinter" EntitySet="BarcodePrinters" />
+            <End Role="ConnectionType" EntitySet="ConnectionTypes" />
+          </AssociationSet>
+          <EntitySet Name="ItemGroups" EntityType="MuhasebeModel.ItemGroup" />
+          <AssociationSet Name="ItemGroupItem" Association="MuhasebeModel.ItemGroupItem">
+            <End Role="ItemGroup" EntitySet="ItemGroups" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Product">
           <Key>
@@ -469,6 +519,8 @@
           <Property Type="Int32" Name="UnitTypeID" Nullable="false" />
           <NavigationProperty Name="UnitType" Relationship="MuhasebeModel.ItemUnitType" FromRole="Item" ToRole="UnitType" />
           <Property Type="String" Name="LocalImagePath" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="GroupID" Type="Int32" />
+          <NavigationProperty Name="Group" Relationship="MuhasebeModel.ItemGroupItem" FromRole="Item" ToRole="ItemGroup" />
         </EntityType>
         <Association Name="ItemProduct">
           <End Type="MuhasebeModel.Item" Role="Item" Multiplicity="*" />
@@ -518,6 +570,7 @@
           <NavigationProperty Name="PaymentTypes" Relationship="MuhasebeModel.PaymentTypeCompany" FromRole="Company" ToRole="PaymentType" />
           <NavigationProperty Name="ExpenditureTypes" Relationship="MuhasebeModel.ExpenditureTypeCompany" FromRole="Company" ToRole="ExpenditureType" />
           <NavigationProperty Name="BarcodeTemplates" Relationship="MuhasebeModel.BarcodeTemplateCompany" FromRole="Company" ToRole="BarcodeTemplate" />
+          <NavigationProperty Name="BarcodePrinters" Relationship="MuhasebeModel.BarcodePrinterCompany" FromRole="Company" ToRole="BarcodePrinter" />
         </EntityType>
         <Association Name="UserCompany">
           <End Type="MuhasebeModel.User" Role="User" Multiplicity="*" />
@@ -1046,11 +1099,13 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Data" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Path" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" />
           <Property Name="OwnerID" Type="Int32" />
-          <NavigationProperty Name="Owner" Relationship="MuhasebeModel.BarcodeTemplateCompany" FromRole="BarcodeTemplate" ToRole="Company" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Width" Type="Int32" />
+          <Property Name="Height" Type="Int32" />
+          <NavigationProperty Name="Company" Relationship="MuhasebeModel.BarcodeTemplateCompany" FromRole="BarcodeTemplate" ToRole="Company" />
         </EntityType>
         <Association Name="BarcodeTemplateCompany">
           <End Type="MuhasebeModel.BarcodeTemplate" Role="BarcodeTemplate" Multiplicity="*" />
@@ -1061,6 +1116,83 @@
             </Principal>
             <Dependent Role="BarcodeTemplate">
               <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BarcodePrinter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ConnectionTypeID" Type="Int32" />
+          <Property Name="BarcodeTemplateID" Type="Int32" />
+          <Property Name="CreatedAt" Type="DateTime" />
+          <Property Name="OwnerID" Type="Int32" />
+          <NavigationProperty Name="BarcodeTemplate" Relationship="MuhasebeModel.BarcodePrinterBarcodeTemplate" FromRole="BarcodePrinter" ToRole="BarcodeTemplate" />
+          <NavigationProperty Name="Owner" Relationship="MuhasebeModel.BarcodePrinterCompany" FromRole="BarcodePrinter" ToRole="Company" />
+          <NavigationProperty Name="ConnectionType" Relationship="MuhasebeModel.BarcodePrinterConnectionType" FromRole="BarcodePrinter" ToRole="ConnectionType" />
+        </EntityType>
+        <EntityType Name="ConnectionType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="BarcodePrinterBarcodeTemplate">
+          <End Type="MuhasebeModel.BarcodePrinter" Role="BarcodePrinter" Multiplicity="*" />
+          <End Type="MuhasebeModel.BarcodeTemplate" Role="BarcodeTemplate" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="BarcodeTemplate">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BarcodePrinter">
+              <PropertyRef Name="BarcodeTemplateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BarcodePrinterCompany">
+          <End Type="MuhasebeModel.BarcodePrinter" Role="BarcodePrinter" Multiplicity="*" />
+          <End Type="MuhasebeModel.Company" Role="Company" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BarcodePrinter">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BarcodePrinterConnectionType">
+          <End Type="MuhasebeModel.BarcodePrinter" Role="BarcodePrinter" Multiplicity="*" />
+          <End Type="MuhasebeModel.ConnectionType" Role="ConnectionType" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ConnectionType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BarcodePrinter">
+              <PropertyRef Name="ConnectionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ItemGroup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Items" Relationship="MuhasebeModel.ItemGroupItem" FromRole="ItemGroup" ToRole="Item" />
+        </EntityType>
+        <Association Name="ItemGroupItem">
+          <End Type="MuhasebeModel.ItemGroup" Role="ItemGroup" Multiplicity="0..1" />
+          <End Type="MuhasebeModel.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="GroupID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1243,6 +1375,7 @@
           <EntitySetMapping Name="Items">
             <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.Item)">
               <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
                 <ScalarProperty Name="LocalImagePath" ColumnName="LocalImagePath" />
                 <ScalarProperty Name="UnitTypeID" ColumnName="UnitTypeID" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
@@ -1308,10 +1441,40 @@
           <EntitySetMapping Name="BarcodeTemplates">
             <EntityTypeMapping TypeName="MuhasebeModel.BarcodeTemplate">
               <MappingFragment StoreEntitySet="BarcodeTemplates">
-                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
                 <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BarcodePrinters">
+            <EntityTypeMapping TypeName="MuhasebeModel.BarcodePrinter">
+              <MappingFragment StoreEntitySet="BarcodePrinters">
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="BarcodeTemplateID" ColumnName="BarcodeTemplateID" />
+                <ScalarProperty Name="ConnectionTypeID" ColumnName="ConnectionTypeID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConnectionTypes">
+            <EntityTypeMapping TypeName="MuhasebeModel.ConnectionType">
+              <MappingFragment StoreEntitySet="ConnectionTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemGroups">
+            <EntityTypeMapping TypeName="MuhasebeModel.ItemGroup">
+              <MappingFragment StoreEntitySet="ItemGroups">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

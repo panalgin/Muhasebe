@@ -12,16 +12,9 @@ namespace Muhasebe
     using System;
     using System.Collections.Generic;
     
-    public partial class BarcodeTemplate
+    public partial class ConnectionType
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public string Path { get; set; }
-        public Nullable<System.DateTime> CreatedAt { get; set; }
-        public Nullable<int> OwnerID { get; set; }
-        public Nullable<int> Width { get; set; }
-        public Nullable<int> Height { get; set; }
-    
-        public virtual Company Company { get; set; }
     }
 }
