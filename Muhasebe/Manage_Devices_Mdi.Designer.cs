@@ -39,6 +39,7 @@
             this.Port_Combo = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Add_Printer_Button = new System.Windows.Forms.Button();
             this.Edit_Button = new System.Windows.Forms.Button();
             this.Delete_Button = new System.Windows.Forms.Button();
             this.Device_List = new System.Windows.Forms.ListView();
@@ -49,7 +50,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.Output_Box = new System.Windows.Forms.TextBox();
-            this.Add_Printer_Button = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -181,6 +181,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bağlı Aygıtlar";
             // 
+            // Add_Printer_Button
+            // 
+            this.Add_Printer_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Add_Printer_Button.Location = new System.Drawing.Point(262, 77);
+            this.Add_Printer_Button.Name = "Add_Printer_Button";
+            this.Add_Printer_Button.Size = new System.Drawing.Size(75, 23);
+            this.Add_Printer_Button.TabIndex = 3;
+            this.Add_Printer_Button.Text = "Yazıcı Ekle";
+            this.Add_Printer_Button.UseVisualStyleBackColor = true;
+            this.Add_Printer_Button.Click += new System.EventHandler(this.Add_Printer_Button_Click);
+            // 
             // Edit_Button
             // 
             this.Edit_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -277,16 +288,6 @@
             this.Output_Box.ReadOnly = true;
             this.Output_Box.Size = new System.Drawing.Size(509, 63);
             this.Output_Box.TabIndex = 0;
-            // 
-            // Add_Printer_Button
-            // 
-            this.Add_Printer_Button.Location = new System.Drawing.Point(262, 171);
-            this.Add_Printer_Button.Name = "Add_Printer_Button";
-            this.Add_Printer_Button.Size = new System.Drawing.Size(75, 23);
-            this.Add_Printer_Button.TabIndex = 3;
-            this.Add_Printer_Button.Text = "Yazıcı Ekle";
-            this.Add_Printer_Button.UseVisualStyleBackColor = true;
-            this.Add_Printer_Button.Click += new System.EventHandler(this.Add_Printer_Button_Click);
             // 
             // Manage_Devices_Mdi
             // 
