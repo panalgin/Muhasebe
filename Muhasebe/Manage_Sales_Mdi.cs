@@ -245,7 +245,7 @@ namespace Muhasebe
                     m_Income.PaymentTypeID = this.Invoice.PaymentTypeID;
 
                     m_Context.Incomes.Add(m_Income);
-                    m_Context.SaveChangesAsync();
+                    m_Context.SaveChanges();
 
                     this.Close();
                 }
@@ -261,6 +261,11 @@ namespace Muhasebe
             Add_Sales_Mdi m_Pop = new Add_Sales_Mdi();
             m_Pop.SalesForm = this;
             m_Pop.ShowDialog();
+        }
+
+        private void Cancel_Button_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

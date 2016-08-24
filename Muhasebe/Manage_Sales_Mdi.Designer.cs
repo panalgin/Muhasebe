@@ -48,6 +48,7 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Context_Menu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.manuelSatışToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.düzenleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.silToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Payment_Combo = new System.Windows.Forms.ComboBox();
@@ -57,7 +58,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.manuelSatışToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Sale_Button = new System.Windows.Forms.Button();
             this.Cancel_Button = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
@@ -249,14 +249,21 @@
             this.düzenleToolStripMenuItem,
             this.silToolStripMenuItem});
             this.Context_Menu.Name = "Context_Menu";
-            this.Context_Menu.Size = new System.Drawing.Size(153, 92);
+            this.Context_Menu.Size = new System.Drawing.Size(135, 70);
             this.Context_Menu.Opening += new System.ComponentModel.CancelEventHandler(this.Context_Menu_Opening);
+            // 
+            // manuelSatışToolStripMenuItem
+            // 
+            this.manuelSatışToolStripMenuItem.Name = "manuelSatışToolStripMenuItem";
+            this.manuelSatışToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.manuelSatışToolStripMenuItem.Text = "Manuel Satış";
+            this.manuelSatışToolStripMenuItem.Click += new System.EventHandler(this.manuelSatışToolStripMenuItem_Click);
             // 
             // düzenleToolStripMenuItem
             // 
             this.düzenleToolStripMenuItem.Enabled = false;
             this.düzenleToolStripMenuItem.Name = "düzenleToolStripMenuItem";
-            this.düzenleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.düzenleToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.düzenleToolStripMenuItem.Text = "Düzenle";
             this.düzenleToolStripMenuItem.Click += new System.EventHandler(this.düzenleToolStripMenuItem_Click);
             // 
@@ -264,7 +271,7 @@
             // 
             this.silToolStripMenuItem.Enabled = false;
             this.silToolStripMenuItem.Name = "silToolStripMenuItem";
-            this.silToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.silToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.silToolStripMenuItem.Text = "Sil";
             this.silToolStripMenuItem.Click += new System.EventHandler(this.silToolStripMenuItem_Click);
             // 
@@ -342,13 +349,6 @@
             this.textBox1.Size = new System.Drawing.Size(230, 36);
             this.textBox1.TabIndex = 0;
             // 
-            // manuelSatışToolStripMenuItem
-            // 
-            this.manuelSatışToolStripMenuItem.Name = "manuelSatışToolStripMenuItem";
-            this.manuelSatışToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.manuelSatışToolStripMenuItem.Text = "Manuel Satış";
-            this.manuelSatışToolStripMenuItem.Click += new System.EventHandler(this.manuelSatışToolStripMenuItem_Click);
-            // 
             // Sale_Button
             // 
             this.Sale_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -376,6 +376,7 @@
             this.Cancel_Button.Text = "İptal [Esc]";
             this.Cancel_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Cancel_Button.UseVisualStyleBackColor = true;
+            this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
             // Manage_Sales_Mdi
             // 
