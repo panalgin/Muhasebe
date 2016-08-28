@@ -29,7 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Remove_Cam_Button = new System.Windows.Forms.Button();
+            this.Camera_Box = new System.Windows.Forms.PictureBox();
+            this.Browse_Button = new System.Windows.Forms.Button();
+            this.Webcam_Button = new System.Windows.Forms.Button();
+            this.Picture_Box = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Group_Combo = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.Abbreviation_Label = new System.Windows.Forms.Label();
             this.Barcode_Box = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,23 +55,17 @@
             this.Amount_Num = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.Print_Barcode_Button = new System.Windows.Forms.Button();
-            this.Remove_Cam_Button = new System.Windows.Forms.Button();
-            this.Camera_Box = new System.Windows.Forms.PictureBox();
-            this.Browse_Button = new System.Windows.Forms.Button();
-            this.Webcam_Button = new System.Windows.Forms.Button();
-            this.Picture_Box = new System.Windows.Forms.PictureBox();
             this.Cancel_Button = new System.Windows.Forms.Button();
             this.Save_Button = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.Group_Combo = new System.Windows.Forms.ComboBox();
+            this.Browse_Dialog = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Camera_Box)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Picture_Box)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Base_Price_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Tax_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Final_Price_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Amount_Num)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Camera_Box)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Picture_Box)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -80,6 +81,59 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ürün Fotoğrafı";
+            // 
+            // Remove_Cam_Button
+            // 
+            this.Remove_Cam_Button.Image = global::Muhasebe.Properties.Resources.cancel;
+            this.Remove_Cam_Button.Location = new System.Drawing.Point(142, 22);
+            this.Remove_Cam_Button.Name = "Remove_Cam_Button";
+            this.Remove_Cam_Button.Size = new System.Drawing.Size(25, 25);
+            this.Remove_Cam_Button.TabIndex = 8;
+            this.Remove_Cam_Button.UseVisualStyleBackColor = true;
+            this.Remove_Cam_Button.Visible = false;
+            this.Remove_Cam_Button.Click += new System.EventHandler(this.Remove_Cam_Button_Click);
+            // 
+            // Camera_Box
+            // 
+            this.Camera_Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Camera_Box.Location = new System.Drawing.Point(6, 19);
+            this.Camera_Box.Name = "Camera_Box";
+            this.Camera_Box.Size = new System.Drawing.Size(163, 184);
+            this.Camera_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.Camera_Box.TabIndex = 20;
+            this.Camera_Box.TabStop = false;
+            this.Camera_Box.Visible = false;
+            // 
+            // Browse_Button
+            // 
+            this.Browse_Button.Image = global::Muhasebe.Properties.Resources.magnifier;
+            this.Browse_Button.Location = new System.Drawing.Point(113, 209);
+            this.Browse_Button.Name = "Browse_Button";
+            this.Browse_Button.Size = new System.Drawing.Size(25, 25);
+            this.Browse_Button.TabIndex = 0;
+            this.Browse_Button.UseVisualStyleBackColor = true;
+            this.Browse_Button.Click += new System.EventHandler(this.Browse_Button_Click);
+            // 
+            // Webcam_Button
+            // 
+            this.Webcam_Button.Image = global::Muhasebe.Properties.Resources.webcam;
+            this.Webcam_Button.Location = new System.Drawing.Point(144, 209);
+            this.Webcam_Button.Name = "Webcam_Button";
+            this.Webcam_Button.Size = new System.Drawing.Size(25, 25);
+            this.Webcam_Button.TabIndex = 1;
+            this.Webcam_Button.UseVisualStyleBackColor = true;
+            this.Webcam_Button.Click += new System.EventHandler(this.Webcam_Button_Click);
+            // 
+            // Picture_Box
+            // 
+            this.Picture_Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Picture_Box.Image = global::Muhasebe.Properties.Resources.items;
+            this.Picture_Box.Location = new System.Drawing.Point(6, 19);
+            this.Picture_Box.Name = "Picture_Box";
+            this.Picture_Box.Size = new System.Drawing.Size(163, 184);
+            this.Picture_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Picture_Box.TabIndex = 18;
+            this.Picture_Box.TabStop = false;
             // 
             // groupBox2
             // 
@@ -108,6 +162,24 @@
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ürün Bilgileri";
+            // 
+            // Group_Combo
+            // 
+            this.Group_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Group_Combo.FormattingEnabled = true;
+            this.Group_Combo.Location = new System.Drawing.Point(91, 97);
+            this.Group_Combo.Name = "Group_Combo";
+            this.Group_Combo.Size = new System.Drawing.Size(139, 21);
+            this.Group_Combo.TabIndex = 3;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(52, 100);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(33, 13);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Grup:";
             // 
             // Abbreviation_Label
             // 
@@ -294,58 +366,6 @@
             this.Print_Barcode_Button.UseVisualStyleBackColor = true;
             this.Print_Barcode_Button.Click += new System.EventHandler(this.Print_Barcode_Button_Click);
             // 
-            // Remove_Cam_Button
-            // 
-            this.Remove_Cam_Button.Image = global::Muhasebe.Properties.Resources.cancel;
-            this.Remove_Cam_Button.Location = new System.Drawing.Point(142, 22);
-            this.Remove_Cam_Button.Name = "Remove_Cam_Button";
-            this.Remove_Cam_Button.Size = new System.Drawing.Size(25, 25);
-            this.Remove_Cam_Button.TabIndex = 8;
-            this.Remove_Cam_Button.UseVisualStyleBackColor = true;
-            this.Remove_Cam_Button.Visible = false;
-            this.Remove_Cam_Button.Click += new System.EventHandler(this.Remove_Cam_Button_Click);
-            // 
-            // Camera_Box
-            // 
-            this.Camera_Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Camera_Box.Location = new System.Drawing.Point(6, 19);
-            this.Camera_Box.Name = "Camera_Box";
-            this.Camera_Box.Size = new System.Drawing.Size(163, 184);
-            this.Camera_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.Camera_Box.TabIndex = 20;
-            this.Camera_Box.TabStop = false;
-            this.Camera_Box.Visible = false;
-            // 
-            // Browse_Button
-            // 
-            this.Browse_Button.Image = global::Muhasebe.Properties.Resources.magnifier;
-            this.Browse_Button.Location = new System.Drawing.Point(113, 209);
-            this.Browse_Button.Name = "Browse_Button";
-            this.Browse_Button.Size = new System.Drawing.Size(25, 25);
-            this.Browse_Button.TabIndex = 0;
-            this.Browse_Button.UseVisualStyleBackColor = true;
-            // 
-            // Webcam_Button
-            // 
-            this.Webcam_Button.Image = global::Muhasebe.Properties.Resources.webcam;
-            this.Webcam_Button.Location = new System.Drawing.Point(144, 209);
-            this.Webcam_Button.Name = "Webcam_Button";
-            this.Webcam_Button.Size = new System.Drawing.Size(25, 25);
-            this.Webcam_Button.TabIndex = 1;
-            this.Webcam_Button.UseVisualStyleBackColor = true;
-            this.Webcam_Button.Click += new System.EventHandler(this.Webcam_Button_Click);
-            // 
-            // Picture_Box
-            // 
-            this.Picture_Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Picture_Box.Image = global::Muhasebe.Properties.Resources.items;
-            this.Picture_Box.Location = new System.Drawing.Point(6, 19);
-            this.Picture_Box.Name = "Picture_Box";
-            this.Picture_Box.Size = new System.Drawing.Size(163, 184);
-            this.Picture_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Picture_Box.TabIndex = 18;
-            this.Picture_Box.TabStop = false;
-            // 
             // Cancel_Button
             // 
             this.Cancel_Button.Image = global::Muhasebe.Properties.Resources.cancel;
@@ -370,23 +390,9 @@
             this.Save_Button.UseVisualStyleBackColor = true;
             this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
             // 
-            // label9
+            // Browse_Dialog
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(52, 100);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(33, 13);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Grup:";
-            // 
-            // Group_Combo
-            // 
-            this.Group_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Group_Combo.FormattingEnabled = true;
-            this.Group_Combo.Location = new System.Drawing.Point(91, 97);
-            this.Group_Combo.Name = "Group_Combo";
-            this.Group_Combo.Size = new System.Drawing.Size(139, 21);
-            this.Group_Combo.TabIndex = 3;
+            this.Browse_Dialog.Filter = "Resim Dosyaları|*.jpg;*.bmp;*.png";
             // 
             // Edit_Item_Pop
             // 
@@ -407,14 +413,14 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Edit_Item_Pop_FormClosed);
             this.Load += new System.EventHandler(this.Edit_Item_Pop_Load);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Camera_Box)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Picture_Box)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Base_Price_Num)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Tax_Num)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Final_Price_Num)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Amount_Num)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Camera_Box)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Picture_Box)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -450,5 +456,6 @@
         private System.Windows.Forms.Button Print_Barcode_Button;
         private System.Windows.Forms.ComboBox Group_Combo;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.OpenFileDialog Browse_Dialog;
     }
 }

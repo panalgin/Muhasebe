@@ -19,15 +19,22 @@ namespace Muhasebe
 
         private void Save_Button_Click(object sender, EventArgs e)
         {
-            using(MuhasebeEntities m_Context = new MuhasebeEntities())
+            if (this.Name_Box.Text == string.Empty || this.Name_Box.Text.Length < 3)
             {
-                ItemGroup m_Group = new ItemGroup();
-                m_Group.Name = this.Name_Box.Text;
-                m_Context.ItemGroups.Add(m_Group);
-                m_Context.SaveChanges();
+                MessageBox.Show("Lütfen en az 3 karakterden oluşan bir ürün grubu adı giriniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
+            {
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    ItemGroup m_Group = new ItemGroup();
+                    m_Group.Name = this.Name_Box.Text;
+                    m_Context.ItemGroups.Add(m_Group);
+                    m_Context.SaveChanges();
+                }
 
-            this.Close();
+                this.Close();
+            }
         }
 
         private void Cancel_Button_Click(object sender, EventArgs e)

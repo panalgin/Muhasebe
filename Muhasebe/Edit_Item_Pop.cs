@@ -161,12 +161,7 @@ namespace Muhasebe
                     m_Actual.Product.Name = this.Name_Box.Text;
                     m_Actual.GroupID = Convert.ToInt32(this.Group_Combo.SelectedValue);
 
-                    if (this.Picture_Box.Image != null)
-                    {
-                        Image m_Image = this.Picture_Box.Image;
-                        m_Actual.SynchronizeImage(m_Image);
-                    }
-                    else if (this.Picture_Box.ImageLocation.Length > 0 && this.Picture_Box.ImageLocation != this.Item.LocalImagePath)
+                    if (this.Picture_Box.ImageLocation.Length > 0 && this.Picture_Box.ImageLocation != this.Item.LocalImagePath)
                     {
                         if (File.Exists(this.Picture_Box.ImageLocation))
                         {
@@ -174,6 +169,11 @@ namespace Muhasebe
                             m_Actual.SynchronizeImage(m_Image);
                         }
                     }
+                    /*else if (this.Picture_Box.Image != null)
+                    {
+                        Image m_Image = this.Picture_Box.Image;
+                        m_Actual.SynchronizeImage(m_Image);
+                    }*/
 
                     m_Context.SaveChanges();
                     InvokeItemEdited(m_Actual);
@@ -248,6 +248,15 @@ namespace Muhasebe
                 this.Print_Barcode_Button.Enabled = false;
             else
                 this.Print_Barcode_Button.Enabled = true;
+        }
+
+        private void Browse_Button_Click(object sender, EventArgs e)
+        {
+            if (this.Browse_Dialog.ShowDialog() == DialogResult.OK)
+            {
+                this.Picture_Box.ImageLocation = this.Browse_Dialog.FileName;
+                this.Picture_Box.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
         }
     }
 }
