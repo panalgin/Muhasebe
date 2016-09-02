@@ -15,6 +15,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity;
 using RawInputInterface;
+using Muhasebe.Scripts;
 
 namespace Muhasebe
 {
@@ -110,7 +111,8 @@ namespace Muhasebe
 
                 DeviceManager.Initialize();
 
-                this.Grid_Panel.Visible = true;
+                if (GuiManipulator.CanShowStatistics)
+                    this.Grid_Panel.Visible = true;
 
                 Event m_Event = new Event();
                 m_Event.AuthorID = args.User.ID;
@@ -245,7 +247,7 @@ namespace Muhasebe
 
         private void MainForm_MdiChildActivate(object sender, EventArgs e)
         {
-            if (this.ActiveMdiChild == null)
+            if (this.ActiveMdiChild == null && GuiManipulator.CanShowStatistics)
                 this.Grid_Panel.Visible = true;
             else
                 this.Grid_Panel.Visible = false;
@@ -255,7 +257,9 @@ namespace Muhasebe
         {
             if (this.ActiveMdiChild != null)
             {
-                this.Grid_Panel.Visible = true;
+                if (GuiManipulator.CanShowStatistics)
+                    this.Grid_Panel.Visible = true;
+
                 this.MdiChildren.All(delegate (Form m_Form)
                 {
                     m_Form.Close();

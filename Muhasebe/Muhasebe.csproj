@@ -450,6 +450,7 @@
       <DependentUpon>Register_Mdi.cs</DependentUpon>
     </Compile>
     <Compile Include="Scripts\AutoStarter.cs" />
+    <Compile Include="Scripts\GuiManipulator.cs" />
     <Compile Include="UnitType.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>

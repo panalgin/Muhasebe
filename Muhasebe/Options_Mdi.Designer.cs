@@ -33,6 +33,7 @@
             this.Startup_Check = new System.Windows.Forms.CheckBox();
             this.Save_Button = new System.Windows.Forms.Button();
             this.Cancel_Button = new System.Windows.Forms.Button();
+            this.ShowStats_Check = new System.Windows.Forms.CheckBox();
             this.Options_Control.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +52,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.ShowStats_Check);
             this.tabPage1.Controls.Add(this.Startup_Check);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -92,6 +94,16 @@
             this.Cancel_Button.UseVisualStyleBackColor = true;
             this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
+            // ShowStats_Check
+            // 
+            this.ShowStats_Check.AutoSize = true;
+            this.ShowStats_Check.Location = new System.Drawing.Point(6, 29);
+            this.ShowStats_Check.Name = "ShowStats_Check";
+            this.ShowStats_Check.Size = new System.Drawing.Size(167, 17);
+            this.ShowStats_Check.TabIndex = 1;
+            this.ShowStats_Check.Text = "Anasayfada istatistikleri göster";
+            this.ShowStats_Check.UseVisualStyleBackColor = true;
+            // 
             // Options_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -121,6 +133,6 @@
         private System.Windows.Forms.CheckBox Startup_Check;
         private System.Windows.Forms.Button Save_Button;
         private System.Windows.Forms.Button Cancel_Button;
-
+        private System.Windows.Forms.CheckBox ShowStats_Check;
     }
 }

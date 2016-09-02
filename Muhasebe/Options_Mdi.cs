@@ -30,6 +30,11 @@ namespace Muhasebe
             else
                 AutoStarter.UnSetAutoStart();
 
+            if (this.ShowStats_Check.Checked)
+                GuiManipulator.CanShowStatistics = true;
+            else
+                GuiManipulator.CanShowStatistics = false;
+
             this.Close();
         }
 
@@ -42,6 +47,9 @@ namespace Muhasebe
         {
             if (AutoStarter.IsAutoStartEnabled)
                 this.Startup_Check.Checked = true;
+
+            if (GuiManipulator.CanShowStatistics)
+                this.ShowStats_Check.Checked = true;
         }
     }
 }
