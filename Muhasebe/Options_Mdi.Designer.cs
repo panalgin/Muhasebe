@@ -103,6 +103,7 @@
             this.ShowStats_Check.TabIndex = 1;
             this.ShowStats_Check.Text = "Anasayfada istatistikleri göster";
             this.ShowStats_Check.UseVisualStyleBackColor = true;
+            this.ShowStats_Check.Visible = false;
             // 
             // Options_Mdi
             // 

@@ -50,6 +50,15 @@ namespace Muhasebe
 
             if (GuiManipulator.CanShowStatistics)
                 this.ShowStats_Check.Checked = true;
+
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
+            {
+                if (Program.User.Position != null && Program.User.PositionID == 1) // Is owner ?
+                    this.ShowStats_Check.Visible = true;
+
+                else
+                    this.ShowStats_Check.Visible = false;
+            }
         }
     }
 }
