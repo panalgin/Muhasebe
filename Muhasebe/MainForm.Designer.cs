@@ -896,7 +896,7 @@
             this.MainMenuStrip = this.Menu_Strip;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Daflan - Mikro Kaynak Yönetimi - Version: 0.2.6";
+            this.Text = "Daflan - Mikro Kaynak Yönetimi - Version: 0.2.7";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MdiChildActivate += new System.EventHandler(this.MainForm_MdiChildActivate);

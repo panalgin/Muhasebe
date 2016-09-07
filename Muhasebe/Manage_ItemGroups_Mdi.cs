@@ -68,5 +68,51 @@ namespace Muhasebe
             m_Mdi.ShowDialog();
             this.PopulateListView();
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.listView1.SelectedItems.Count > 0)
+            {
+                this.Edit_Button.Enabled = true;
+                this.Delete_Button.Enabled = true;
+            }
+            else
+            {
+                this.Edit_Button.Enabled = false;
+                this.Delete_Button.Enabled = false;
+            }
+        }
+
+        private void Edit_Button_Click(object sender, EventArgs e)
+        {
+            if(this.listView1.SelectedItems.Count > 0)
+            {
+                MuhasebeEntities m_Context = new MuhasebeEntities();
+                ListViewItem m_Selected = this.listView1.SelectedItems[0];
+                int m_ItemID = Convert.ToInt32(m_Selected.Tag);
+
+                if (m_ItemID > 0)
+                {
+                    ItemGroup m_Group = m_Context.ItemGroups.Where(q => q.ID == m_ItemID).FirstOrDefault();
+
+                    if (m_Group != null)
+                    {
+                        Edit_ItemGroup_Pop m_Pop = new Edit_ItemGroup_Pop();
+                        m_Pop.ItemGroup = m_Group;
+                        m_Pop.ItemGroupEdited += Pop_ItemGroupEdited;
+                        m_Pop.ShowDialog(); 
+                    }
+                    else
+                        MessageBox.Show("Düzenleme sırasında bir hata oluştu", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                    MessageBox.Show("Düzenleme sırasında bir hata oluştu", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Pop_ItemGroupEdited(ItemGroup group)
+        {
+            this.PopulateListView();
+        }
     }
 }
