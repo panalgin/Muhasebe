@@ -1,4 +1,6 @@
-﻿namespace Muhasebe
+﻿using Muhasebe.Custom;
+
+namespace Muhasebe
 {
     partial class Manage_Devices_Mdi
     {
@@ -29,16 +31,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Bağlı Aygıtlar", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Bağlı Aygıtlar", System.Windows.Forms.HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manage_Devices_Mdi));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Add_Printer_Button = new System.Windows.Forms.Button();
-            this.Edit_Button = new System.Windows.Forms.Button();
-            this.Delete_Button = new System.Windows.Forms.Button();
-            this.Device_List = new System.Windows.Forms.ListView();
+            this.Device_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ImageList = new System.Windows.Forms.ImageList(this.components);
+            this.Add_Device_Button = new System.Windows.Forms.Button();
+            this.Edit_Button = new System.Windows.Forms.Button();
+            this.Delete_Button = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -61,16 +63,49 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bağlı Aygıtlar";
             // 
-            // Add_Printer_Button
+            // Device_List
             // 
-            this.Add_Printer_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Add_Printer_Button.Location = new System.Drawing.Point(709, 12);
-            this.Add_Printer_Button.Name = "Add_Printer_Button";
-            this.Add_Printer_Button.Size = new System.Drawing.Size(75, 23);
-            this.Add_Printer_Button.TabIndex = 3;
-            this.Add_Printer_Button.Text = "Aygıt Ekle";
-            this.Add_Printer_Button.UseVisualStyleBackColor = true;
-            this.Add_Printer_Button.Click += new System.EventHandler(this.Add_Printer_Button_Click);
+            this.Device_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Device_List.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Device_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.Device_List.FullRowSelect = true;
+            listViewGroup2.Header = "Bağlı Aygıtlar";
+            listViewGroup2.Name = "listViewGroup1";
+            this.Device_List.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup2});
+            this.Device_List.LargeImageList = this.ImageList;
+            this.Device_List.Location = new System.Drawing.Point(6, 19);
+            this.Device_List.MultiSelect = false;
+            this.Device_List.Name = "Device_List";
+            this.Device_List.Size = new System.Drawing.Size(582, 357);
+            this.Device_List.TabIndex = 0;
+            this.Device_List.UseCompatibleStateImageBehavior = false;
+            this.Device_List.View = System.Windows.Forms.View.Tile;
+            this.Device_List.SelectedIndexChanged += new System.EventHandler(this.Device_List_SelectedIndexChanged);
+            // 
+            // ImageList
+            // 
+            this.ImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImageList.ImageStream")));
+            this.ImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImageList.Images.SetKeyName(0, "bar-code-48.png");
+            this.ImageList.Images.SetKeyName(1, "Plasma-Display-icon.png");
+            this.ImageList.Images.SetKeyName(2, "1267702.png");
+            this.ImageList.Images.SetKeyName(3, "12316857481156954714rg1024_kitchen_scales.svg.med.png");
+            // 
+            // Add_Device_Button
+            // 
+            this.Add_Device_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Add_Device_Button.Location = new System.Drawing.Point(709, 12);
+            this.Add_Device_Button.Name = "Add_Device_Button";
+            this.Add_Device_Button.Size = new System.Drawing.Size(75, 23);
+            this.Add_Device_Button.TabIndex = 3;
+            this.Add_Device_Button.Text = "Aygıt Ekle";
+            this.Add_Device_Button.UseVisualStyleBackColor = true;
+            this.Add_Device_Button.Click += new System.EventHandler(this.Add_Device_Button_Click);
             // 
             // Edit_Button
             // 
@@ -95,39 +130,6 @@
             this.Delete_Button.Text = "Sil";
             this.Delete_Button.UseVisualStyleBackColor = true;
             this.Delete_Button.Click += new System.EventHandler(this.Delete_Button_Click);
-            // 
-            // Device_List
-            // 
-            this.Device_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Device_List.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Device_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-            this.Device_List.FullRowSelect = true;
-            listViewGroup1.Header = "Bağlı Aygıtlar";
-            listViewGroup1.Name = "listViewGroup1";
-            this.Device_List.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1});
-            this.Device_List.LargeImageList = this.ImageList;
-            this.Device_List.Location = new System.Drawing.Point(6, 19);
-            this.Device_List.MultiSelect = false;
-            this.Device_List.Name = "Device_List";
-            this.Device_List.Size = new System.Drawing.Size(582, 357);
-            this.Device_List.TabIndex = 0;
-            this.Device_List.UseCompatibleStateImageBehavior = false;
-            this.Device_List.View = System.Windows.Forms.View.Tile;
-            this.Device_List.SelectedIndexChanged += new System.EventHandler(this.Device_List_SelectedIndexChanged);
-            // 
-            // ImageList
-            // 
-            this.ImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImageList.ImageStream")));
-            this.ImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.ImageList.Images.SetKeyName(0, "bar-code-48.png");
-            this.ImageList.Images.SetKeyName(1, "Plasma-Display-icon.png");
-            this.ImageList.Images.SetKeyName(2, "1267702.png");
-            this.ImageList.Images.SetKeyName(3, "12316857481156954714rg1024_kitchen_scales.svg.med.png");
             // 
             // groupBox3
             // 
@@ -180,7 +182,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(796, 500);
-            this.Controls.Add(this.Add_Printer_Button);
+            this.Controls.Add(this.Add_Device_Button);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.Edit_Button);
             this.Controls.Add(this.groupBox3);
@@ -204,13 +206,13 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button Edit_Button;
         private System.Windows.Forms.Button Delete_Button;
-        private System.Windows.Forms.ListView Device_List;
+        private ListViewEx Device_List;
         private System.Windows.Forms.ImageList ImageList;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.Button Add_Printer_Button;
+        private System.Windows.Forms.Button Add_Device_Button;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox Output_Box;
     }

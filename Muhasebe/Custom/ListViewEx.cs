@@ -16,7 +16,7 @@ namespace Muhasebe.Custom
         public ListViewEx()
         {
             //Activate double buffering
-            //this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
 
             //Enable the OnNotifyMessage event so we get a chance to filter out 
             // Windows messages before they get to the form's WndProc

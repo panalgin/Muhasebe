@@ -35,6 +35,14 @@ namespace Muhasebe
 
             this.Device_Type_Combo.SelectedValue = this.Device.Type.ID;
 
+
+            var m_ConnectionTypes = m_Context.ConnectionTypes.ToList();
+            this.Connection_Type_Combo.DataSource = m_ConnectionTypes;
+            this.Connection_Type_Combo.DisplayMember = "Name";
+            this.Connection_Type_Combo.ValueMember = "ID";
+
+            this.Connection_Type_Combo.SelectedValue = this.Device.ConnectionType.ID;
+
            /* if (!this.Com_Port_Combo.Items.Contains(this.Device.Port))
                 this.Com_Port_Combo.Items.Add(this.Device.Port);
 

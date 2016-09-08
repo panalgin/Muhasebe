@@ -119,6 +119,12 @@
     <Compile Include="Add_BarcodeWriter_Mdi.Designer.cs">
       <DependentUpon>Add_BarcodeWriter_Mdi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Add_Device_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_Device_Pop.Designer.cs">
+      <DependentUpon>Add_Device_Pop.cs</DependentUpon>
+    </Compile>
     <Compile Include="Add_Expenditure_Pop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -482,6 +488,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Add_BarcodeWriter_Mdi.resx">
       <DependentUpon>Add_BarcodeWriter_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_Device_Pop.resx">
+      <DependentUpon>Add_Device_Pop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Add_Expenditure_Pop.resx">
       <DependentUpon>Add_Expenditure_Pop.cs</DependentUpon>

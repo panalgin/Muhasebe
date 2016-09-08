@@ -12,12 +12,18 @@ namespace Muhasebe
     {
         public dynamic GetConnectionParameters()
         {
-            switch(this.ConnectionType.Name)
+            if (this.ConnectionType != null)
             {
-                case "USB": return JsonConvert.DeserializeObject<UsbConnectionParameters>(this.Parameters);
-                case "RS232": return JsonConvert.DeserializeObject<SerialConnectionParameters>(this.Parameters);
-                default: return null;
+                switch (this.ConnectionType.Name)
+                {
+                    case "USB": return JsonConvert.DeserializeObject<UsbConnectionParameters>(this.Parameters);
+                    case "RS232": return JsonConvert.DeserializeObject<SerialConnectionParameters>(this.Parameters);
+                    case "NETWORK": return JsonConvert.DeserializeObject<NetworkConnectionParameters>(this.Parameters);
+                    default: return null;
+                }
             }
+            else
+                return null;
         }
     }
 }

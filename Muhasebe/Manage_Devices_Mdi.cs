@@ -24,7 +24,7 @@ namespace Muhasebe
         {
 
 
-
+            PopulateDeviceList();
             /*MuhasebeEntities m_Context = new MuhasebeEntities();
 
             var m_DeviceTypes = m_Context.DeviceTypes.ToList();
@@ -119,9 +119,9 @@ namespace Muhasebe
 
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
-                var m_Devices = m_Context.Devices.Where(q => q.OwnerID == Program.User.WorksAtID).ToList();
+                var m_Devices = m_Context.Devices.Where(q => q.OwnerID == Program.User.WorksAtID);
 
-                m_Devices.ForEach(delegate (Device device)
+                m_Devices.All(delegate (Device device)
                 {
                     ListViewItem m_Item = new ListViewItem();
                     m_Item.Tag = device.ID;
@@ -160,6 +160,8 @@ namespace Muhasebe
                     }
 
                     this.Device_List.Items.Add(m_Item);
+
+                    return true;
                 });
             }
 
@@ -266,10 +268,10 @@ namespace Muhasebe
             }
         }
 
-        private void Add_Printer_Button_Click(object sender, EventArgs e)
+        private void Add_Device_Button_Click(object sender, EventArgs e)
         {
-            Add_BarcodeWriter_Mdi m_Mdi = new Add_BarcodeWriter_Mdi();
-            m_Mdi.ShowDialog();
+            Add_Device_Pop m_Pop = new Add_Device_Pop();
+            m_Pop.ShowDialog();
         }
     }
 }
