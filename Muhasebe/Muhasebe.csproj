@@ -70,6 +70,10 @@
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="RawInput, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\RawInput.dll</HintPath>
@@ -127,6 +131,10 @@
     <Compile Include="Add_Inventory_Pop.Designer.cs">
       <DependentUpon>Add_Inventory_Pop.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom\Device.partial.cs" />
+    <Compile Include="Custom\NetworkConnectionParameters.cs" />
+    <Compile Include="Custom\SerialConnectionParameters.cs" />
+    <Compile Include="Custom\UsbConnectionParameters.cs" />
     <Compile Include="Edit_ItemGroup_Pop.cs">
       <SubType>Form</SubType>
     </Compile>

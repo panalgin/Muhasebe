@@ -49,3 +49,4 @@ Temporary Items
 *.exe
 Muhasebe/bin/
 /Muhasebe/obj/Debug
+/packages/Newtonsoft.Json.9.0.1

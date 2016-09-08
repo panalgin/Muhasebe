@@ -78,6 +78,11 @@ namespace Muhasebe
 
         }
 
+        /// <summary>
+        /// Replaces non unicode chars like ş, ı, ç, ğ
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         private string RemoveDiacritics(string text)
         {
             Encoding srcEncoding = Encoding.UTF8;

@@ -35,7 +35,7 @@ namespace Muhasebe
 
             this.Device_Type_Combo.SelectedValue = this.Device.Type.ID;
 
-            if (!this.Com_Port_Combo.Items.Contains(this.Device.Port))
+           /* if (!this.Com_Port_Combo.Items.Contains(this.Device.Port))
                 this.Com_Port_Combo.Items.Add(this.Device.Port);
 
             if (this.Device.BaudRate.HasValue && !this.Baud_Rate_Combo.Items.Contains(this.Device.BaudRate.ToString()))
@@ -44,7 +44,7 @@ namespace Muhasebe
             this.Com_Port_Combo.SelectedItem = this.Device.Port;
 
             if (this.Device.BaudRate.HasValue)
-                this.Baud_Rate_Combo.SelectedItem = this.Device.BaudRate.ToString();
+                this.Baud_Rate_Combo.SelectedItem = this.Device.BaudRate.ToString();*/
         }
 
         private void Save_Button_Click(object sender, EventArgs e)
@@ -59,7 +59,7 @@ namespace Muhasebe
                     DeviceManager.Disconnect(this.Device.ID);
 
                     m_Actual.TypeID = Convert.ToInt32(this.Device_Type_Combo.SelectedValue);
-                    m_Actual.Port = this.Com_Port_Combo.SelectedItem.ToString();
+                    /*m_Actual.Port = this.Com_Port_Combo.SelectedItem.ToString();
                     m_Actual.BaudRate = Convert.ToInt32(this.Baud_Rate_Combo.SelectedItem.ToString());
 
                     if (DeviceManager.DoConnectionTest(m_Actual.Port, m_Actual.BaudRate.Value))
@@ -73,7 +73,7 @@ namespace Muhasebe
                     else
                     {
                         MessageBox.Show("Belirttiğiniz kriterlere uygun bağlı bir cihaz bulunamadı", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    }*/
                 }
             }
         }

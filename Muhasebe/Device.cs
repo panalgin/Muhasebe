@@ -17,10 +17,11 @@ namespace Muhasebe
         public int ID { get; set; }
         public int TypeID { get; set; }
         public int OwnerID { get; set; }
-        public string Port { get; set; }
-        public Nullable<int> BaudRate { get; set; }
+        public string Parameters { get; set; }
+        public Nullable<int> ConnectionTypeID { get; set; }
     
         public virtual DeviceType Type { get; set; }
         public virtual Company Company { get; set; }
+        public virtual ConnectionType ConnectionType { get; set; }
     }
 }

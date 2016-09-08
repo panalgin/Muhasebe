@@ -59,11 +59,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TypeID" Type="int" Nullable="false" />
           <Property Name="OwnerID" Type="int" Nullable="false" />
-          <Property Name="Port" Type="nvarchar" MaxLength="45" />
-          <Property Name="BaudRate" Type="int" />
-          <Property Name="VendorID" Type="nvarchar" MaxLength="45" />
-          <Property Name="ProductID" Type="nvarchar" MaxLength="45" />
-          <Property Name="ConnectionType" Type="nvarchar" MaxLength="45" />
+          <Property Name="ConnectionTypeID" Type="int" />
+          <Property Name="Parameters" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="DeviceTypes">
           <Key>
@@ -460,6 +457,10 @@
             <End Role="ItemGroup" EntitySet="ItemGroups" />
             <End Role="Item" EntitySet="Items" />
           </AssociationSet>
+          <AssociationSet Name="DeviceConnectionType" Association="MuhasebeModel.DeviceConnectionType">
+            <End Role="Device" EntitySet="Devices" />
+            <End Role="ConnectionType" EntitySet="ConnectionTypes" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Product">
           <Key>
@@ -626,10 +627,11 @@
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="TypeID" Nullable="false" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
-          <Property Type="String" Name="Port" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="BaudRate" />
           <NavigationProperty Name="Type" Relationship="MuhasebeModel.DeviceDeviceType" FromRole="Device" ToRole="DeviceType" />
           <NavigationProperty Name="Company" Relationship="MuhasebeModel.DeviceCompany" FromRole="Device" ToRole="Company" />
+          <Property Name="Parameters" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ConnectionTypeID" Type="Int32" />
+          <NavigationProperty Name="ConnectionType" Relationship="MuhasebeModel.DeviceConnectionType" FromRole="Device" ToRole="ConnectionType" />
         </EntityType>
         <EntityType Name="DeviceType">
           <Key>
@@ -1196,6 +1198,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="DeviceConnectionType">
+          <End Type="MuhasebeModel.Device" Role="Device" Multiplicity="*" />
+          <End Type="MuhasebeModel.ConnectionType" Role="ConnectionType" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ConnectionType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="ConnectionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1403,8 +1417,8 @@
           <EntitySetMapping Name="Devices">
             <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.Device)">
               <MappingFragment StoreEntitySet="Devices">
-                <ScalarProperty Name="BaudRate" ColumnName="BaudRate" />
-                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="ConnectionTypeID" ColumnName="ConnectionTypeID" />
+                <ScalarProperty Name="Parameters" ColumnName="Parameters" />
                 <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
                 <ScalarProperty Name="TypeID" ColumnName="TypeID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

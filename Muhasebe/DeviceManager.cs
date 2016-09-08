@@ -131,7 +131,7 @@ namespace Muhasebe
 
         public static void Connect(int deviceid)
         {
-            MuhasebeEntities m_Context = new MuhasebeEntities();
+            /*MuhasebeEntities m_Context = new MuhasebeEntities();
             Device m_Device = m_Context.Devices.Where(q => q.ID == deviceid).FirstOrDefault();
 
             if (m_Device != null && m_Device.Type != null)
@@ -188,7 +188,7 @@ namespace Muhasebe
                             break;
                         }
                 }
-            }
+            }*/
         }
     }
 }

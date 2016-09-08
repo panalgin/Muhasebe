@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using Muhasebe.Custom;
 
 namespace Muhasebe
 {
@@ -20,7 +22,10 @@ namespace Muhasebe
 
         private void Manage_Devices_Mdi_Load(object sender, EventArgs e)
         {
-            MuhasebeEntities m_Context = new MuhasebeEntities();
+
+
+
+            /*MuhasebeEntities m_Context = new MuhasebeEntities();
 
             var m_DeviceTypes = m_Context.DeviceTypes.ToList();
 
@@ -34,7 +39,7 @@ namespace Muhasebe
 
             PopulateDeviceList();
 
-            EventSink.BarcodeScanned += EventSink_BarcodeScanned;
+            EventSink.BarcodeScanned += EventSink_BarcodeScanned;*/
         }
 
         private void EventSink_BarcodeScanned(object sender, BarcodeScannedEventArgs args)
@@ -45,7 +50,7 @@ namespace Muhasebe
 
         private void Connect_Button_Click(object sender, EventArgs e)
         {
-            MuhasebeEntities m_Context = new MuhasebeEntities();
+            /*MuhasebeEntities m_Context = new MuhasebeEntities();
             byte[] m_Buffer = new byte[128];
 
             try
@@ -57,9 +62,9 @@ namespace Muhasebe
                 switch (m_ID)
                 {
                     case 1: // Lcd Graphical Display
-                        /*this.Lcd_Transreceiver.PortName = this.Port_Combo.Text;
+                        this.Lcd_Transreceiver.PortName = this.Port_Combo.Text;
                         this.Lcd_Transreceiver.BaudRate = Convert.ToInt32(this.Baud_Combo.Text);
-                        this.Lcd_Transreceiver.Open();*/
+                        this.Lcd_Transreceiver.Open();
 
                         break;
 
@@ -99,18 +104,66 @@ namespace Muhasebe
                         this.Scale_Reader.BaudRate = Convert.ToInt32(this.Baud_Combo.Text);
                         this.Scale_Reader.Open();
 
-                        break;*/
+                        break;
                 }
             }
             catch (Exception ex)
             {
                 Logger.Enqueue(ex);
-            }
+            }*/
         }
 
         private void PopulateDeviceList()
         {
             this.Device_List.Items.Clear();
+
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
+            {
+                var m_Devices = m_Context.Devices.Where(q => q.OwnerID == Program.User.WorksAtID).ToList();
+
+                m_Devices.ForEach(delegate (Device device)
+                {
+                    ListViewItem m_Item = new ListViewItem();
+                    m_Item.Tag = device.ID;
+                    m_Item.Text = device.Type.Name;
+                    m_Item.Group = this.Device_List.Groups[0] as ListViewGroup;
+                    var m_RawParam = device.GetConnectionParameters();
+
+                    switch (device.Type.Universal)
+                    {
+                        case "Barcode Scanner":
+                            {
+                                m_Item.ImageIndex = 0;
+
+                                if (m_RawParam is UsbConnectionParameters)
+                                {
+                                    UsbConnectionParameters m_Parameters = m_RawParam as UsbConnectionParameters;
+
+                                    m_Item.SubItems.Add(string.Format("ProductID: {0}, VendorID: {1}", m_Parameters.ProductID, m_Parameters.VendorID));
+                                }
+
+                                break;
+                            }
+                        case "Barcode Printer":
+                            {
+                                m_Item.ImageIndex = 1;
+
+                                if (m_RawParam is NetworkConnectionParameters)
+                                {
+                                    NetworkConnectionParameters m_Parameters = m_RawParam as NetworkConnectionParameters;
+
+                                    m_Item.SubItems.Add(string.Format("Alias: {0}", m_Parameters.Alias));
+                                }
+
+                                break;
+                            }
+                    }
+
+                    this.Device_List.Items.Add(m_Item);
+                });
+            }
+
+            /*
 
             MuhasebeEntities m_Context = new MuhasebeEntities();
 
@@ -134,7 +187,7 @@ namespace Muhasebe
                         }
                 }
                 return true;
-            });
+            });*/
         }
 
         private void Delete_Button_Click(object sender, EventArgs e)
