@@ -38,22 +38,22 @@
             this.Cancel_Button = new System.Windows.Forms.Button();
             this.Save_Button = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ProductID_Box = new System.Windows.Forms.TextBox();
+            this.VendorID_Box = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.Alias_Box = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.Connection_Type_Combo = new System.Windows.Forms.ComboBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.VendorID_Box = new System.Windows.Forms.TextBox();
-            this.ProductID_Box = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.Alias_Box = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -198,6 +198,84 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(295, 258);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.ProductID_Box);
+            this.groupBox2.Controls.Add(this.VendorID_Box);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Location = new System.Drawing.Point(3, 90);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(287, 74);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Bağlantı Bilgileri - USB";
+            this.groupBox2.Visible = false;
+            // 
+            // ProductID_Box
+            // 
+            this.ProductID_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductID_Box.Location = new System.Drawing.Point(132, 45);
+            this.ProductID_Box.Name = "ProductID_Box";
+            this.ProductID_Box.Size = new System.Drawing.Size(149, 20);
+            this.ProductID_Box.TabIndex = 1;
+            // 
+            // VendorID_Box
+            // 
+            this.VendorID_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.VendorID_Box.Location = new System.Drawing.Point(132, 19);
+            this.VendorID_Box.Name = "VendorID_Box";
+            this.VendorID_Box.Size = new System.Drawing.Size(149, 20);
+            this.VendorID_Box.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(61, 48);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Ürün Kimliği:";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(54, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(72, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Üretici Kimliği:";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.Alias_Box);
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Location = new System.Drawing.Point(3, 170);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(287, 55);
+            this.groupBox4.TabIndex = 2;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Bağlantı Bilgileri - AĞ";
+            this.groupBox4.Visible = false;
+            // 
+            // Alias_Box
+            // 
+            this.Alias_Box.Location = new System.Drawing.Point(132, 19);
+            this.Alias_Box.Name = "Alias_Box";
+            this.Alias_Box.Size = new System.Drawing.Size(149, 20);
+            this.Alias_Box.TabIndex = 0;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(85, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(41, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Ağ Adı:";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -216,56 +294,6 @@
             this.Connection_Type_Combo.Size = new System.Drawing.Size(149, 21);
             this.Connection_Type_Combo.TabIndex = 1;
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.ProductID_Box);
-            this.groupBox2.Controls.Add(this.VendorID_Box);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Location = new System.Drawing.Point(3, 90);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(287, 74);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Bağlantı Bilgileri - USB";
-            this.groupBox2.Visible = false;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(54, 22);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Üretici Kimliği:";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(61, 48);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 13);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Ürün Kimliği:";
-            // 
-            // VendorID_Box
-            // 
-            this.VendorID_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.VendorID_Box.Location = new System.Drawing.Point(132, 19);
-            this.VendorID_Box.Name = "VendorID_Box";
-            this.VendorID_Box.Size = new System.Drawing.Size(149, 20);
-            this.VendorID_Box.TabIndex = 0;
-            // 
-            // ProductID_Box
-            // 
-            this.ProductID_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductID_Box.Location = new System.Drawing.Point(132, 45);
-            this.ProductID_Box.Name = "ProductID_Box";
-            this.ProductID_Box.Size = new System.Drawing.Size(149, 20);
-            this.ProductID_Box.TabIndex = 1;
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.Connection_Type_Combo);
@@ -278,34 +306,6 @@
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Aygıt Bilgileri";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.Alias_Box);
-            this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Location = new System.Drawing.Point(3, 170);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(287, 55);
-            this.groupBox4.TabIndex = 2;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Bağlantı Bilgileri - AĞ";
-            this.groupBox4.Visible = false;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(85, 22);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(41, 13);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Ağ Adı:";
-            // 
-            // Alias_Box
-            // 
-            this.Alias_Box.Location = new System.Drawing.Point(132, 19);
-            this.Alias_Box.Name = "Alias_Box";
-            this.Alias_Box.Size = new System.Drawing.Size(149, 20);
-            this.Alias_Box.TabIndex = 0;
             // 
             // Edit_Device_Pop
             // 
@@ -328,10 +328,10 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
