@@ -138,8 +138,15 @@ namespace Muhasebe
 
                 m_Context.Devices.Add(m_Device);
                 m_Context.SaveChanges();
+
+                this.Close();
                 
             }
+        }
+
+        private void Cancel_Button_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

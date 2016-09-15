@@ -292,6 +292,7 @@
             this.Cancel_Button.TabIndex = 7;
             this.Cancel_Button.Text = "İptal";
             this.Cancel_Button.UseVisualStyleBackColor = true;
+            this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
             // Save_Button
             // 
