@@ -17,7 +17,7 @@ namespace Muhasebe
                 switch (this.ConnectionType.Name)
                 {
                     case "USB": return JsonConvert.DeserializeObject<UsbConnectionParameters>(this.Parameters);
-                    case "RS232": return JsonConvert.DeserializeObject<SerialConnectionParameters>(this.Parameters);
+                    case "RS-232": return JsonConvert.DeserializeObject<SerialConnectionParameters>(this.Parameters);
                     case "NETWORK": return JsonConvert.DeserializeObject<NetworkConnectionParameters>(this.Parameters);
                     default: return null;
                 }

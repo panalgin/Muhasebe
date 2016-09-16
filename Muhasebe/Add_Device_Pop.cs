@@ -106,6 +106,14 @@ namespace Muhasebe
                     case "USB":
                         {
                             UsbConnectionParameters m_Parameters = new UsbConnectionParameters();
+
+                            if (this.ProductID_Box.Text == string.Empty || this.VendorID_Box.Text == string.Empty)
+                            {
+                                MessageBox.Show("Üretici ve ürün kimliği doğru girilmeli.", "Hata", MessageBoxButtons.OK);
+                                return;
+                            }
+
+
                             m_Parameters.ProductID = this.ProductID_Box.Text;
                             m_Parameters.VendorID = this.VendorID_Box.Text;
 
@@ -128,8 +136,14 @@ namespace Muhasebe
                     case "NETWORK":
                         {
                             NetworkConnectionParameters m_Parameters = new NetworkConnectionParameters();
-                            m_Parameters.Alias = this.Alias_Box.Text;
 
+                            if (this.Alias_Box.Text == string.Empty)
+                            {
+                                MessageBox.Show("Ürünün ağdaki adı girilmeli.", "Hata", MessageBoxButtons.OK);
+                                return;
+                            }
+
+                            m_Parameters.Alias = this.Alias_Box.Text;
                             m_Device.Parameters = JsonConvert.SerializeObject(m_Parameters);
 
                             break;

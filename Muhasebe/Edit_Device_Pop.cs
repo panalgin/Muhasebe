@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Muhasebe.Custom;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -43,45 +45,151 @@ namespace Muhasebe
 
             this.Connection_Type_Combo.SelectedValue = this.Device.ConnectionType.ID;
 
-           /* if (!this.Com_Port_Combo.Items.Contains(this.Device.Port))
-                this.Com_Port_Combo.Items.Add(this.Device.Port);
+            this.PopulateView(true); // show initial values
 
-            if (this.Device.BaudRate.HasValue && !this.Baud_Rate_Combo.Items.Contains(this.Device.BaudRate.ToString()))
-                this.Baud_Rate_Combo.Items.Add(this.Device.BaudRate.ToString());
+            this.Device_Type_Combo.SelectedIndexChanged += Device_Type_Combo_SelectedIndexChanged;
+            this.Connection_Type_Combo.SelectedIndexChanged += Connection_Type_Combo_SelectedIndexChanged;
 
-            this.Com_Port_Combo.SelectedItem = this.Device.Port;
+            this.Connection_Type_Combo.Invalidate();
+        }
 
-            if (this.Device.BaudRate.HasValue)
-                this.Baud_Rate_Combo.SelectedItem = this.Device.BaudRate.ToString();*/
+        private void Device_Type_Combo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateView();
+        }
+
+
+        private void Connection_Type_Combo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateView();
+        }
+
+        private void PopulateView(bool showInitialValues = false)
+        {
+            ConnectionType m_Type = this.Connection_Type_Combo.SelectedItem as ConnectionType;
+
+            switch (m_Type.Name)
+            {
+                case "USB":
+                    {
+                        this.RS232_Group.Visible = false;
+                        this.NETWORK_Group.Visible = false;
+                        this.USB_Group.Visible = true;
+
+                        if (showInitialValues)
+                        {
+                            UsbConnectionParameters m_Parameters = this.Device.GetConnectionParameters() as UsbConnectionParameters;
+                            this.VendorID_Box.Text = m_Parameters.VendorID;
+                            this.ProductID_Box.Text = m_Parameters.ProductID;
+                        }
+
+                        break;
+                    }
+
+                case "RS-232":
+                    {
+                        this.RS232_Group.Visible = true;
+                        this.NETWORK_Group.Visible = false;
+                        this.USB_Group.Visible = false;
+
+                        if (showInitialValues)
+                        {
+                            SerialConnectionParameters m_Parameters = this.Device.GetConnectionParameters() as SerialConnectionParameters;
+
+                            this.Com_Port_Combo.SelectedItem = m_Parameters.Port;
+                            this.Baud_Rate_Combo.SelectedItem = m_Parameters.BaudRate.ToString();
+                        }
+
+
+                        break;
+                    }
+
+                case "NETWORK":
+                    {
+                        this.RS232_Group.Visible = false;
+                        this.NETWORK_Group.Visible = true;
+                        this.USB_Group.Visible = false;
+
+                        if (showInitialValues)
+                        {
+                            NetworkConnectionParameters m_Parameters = this.Device.GetConnectionParameters() as NetworkConnectionParameters;
+                            this.Alias_Box.Text = m_Parameters.Alias;
+                        }
+
+                        break;
+                    }
+            }
         }
 
         private void Save_Button_Click(object sender, EventArgs e)
         {
             if (this.Device != null)
             {
-                MuhasebeEntities m_Context = new MuhasebeEntities();
-                Device m_Actual = m_Context.Devices.Where(q => q.ID == this.Device.ID).FirstOrDefault();
+                DeviceType m_DeviceType = this.Device_Type_Combo.SelectedItem as DeviceType;
+                ConnectionType m_ConnectionType = this.Connection_Type_Combo.SelectedItem as ConnectionType;
 
-                if (m_Actual != null)
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
-                    DeviceManager.Disconnect(this.Device.ID);
+                    Device m_Actual = m_Context.Devices.Where(q => q.ID == this.Device.ID).FirstOrDefault();
+                    m_Actual.TypeID = m_DeviceType.ID;
+                    m_Actual.ConnectionTypeID = m_ConnectionType.ID;
 
-                    m_Actual.TypeID = Convert.ToInt32(this.Device_Type_Combo.SelectedValue);
-                    /*m_Actual.Port = this.Com_Port_Combo.SelectedItem.ToString();
-                    m_Actual.BaudRate = Convert.ToInt32(this.Baud_Rate_Combo.SelectedItem.ToString());
+                    m_Actual.OwnerID = Program.User.WorksAtID.Value;
 
-                    if (DeviceManager.DoConnectionTest(m_Actual.Port, m_Actual.BaudRate.Value))
+                    switch (m_ConnectionType.Name)
                     {
-                        m_Context.SaveChanges();
-                        DeviceManager.Connect(m_Actual.ID);
-                        InvokeItemEdited(m_Actual);
+                        case "USB":
+                            {
+                                UsbConnectionParameters m_Parameters = new UsbConnectionParameters();
 
-                        this.Close();
+                                if (this.ProductID_Box.Text == string.Empty || this.VendorID_Box.Text == string.Empty)
+                                {
+                                    MessageBox.Show("Üretici ve ürün kimliği doğru girilmeli.", "Hata", MessageBoxButtons.OK);
+                                    return;
+                                }
+
+
+                                m_Parameters.ProductID = this.ProductID_Box.Text;
+                                m_Parameters.VendorID = this.VendorID_Box.Text;
+
+                                m_Actual.Parameters = JsonConvert.SerializeObject(m_Parameters);
+
+                                break;
+                            }
+
+                        case "RS-232":
+                            {
+                                SerialConnectionParameters m_Parameters = new SerialConnectionParameters();
+                                m_Parameters.Port = this.Com_Port_Combo.SelectedItem.ToString();
+                                m_Parameters.BaudRate = Convert.ToInt32(this.Baud_Rate_Combo.SelectedItem.ToString());
+
+                                m_Actual.Parameters = JsonConvert.SerializeObject(m_Parameters);
+
+                                break;
+                            }
+
+                        case "NETWORK":
+                            {
+                                NetworkConnectionParameters m_Parameters = new NetworkConnectionParameters();
+
+                                if (this.Alias_Box.Text == string.Empty)
+                                {
+                                    MessageBox.Show("Ürünün ağdaki adı girilmeli.", "Hata", MessageBoxButtons.OK);
+                                    return;
+                                }
+
+                                m_Parameters.Alias = this.Alias_Box.Text;
+                                m_Actual.Parameters = JsonConvert.SerializeObject(m_Parameters);
+
+                                break;
+                            }
                     }
-                    else
-                    {
-                        MessageBox.Show("Belirttiğiniz kriterlere uygun bağlı bir cihaz bulunamadı", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }*/
+
+                    m_Context.SaveChanges();
+                    InvokeItemEdited(m_Actual);
+
+                    this.Close();
+
                 }
             }
         }

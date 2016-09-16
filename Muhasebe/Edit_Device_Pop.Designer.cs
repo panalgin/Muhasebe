@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.Device_Type_Combo = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.RS232_Group = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Baud_Rate_Combo = new System.Windows.Forms.ComboBox();
             this.Com_Port_Combo = new System.Windows.Forms.ComboBox();
@@ -38,21 +38,21 @@
             this.Cancel_Button = new System.Windows.Forms.Button();
             this.Save_Button = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.USB_Group = new System.Windows.Forms.GroupBox();
             this.ProductID_Box = new System.Windows.Forms.TextBox();
             this.VendorID_Box = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.NETWORK_Group = new System.Windows.Forms.GroupBox();
             this.Alias_Box = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.Connection_Type_Combo = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox1.SuspendLayout();
+            this.RS232_Group.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.USB_Group.SuspendLayout();
+            this.NETWORK_Group.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,21 +74,21 @@
             this.Device_Type_Combo.Size = new System.Drawing.Size(149, 21);
             this.Device_Type_Combo.TabIndex = 0;
             // 
-            // groupBox1
+            // RS232_Group
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.RS232_Group.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.Baud_Rate_Combo);
-            this.groupBox1.Controls.Add(this.Com_Port_Combo);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(287, 81);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Bağlantı Bilgileri - RS232";
-            this.groupBox1.Visible = false;
+            this.RS232_Group.Controls.Add(this.label3);
+            this.RS232_Group.Controls.Add(this.Baud_Rate_Combo);
+            this.RS232_Group.Controls.Add(this.Com_Port_Combo);
+            this.RS232_Group.Controls.Add(this.label2);
+            this.RS232_Group.Location = new System.Drawing.Point(3, 3);
+            this.RS232_Group.Name = "RS232_Group";
+            this.RS232_Group.Size = new System.Drawing.Size(287, 81);
+            this.RS232_Group.TabIndex = 0;
+            this.RS232_Group.TabStop = false;
+            this.RS232_Group.Text = "Bağlantı Bilgileri - RS232";
+            this.RS232_Group.Visible = false;
             // 
             // label3
             // 
@@ -103,6 +103,7 @@
             // Baud_Rate_Combo
             // 
             this.Baud_Rate_Combo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Baud_Rate_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Baud_Rate_Combo.FormattingEnabled = true;
             this.Baud_Rate_Combo.Items.AddRange(new object[] {
             "9600",
@@ -118,6 +119,7 @@
             // Com_Port_Combo
             // 
             this.Com_Port_Combo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Com_Port_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Com_Port_Combo.FormattingEnabled = true;
             this.Com_Port_Combo.Items.AddRange(new object[] {
             "COM1",
@@ -190,27 +192,27 @@
             // 
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel1.Controls.Add(this.groupBox1);
-            this.flowLayoutPanel1.Controls.Add(this.groupBox2);
-            this.flowLayoutPanel1.Controls.Add(this.groupBox4);
+            this.flowLayoutPanel1.Controls.Add(this.RS232_Group);
+            this.flowLayoutPanel1.Controls.Add(this.USB_Group);
+            this.flowLayoutPanel1.Controls.Add(this.NETWORK_Group);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 92);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(295, 258);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
-            // groupBox2
+            // USB_Group
             // 
-            this.groupBox2.Controls.Add(this.ProductID_Box);
-            this.groupBox2.Controls.Add(this.VendorID_Box);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Location = new System.Drawing.Point(3, 90);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(287, 74);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Bağlantı Bilgileri - USB";
-            this.groupBox2.Visible = false;
+            this.USB_Group.Controls.Add(this.ProductID_Box);
+            this.USB_Group.Controls.Add(this.VendorID_Box);
+            this.USB_Group.Controls.Add(this.label6);
+            this.USB_Group.Controls.Add(this.label5);
+            this.USB_Group.Location = new System.Drawing.Point(3, 90);
+            this.USB_Group.Name = "USB_Group";
+            this.USB_Group.Size = new System.Drawing.Size(287, 74);
+            this.USB_Group.TabIndex = 1;
+            this.USB_Group.TabStop = false;
+            this.USB_Group.Text = "Bağlantı Bilgileri - USB";
+            this.USB_Group.Visible = false;
             // 
             // ProductID_Box
             // 
@@ -248,17 +250,17 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Üretici Kimliği:";
             // 
-            // groupBox4
+            // NETWORK_Group
             // 
-            this.groupBox4.Controls.Add(this.Alias_Box);
-            this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Location = new System.Drawing.Point(3, 170);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(287, 55);
-            this.groupBox4.TabIndex = 2;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Bağlantı Bilgileri - AĞ";
-            this.groupBox4.Visible = false;
+            this.NETWORK_Group.Controls.Add(this.Alias_Box);
+            this.NETWORK_Group.Controls.Add(this.label7);
+            this.NETWORK_Group.Location = new System.Drawing.Point(3, 170);
+            this.NETWORK_Group.Name = "NETWORK_Group";
+            this.NETWORK_Group.Size = new System.Drawing.Size(287, 55);
+            this.NETWORK_Group.TabIndex = 2;
+            this.NETWORK_Group.TabStop = false;
+            this.NETWORK_Group.Text = "Bağlantı Bilgileri - AĞ";
+            this.NETWORK_Group.Visible = false;
             // 
             // Alias_Box
             // 
@@ -323,13 +325,13 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Aygıt Düzenle";
             this.Load += new System.EventHandler(this.Edit_Device_Pop_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.RS232_Group.ResumeLayout(false);
+            this.RS232_Group.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.USB_Group.ResumeLayout(false);
+            this.USB_Group.PerformLayout();
+            this.NETWORK_Group.ResumeLayout(false);
+            this.NETWORK_Group.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -340,7 +342,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox Device_Type_Combo;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox RS232_Group;
         private System.Windows.Forms.ComboBox Com_Port_Combo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -348,12 +350,12 @@
         private System.Windows.Forms.Button Cancel_Button;
         private System.Windows.Forms.Button Save_Button;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox USB_Group;
         private System.Windows.Forms.TextBox ProductID_Box;
         private System.Windows.Forms.TextBox VendorID_Box;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox NETWORK_Group;
         private System.Windows.Forms.TextBox Alias_Box;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;

@@ -97,6 +97,7 @@
             // Baud_Rate_Combo
             // 
             this.Baud_Rate_Combo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Baud_Rate_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Baud_Rate_Combo.FormattingEnabled = true;
             this.Baud_Rate_Combo.Items.AddRange(new object[] {
             "9600",
@@ -112,6 +113,7 @@
             // Com_Port_Combo
             // 
             this.Com_Port_Combo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Com_Port_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Com_Port_Combo.FormattingEnabled = true;
             this.Com_Port_Combo.Items.AddRange(new object[] {
             "COM1",
