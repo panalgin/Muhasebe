@@ -38,6 +38,7 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Delete_Button = new System.Windows.Forms.Button();
             this.Add_Button = new System.Windows.Forms.Button();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // Edit_Button
@@ -62,7 +63,8 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader8});
+            this.columnHeader8,
+            this.columnHeader6});
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(12, 12);
@@ -76,31 +78,33 @@
             // 
             this.columnHeader1.DisplayIndex = 1;
             this.columnHeader1.Text = "Ad";
-            this.columnHeader1.Width = 146;
+            this.columnHeader1.Width = 135;
             // 
             // columnHeader2
             // 
             this.columnHeader2.DisplayIndex = 2;
             this.columnHeader2.Text = "Dosya Yolu";
             this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader2.Width = 221;
+            this.columnHeader2.Width = 235;
             // 
             // columnHeader3
             // 
             this.columnHeader3.DisplayIndex = 3;
             this.columnHeader3.Text = "Oluşturulma";
             this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader3.Width = 153;
+            this.columnHeader3.Width = 108;
             // 
             // columnHeader4
             // 
             this.columnHeader4.DisplayIndex = 4;
             this.columnHeader4.Text = "Genişlik";
+            this.columnHeader4.Width = 53;
             // 
             // columnHeader5
             // 
             this.columnHeader5.DisplayIndex = 5;
             this.columnHeader5.Text = "Yükseklik";
+            this.columnHeader5.Width = 49;
             // 
             // columnHeader8
             // 
@@ -135,6 +139,10 @@
             this.Add_Button.UseVisualStyleBackColor = true;
             this.Add_Button.Click += new System.EventHandler(this.Add_Button_Click);
             // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Varsayılan";
+            // 
             // Manage_BarcodeTemplates_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -163,5 +171,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }

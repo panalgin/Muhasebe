@@ -56,11 +56,7 @@
         <AssociationConnector Association="MuhasebeModel.PropertyReminderPropertyRemindingMethod" />
         <EntityTypeShape EntityType="MuhasebeModel.BarcodeTemplate" Width="1.5" PointX="6" PointY="14.875" />
         <AssociationConnector Association="MuhasebeModel.BarcodeTemplateCompany" />
-        <EntityTypeShape EntityType="MuhasebeModel.BarcodePrinter" Width="1.5" PointX="3.75" PointY="14.75" />
         <EntityTypeShape EntityType="MuhasebeModel.ConnectionType" Width="1.5" PointX="6" PointY="8.375" />
-        <AssociationConnector Association="MuhasebeModel.BarcodePrinterBarcodeTemplate" />
-        <AssociationConnector Association="MuhasebeModel.BarcodePrinterCompany" />
-        <AssociationConnector Association="MuhasebeModel.BarcodePrinterConnectionType" />
         <EntityTypeShape EntityType="MuhasebeModel.ItemGroup" Width="1.5" PointX="1.5" PointY="26.875" />
         <AssociationConnector Association="MuhasebeModel.ItemGroupItem" />
         <AssociationConnector Association="MuhasebeModel.DeviceConnectionType" />

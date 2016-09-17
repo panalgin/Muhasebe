@@ -57,6 +57,12 @@ namespace Muhasebe
                         m_Item.SubItems.Add(m_Template.Height.ToString());
                         m_Item.SubItems.Add(m_Template.ID.ToString());
 
+                        if (m_Template.IsDefault.HasValue)
+                            m_Item.SubItems.Add(m_Template.IsDefault.Value == true ? "Evet" : "Hayır");
+                        else
+                            m_Item.SubItems.Add("-");
+                            
+
                         this.listView1.Items.Add(m_Item);
 
                     });

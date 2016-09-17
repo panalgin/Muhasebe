@@ -21,6 +21,7 @@ namespace Muhasebe
         public Nullable<int> OwnerID { get; set; }
         public Nullable<int> Width { get; set; }
         public Nullable<int> Height { get; set; }
+        public Nullable<bool> IsDefault { get; set; }
     
         public virtual Company Company { get; set; }
     }

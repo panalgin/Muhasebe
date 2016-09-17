@@ -113,12 +113,6 @@
     <Compile Include="Add_BarcodeTemplate_Mdi.Designer.cs">
       <DependentUpon>Add_BarcodeTemplate_Mdi.cs</DependentUpon>
     </Compile>
-    <Compile Include="Add_BarcodeWriter_Mdi.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Add_BarcodeWriter_Mdi.Designer.cs">
-      <DependentUpon>Add_BarcodeWriter_Mdi.cs</DependentUpon>
-    </Compile>
     <Compile Include="Add_Device_Pop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +131,7 @@
     <Compile Include="Add_Inventory_Pop.Designer.cs">
       <DependentUpon>Add_Inventory_Pop.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom\Company.partial.cs" />
     <Compile Include="Custom\Device.partial.cs" />
     <Compile Include="Custom\NetworkConnectionParameters.cs" />
     <Compile Include="Custom\SerialConnectionParameters.cs" />
@@ -196,9 +191,6 @@
       <DependentUpon>Add_User_Mdi.cs</DependentUpon>
     </Compile>
     <Compile Include="BarcodeListener.cs" />
-    <Compile Include="BarcodePrinter.cs">
-      <DependentUpon>Muhasebe.tt</DependentUpon>
-    </Compile>
     <Compile Include="BarcodeTemplate.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>
@@ -209,7 +201,7 @@
     <Compile Include="ConnectionType.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>
-    <Compile Include="Custom\BarcodePrinter.partial.cs" />
+    <Compile Include="Custom\BarcodePrinter.cs" />
     <Compile Include="Device.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>
@@ -485,9 +477,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Add_BarcodeTemplate_Mdi.resx">
       <DependentUpon>Add_BarcodeTemplate_Mdi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Add_BarcodeWriter_Mdi.resx">
-      <DependentUpon>Add_BarcodeWriter_Mdi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Add_Device_Pop.resx">
       <DependentUpon>Add_Device_Pop.cs</DependentUpon>

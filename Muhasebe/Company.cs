@@ -24,7 +24,6 @@ namespace Muhasebe
             this.PaymentTypes = new HashSet<PaymentType>();
             this.ExpenditureTypes = new HashSet<ExpenditureType>();
             this.BarcodeTemplates = new HashSet<BarcodeTemplate>();
-            this.BarcodePrinters = new HashSet<BarcodePrinter>();
         }
     
         public int ID { get; set; }
@@ -54,7 +53,5 @@ namespace Muhasebe
         public virtual ICollection<ExpenditureType> ExpenditureTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BarcodeTemplate> BarcodeTemplates { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BarcodePrinter> BarcodePrinters { get; set; }
     }
 }
