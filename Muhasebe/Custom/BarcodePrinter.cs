@@ -26,6 +26,12 @@ namespace Muhasebe
             {
                 BarcodeTemplate m_Template = this.Company.BarcodeTemplates.Where(q => q.IsDefault == true).FirstOrDefault();
 
+                if (m_Template == null)
+                {
+                    MessageBox.Show("Varsayılan barkod tasarımı belirli değil, lütfen ayarlayıp deneyiniz.", "Hata", MessageBoxButtons.OK);
+                    return;
+                }
+
                 using (StreamReader m_Reader = new StreamReader(m_Template.Path, Encoding.GetEncoding(1252)))
                 {
                     m_Data = m_Reader.ReadToEnd();
@@ -63,6 +69,10 @@ namespace Muhasebe
 
                     MessageBox.Show(m_Command);
                     MessageBox.Show(m_Output);
+                }
+                else
+                {
+                    MessageBox.Show("Bu yazıcının bağlantı türü desteklenmiyor.", "Hata", MessageBoxButtons.OK);
                 }
             }
         }
