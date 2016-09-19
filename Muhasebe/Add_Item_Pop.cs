@@ -275,14 +275,11 @@ namespace Muhasebe
         {
             if (this.Barcode_Box.Text != string.Empty && this.Name_Box.Text != string.Empty)
             {
-                using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                BarcodePrinter m_Printer = Program.User.WorksAt.BarcodePrinters.First();
+
+                if (m_Printer != null)
                 {
-                    BarcodePrinter m_Printer = Program.User.WorksAt.BarcodePrinters.FirstOrDefault();
-                    
-                    if (m_Printer != null)
-                    {
-                        m_Printer.Print(this.Name_Box.Text, this.Barcode_Box.Text);
-                    }
+                    m_Printer.Print(this.Name_Box.Text, this.Barcode_Box.Text);
                 }
             }
             else

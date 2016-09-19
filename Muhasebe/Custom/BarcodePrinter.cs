@@ -13,11 +13,6 @@ namespace Muhasebe
 {
     public class BarcodePrinter : Device
     {
-        public BarcodePrinter()
-        {
-
-        }
-
         public void Print(string text, string barcode)
         {
             string m_Data = "";
