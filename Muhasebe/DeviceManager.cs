@@ -54,8 +54,6 @@ namespace Muhasebe
             m_Connection.PortName = port;
             m_Connection.BaudRate = baudrate;
 
-            MuhasebeEntities m_Context = new MuhasebeEntities();
-
             if (m_Connection.IsOpen)
                 return false;
             else
@@ -65,6 +63,7 @@ namespace Muhasebe
                     m_Connection.Open();
                     m_Connection.Close();
                     m_Connection.Dispose();
+
                     return true;
                 }
                 catch (Exception ex)
@@ -77,21 +76,22 @@ namespace Muhasebe
 
         public static void DisconnectAll()
         {
-            MuhasebeEntities m_Context = new MuhasebeEntities();
-
-            try
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
-                var m_Devices = m_Context.Devices.Where(q => q.OwnerID == Program.User.WorksAtID).ToList();
-
-                m_Devices.All(delegate(Device m_Device)
+                try
                 {
-                    Disconnect(m_Device.ID);
-                    return true;
-                });
-            }
-            catch (Exception ex)
-            {
-                Logger.Enqueue(ex);
+                    var m_Devices = m_Context.Devices.Where(q => q.OwnerID == Program.User.WorksAtID && q.ConnectionTypeID == 2).ToList(); // only rs-232
+
+                    m_Devices.All(delegate (Device m_Device)
+                    {
+                        Disconnect(m_Device.ID);
+                        return true;
+                    });
+                }
+                catch (Exception ex)
+                {
+                    Logger.Enqueue(ex);
+                }
             }
         }
 
