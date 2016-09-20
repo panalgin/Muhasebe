@@ -71,5 +71,86 @@ namespace Muhasebe
                 });
             }
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.listView1.SelectedItems.Count > 0)
+            {
+                this.Edit_Button.Enabled = true;
+                this.Delete_Button.Enabled = true;
+            }
+            else
+            {
+                this.Edit_Button.Enabled = false;
+                this.Delete_Button.Enabled = false;
+            }
+        }
+
+        private void Edit_Button_Click(object sender, EventArgs e)
+        {
+            if (this.listView1.SelectedItems.Count > 0)
+            {
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    ListViewItem m_Item = this.listView1.SelectedItems[0];
+                    int m_ItemID = Convert.ToInt32(m_Item.Tag);
+
+                    if (m_ItemID > 0)
+                    {
+                        BarcodeTemplate m_Template = m_Context.BarcodeTemplates.Where(q => q.ID == m_ItemID).FirstOrDefault();
+                        if (m_Template != null)
+                        {
+                            Edit_BarcodeTemplate_Pop m_Pop = new Edit_BarcodeTemplate_Pop();
+                            m_Pop.Template = m_Template;
+                            m_Pop.ItemEdited += Pop_ItemEdited;
+                            m_Pop.ShowDialog();
+                        }
+                        else
+                            MessageBox.Show("Düzenleme sırasında bir hata oluştu.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                        MessageBox.Show("Düzenleme sırasında bir hata oluştu", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void Pop_ItemEdited(BarcodeTemplate template)
+        {
+            this.PopulateListView();
+        }
+
+        private void Delete_Button_Click(object sender, EventArgs e)
+        {
+            if (this.listView1.SelectedItems.Count > 0)
+            {
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    ListViewItem m_Item = this.listView1.SelectedItems[0];
+                    int m_ItemID = Convert.ToInt32(m_Item.Tag);
+
+                    if (m_Item.Tag != null && m_ItemID > 0)
+                    {
+                        if (MessageBox.Show("Bu tasarım kalıcı olarak silinecek, emin misiniz?", "Bilgi", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            BarcodeTemplate m_Template = m_Context.BarcodeTemplates.Where(q => q.ID == m_ItemID).FirstOrDefault();
+
+                            if (m_Template != null)
+                            {
+                                m_Context.BarcodeTemplates.Remove(m_Template);
+                                m_Context.SaveChanges();
+                                m_Item.Remove();
+                                PopulateListView();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Silme işlemi sırasında bir hata oluştu.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                    else
+                        MessageBox.Show("Silme işlemi sırasında bir hata oluştu.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }

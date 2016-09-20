@@ -201,8 +201,7 @@ namespace Muhasebe
 
         private void InvokeItemEdited(Device device)
         {
-            if (ItemEdited != null)
-                ItemEdited(device);
+            ItemEdited?.Invoke(device);
         }
     }
 }

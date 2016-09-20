@@ -35,13 +35,21 @@ namespace Muhasebe
                 m_Template.Width = Convert.ToInt32(this.Width_Num.Value);
                 m_Template.Height = Convert.ToInt32(this.Height_Num.Value);
 
+                if (this.IsDefault_Check.Checked)
+                {
+                    m_Context.BarcodeTemplates.Where(q => q.OwnerID == Program.User.WorksAtID).All(delegate (BarcodeTemplate template)
+                    {
+                        template.IsDefault = false;
+                        return true;
+                    });
+                }
+
+                m_Template.IsDefault = this.IsDefault_Check.Checked;
+
                 m_Context.BarcodeTemplates.Add(m_Template);
                 m_Context.SaveChanges();
 
                 this.Close();
-
-
-                
             }
         }
 

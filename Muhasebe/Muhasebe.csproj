@@ -136,6 +136,12 @@
     <Compile Include="Custom\NetworkConnectionParameters.cs" />
     <Compile Include="Custom\SerialConnectionParameters.cs" />
     <Compile Include="Custom\UsbConnectionParameters.cs" />
+    <Compile Include="Edit_BarcodeTemplate_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit_BarcodeTemplate_Pop.Designer.cs">
+      <DependentUpon>Edit_BarcodeTemplate_Pop.cs</DependentUpon>
+    </Compile>
     <Compile Include="Edit_ItemGroup_Pop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -486,6 +492,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Add_Inventory_Pop.resx">
       <DependentUpon>Add_Inventory_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit_BarcodeTemplate_Pop.resx">
+      <DependentUpon>Edit_BarcodeTemplate_Pop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Edit_ItemGroup_Pop.resx">
       <DependentUpon>Edit_ItemGroup_Pop.cs</DependentUpon>

@@ -36,9 +36,9 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Delete_Button = new System.Windows.Forms.Button();
             this.Add_Button = new System.Windows.Forms.Button();
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // Edit_Button
@@ -51,6 +51,7 @@
             this.Edit_Button.TabIndex = 6;
             this.Edit_Button.Text = "Düzenle";
             this.Edit_Button.UseVisualStyleBackColor = true;
+            this.Edit_Button.Click += new System.EventHandler(this.Edit_Button_Click);
             // 
             // listView1
             // 
@@ -68,11 +69,13 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(12, 12);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(676, 383);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -113,6 +116,10 @@
             this.columnHeader8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader8.Width = 31;
             // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Varsayılan";
+            // 
             // Delete_Button
             // 
             this.Delete_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -125,6 +132,7 @@
             this.Delete_Button.TabIndex = 7;
             this.Delete_Button.Text = "Sil";
             this.Delete_Button.UseVisualStyleBackColor = true;
+            this.Delete_Button.Click += new System.EventHandler(this.Delete_Button_Click);
             // 
             // Add_Button
             // 
@@ -138,10 +146,6 @@
             this.Add_Button.Text = "Yeni";
             this.Add_Button.UseVisualStyleBackColor = true;
             this.Add_Button.Click += new System.EventHandler(this.Add_Button_Click);
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Varsayılan";
             // 
             // Manage_BarcodeTemplates_Mdi
             // 
