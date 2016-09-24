@@ -48,5 +48,8 @@ namespace Muhasebe
         public virtual DbSet<BarcodeTemplate> BarcodeTemplates { get; set; }
         public virtual DbSet<ConnectionType> ConnectionTypes { get; set; }
         public virtual DbSet<ItemGroup> ItemGroups { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<Province> Provinces { get; set; }
     }
 }

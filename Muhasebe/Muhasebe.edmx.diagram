@@ -60,6 +60,12 @@
         <EntityTypeShape EntityType="MuhasebeModel.ItemGroup" Width="1.5" PointX="1.5" PointY="26.875" />
         <AssociationConnector Association="MuhasebeModel.ItemGroupItem" />
         <AssociationConnector Association="MuhasebeModel.DeviceConnectionType" />
+        <EntityTypeShape EntityType="MuhasebeModel.Account" Width="1.5" PointX="9" PointY="0.5" />
+        <EntityTypeShape EntityType="MuhasebeModel.City" Width="1.5" PointX="11" PointY="0.5" />
+        <EntityTypeShape EntityType="MuhasebeModel.Province" Width="1.5" PointX="11" PointY="3.5" />
+        <AssociationConnector Association="MuhasebeModel.AccountProvince" />
+        <AssociationConnector Association="MuhasebeModel.CityAccount" />
+        <AssociationConnector Association="MuhasebeModel.CityProvince" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

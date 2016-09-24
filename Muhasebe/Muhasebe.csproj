@@ -101,6 +101,9 @@
     <Compile Include="About_Mdi.Designer.cs">
       <DependentUpon>About_Mdi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Account.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
     <Compile Include="Add_Account_Mdi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,11 +134,29 @@
     <Compile Include="Add_Inventory_Pop.Designer.cs">
       <DependentUpon>Add_Inventory_Pop.cs</DependentUpon>
     </Compile>
+    <Compile Include="BarcodeTemplate.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="City.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Company.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectionType.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
     <Compile Include="Custom\Company.partial.cs" />
     <Compile Include="Custom\Device.partial.cs" />
     <Compile Include="Custom\NetworkConnectionParameters.cs" />
     <Compile Include="Custom\SerialConnectionParameters.cs" />
     <Compile Include="Custom\UsbConnectionParameters.cs" />
+    <Compile Include="Device.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceType.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
     <Compile Include="Edit_BarcodeTemplate_Pop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,23 +218,8 @@
       <DependentUpon>Add_User_Mdi.cs</DependentUpon>
     </Compile>
     <Compile Include="BarcodeListener.cs" />
-    <Compile Include="BarcodeTemplate.cs">
-      <DependentUpon>Muhasebe.tt</DependentUpon>
-    </Compile>
     <Compile Include="Camera.cs" />
-    <Compile Include="Company.cs">
-      <DependentUpon>Muhasebe.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ConnectionType.cs">
-      <DependentUpon>Muhasebe.tt</DependentUpon>
-    </Compile>
     <Compile Include="Custom\BarcodePrinter.cs" />
-    <Compile Include="Device.cs">
-      <DependentUpon>Muhasebe.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DeviceType.cs">
-      <DependentUpon>Muhasebe.tt</DependentUpon>
-    </Compile>
     <Compile Include="Edit_Inventory_Pop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -459,6 +465,9 @@
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>
     <Compile Include="PropertyRemindingMethod.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Province.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>
     <Compile Include="Register_Mdi.cs">
