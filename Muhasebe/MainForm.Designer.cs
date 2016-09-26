@@ -779,7 +779,6 @@
             this.Accounts_Button.Name = "Accounts_Button";
             this.Accounts_Button.Size = new System.Drawing.Size(134, 38);
             this.Accounts_Button.Text = "Cari Hesaplar";
-            this.Accounts_Button.Visible = false;
             this.Accounts_Button.Click += new System.EventHandler(this.Accounts_Button_Click);
             // 
             // Sales_Button
