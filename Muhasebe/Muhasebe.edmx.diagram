@@ -66,6 +66,9 @@
         <AssociationConnector Association="MuhasebeModel.AccountProvince" />
         <AssociationConnector Association="MuhasebeModel.CityAccount" />
         <AssociationConnector Association="MuhasebeModel.CityProvince" />
+        <EntityTypeShape EntityType="MuhasebeModel.AccountType" Width="1.5" PointX="3.375" PointY="0.75" />
+        <AssociationConnector Association="MuhasebeModel.AccountTypeAccount" />
+        <AssociationConnector Association="MuhasebeModel.AccountCompany" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

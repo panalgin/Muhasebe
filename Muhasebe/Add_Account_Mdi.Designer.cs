@@ -30,34 +30,34 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.AccountName_Box = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.AccountType_Combo = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Save_Button = new System.Windows.Forms.Button();
             this.Cancel_Button = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.Email_Box = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.Gsm_Box = new System.Windows.Forms.TextBox();
+            this.Phone_Box = new System.Windows.Forms.TextBox();
             this.Province_Combo = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.Address_Box = new System.Windows.Forms.TextBox();
             this.City_Combo = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.Error_Provider = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Error_Provider)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.AccountName_Box);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.AccountType_Combo);
             this.groupBox1.Controls.Add(this.label1);
@@ -68,12 +68,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hesap Bilgileri";
             // 
-            // textBox1
+            // AccountName_Box
             // 
-            this.textBox1.Location = new System.Drawing.Point(119, 46);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(159, 20);
-            this.textBox1.TabIndex = 1;
+            this.Error_Provider.SetIconPadding(this.AccountName_Box, -20);
+            this.AccountName_Box.Location = new System.Drawing.Point(119, 46);
+            this.AccountName_Box.Name = "AccountName_Box";
+            this.AccountName_Box.Size = new System.Drawing.Size(159, 20);
+            this.AccountName_Box.TabIndex = 1;
             // 
             // label2
             // 
@@ -88,9 +89,6 @@
             // 
             this.AccountType_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.AccountType_Combo.FormattingEnabled = true;
-            this.AccountType_Combo.Items.AddRange(new object[] {
-            "Müşteri",
-            "Tedarikçi"});
             this.AccountType_Combo.Location = new System.Drawing.Point(119, 19);
             this.AccountType_Combo.Name = "AccountType_Combo";
             this.AccountType_Combo.Size = new System.Drawing.Size(159, 21);
@@ -116,6 +114,7 @@
             this.Save_Button.TabIndex = 2;
             this.Save_Button.Text = "Kaydet";
             this.Save_Button.UseVisualStyleBackColor = true;
+            this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
             // 
             // Cancel_Button
             // 
@@ -132,12 +131,12 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox5);
+            this.groupBox2.Controls.Add(this.Email_Box);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.textBox4);
-            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.Controls.Add(this.Gsm_Box);
+            this.groupBox2.Controls.Add(this.Phone_Box);
             this.groupBox2.Controls.Add(this.Province_Combo);
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.Address_Box);
             this.groupBox2.Controls.Add(this.City_Combo);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label7);
@@ -151,12 +150,12 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "İletişim Bilgileri";
             // 
-            // textBox5
+            // Email_Box
             // 
-            this.textBox5.Location = new System.Drawing.Point(119, 201);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(159, 20);
-            this.textBox5.TabIndex = 5;
+            this.Email_Box.Location = new System.Drawing.Point(119, 201);
+            this.Email_Box.Name = "Email_Box";
+            this.Email_Box.Size = new System.Drawing.Size(159, 20);
+            this.Email_Box.TabIndex = 5;
             // 
             // label8
             // 
@@ -167,19 +166,19 @@
             this.label8.TabIndex = 10;
             this.label8.Text = "Email:";
             // 
-            // textBox4
+            // Gsm_Box
             // 
-            this.textBox4.Location = new System.Drawing.Point(119, 175);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(159, 20);
-            this.textBox4.TabIndex = 4;
+            this.Gsm_Box.Location = new System.Drawing.Point(119, 175);
+            this.Gsm_Box.Name = "Gsm_Box";
+            this.Gsm_Box.Size = new System.Drawing.Size(159, 20);
+            this.Gsm_Box.TabIndex = 4;
             // 
-            // textBox3
+            // Phone_Box
             // 
-            this.textBox3.Location = new System.Drawing.Point(119, 149);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(159, 20);
-            this.textBox3.TabIndex = 3;
+            this.Phone_Box.Location = new System.Drawing.Point(119, 149);
+            this.Phone_Box.Name = "Phone_Box";
+            this.Phone_Box.Size = new System.Drawing.Size(159, 20);
+            this.Phone_Box.TabIndex = 3;
             // 
             // Province_Combo
             // 
@@ -190,13 +189,13 @@
             this.Province_Combo.Size = new System.Drawing.Size(159, 21);
             this.Province_Combo.TabIndex = 1;
             // 
-            // textBox2
+            // Address_Box
             // 
-            this.textBox2.Location = new System.Drawing.Point(119, 73);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(159, 70);
-            this.textBox2.TabIndex = 2;
+            this.Address_Box.Location = new System.Drawing.Point(119, 73);
+            this.Address_Box.Multiline = true;
+            this.Address_Box.Name = "Address_Box";
+            this.Address_Box.Size = new System.Drawing.Size(159, 70);
+            this.Address_Box.TabIndex = 2;
             // 
             // City_Combo
             // 
@@ -252,9 +251,9 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Adres:";
             // 
-            // errorProvider1
+            // Error_Provider
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.Error_Provider.ContainerControl = this;
             // 
             // Add_Account_Mdi
             // 
@@ -276,7 +275,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Error_Provider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -288,21 +287,21 @@
         private System.Windows.Forms.Button Cancel_Button;
         private System.Windows.Forms.ComboBox AccountType_Combo;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox AccountName_Box;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox Gsm_Box;
+        private System.Windows.Forms.TextBox Phone_Box;
         private System.Windows.Forms.ComboBox Province_Combo;
         private System.Windows.Forms.ComboBox City_Combo;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox Address_Box;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox Email_Box;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider Error_Provider;
     }
 }

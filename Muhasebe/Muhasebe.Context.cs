@@ -51,5 +51,6 @@ namespace Muhasebe
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Province> Provinces { get; set; }
+        public virtual DbSet<AccountType> AccountTypes { get; set; }
     }
 }

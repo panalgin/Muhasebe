@@ -18,6 +18,14 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="Gsm" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="250" />
+          <Property Name="OwnerID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="BarcodeTemplates">
           <Key>
@@ -279,6 +287,7 @@
         </EntityType>
         <EntityContainer Name="MuhasebeModelStoreContainer">
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountTypes" EntityType="Self.AccountTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BarcodeTemplates" EntityType="Self.BarcodeTemplates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
@@ -484,6 +493,15 @@
             <End Role="City" EntitySet="Cities" />
             <End Role="Province" EntitySet="Provinces" />
           </AssociationSet>
+          <EntitySet Name="AccountTypes" EntityType="MuhasebeModel.AccountType" />
+          <AssociationSet Name="AccountTypeAccount" Association="MuhasebeModel.AccountTypeAccount">
+            <End Role="AccountType" EntitySet="AccountTypes" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="AccountCompany" Association="MuhasebeModel.AccountCompany">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Product">
           <Key>
@@ -594,6 +612,7 @@
           <NavigationProperty Name="PaymentTypes" Relationship="MuhasebeModel.PaymentTypeCompany" FromRole="Company" ToRole="PaymentType" />
           <NavigationProperty Name="ExpenditureTypes" Relationship="MuhasebeModel.ExpenditureTypeCompany" FromRole="Company" ToRole="ExpenditureType" />
           <NavigationProperty Name="BarcodeTemplates" Relationship="MuhasebeModel.BarcodeTemplateCompany" FromRole="Company" ToRole="BarcodeTemplate" />
+          <NavigationProperty Name="Accounts" Relationship="MuhasebeModel.AccountCompany" FromRole="Company" ToRole="Account" />
         </EntityType>
         <Association Name="UserCompany">
           <End Type="MuhasebeModel.User" Role="User" Multiplicity="*" />
@@ -1198,6 +1217,9 @@
           <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Province" Relationship="MuhasebeModel.AccountProvince" FromRole="Account" ToRole="Province" />
           <NavigationProperty Name="City" Relationship="MuhasebeModel.CityAccount" FromRole="Account" ToRole="City" />
+          <NavigationProperty Name="AccountType" Relationship="MuhasebeModel.AccountTypeAccount" FromRole="Account" ToRole="AccountType" />
+          <Property Name="OwnerID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Owner" Relationship="MuhasebeModel.AccountCompany" FromRole="Account" ToRole="Company" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -1249,6 +1271,37 @@
             </Principal>
             <Dependent Role="Province">
               <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AccountType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="AccountTypeAccount">
+          <End Type="MuhasebeModel.AccountType" Role="AccountType" Multiplicity="1" />
+          <End Type="MuhasebeModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="AccountTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AccountCompany">
+          <End Type="MuhasebeModel.Account" Role="Account" Multiplicity="*" />
+          <End Type="MuhasebeModel.Company" Role="Company" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="OwnerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1527,6 +1580,7 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="MuhasebeModel.Account">
               <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Gsm" ColumnName="Gsm" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
@@ -1552,6 +1606,14 @@
               <MappingFragment StoreEntitySet="Provinces">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountTypes">
+            <EntityTypeMapping TypeName="MuhasebeModel.AccountType">
+              <MappingFragment StoreEntitySet="AccountTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
