@@ -94,7 +94,6 @@ namespace Muhasebe
                     m_Context.SaveChanges();
 
                     this.Close();
-
                 }
             }
         }

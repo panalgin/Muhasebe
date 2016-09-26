@@ -92,10 +92,10 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.Grid_Panel = new System.Windows.Forms.Panel();
+            this.Image_List = new System.Windows.Forms.ImageList(this.components);
             this.Downward_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Image_List = new System.Windows.Forms.ImageList(this.components);
             this.Navigation_Strip = new Muhasebe.Custom.ToolStripEx();
             this.Home_Button = new System.Windows.Forms.ToolStripButton();
             this.Accounts_Button = new System.Windows.Forms.ToolStripButton();
@@ -709,6 +709,12 @@
             this.Grid_Panel.Visible = false;
             this.Grid_Panel.VisibleChanged += new System.EventHandler(this.Grid_Panel_VisibleChanged);
             // 
+            // Image_List
+            // 
+            this.Image_List.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Image_List.ImageStream")));
+            this.Image_List.TransparentColor = System.Drawing.Color.Transparent;
+            this.Image_List.Images.SetKeyName(0, "package.png");
+            // 
             // Downward_List
             // 
             this.Downward_List.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -734,12 +740,6 @@
             // 
             this.columnHeader1.Text = "Azalan Ürünler";
             this.columnHeader1.Width = 254;
-            // 
-            // Image_List
-            // 
-            this.Image_List.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Image_List.ImageStream")));
-            this.Image_List.TransparentColor = System.Drawing.Color.Transparent;
-            this.Image_List.Images.SetKeyName(0, "package.png");
             // 
             // Navigation_Strip
             // 
@@ -895,7 +895,7 @@
             this.MainMenuStrip = this.Menu_Strip;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Daflan - Mikro Kaynak Yönetimi - Version: 0.2.8";
+            this.Text = "Daflan - Mikro Kaynak Yönetimi - Version: 0.2.9";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MdiChildActivate += new System.EventHandler(this.MainForm_MdiChildActivate);
