@@ -30,7 +30,7 @@ namespace Muhasebe
 
         private void PopulateList()
         {
-            this.listView1.Items.Clear();
+            this.Accounts_List.Items.Clear();
 
             using(MuhasebeEntities m_Context = new MuhasebeEntities())
             {
@@ -49,11 +49,21 @@ namespace Muhasebe
                     m_Item.SubItems.Add(account.Gsm);
                     m_Item.SubItems.Add(account.Email);
 
-                    this.listView1.Items.Add(m_Item);
+                    this.Accounts_List.Items.Add(m_Item);
 
                     return true;
                 });
             }
+        }
+
+        private void Edit_Button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Delete_Button_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

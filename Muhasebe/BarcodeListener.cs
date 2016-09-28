@@ -21,8 +21,6 @@ namespace Muhasebe
             RawListener.KeyPressed += RawListener_KeyPressed;
         }
 
-
-
         private static void RawListener_KeyPressed(object sender, RawInputEventArg e)
         {
             if (e.KeyPressEvent.KeyPressState == "MAKE")
@@ -30,17 +28,11 @@ namespace Muhasebe
                 if (e.KeyPressEvent.DeviceName.Contains("1D57"))
                 {
                     Application.AddMessageFilter(Filter);
-
-
-
-
-
                 }
             }
             else if (e.KeyPressEvent.KeyPressState == "BREAK")
             {
                 Application.RemoveMessageFilter(Filter);
-
 
                 if (e.KeyPressEvent.DeviceName.Contains("1D57"))
                 {
