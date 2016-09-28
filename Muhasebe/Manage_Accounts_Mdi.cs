@@ -21,6 +21,7 @@ namespace Muhasebe
         {
             Add_Account_Mdi m_Mdi = new Add_Account_Mdi();
             m_Mdi.ShowDialog();
+            PopulateList();
         }
 
         private void Manage_Accounts_Mdi_Load(object sender, EventArgs e)
@@ -62,6 +63,62 @@ namespace Muhasebe
         }
 
         private void Delete_Button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Accounts_List_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.Accounts_List.SelectedItems.Count > 0)
+            {
+                this.Edit_Button.Enabled = true;
+                this.Delete_Button.Enabled = true;
+
+                int m_AccountID = Convert.ToInt32(this.Accounts_List.SelectedItems[0].Tag);
+
+                using(MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    Account m_Account = m_Context.Accounts.Where(q => q.ID == m_AccountID).FirstOrDefault();
+                    PopulateAccountHistory(m_Account);
+                }
+                
+            }
+            else
+            {
+                this.Edit_Button.Enabled = false;
+                this.Delete_Button.Enabled = false;
+            }
+
+        }
+
+        private void PopulateAccountHistory(Account account)
+        {
+            this.listView1.Items.Clear();
+
+            if (account != null)
+            {
+                using(MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    var m_Invoices = m_Context.Invoices.Where(q => q.OwnerID == Program.User.WorksAtID && q.TargetID == account.ID).OrderByDescending(q => q.CreatedAt);
+
+                    m_Invoices.All(delegate (Invoice invoice)
+                    {
+                        ListViewItem m_Item = new ListViewItem();
+                        m_Item.Tag = invoice.ID;
+                        m_Item.Text = invoice.CreatedAt.ToString();
+                        m_Item.SubItems.Add(invoice.Author.FullName);
+                        m_Item.SubItems.Add(invoice.PaymentType.Name);
+                        m_Item.SubItems.Add(invoice.Nodes.Sum(q => q.FinalPrice).Value.ToString());
+
+                        this.listView1.Items.Add(m_Item);
+
+                        return true;
+                    });
+                }
+            }
+        }
+
+        private void Inspect_Button_Click(object sender, EventArgs e)
         {
 
         }

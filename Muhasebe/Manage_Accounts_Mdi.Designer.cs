@@ -38,6 +38,7 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Inspect_Button = new System.Windows.Forms.Button();
             this.Accounts_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -133,25 +134,39 @@
             // 
             // columnHeader9
             // 
-            this.columnHeader9.Text = "Hareket";
+            this.columnHeader9.Text = "Tarih";
+            this.columnHeader9.Width = 100;
             // 
             // columnHeader10
             // 
-            this.columnHeader10.Text = "Tarih";
+            this.columnHeader10.Text = "İşlemi Yapan";
             this.columnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader10.Width = 100;
             // 
             // columnHeader11
             // 
-            this.columnHeader11.Text = "Tutar";
+            this.columnHeader11.Text = "Ödeme Türü";
             this.columnHeader11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader11.Width = 75;
+            this.columnHeader11.Width = 100;
             // 
             // columnHeader12
             // 
-            this.columnHeader12.Text = "Açıklama";
+            this.columnHeader12.Text = "Toplam Tutar";
             this.columnHeader12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader12.Width = 407;
+            this.columnHeader12.Width = 100;
+            // 
+            // Inspect_Button
+            // 
+            this.Inspect_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Inspect_Button.Image = global::Muhasebe.Properties.Resources.magnifier;
+            this.Inspect_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Inspect_Button.Location = new System.Drawing.Point(674, 209);
+            this.Inspect_Button.Name = "Inspect_Button";
+            this.Inspect_Button.Size = new System.Drawing.Size(75, 23);
+            this.Inspect_Button.TabIndex = 38;
+            this.Inspect_Button.Text = "İncele";
+            this.Inspect_Button.UseVisualStyleBackColor = true;
+            this.Inspect_Button.Click += new System.EventHandler(this.Inspect_Button_Click);
             // 
             // Accounts_List
             // 
@@ -176,6 +191,7 @@
             this.Accounts_List.TabIndex = 33;
             this.Accounts_List.UseCompatibleStateImageBehavior = false;
             this.Accounts_List.View = System.Windows.Forms.View.Details;
+            this.Accounts_List.SelectedIndexChanged += new System.EventHandler(this.Accounts_List_SelectedIndexChanged);
             // 
             // columnHeader3
             // 
@@ -228,6 +244,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(761, 490);
+            this.Controls.Add(this.Inspect_Button);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.Delete_Button);
             this.Controls.Add(this.Edit_Button);
@@ -263,5 +280,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.Button Inspect_Button;
     }
 }
