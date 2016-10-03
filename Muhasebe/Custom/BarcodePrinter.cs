@@ -62,8 +62,8 @@ namespace Muhasebe
                     string m_Command = string.Format("COPY /B \"{0}\" \"{1}\"", m_TempPath, m_Parameters.Alias);
                     string m_Output = this.ExecuteCommand(m_Command);
 
-                    MessageBox.Show(m_Command);
-                    MessageBox.Show(m_Output);
+                    //MessageBox.Show(m_Command);
+                    //MessageBox.Show(m_Output);
                 }
                 else
                 {

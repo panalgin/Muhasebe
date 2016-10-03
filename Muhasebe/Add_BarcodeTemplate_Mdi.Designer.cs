@@ -50,7 +50,6 @@
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Printer Dosyası|*.prn";
             // 
             // IsDefault_Check
@@ -82,6 +81,7 @@
             this.Browse_Button.TabIndex = 42;
             this.Browse_Button.Text = "Gözat";
             this.Browse_Button.UseVisualStyleBackColor = true;
+            this.Browse_Button.Click += new System.EventHandler(this.Browse_Button_Click);
             // 
             // label6
             // 
@@ -172,6 +172,7 @@
             this.Save_Button.TabIndex = 46;
             this.Save_Button.Text = "Kaydet";
             this.Save_Button.UseVisualStyleBackColor = true;
+            this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
             // 
             // Cancel_Button
             // 
@@ -183,6 +184,7 @@
             this.Cancel_Button.TabIndex = 47;
             this.Cancel_Button.Text = "İptal";
             this.Cancel_Button.UseVisualStyleBackColor = true;
+            this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
             // Name_Box
             // 
