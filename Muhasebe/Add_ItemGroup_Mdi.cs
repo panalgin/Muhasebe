@@ -19,6 +19,16 @@ namespace Muhasebe
 
         private void Save_Button_Click(object sender, EventArgs e)
         {
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
+            {
+                ItemGroup m_Existing = m_Context.ItemGroups.Where(q => q.Name == this.Name_Box.Text).FirstOrDefault();
+
+                if (m_Existing != null)
+                {
+                    MessageBox.Show("Aynı adla başka bir grup oluşturmuşsunuz, lütfen başka bir ad giriniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
             if (this.Name_Box.Text == string.Empty || this.Name_Box.Text.Length < 3)
             {
                 MessageBox.Show("Lütfen en az 3 karakterden oluşan bir ürün grubu adı giriniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);

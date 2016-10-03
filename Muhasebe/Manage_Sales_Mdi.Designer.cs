@@ -56,16 +56,14 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.Sale_Button = new System.Windows.Forms.Button();
             this.Cancel_Button = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.Context_Menu.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
@@ -321,33 +319,13 @@
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.groupBox1);
+            this.panel4.Controls.Add(this.label6);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.Payment_Combo);
             this.panel4.Location = new System.Drawing.Point(272, 403);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(254, 102);
             this.panel4.TabIndex = 22;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.groupBox1.Location = new System.Drawing.Point(5, 34);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(242, 61);
-            this.groupBox1.TabIndex = 22;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Açıklama";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(6, 19);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(230, 36);
-            this.textBox1.TabIndex = 0;
             // 
             // Sale_Button
             // 
@@ -378,6 +356,15 @@
             this.Cancel_Button.UseVisualStyleBackColor = true;
             this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(15, 35);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(61, 13);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "İlgili Hesap:";
+            // 
             // Manage_Sales_Mdi
             // 
             this.AcceptButton = this.Sale_Button;
@@ -406,8 +393,6 @@
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -438,13 +423,12 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button Sale_Button;
         private System.Windows.Forms.Button Cancel_Button;
         private System.Windows.Forms.ContextMenuStrip Context_Menu;
         private System.Windows.Forms.ToolStripMenuItem düzenleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem silToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manuelSatışToolStripMenuItem;
+        private System.Windows.Forms.Label label6;
     }
 }

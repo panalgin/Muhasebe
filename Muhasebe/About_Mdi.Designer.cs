@@ -38,8 +38,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
             this.Close_Button = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -150,17 +150,6 @@
             this.panel1.Size = new System.Drawing.Size(846, 67);
             this.panel1.TabIndex = 13;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label7.Location = new System.Drawing.Point(282, 28);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(241, 13);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Daflan Mikro Kaynak Yönetimi version 0.1";
-            // 
             // Close_Button
             // 
             this.Close_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -176,6 +165,17 @@
             this.Close_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Close_Button.UseVisualStyleBackColor = false;
             this.Close_Button.Click += new System.EventHandler(this.Close_Button_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label7.Location = new System.Drawing.Point(282, 28);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(251, 13);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Daflan Mikro Kaynak Yönetimi version 0.2.9";
             // 
             // pictureBox4
             // 
