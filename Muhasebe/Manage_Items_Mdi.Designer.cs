@@ -37,6 +37,7 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Edit_Button = new System.Windows.Forms.Button();
             this.Search_Box = new System.Windows.Forms.TextBox();
@@ -47,7 +48,6 @@
             this.Search_Button = new System.Windows.Forms.Button();
             this.Delete_Button = new System.Windows.Forms.Button();
             this.Add_Button = new System.Windows.Forms.Button();
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,7 +70,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(12, 41);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(601, 368);
+            this.listView1.Size = new System.Drawing.Size(775, 368);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -123,6 +123,13 @@
             this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader7.Width = 78;
             // 
+            // columnHeader9
+            // 
+            this.columnHeader9.DisplayIndex = 8;
+            this.columnHeader9.Text = "Grup";
+            this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader9.Width = 175;
+            // 
             // columnHeader8
             // 
             this.columnHeader8.DisplayIndex = 0;
@@ -134,7 +141,7 @@
             // 
             this.Edit_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Edit_Button.Enabled = false;
-            this.Edit_Button.Location = new System.Drawing.Point(619, 41);
+            this.Edit_Button.Location = new System.Drawing.Point(793, 41);
             this.Edit_Button.Name = "Edit_Button";
             this.Edit_Button.Size = new System.Drawing.Size(75, 23);
             this.Edit_Button.TabIndex = 2;
@@ -158,7 +165,7 @@
             this.Potential_Final_Label});
             this.statusStrip1.Location = new System.Drawing.Point(0, 431);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(706, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(880, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
@@ -199,7 +206,7 @@
             this.Delete_Button.Enabled = false;
             this.Delete_Button.Image = global::Muhasebe.Properties.Resources.delete;
             this.Delete_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Delete_Button.Location = new System.Drawing.Point(619, 70);
+            this.Delete_Button.Location = new System.Drawing.Point(793, 70);
             this.Delete_Button.Name = "Delete_Button";
             this.Delete_Button.Size = new System.Drawing.Size(75, 23);
             this.Delete_Button.TabIndex = 3;
@@ -212,7 +219,7 @@
             this.Add_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Add_Button.Image = global::Muhasebe.Properties.Resources.add;
             this.Add_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Add_Button.Location = new System.Drawing.Point(619, 12);
+            this.Add_Button.Location = new System.Drawing.Point(793, 12);
             this.Add_Button.Name = "Add_Button";
             this.Add_Button.Size = new System.Drawing.Size(75, 23);
             this.Add_Button.TabIndex = 1;
@@ -220,17 +227,11 @@
             this.Add_Button.UseVisualStyleBackColor = true;
             this.Add_Button.Click += new System.EventHandler(this.Add_Button_Click);
             // 
-            // columnHeader9
-            // 
-            this.columnHeader9.DisplayIndex = 8;
-            this.columnHeader9.Text = "Grup";
-            this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // Manage_Items_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(706, 453);
+            this.ClientSize = new System.Drawing.Size(880, 453);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.Search_Button);
             this.Controls.Add(this.Search_Box);

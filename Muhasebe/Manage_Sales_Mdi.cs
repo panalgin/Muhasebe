@@ -296,9 +296,12 @@ namespace Muhasebe
             this.Close();
         }
 
-        private void Payment_Combo_SelectedIndexChanged(object sender, EventArgs e)
+        private void Subtotal_Label_Click(object sender, EventArgs e)
         {
-
+            if (this.Subtotal_Label.ForeColor == SystemColors.Control)
+                this.Subtotal_Label.ForeColor = SystemColors.ControlText;
+            else
+                this.Subtotal_Label.ForeColor = SystemColors.Control;
         }
     }
 }

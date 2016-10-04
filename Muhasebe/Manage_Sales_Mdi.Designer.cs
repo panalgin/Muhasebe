@@ -101,12 +101,14 @@
             // Subtotal_Label
             // 
             this.Subtotal_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Subtotal_Label.ForeColor = System.Drawing.SystemColors.Control;
             this.Subtotal_Label.Location = new System.Drawing.Point(155, 10);
             this.Subtotal_Label.Name = "Subtotal_Label";
             this.Subtotal_Label.Size = new System.Drawing.Size(78, 13);
             this.Subtotal_Label.TabIndex = 10;
             this.Subtotal_Label.Text = "0 TL";
             this.Subtotal_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Subtotal_Label.Click += new System.EventHandler(this.Subtotal_Label_Click);
             // 
             // Tax_Label
             // 
