@@ -84,6 +84,7 @@ namespace Muhasebe
                 m_Item.Amount = this.Amount_Num.Value;
                 m_Item.BasePrice = this.Base_Price_Num.Value;
                 m_Item.FinalPrice = this.Final_Price_Num.Value;
+                m_Item.TermedPrice = this.Termed_Price_Num.Value;
                 m_Item.InventoryID = Convert.ToInt32(this.Inventory_Combo.SelectedValue);
                 m_Item.CreatedAt = DateTime.Now;
                 m_Item.Tax = Convert.ToInt32(this.Tax_Num.Value);
@@ -111,9 +112,21 @@ namespace Muhasebe
         {
             if (m_Running == false)
             {
-                Camera = new Camera(VIDEODEVICE, VIDEOWIDTH, VIDEOHEIGHT, VIDEOBITSPERPIXEL, this.Camera_Box);
-                this.Camera_Box.Visible = true;
-                m_Running = true;
+                try
+                {
+                    Camera = new Camera(VIDEODEVICE, VIDEOWIDTH, VIDEOHEIGHT, VIDEOBITSPERPIXEL, this.Camera_Box);
+                    this.Camera_Box.Visible = true;
+                    m_Running = true;
+                }
+                catch(Exception ex)
+                {
+                    Logger.Enqueue(ex);
+
+                    this.Camera_Box.Visible = false;
+                    m_Running = false;
+                    MessageBox.Show("Sisteminizdeki kamera ile bağlantı kurulamadı. Tekrar deneyin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
+                }
             }
             else
             {
@@ -234,6 +247,14 @@ namespace Muhasebe
             }
             else
                 this.Error_Provider.SetError(this.Unit_Type_Combo, string.Empty);
+
+            if (this.Termed_Price_Num.Value < this.Final_Price_Num.Value)
+            {
+                this.Error_Provider.SetError(this.Termed_Price_Num, "Vadeli satış fiyatı normal satış fiyatından az olamaz.");
+                return false;
+            }
+            else
+                this.Error_Provider.SetError(this.Termed_Price_Num, string.Empty);
 
             return true;
         }

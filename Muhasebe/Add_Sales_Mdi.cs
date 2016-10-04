@@ -33,7 +33,7 @@ namespace Muhasebe
 
             if (m_Product != null)
             {
-                this.Item = m_Context.Items.Where(q => q.ProductID == m_Product.ID).FirstOrDefault();
+                this.Item = m_Context.Items.Where(q => q.ProductID == m_Product.ID && q.Inventory.OwnerID == Program.User.WorksAtID).FirstOrDefault();
                 this.Barcode_Box.Text = m_Product.Barcode;
                 this.Name_Box.Text = m_Product.Name;
                 this.Abbreviation_Label.Text = this.Item.UnitType.Name;

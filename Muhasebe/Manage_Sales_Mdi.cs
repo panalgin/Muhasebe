@@ -55,9 +55,20 @@ namespace Muhasebe
                 this.Payment_Combo.ValueMember = "ID";
                 this.Payment_Combo.Invalidate();
 
+                this.Payment_Combo.SelectedValueChanged += Payment_Combo_SelectedValueChanged;
+
                 PopulateListView();
 
                 this.Author_Label.Text = string.Format("Kasiyer: {0} {1}", Program.User.Name, Program.User.Surname);
+            }
+        }
+
+        private void Payment_Combo_SelectedValueChanged(object sender, EventArgs e)
+        { 
+            if (this.Payment_Combo.SelectedValue != null)
+            {
+                this.Invoice.PaymentTypeID = Convert.ToInt32(this.Payment_Combo.SelectedValue);
+                this.PopulateListView();
             }
         }
 
@@ -65,7 +76,6 @@ namespace Muhasebe
         {
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
-
                 this.Node_List.Items.Clear();
 
                 var m_Nodes = this.Invoice.Nodes;
@@ -92,8 +102,17 @@ namespace Muhasebe
                         m_ViewItem.SubItems.Add(m_Node.Amount.Value.ToString()); // format
                         m_ViewItem.SubItems.Add(m_Item.UnitType.Name);
                         m_ViewItem.SubItems.Add(string.Format("%{0}", m_Item.Tax.Value.ToString()));
-                        m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Item.FinalPrice.Value));
-                        m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Item.FinalPrice.Value * m_Node.Amount)); // format shit
+
+                        if (this.Invoice.PaymentTypeID.HasValue && this.Invoice.PaymentTypeID == 3 && m_Item.TermedPrice.HasValue && m_Item.TermedPrice.Value > m_Item.FinalPrice)
+                        {
+                            m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Item.TermedPrice.Value));
+                            m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Item.TermedPrice.Value * m_Node.Amount)); // format shit
+                        }
+                        else
+                        {
+                            m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Item.FinalPrice.Value));
+                            m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Item.FinalPrice.Value * m_Node.Amount)); // format shit
+                        }
 
 
                         if (i++ % 2 == 1)
@@ -103,12 +122,21 @@ namespace Muhasebe
                         }
 
                         m_Node.BasePrice = m_Item.BasePrice * m_Node.Amount.Value;
-                        m_Node.FinalPrice = m_Item.FinalPrice * m_Node.Amount.Value;
+
+                        if (this.Invoice.PaymentTypeID.HasValue && this.Invoice.PaymentTypeID == 3 && m_Item.TermedPrice.HasValue && m_Item.TermedPrice.Value > m_Item.FinalPrice)
+                            m_Node.FinalPrice = m_Item.TermedPrice * m_Node.Amount.Value;
+                        else
+                            m_Node.FinalPrice = m_Item.FinalPrice * m_Node.Amount.Value;
+
                         m_Node.Tax = m_Item.Tax;
 
                         m_Subtotal += m_Item.BasePrice.Value * m_Node.Amount.Value;
                         m_Tax += (m_Item.BasePrice.Value * ((decimal)m_Item.Tax.Value / 100)) * m_Node.Amount.Value;
-                        m_Total += m_Item.FinalPrice.Value * m_Node.Amount.Value;
+
+                        if (this.Invoice.PaymentTypeID.HasValue && this.Invoice.PaymentTypeID == 3 && m_Item.TermedPrice.HasValue && m_Item.TermedPrice.Value > m_Item.FinalPrice)
+                            m_Total += m_Item.TermedPrice.Value * m_Node.Amount.Value;
+                        else
+                            m_Total += m_Item.FinalPrice.Value * m_Node.Amount.Value;
 
                         this.Node_List.Items.Add(m_ViewItem);
                     }
@@ -266,6 +294,11 @@ namespace Muhasebe
         private void Cancel_Button_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Payment_Combo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

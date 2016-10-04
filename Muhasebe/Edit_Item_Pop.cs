@@ -109,6 +109,9 @@ namespace Muhasebe
             this.Tax_Num.Value = this.Item.Tax.Value;
             this.Final_Price_Num.Value = this.Item.FinalPrice.Value;
 
+            if (this.Item.TermedPrice.HasValue)
+                this.Termed_Price_Num.Value = this.Item.TermedPrice.Value;
+
             if (this.Item.GroupID != null)
                 this.Group_Combo.SelectedValue = this.Item.GroupID;
 
@@ -145,6 +148,11 @@ namespace Muhasebe
 
         private void Save_Button_Click(object sender, EventArgs e)
         {
+            if (this.Termed_Price_Num.Value < this.Final_Price_Num.Value)
+            {
+                MessageBox.Show("Vadeli satış fiyatı normal satış fiyatından küçük olamaz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (this.Item != null)
             {
                 MuhasebeEntities m_Context = new MuhasebeEntities();
@@ -158,6 +166,7 @@ namespace Muhasebe
                     m_Actual.BasePrice = this.Base_Price_Num.Value;
                     m_Actual.Tax = Convert.ToInt32(this.Tax_Num.Value);
                     m_Actual.FinalPrice = this.Final_Price_Num.Value;
+                    m_Actual.TermedPrice = this.Termed_Price_Num.Value;
                     m_Actual.Product.Name = this.Name_Box.Text;
                     m_Actual.GroupID = Convert.ToInt32(this.Group_Combo.SelectedValue);
 
