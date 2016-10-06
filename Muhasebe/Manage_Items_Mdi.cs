@@ -54,17 +54,31 @@ namespace Muhasebe
             public string Abbreviation { get; set; }
         }
 
-        private void PopulateListView(List<Item> list = null)
-        {
-            MuhasebeEntities m_Context = new MuhasebeEntities();
 
-            if (list == null)
+
+        private void PopulateListView()
+        {
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
                 var result = from item in m_Context.Items
-                             join product in (from pr in m_Context.Products select new { pr.ID, pr.Name, pr.Barcode }) on item.ProductID equals product.ID
-                             join inventory in (from iv in m_Context.Inventories where iv.OwnerID == Program.User.WorksAtID select new { iv.ID, iv.Name }) on item.InventoryID equals inventory.ID
+                             join product in (from pr in m_Context.Products
+                                              select new
+                                              {
+                                                  pr.ID,
+                                                  pr.Name,
+                                                  pr.Barcode
+                                              }) on item.ProductID equals product.ID
+                             join inventory in (from iv in m_Context.Inventories
+                                                where iv.OwnerID == Program.User.WorksAtID
+                                                select new
+                                                {
+                                                    iv.ID,
+                                                    iv.Name
+                                                }) on item.InventoryID equals inventory.ID
                              join unittype in (from ut in m_Context.UnitTypes where ut.OwnerID == null || ut.OwnerID == Program.User.WorksAtID select new { ut.ID, ut.DecimalPlaces, ut.Abbreviation }) on item.UnitTypeID equals unittype.ID
-                             join _group in (from gp in m_Context.ItemGroups select new { gp.ID, gp.Name}) on item.GroupID equals _group.ID orderby item.CreatedAt descending
+                             join _group in (from gp in m_Context.ItemGroups select new { gp.ID, gp.Name }) on item.GroupID equals _group.ID
+                             orderby item.CreatedAt descending
+
                              select new Faker
                              {
                                  ID = item.ID,
@@ -82,9 +96,105 @@ namespace Muhasebe
 
                 DoPopulateListViewFast(result.ToList());
             }
-            else
+        }
+
+        private void PopulateListView(string condition, object data)
+        {
+            switch(condition)
             {
-                DoPopulateListView(list);
+                case "GroupID":
+                    {
+                        using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                        {
+                            int m_GroupID = Convert.ToInt32(data);
+
+                            var result = from item in m_Context.Items where item.GroupID == m_GroupID
+                                         join product in (from pr in m_Context.Products
+                                                          select new
+                                                          {
+                                                              pr.ID,
+                                                              pr.Name,
+                                                              pr.Barcode
+                                                          }) on item.ProductID equals product.ID
+                                         join inventory in (from iv in m_Context.Inventories
+                                                            where iv.OwnerID == Program.User.WorksAtID
+                                                            select new
+                                                            {
+                                                                iv.ID,
+                                                                iv.Name
+                                                            }) on item.InventoryID equals inventory.ID
+                                         join unittype in (from ut in m_Context.UnitTypes where ut.OwnerID == null || ut.OwnerID == Program.User.WorksAtID select new { ut.ID, ut.DecimalPlaces, ut.Abbreviation }) on item.UnitTypeID equals unittype.ID
+                                         join _group in (from gp in m_Context.ItemGroups select new { gp.ID, gp.Name }) on item.GroupID equals _group.ID
+                                         orderby product.Name ascending
+
+                                         select new Faker
+                                         {
+                                             ID = item.ID,
+                                             Barcode = product.Barcode,
+                                             Name = product.Name,
+                                             Amount = item.Amount,
+                                             GroupName = _group.Name,
+                                             InventoryName = inventory.Name,
+                                             BasePrice = item.BasePrice,
+                                             FinalPrice = item.FinalPrice,
+                                             Tax = item.Tax,
+                                             DecimalPlaces = unittype.DecimalPlaces,
+                                             Abbreviation = unittype.Abbreviation
+                                         };
+
+                            DoPopulateListViewFast(result.ToList());
+                        }
+
+                        break;
+                    }
+
+                case "Search":
+                    {
+                        using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                        {
+                            string m_Keyword = Convert.ToString(data);
+
+                            var result = from item in m_Context.Items
+                                         join product in (from pr in m_Context.Products
+                                                          select new
+                                                          {
+                                                              pr.ID,
+                                                              pr.Name,
+                                                              pr.Barcode
+                                                          }) on item.ProductID equals product.ID
+                                         join inventory in (from iv in m_Context.Inventories
+                                                            where iv.OwnerID == Program.User.WorksAtID
+                                                            select new
+                                                            {
+                                                                iv.ID,
+                                                                iv.Name
+                                                            }) on item.InventoryID equals inventory.ID
+                                         join unittype in (from ut in m_Context.UnitTypes where ut.OwnerID == null || ut.OwnerID == Program.User.WorksAtID select new { ut.ID, ut.DecimalPlaces, ut.Abbreviation }) on item.UnitTypeID equals unittype.ID
+                                         join _group in (from gp in m_Context.ItemGroups select new { gp.ID, gp.Name }) on item.GroupID equals _group.ID
+                                         where product.Name.Contains(m_Keyword)
+                                         orderby _group.Name descending
+
+                                         select new Faker
+                                         {
+                                             ID = item.ID,
+                                             Barcode = product.Barcode,
+                                             Name = product.Name,
+                                             Amount = item.Amount,
+                                             GroupName = _group.Name,
+                                             InventoryName = inventory.Name,
+                                             BasePrice = item.BasePrice,
+                                             FinalPrice = item.FinalPrice,
+                                             Tax = item.Tax,
+                                             DecimalPlaces = unittype.DecimalPlaces,
+                                             Abbreviation = unittype.Abbreviation
+                                         };
+
+                            DoPopulateListViewFast(result.ToList());
+                        }
+
+                        break;
+                    }
+
             }
         }
 
@@ -160,57 +270,6 @@ namespace Muhasebe
 
                 this.listView1.Items.Add(m_ViewItem);
 
-                return true;
-            });
-
-            this.Total_Distinct_Item_Label.Text = string.Format("Toplam: {0} kalem ürün", m_Distinct);
-            this.Total_Cost_Label.Text = string.Format("Toplam Maliyet: {0:0.00} TL", m_Cost);
-            this.Potential_Final_Label.Text = string.Format("Potansiyel Satış Değeri: {0:0.00} TL", m_Final);
-        }
-
-        private void DoPopulateListView(List<Item> m_Items)
-        {
-            this.listView1.Items.Clear();
-
-            int i = 0;
-            Color m_Shaded = Color.FromArgb(240, 240, 240);
-
-            int m_Distinct = 0;
-            decimal m_Cost = 0.00M;
-            decimal m_Final = 0.00M;
-
-            m_Items.All(delegate(Item m_Item)
-            {
-                string m_Amount = m_Item.GetFormattedAmount();
-
-                ListViewItem m_ViewItem = new ListViewItem();
-                m_ViewItem.Text = m_Item.Product.Name;
-                m_ViewItem.SubItems.Add(m_Item.Product.Barcode);
-                m_ViewItem.SubItems.Add(m_Amount);
-                m_ViewItem.SubItems.Add(m_Item.BasePrice.ToString() + " TL");
-                m_ViewItem.SubItems.Add("%" + m_Item.Tax.ToString());
-                m_ViewItem.SubItems.Add(m_Item.FinalPrice.ToString() + " TL");
-                m_ViewItem.SubItems.Add(m_Item.Inventory.Name);
-
-                if (m_Item.Group != null)
-                    m_ViewItem.SubItems.Add(m_Item.Group.Name);
-                else
-                    m_ViewItem.SubItems.Add("-");
-
-                m_ViewItem.SubItems.Add((i + 1).ToString());
-                m_ViewItem.Tag = m_Item.ID;
-
-                m_Distinct++;
-                m_Cost += m_Item.BasePrice.Value * m_Item.Amount;
-                m_Final += m_Item.FinalPrice.Value * m_Item.Amount;
-
-                if (i++ % 2 == 1)
-                {
-                    m_ViewItem.BackColor = m_Shaded;
-                    m_ViewItem.UseItemStyleForSubItems = true;
-                }
-
-                this.listView1.Items.Add(m_ViewItem);
                 return true;
             });
 
@@ -313,11 +372,7 @@ namespace Muhasebe
             if (this.Search_Box.Text.Length > 0)
             {
                 string m_Keyword = this.Search_Box.Text.Trim();
-
-                MuhasebeEntities m_Context = new MuhasebeEntities();
-
-                var m_Result = m_Context.Items.Where(q => q.Inventory.Owner.ID == Program.User.WorksAtID && q.Product.Name.Contains(m_Keyword) || q.Product.Barcode == m_Keyword).ToList();
-                this.PopulateListView(m_Result);
+                this.PopulateListView("Search", m_Keyword);
             }
         }
 
@@ -339,11 +394,7 @@ namespace Muhasebe
 
                 if (m_ID > 0)
                 {
-                    using(MuhasebeEntities m_Context = new MuhasebeEntities())
-                    {
-                        var m_Result = m_Context.Items.Where(q => q.Inventory.OwnerID == Program.User.WorksAtID && q.GroupID == m_ID).OrderBy(q => q.Product.Name).ToList();
-                        this.PopulateListView(m_Result);
-                    }
+                    this.PopulateListView("GroupID", m_ID);
                 }
                 else
                 {
