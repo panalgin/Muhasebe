@@ -54,8 +54,6 @@ namespace Muhasebe
             public string Abbreviation { get; set; }
         }
 
-
-
         private void PopulateListView()
         {
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
@@ -94,7 +92,7 @@ namespace Muhasebe
                                  Abbreviation = unittype.Abbreviation
                              };
 
-                DoPopulateListViewFast(result.ToList());
+                DoPopulateListView(result.ToList());
             }
         }
 
@@ -142,7 +140,7 @@ namespace Muhasebe
                                              Abbreviation = unittype.Abbreviation
                                          };
 
-                            DoPopulateListViewFast(result.ToList());
+                            DoPopulateListView(result.ToList());
                         }
 
                         break;
@@ -189,7 +187,7 @@ namespace Muhasebe
                                              Abbreviation = unittype.Abbreviation
                                          };
 
-                            DoPopulateListViewFast(result.ToList());
+                            DoPopulateListView(result.ToList());
                         }
 
                         break;
@@ -226,7 +224,7 @@ namespace Muhasebe
             return m_Amount;
         }
 
-        private void DoPopulateListViewFast(List<Faker> m_Items)
+        private void DoPopulateListView(List<Faker> m_Items)
         {
             this.listView1.Items.Clear();
 
