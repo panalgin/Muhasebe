@@ -843,6 +843,7 @@
     <None Include="Resources\Icon-user1.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Debug\Images\celik.png" />
     <Content Include="daflanicon2.ico" />
     <Content Include="Muhasebe.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

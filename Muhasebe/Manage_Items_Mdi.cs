@@ -39,19 +39,133 @@ namespace Muhasebe
             this.PopulateListView();
         }
 
-        private void PopulateListView(List<Item> list)
+        private class Faker
+        {
+            public int ID { get; set; }
+            public string Barcode { get; set; }
+            public string Name { get; set; }
+            public decimal Amount { get; set; }
+            public string GroupName { get; set; }
+            public string InventoryName { get; set; }
+            public decimal? BasePrice { get; set; }
+            public decimal? FinalPrice { get; set; }
+            public int? Tax { get; set; }
+            public int DecimalPlaces { get; set; }
+            public string Abbreviation { get; set; }
+        }
+
+        private void PopulateListView(List<Item> list = null)
         {
             MuhasebeEntities m_Context = new MuhasebeEntities();
 
             if (list == null)
-                list = m_Context.Items.Where(q => q.Inventory.Owner.ID == Program.User.WorksAtID).OrderByDescending(q => q.CreatedAt).Take(100).ToList();
+            {
+                var result = from item in m_Context.Items
+                             join product in (from pr in m_Context.Products select new { pr.ID, pr.Name, pr.Barcode }) on item.ProductID equals product.ID
+                             join inventory in (from iv in m_Context.Inventories where iv.OwnerID == Program.User.WorksAtID select new { iv.ID, iv.Name }) on item.InventoryID equals inventory.ID
+                             join unittype in (from ut in m_Context.UnitTypes where ut.OwnerID == null || ut.OwnerID == Program.User.WorksAtID select new { ut.ID, ut.DecimalPlaces, ut.Abbreviation }) on item.UnitTypeID equals unittype.ID
+                             join _group in (from gp in m_Context.ItemGroups select new { gp.ID, gp.Name}) on item.GroupID equals _group.ID orderby item.CreatedAt descending
+                             select new Faker
+                             {
+                                 ID = item.ID,
+                                 Barcode = product.Barcode,
+                                 Name = product.Name,
+                                 Amount = item.Amount,
+                                 GroupName = _group.Name,
+                                 InventoryName = inventory.Name,
+                                 BasePrice = item.BasePrice,
+                                 FinalPrice = item.FinalPrice,
+                                 Tax = item.Tax,
+                                 DecimalPlaces = unittype.DecimalPlaces,
+                                 Abbreviation = unittype.Abbreviation
+                             };
 
-            DoPopulateListView(list);
+                DoPopulateListViewFast(result.ToList());
+            }
+            else
+            {
+                DoPopulateListView(list);
+            }
         }
 
-        private void PopulateListView()
+        private string GetFormattedAmount(decimal amount, int decimalPlaces, string abbreviation)
         {
-            PopulateListView(null);
+            string m_Amount = "";
+
+            try
+            {
+                if (decimalPlaces == 0)
+                {
+                    if (amount == 0.0000M)
+                        m_Amount = string.Format("0 {0}", abbreviation);
+                    else
+                        m_Amount = string.Format("{0} {1}", amount.ToString("#"), abbreviation);
+                }
+
+                else
+                {
+                    string m_Format = "#." + "".PadRight(decimalPlaces, '#');
+                    m_Amount = amount.ToString(m_Format) + " " + abbreviation;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Enqueue(ex);
+            }
+
+            return m_Amount;
+        }
+
+        private void DoPopulateListViewFast(List<Faker> m_Items)
+        {
+            this.listView1.Items.Clear();
+
+            int i = 0;
+            Color m_Shaded = Color.FromArgb(240, 240, 240);
+
+            int m_Distinct = 0;
+            decimal m_Cost = 0.00M;
+            decimal m_Final = 0.00M;
+
+            m_Items.All(delegate (Faker m_Field)
+            {
+                string m_Amount = GetFormattedAmount(m_Field.Amount, m_Field.DecimalPlaces, m_Field.Abbreviation);
+
+                ListViewItem m_ViewItem = new ListViewItem();
+                m_ViewItem.Text = m_Field.Name;
+                m_ViewItem.SubItems.Add(m_Field.Barcode);
+                m_ViewItem.SubItems.Add(m_Amount);
+                m_ViewItem.SubItems.Add(m_Field.BasePrice.ToString() + " TL");
+                m_ViewItem.SubItems.Add("%" + m_Field.Tax.ToString());
+                m_ViewItem.SubItems.Add(m_Field.FinalPrice.ToString() + " TL");
+                m_ViewItem.SubItems.Add(m_Field.InventoryName);
+
+                if (m_Field.GroupName != null)
+                    m_ViewItem.SubItems.Add(m_Field.GroupName);
+                else
+                    m_ViewItem.SubItems.Add("-");
+
+                m_ViewItem.SubItems.Add((i + 1).ToString());
+                m_ViewItem.Tag = m_Field.ID;
+
+                m_Distinct++;
+                m_Cost += m_Field.BasePrice.Value * m_Field.Amount;
+                m_Final += m_Field.FinalPrice.Value * m_Field.Amount;
+
+                if (i++ % 2 == 1)
+                {
+                    m_ViewItem.BackColor = m_Shaded;
+                    m_ViewItem.UseItemStyleForSubItems = true;
+                }
+
+                this.listView1.Items.Add(m_ViewItem);
+
+                return true;
+            });
+
+            this.Total_Distinct_Item_Label.Text = string.Format("Toplam: {0} kalem ürün", m_Distinct);
+            this.Total_Cost_Label.Text = string.Format("Toplam Maliyet: {0:0.00} TL", m_Cost);
+            this.Potential_Final_Label.Text = string.Format("Potansiyel Satış Değeri: {0:0.00} TL", m_Final);
         }
 
         private void DoPopulateListView(List<Item> m_Items)
@@ -235,8 +349,7 @@ namespace Muhasebe
                 {
                     using (MuhasebeEntities m_Context = new MuhasebeEntities())
                     {
-                        var m_Result = m_Context.Items.Where(q => q.Inventory.OwnerID == Program.User.WorksAtID).OrderByDescending(q => q.CreatedAt).ToList();
-                        this.PopulateListView(m_Result);
+                        this.PopulateListView();
                     }
                 }
             }

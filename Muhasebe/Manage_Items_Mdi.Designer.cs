@@ -157,7 +157,8 @@
             // 
             // Search_Box
             // 
-            this.Search_Box.Location = new System.Drawing.Point(6, 335);
+            this.Search_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Search_Box.Location = new System.Drawing.Point(6, 518);
             this.Search_Box.Name = "Search_Box";
             this.Search_Box.Size = new System.Drawing.Size(137, 20);
             this.Search_Box.TabIndex = 4;
@@ -196,9 +197,10 @@
             // 
             // Search_Button
             // 
+            this.Search_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Search_Button.Image = global::Muhasebe.Properties.Resources.magnifier;
             this.Search_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Search_Button.Location = new System.Drawing.Point(68, 361);
+            this.Search_Button.Location = new System.Drawing.Point(68, 544);
             this.Search_Button.Name = "Search_Button";
             this.Search_Button.Size = new System.Drawing.Size(75, 23);
             this.Search_Button.TabIndex = 5;
@@ -250,8 +252,9 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 319);
+            this.label1.Location = new System.Drawing.Point(6, 502);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 13);
             this.label1.TabIndex = 6;
@@ -259,11 +262,13 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.flowLayoutPanel1.Controls.Add(this.All_Radio);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 19);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(137, 248);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(137, 480);
             this.flowLayoutPanel1.TabIndex = 7;
             // 
             // All_Radio

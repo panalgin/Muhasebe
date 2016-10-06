@@ -39,6 +39,7 @@ namespace Muhasebe
         public string Gsm { get; set; }
         public string Fax { get; set; }
         public Nullable<int> OwnerID { get; set; }
+        public string BackgroundLogo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Workers { get; set; }

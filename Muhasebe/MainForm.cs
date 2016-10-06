@@ -16,6 +16,7 @@ using System.Data.Entity.Core.Objects;
 using System.Data.Entity;
 using RawInputInterface;
 using Muhasebe.Scripts;
+using IO = System.IO;
 
 namespace Muhasebe
 {
@@ -50,14 +51,14 @@ namespace Muhasebe
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            this.Grid_Panel.Hide();
+
             SetLastFormState();
 
             BarcodeListener.Initialize(this.Handle);
 
             this.Menu_Strip.Enabled = false;
             this.Navigation_Strip.Enabled = false;
-
-            MuhasebeEntities m_Context = new MuhasebeEntities();
 
             EventSink.Error += EventSink_Error;
             EventSink.BarcodeScanned += EventSink_BarcodeScanned;
@@ -108,21 +109,26 @@ namespace Muhasebe
                 this.Process_Label.Text = string.Format("Hareket: {0} giriş yaptı.", args.User.Email);
 
                 Program.User = args.User;
+                ShowBackgroundLogo();
 
                 DeviceManager.Initialize();
 
                 if (GuiManipulator.CanShowStatistics)
+                {
                     this.Grid_Panel.Visible = true;
+                }
 
-                Event m_Event = new Event();
-                m_Event.AuthorID = args.User.ID;
-                m_Event.CategoryID = 6; // oturum
-                m_Event.CreatedAt = DateTime.Now;
-                m_Event.Description = "Kullanıcı oturum açtı.";
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    Event m_Event = new Event();
+                    m_Event.AuthorID = args.User.ID;
+                    m_Event.CategoryID = 6; // oturum
+                    m_Event.CreatedAt = DateTime.Now;
+                    m_Event.Description = "Kullanıcı oturum açtı.";
 
-                MuhasebeEntities m_Context = new MuhasebeEntities();
-                m_Context.Events.Add(m_Event);
-                m_Context.SaveChangesAsync();
+                    m_Context.Events.Add(m_Event);
+                    m_Context.SaveChangesAsync();
+                }
             }
             else
             {
@@ -248,9 +254,13 @@ namespace Muhasebe
         private void MainForm_MdiChildActivate(object sender, EventArgs e)
         {
             if (this.ActiveMdiChild == null && GuiManipulator.CanShowStatistics)
+            {
                 this.Grid_Panel.Visible = true;
+            }
             else
+            {
                 this.Grid_Panel.Visible = false;
+            }
         }
 
         private void Home_Button_Click(object sender, EventArgs e)
@@ -258,7 +268,9 @@ namespace Muhasebe
             if (this.ActiveMdiChild != null)
             {
                 if (GuiManipulator.CanShowStatistics)
+                {
                     this.Grid_Panel.Visible = true;
+                }
 
                 this.MdiChildren.All(delegate (Form m_Form)
                 {
@@ -617,6 +629,27 @@ namespace Muhasebe
             m_Mdi.MdiParent = this;
             m_Mdi.WindowState = FormWindowState.Maximized;
             m_Mdi.Show();
+        }
+
+        private void ShowBackgroundLogo()
+        {
+            this.BackgroundImageLayout = ImageLayout.Center;
+
+            foreach (Control ctl in this.Controls)
+            {
+                if (ctl is MdiClient)
+                {
+                    string m_FilePath = Program.User.WorksAt.BackgroundLogo;
+
+                    if (m_FilePath != string.Empty && IO.File.Exists(m_FilePath))
+                    { 
+                        ctl.BackgroundImageLayout = ImageLayout.Center;
+                        ctl.BackgroundImage = Image.FromFile(m_FilePath);
+                    }
+
+                    break;
+                }
+            }
         }
     }
 }
