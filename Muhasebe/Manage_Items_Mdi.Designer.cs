@@ -48,7 +48,13 @@
             this.Search_Button = new System.Windows.Forms.Button();
             this.Delete_Button = new System.Windows.Forms.Button();
             this.Add_Button = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.All_Radio = new System.Windows.Forms.RadioButton();
             this.statusStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // listView1
@@ -68,9 +74,9 @@
             this.columnHeader8});
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(12, 41);
+            this.listView1.Location = new System.Drawing.Point(167, 12);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(775, 368);
+            this.listView1.Size = new System.Drawing.Size(775, 568);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -141,7 +147,7 @@
             // 
             this.Edit_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Edit_Button.Enabled = false;
-            this.Edit_Button.Location = new System.Drawing.Point(793, 41);
+            this.Edit_Button.Location = new System.Drawing.Point(948, 41);
             this.Edit_Button.Name = "Edit_Button";
             this.Edit_Button.Size = new System.Drawing.Size(75, 23);
             this.Edit_Button.TabIndex = 2;
@@ -151,9 +157,9 @@
             // 
             // Search_Box
             // 
-            this.Search_Box.Location = new System.Drawing.Point(12, 12);
+            this.Search_Box.Location = new System.Drawing.Point(6, 335);
             this.Search_Box.Name = "Search_Box";
-            this.Search_Box.Size = new System.Drawing.Size(149, 20);
+            this.Search_Box.Size = new System.Drawing.Size(137, 20);
             this.Search_Box.TabIndex = 4;
             this.Search_Box.TextChanged += new System.EventHandler(this.Search_Box_TextChanged);
             // 
@@ -163,9 +169,9 @@
             this.Total_Distinct_Item_Label,
             this.Total_Cost_Label,
             this.Potential_Final_Label});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 431);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 583);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(880, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1035, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
@@ -192,7 +198,7 @@
             // 
             this.Search_Button.Image = global::Muhasebe.Properties.Resources.magnifier;
             this.Search_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Search_Button.Location = new System.Drawing.Point(167, 10);
+            this.Search_Button.Location = new System.Drawing.Point(68, 361);
             this.Search_Button.Name = "Search_Button";
             this.Search_Button.Size = new System.Drawing.Size(75, 23);
             this.Search_Button.TabIndex = 5;
@@ -206,7 +212,7 @@
             this.Delete_Button.Enabled = false;
             this.Delete_Button.Image = global::Muhasebe.Properties.Resources.delete;
             this.Delete_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Delete_Button.Location = new System.Drawing.Point(793, 70);
+            this.Delete_Button.Location = new System.Drawing.Point(948, 70);
             this.Delete_Button.Name = "Delete_Button";
             this.Delete_Button.Size = new System.Drawing.Size(75, 23);
             this.Delete_Button.TabIndex = 3;
@@ -219,7 +225,7 @@
             this.Add_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Add_Button.Image = global::Muhasebe.Properties.Resources.add;
             this.Add_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Add_Button.Location = new System.Drawing.Point(793, 12);
+            this.Add_Button.Location = new System.Drawing.Point(948, 12);
             this.Add_Button.Name = "Add_Button";
             this.Add_Button.Size = new System.Drawing.Size(75, 23);
             this.Add_Button.TabIndex = 1;
@@ -227,14 +233,60 @@
             this.Add_Button.UseVisualStyleBackColor = true;
             this.Add_Button.Click += new System.EventHandler(this.Add_Button_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.flowLayoutPanel1);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.Search_Box);
+            this.groupBox1.Controls.Add(this.Search_Button);
+            this.groupBox1.Location = new System.Drawing.Point(12, 7);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(149, 573);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Gösterim Seçenekleri";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 319);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "İsim İle Ürün Arayın:";
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.All_Radio);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 19);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(137, 248);
+            this.flowLayoutPanel1.TabIndex = 7;
+            // 
+            // All_Radio
+            // 
+            this.All_Radio.AutoSize = true;
+            this.All_Radio.Checked = true;
+            this.All_Radio.Location = new System.Drawing.Point(3, 3);
+            this.All_Radio.Name = "All_Radio";
+            this.All_Radio.Size = new System.Drawing.Size(52, 17);
+            this.All_Radio.TabIndex = 0;
+            this.All_Radio.TabStop = true;
+            this.All_Radio.Tag = "-1";
+            this.All_Radio.Text = "Tümü";
+            this.All_Radio.UseVisualStyleBackColor = true;
+            this.All_Radio.CheckedChanged += new System.EventHandler(this.All_Radio_CheckedChanged);
+            // 
             // Manage_Items_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(880, 453);
+            this.ClientSize = new System.Drawing.Size(1035, 605);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.Search_Button);
-            this.Controls.Add(this.Search_Box);
             this.Controls.Add(this.Delete_Button);
             this.Controls.Add(this.Edit_Button);
             this.Controls.Add(this.Add_Button);
@@ -245,6 +297,10 @@
             this.Load += new System.EventHandler(this.Manage_Items_Mdi_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,5 +327,9 @@
         private System.Windows.Forms.ToolStripStatusLabel Potential_Final_Label;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.RadioButton All_Radio;
     }
 }

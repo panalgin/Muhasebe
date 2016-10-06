@@ -19,6 +19,23 @@ namespace Muhasebe
 
         private void Manage_Items_Mdi_Load(object sender, EventArgs e)
         {
+            using(MuhasebeEntities m_Context = new MuhasebeEntities())
+            {
+                var m_Groups = m_Context.ItemGroups.OrderBy(q => q.Name).ToList();
+
+                m_Groups.ForEach(delegate (ItemGroup group)
+                {
+                    RadioButton m_Button = new RadioButton();
+                    m_Button.Text = group.Name;
+                    m_Button.AutoSize = true;
+                    m_Button.UseVisualStyleBackColor = true;
+                    m_Button.Tag = group.ID;
+                    m_Button.CheckedChanged += All_Radio_CheckedChanged;
+
+                    this.flowLayoutPanel1.Controls.Add(m_Button);
+                });
+            }
+
             this.PopulateListView();
         }
 
@@ -195,6 +212,33 @@ namespace Muhasebe
             if (this.Search_Box.Text == string.Empty || this.Search_Box.Text == null)
             {
                 this.PopulateListView();
+            }
+        }
+
+        private void All_Radio_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton m_Button = sender as RadioButton; ;
+
+            if (m_Button.Checked)
+            {
+                int m_ID = Convert.ToInt32(m_Button.Tag);
+
+                if (m_ID > 0)
+                {
+                    using(MuhasebeEntities m_Context = new MuhasebeEntities())
+                    {
+                        var m_Result = m_Context.Items.Where(q => q.Inventory.OwnerID == Program.User.WorksAtID && q.GroupID == m_ID).OrderBy(q => q.Product.Name).ToList();
+                        this.PopulateListView(m_Result);
+                    }
+                }
+                else
+                {
+                    using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                    {
+                        var m_Result = m_Context.Items.Where(q => q.Inventory.OwnerID == Program.User.WorksAtID).OrderByDescending(q => q.CreatedAt).ToList();
+                        this.PopulateListView(m_Result);
+                    }
+                }
             }
         }
     }

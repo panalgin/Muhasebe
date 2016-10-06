@@ -72,7 +72,7 @@ namespace Muhasebe
             {
                 m_Item.LocalImagePath = string.Format(Path.Combine(m_SavePath, m_FileName));
 
-                if (m_Item.Product.PublicImagePath == null || m_Item.Product.PublicImagePath == string.Empty)
+                /*if (m_Item.Product.PublicImagePath == null || m_Item.Product.PublicImagePath == string.Empty)
                     m_Item.Product.PublicImagePath = string.Format("img/products/{0}", m_FileName);
 
 
@@ -104,7 +104,7 @@ namespace Muhasebe
                 catch (Exception ex)
                 {
                     Logger.Enqueue(ex);
-                }
+                }*/
 
                 try
                 {
