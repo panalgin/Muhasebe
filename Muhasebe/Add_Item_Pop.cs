@@ -258,16 +258,15 @@ namespace Muhasebe
 
             using(MuhasebeEntities m_Context = new MuhasebeEntities())
             {
-                int m_GroupID = Convert.ToInt32(this.Group_Combo.SelectedValue);
-                Item m_Existing = m_Context.Items.Where(q => q.Product.Name == this.Name_Box.Text && q.GroupID == m_GroupID).FirstOrDefault();
+                Item m_Existing = m_Context.Items.Where(q => q.Product.Barcode == this.Barcode_Box.Text).FirstOrDefault();
 
                 if (m_Existing != null)
                 {
-                    this.Error_Provider.SetError(this.Name_Box, "Böyle bir adla benzer bir ürün bu ürün gruba zaten girilmiş.");
+                    this.Error_Provider.SetError(this.Barcode_Box, "Aynı barkod ile başka bir ürün sisteminizde kayıtlı. Başka bir barkod üretiniz.");
                     return false;
                 }
                 else
-                    this.Error_Provider.SetError(this.Name_Box, "");
+                    this.Error_Provider.SetError(this.Barcode_Box, "");
             }
 
             return true;
