@@ -256,6 +256,20 @@ namespace Muhasebe
             else
                 this.Error_Provider.SetError(this.Termed_Price_Num, string.Empty);
 
+            using(MuhasebeEntities m_Context = new MuhasebeEntities())
+            {
+                int m_GroupID = Convert.ToInt32(this.Group_Combo.SelectedValue);
+                Item m_Existing = m_Context.Items.Where(q => q.Product.Name == this.Name_Box.Text && q.GroupID == m_GroupID).FirstOrDefault();
+
+                if (m_Existing != null)
+                {
+                    this.Error_Provider.SetError(this.Name_Box, "Böyle bir adla benzer bir ürün bu ürün gruba zaten girilmiş.");
+                    return false;
+                }
+                else
+                    this.Error_Provider.SetError(this.Name_Box, "");
+            }
+
             return true;
         }
 
