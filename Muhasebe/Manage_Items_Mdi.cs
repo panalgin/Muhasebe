@@ -56,6 +56,12 @@ namespace Muhasebe
 
         private void PopulateListView()
         {
+            if (this.All_Radio.Checked != true)
+            {
+                this.All_Radio.Checked = true;
+                return;
+            }
+
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
                 var result = from item in m_Context.Items
