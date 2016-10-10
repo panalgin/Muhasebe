@@ -384,7 +384,7 @@ namespace Muhasebe
 
         private void All_Radio_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton m_Button = sender as RadioButton; ;
+            RadioButton m_Button = sender as RadioButton;
 
             if (m_Button.Checked)
             {
