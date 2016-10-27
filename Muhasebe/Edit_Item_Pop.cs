@@ -102,12 +102,14 @@ namespace Muhasebe
 
             this.Barcode_Box.Text = this.Item.Product.Barcode.ToString();
             this.Name_Box.Text = this.Item.Product.Name.ToString();
+            this.OrderCode_Box.Text = this.Item.OrderCode;
             this.Inventory_Combo.SelectedValue = this.Item.Inventory.ID;
             this.Unit_Type_Combo.SelectedValue = this.Item.UnitType.ID;
             this.Amount_Num.Value = this.Item.Amount;
             this.Base_Price_Num.Value = this.Item.BasePrice.Value;
             this.Tax_Num.Value = this.Item.Tax.Value;
             this.Final_Price_Num.Value = this.Item.FinalPrice.Value;
+            this.OrderCode_Box.Text = this.Item.OrderCode;
 
             if (this.Item.TermedPrice.HasValue)
                 this.Termed_Price_Num.Value = this.Item.TermedPrice.Value;
@@ -169,6 +171,7 @@ namespace Muhasebe
                     m_Actual.TermedPrice = this.Termed_Price_Num.Value;
                     m_Actual.Product.Name = this.Name_Box.Text;
                     m_Actual.GroupID = Convert.ToInt32(this.Group_Combo.SelectedValue);
+                    m_Actual.OrderCode = this.OrderCode_Box.Text;
 
                     if (this.Picture_Box.ImageLocation.Length > 0 && this.Picture_Box.ImageLocation != this.Item.LocalImagePath)
                     {
@@ -250,10 +253,10 @@ namespace Muhasebe
 
         private void Barcode_Box_TextChanged(object sender, EventArgs e)
         {
-            if (this.Barcode_Box.Text.Length != 8)
-                this.Print_Barcode_Button.Enabled = false;
-            else
+            if (this.Barcode_Box.Text.Length > 0 && this.Barcode_Box.Text.Length <= 11)
                 this.Print_Barcode_Button.Enabled = true;
+            else
+                this.Print_Barcode_Button.Enabled = false;
         }
 
         private void Browse_Button_Click(object sender, EventArgs e)

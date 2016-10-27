@@ -207,6 +207,7 @@
           <Property Name="LocalImagePath" Type="nvarchar" MaxLength="1000" />
           <Property Name="GroupID" Type="int" />
           <Property Name="TermedPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="OrderCode" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="JobPositions">
           <Key>
@@ -566,6 +567,7 @@
           <Property Name="GroupID" Type="Int32" />
           <NavigationProperty Name="Group" Relationship="MuhasebeModel.ItemGroupItem" FromRole="Item" ToRole="ItemGroup" />
           <Property Name="TermedPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OrderCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="ItemProduct">
           <End Type="MuhasebeModel.Item" Role="Item" Multiplicity="*" />
@@ -1489,6 +1491,7 @@
           <EntitySetMapping Name="Items">
             <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.Item)">
               <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="OrderCode" ColumnName="OrderCode" />
                 <ScalarProperty Name="TermedPrice" ColumnName="TermedPrice" />
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
                 <ScalarProperty Name="LocalImagePath" ColumnName="LocalImagePath" />

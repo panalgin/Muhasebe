@@ -91,6 +91,7 @@ namespace Muhasebe
                 m_Item.UnitTypeID = Convert.ToInt32(this.Unit_Type_Combo.SelectedValue);
                 m_Item.ProductID = m_Product.ID;
                 m_Item.GroupID = Convert.ToInt32(this.Group_Combo.SelectedValue);
+                m_Item.OrderCode = this.OrderCode_Box.Text;
 
                 m_Context.Items.Add(m_Item);
                 m_Context.SaveChanges();
@@ -208,10 +209,10 @@ namespace Muhasebe
                 }
             }
 
-            if (this.Barcode_Box.Text.Length != 8)
-                this.Print_Barcode_Button.Enabled = false;
-            else
+            if (this.Barcode_Box.Text.Length > 0 && this.Barcode_Box.Text.Length <= 11)
                 this.Print_Barcode_Button.Enabled = true;
+            else
+                this.Print_Barcode_Button.Enabled = false;
         }
 
         private bool ValidateInput()

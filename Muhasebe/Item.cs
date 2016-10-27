@@ -26,6 +26,7 @@ namespace Muhasebe
         public string LocalImagePath { get; set; }
         public Nullable<int> GroupID { get; set; }
         public Nullable<decimal> TermedPrice { get; set; }
+        public string OrderCode { get; set; }
     
         public virtual Product Product { get; set; }
         public virtual Inventory Inventory { get; set; }

@@ -175,7 +175,7 @@ namespace Muhasebe
                                                             }) on item.InventoryID equals inventory.ID
                                          join unittype in (from ut in m_Context.UnitTypes where ut.OwnerID == null || ut.OwnerID == Program.User.WorksAtID select new { ut.ID, ut.DecimalPlaces, ut.Abbreviation }) on item.UnitTypeID equals unittype.ID
                                          join _group in (from gp in m_Context.ItemGroups select new { gp.ID, gp.Name }) on item.GroupID equals _group.ID
-                                         where product.Name.Contains(m_Keyword)
+                                         where product.Name.Contains(m_Keyword) || product.Barcode.Contains(m_Keyword)
                                          orderby _group.Name descending
 
                                          select new Faker

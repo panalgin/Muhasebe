@@ -36,7 +36,7 @@ namespace Muhasebe
 
                 if (e.KeyPressEvent.DeviceName.Contains("1D57"))
                 {
-                    if (e.KeyPressEvent.VKey != (int)Keys.Enter)
+                    if (e.KeyPressEvent.VKey != (int)Keys.Enter && e.KeyPressEvent.VKey != 16) // 16 = Data Link Escape
                         Buffer += string.Format("{0}", GetKeyNumericValue(e.KeyPressEvent.VKey));
 
                     if (e.KeyPressEvent.VKey == (int)Keys.Enter)
@@ -76,10 +76,9 @@ namespace Muhasebe
                                                                             { (int)Keys.NumPad9, 9 }
                                                                        };
 
-        private static int GetKeyNumericValue(int e)
+        private static char GetKeyNumericValue(int e)
         {
-            if (NumericKeys.ContainsKey(e)) return NumericKeys[e];
-            else return -1;
+            return (char)e;
         }
     }
 }

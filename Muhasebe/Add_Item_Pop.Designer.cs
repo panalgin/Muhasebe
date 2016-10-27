@@ -52,6 +52,8 @@
             this.Webcam_Button = new System.Windows.Forms.Button();
             this.Picture_Box = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Termed_Price_Num = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
             this.Group_Combo = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.Generate_Barcode_Button = new System.Windows.Forms.Button();
@@ -61,8 +63,8 @@
             this.Save_Button = new System.Windows.Forms.Button();
             this.Cancel_Button = new System.Windows.Forms.Button();
             this.Print_Barcode_Button = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.Termed_Price_Num = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.OrderCode_Box = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Amount_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Base_Price_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Tax_Num)).BeginInit();
@@ -71,8 +73,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.Camera_Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture_Box)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Error_Provider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Termed_Price_Num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Error_Provider)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -108,12 +110,12 @@
             this.Name_Box.Location = new System.Drawing.Point(113, 45);
             this.Name_Box.Name = "Name_Box";
             this.Name_Box.Size = new System.Drawing.Size(159, 20);
-            this.Name_Box.TabIndex = 2;
+            this.Name_Box.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(54, 74);
+            this.label3.Location = new System.Drawing.Point(54, 100);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 4;
@@ -123,7 +125,7 @@
             // 
             this.Inventory_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Error_Provider.SetIconPadding(this.Inventory_Combo, -35);
-            this.Inventory_Combo.Location = new System.Drawing.Point(113, 71);
+            this.Inventory_Combo.Location = new System.Drawing.Point(113, 97);
             this.Inventory_Combo.Name = "Inventory_Combo";
             this.Inventory_Combo.Size = new System.Drawing.Size(159, 21);
             this.Inventory_Combo.TabIndex = 3;
@@ -131,7 +133,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(75, 128);
+            this.label4.Location = new System.Drawing.Point(75, 154);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 13);
             this.label4.TabIndex = 6;
@@ -142,7 +144,7 @@
             this.Unit_Type_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Unit_Type_Combo.FormattingEnabled = true;
             this.Error_Provider.SetIconPadding(this.Unit_Type_Combo, -35);
-            this.Unit_Type_Combo.Location = new System.Drawing.Point(113, 125);
+            this.Unit_Type_Combo.Location = new System.Drawing.Point(113, 151);
             this.Unit_Type_Combo.Name = "Unit_Type_Combo";
             this.Unit_Type_Combo.Size = new System.Drawing.Size(159, 21);
             this.Unit_Type_Combo.TabIndex = 5;
@@ -151,7 +153,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(68, 154);
+            this.label5.Location = new System.Drawing.Point(68, 180);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 13);
             this.label5.TabIndex = 8;
@@ -160,7 +162,7 @@
             // Amount_Num
             // 
             this.Error_Provider.SetIconPadding(this.Amount_Num, -35);
-            this.Amount_Num.Location = new System.Drawing.Point(113, 152);
+            this.Amount_Num.Location = new System.Drawing.Point(113, 178);
             this.Amount_Num.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -178,7 +180,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(54, 180);
+            this.label6.Location = new System.Drawing.Point(54, 206);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 13);
             this.label6.TabIndex = 10;
@@ -188,7 +190,7 @@
             // 
             this.Base_Price_Num.DecimalPlaces = 2;
             this.Error_Provider.SetIconPadding(this.Base_Price_Num, -35);
-            this.Base_Price_Num.Location = new System.Drawing.Point(113, 178);
+            this.Base_Price_Num.Location = new System.Drawing.Point(113, 204);
             this.Base_Price_Num.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -201,7 +203,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(50, 206);
+            this.label7.Location = new System.Drawing.Point(50, 232);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(57, 13);
             this.label7.TabIndex = 12;
@@ -210,7 +212,7 @@
             // Tax_Num
             // 
             this.Error_Provider.SetIconPadding(this.Tax_Num, -35);
-            this.Tax_Num.Location = new System.Drawing.Point(113, 204);
+            this.Tax_Num.Location = new System.Drawing.Point(113, 230);
             this.Tax_Num.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -228,7 +230,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(47, 232);
+            this.label8.Location = new System.Drawing.Point(47, 258);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(60, 13);
             this.label8.TabIndex = 14;
@@ -238,7 +240,7 @@
             // 
             this.Final_Price_Num.DecimalPlaces = 2;
             this.Error_Provider.SetIconPadding(this.Final_Price_Num, -35);
-            this.Final_Price_Num.Location = new System.Drawing.Point(113, 230);
+            this.Final_Price_Num.Location = new System.Drawing.Point(113, 256);
             this.Final_Price_Num.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -256,7 +258,7 @@
             this.groupBox1.Controls.Add(this.Picture_Box);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(175, 288);
+            this.groupBox1.Size = new System.Drawing.Size(175, 321);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ürün Fotoğrafı";
@@ -305,6 +307,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.OrderCode_Box);
             this.groupBox2.Controls.Add(this.Termed_Price_Num);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.Group_Combo);
@@ -329,16 +333,39 @@
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Location = new System.Drawing.Point(193, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(278, 288);
+            this.groupBox2.Size = new System.Drawing.Size(278, 321);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ürün Bilgileri";
+            // 
+            // Termed_Price_Num
+            // 
+            this.Termed_Price_Num.DecimalPlaces = 2;
+            this.Error_Provider.SetIconPadding(this.Termed_Price_Num, -35);
+            this.Termed_Price_Num.Location = new System.Drawing.Point(113, 282);
+            this.Termed_Price_Num.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.Termed_Price_Num.Name = "Termed_Price_Num";
+            this.Termed_Price_Num.Size = new System.Drawing.Size(159, 20);
+            this.Termed_Price_Num.TabIndex = 10;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(15, 284);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(92, 13);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "Vadeli Satış Fiyatı:";
             // 
             // Group_Combo
             // 
             this.Group_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Group_Combo.FormattingEnabled = true;
-            this.Group_Combo.Location = new System.Drawing.Point(113, 98);
+            this.Group_Combo.Location = new System.Drawing.Point(113, 124);
             this.Group_Combo.Name = "Group_Combo";
             this.Group_Combo.Size = new System.Drawing.Size(159, 21);
             this.Group_Combo.TabIndex = 4;
@@ -346,7 +373,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(74, 101);
+            this.label9.Location = new System.Drawing.Point(74, 127);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(33, 13);
             this.label9.TabIndex = 17;
@@ -366,7 +393,7 @@
             // Abbreviation_Label
             // 
             this.Abbreviation_Label.BackColor = System.Drawing.SystemColors.Window;
-            this.Abbreviation_Label.Location = new System.Drawing.Point(205, 156);
+            this.Abbreviation_Label.Location = new System.Drawing.Point(205, 182);
             this.Abbreviation_Label.Name = "Abbreviation_Label";
             this.Abbreviation_Label.Size = new System.Drawing.Size(47, 13);
             this.Abbreviation_Label.TabIndex = 15;
@@ -384,9 +411,10 @@
             // 
             // Save_Button
             // 
+            this.Save_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Save_Button.Image = global::Muhasebe.Properties.Resources.tick;
             this.Save_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Save_Button.Location = new System.Drawing.Point(267, 330);
+            this.Save_Button.Location = new System.Drawing.Point(267, 354);
             this.Save_Button.Name = "Save_Button";
             this.Save_Button.Size = new System.Drawing.Size(99, 23);
             this.Save_Button.TabIndex = 0;
@@ -396,10 +424,11 @@
             // 
             // Cancel_Button
             // 
+            this.Cancel_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.Cancel_Button.Image = global::Muhasebe.Properties.Resources.cancel;
             this.Cancel_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Cancel_Button.Location = new System.Drawing.Point(372, 330);
+            this.Cancel_Button.Location = new System.Drawing.Point(372, 354);
             this.Cancel_Button.Name = "Cancel_Button";
             this.Cancel_Button.Size = new System.Drawing.Size(99, 23);
             this.Cancel_Button.TabIndex = 1;
@@ -409,9 +438,10 @@
             // 
             // Print_Barcode_Button
             // 
+            this.Print_Barcode_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Print_Barcode_Button.Image = global::Muhasebe.Properties.Resources._195_barcode_icon;
             this.Print_Barcode_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Print_Barcode_Button.Location = new System.Drawing.Point(12, 330);
+            this.Print_Barcode_Button.Location = new System.Drawing.Point(12, 354);
             this.Print_Barcode_Button.Name = "Print_Barcode_Button";
             this.Print_Barcode_Button.Size = new System.Drawing.Size(101, 23);
             this.Print_Barcode_Button.TabIndex = 2;
@@ -420,28 +450,22 @@
             this.Print_Barcode_Button.UseVisualStyleBackColor = true;
             this.Print_Barcode_Button.Click += new System.EventHandler(this.Print_Barcode_Button_Click);
             // 
-            // label10
+            // label11
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(15, 258);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(92, 13);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "Vadeli Satış Fiyatı:";
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(38, 74);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(69, 13);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "Sipariş Kodu:";
             // 
-            // Termed_Price_Num
+            // OrderCode_Box
             // 
-            this.Termed_Price_Num.DecimalPlaces = 2;
-            this.Error_Provider.SetIconPadding(this.Termed_Price_Num, -35);
-            this.Termed_Price_Num.Location = new System.Drawing.Point(113, 256);
-            this.Termed_Price_Num.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.Termed_Price_Num.Name = "Termed_Price_Num";
-            this.Termed_Price_Num.Size = new System.Drawing.Size(159, 20);
-            this.Termed_Price_Num.TabIndex = 19;
+            this.Error_Provider.SetIconPadding(this.OrderCode_Box, -20);
+            this.OrderCode_Box.Location = new System.Drawing.Point(113, 71);
+            this.OrderCode_Box.Name = "OrderCode_Box";
+            this.OrderCode_Box.Size = new System.Drawing.Size(159, 20);
+            this.OrderCode_Box.TabIndex = 2;
             // 
             // Add_Item_Pop
             // 
@@ -449,7 +473,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.Cancel_Button;
-            this.ClientSize = new System.Drawing.Size(483, 365);
+            this.ClientSize = new System.Drawing.Size(483, 389);
             this.Controls.Add(this.Print_Barcode_Button);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Cancel_Button);
@@ -472,8 +496,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.Picture_Box)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Error_Provider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Termed_Price_Num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Error_Provider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -513,5 +537,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.NumericUpDown Termed_Price_Num;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox OrderCode_Box;
     }
 }
