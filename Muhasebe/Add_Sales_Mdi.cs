@@ -25,7 +25,59 @@ namespace Muhasebe
 
         }
 
-        private void Barcode_Box_Leave(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Sale_Button_Click(object sender, EventArgs e)
+        {
+            if (this.Item != null)
+            {
+                if (this.SalesForm != null)
+                {
+                    InvoiceNode m_Node = new InvoiceNode(this.Item);
+                    m_Node.Amount = this.Amount_Num.Value;
+                    m_Node.BasePrice = this.PerPrice_Num.Value;
+                    m_Node.FinalPrice = this.TotalPrice_Num.Value;
+
+                    this.SalesForm.Append(m_Node);
+                }
+            }
+
+            this.Close();
+        }
+
+        private void UseCustumPricing_Check_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.UseCustumPricing_Check.Checked)
+                this.PerPrice_Num.ReadOnly = false;
+            else
+            {
+                this.PerPrice_Num.ReadOnly = true;
+
+                if (this.Item != null)
+                    this.PerPrice_Num.Value = this.Item.FinalPrice.Value;
+            }
+        }
+
+        private void PerPrice_Num_ValueChanged(object sender, EventArgs e)
+        {
+            if (this.Item != null)
+            {
+                this.TotalPrice_Num.Value = this.PerPrice_Num.Value * this.Amount_Num.Value;
+            }
+        }
+
+        private void Amount_Num_ValueChanged(object sender, EventArgs e)
+        {
+            if (this.Item != null)
+            {
+                this.TotalPrice_Num.Value = this.PerPrice_Num.Value * this.Amount_Num.Value;
+            }
+        }
+
+        private void Barcode_Box_TextChanged(object sender, EventArgs e)
         {
             MuhasebeEntities m_Context = new MuhasebeEntities();
             string m_Barcode = this.Barcode_Box.Text;
@@ -38,47 +90,11 @@ namespace Muhasebe
                 this.Name_Box.Text = m_Product.Name;
                 this.Abbreviation_Label.Text = this.Item.UnitType.Name;
                 this.Amount_Num.Value = 1;
-                this.Final_Price_Num.Value = Item.FinalPrice.Value;
+                this.PerPrice_Num.Value = Item.FinalPrice.Value;
 
 
                 this.Barcode_Box.ReadOnly = true;
                 this.Name_Box.ReadOnly = true;
-            }
-           else
-                MessageBox.Show("Bu barkoda ait bir ürün bulunmamaktadır.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void Sale_Button_Click(object sender, EventArgs e)
-        {
-            if (this.Item != null)
-            {
-                if (this.SalesForm != null)
-                {
-                    InvoiceNode m_Node = new InvoiceNode();
-                    m_Node.ItemID = this.Item.ID;
-                    m_Node.Amount = this.Amount_Num.Value;
-                    m_Node.FinalPrice = this.Final_Price_Num.Value;
-                    this.SalesForm.Append(m_Node);
-                }
-            }
-
-            this.Close();
-        }
-
-        private void Amount_Num_Leave(object sender, EventArgs e)
-        {
-            MuhasebeEntities m_Context = new MuhasebeEntities();
-            string m_Barcode = this.Barcode_Box.Text;
-            Product m_Product = m_Context.Products.Where(q => q.Barcode == m_Barcode).FirstOrDefault();
-
-            if (m_Product != null)
-            {
-                this.Final_Price_Num.Value = this.Amount_Num.Value * Item.FinalPrice.Value;
             }
         }
     }

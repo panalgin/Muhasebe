@@ -151,6 +151,7 @@
     </Compile>
     <Compile Include="Custom\Company.partial.cs" />
     <Compile Include="Custom\Device.partial.cs" />
+    <Compile Include="Custom\InvoiceNode.cs" />
     <Compile Include="Custom\NetworkConnectionParameters.cs" />
     <Compile Include="Custom\SerialConnectionParameters.cs" />
     <Compile Include="Custom\UsbConnectionParameters.cs" />

@@ -25,7 +25,6 @@ namespace Muhasebe
             {
                 node.InvoiceID = this.Invoice.ID;
                 this.Invoice.Nodes.Add(node);
-
             }
             else
             {
@@ -77,7 +76,6 @@ namespace Muhasebe
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
                 this.Node_List.Items.Clear();
-
                 var m_Nodes = this.Invoice.Nodes;
 
                 decimal m_Subtotal = 0;
@@ -88,30 +86,29 @@ namespace Muhasebe
 
                 m_Nodes.All(delegate(InvoiceNode m_Node)
                 {
-                    Item m_Item = m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault();
-                    m_Node.Item = m_Item;
                     m_Node.Invoice = this.Invoice;
                     m_Node.InvoiceID = this.Invoice.ID;
+                    m_Node.Item = m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault();
 
-                    if (m_Item != null)
+                    if (m_Node.Item != null)
                     {
                         ListViewItem m_ViewItem = new ListViewItem();
                         m_ViewItem.Tag = m_Node.ItemID;
-                        m_ViewItem.Text = m_Item.Product.Barcode;
-                        m_ViewItem.SubItems.Add(m_Item.Product.Name);
+                        m_ViewItem.Text = m_Node.Item.Product.Barcode;
+                        m_ViewItem.SubItems.Add(m_Node.Item.Product.Name);
                         m_ViewItem.SubItems.Add(m_Node.Amount.Value.ToString()); // format
-                        m_ViewItem.SubItems.Add(m_Item.UnitType.Name);
-                        m_ViewItem.SubItems.Add(string.Format("%{0}", m_Item.Tax.Value.ToString()));
+                        m_ViewItem.SubItems.Add(m_Node.Item.UnitType.Name);
+                        m_ViewItem.SubItems.Add(string.Format("%{0}", m_Node.Item.Tax.Value.ToString()));
 
-                        if (this.Invoice.PaymentTypeID.HasValue && this.Invoice.PaymentTypeID == 3 && m_Item.TermedPrice.HasValue && m_Item.TermedPrice.Value > m_Item.FinalPrice)
+                        if (this.Invoice.PaymentTypeID.HasValue && this.Invoice.PaymentTypeID == 3 && m_Node.Item.TermedPrice.HasValue && m_Node.Item.TermedPrice.Value > m_Node.Item.FinalPrice)
                         {
-                            m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Item.TermedPrice.Value));
-                            m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Item.TermedPrice.Value * m_Node.Amount)); // format shit
+                            m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Node.Item.TermedPrice.Value));
+                            m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Node.Item.TermedPrice.Value * m_Node.Amount)); // format shit
                         }
                         else
                         {
-                            m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Item.FinalPrice.Value));
-                            m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Item.FinalPrice.Value * m_Node.Amount)); // format shit
+                            m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Node.BasePrice.Value));
+                            m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Node.BasePrice.Value * m_Node.Amount)); // format shit
                         }
 
 
@@ -121,22 +118,18 @@ namespace Muhasebe
                             m_ViewItem.UseItemStyleForSubItems = true;
                         }
 
-                        m_Node.BasePrice = m_Item.BasePrice * m_Node.Amount.Value;
-
-                        if (this.Invoice.PaymentTypeID.HasValue && this.Invoice.PaymentTypeID == 3 && m_Item.TermedPrice.HasValue && m_Item.TermedPrice.Value > m_Item.FinalPrice)
-                            m_Node.FinalPrice = m_Item.TermedPrice * m_Node.Amount.Value;
+                        if (this.Invoice.PaymentTypeID.HasValue && this.Invoice.PaymentTypeID == 3 && m_Node.Item.TermedPrice.HasValue && m_Node.Item.TermedPrice.Value > m_Node.Item.FinalPrice)
+                            m_Node.FinalPrice = m_Node.Item.TermedPrice * m_Node.Amount.Value;
                         else
-                            m_Node.FinalPrice = m_Item.FinalPrice * m_Node.Amount.Value;
+                            m_Node.FinalPrice = m_Node.BasePrice * m_Node.Amount.Value;
 
-                        m_Node.Tax = m_Item.Tax;
+                        m_Subtotal += m_Node.Item.BasePrice.Value * m_Node.Amount.Value;
+                        m_Tax += (m_Node.FinalPrice.Value * ((decimal)m_Node.Tax.Value / 100));
 
-                        m_Subtotal += m_Item.BasePrice.Value * m_Node.Amount.Value;
-                        m_Tax += (m_Item.BasePrice.Value * ((decimal)m_Item.Tax.Value / 100)) * m_Node.Amount.Value;
-
-                        if (this.Invoice.PaymentTypeID.HasValue && this.Invoice.PaymentTypeID == 3 && m_Item.TermedPrice.HasValue && m_Item.TermedPrice.Value > m_Item.FinalPrice)
-                            m_Total += m_Item.TermedPrice.Value * m_Node.Amount.Value;
+                        if (this.Invoice.PaymentTypeID.HasValue && this.Invoice.PaymentTypeID == 3 && m_Node.Item.TermedPrice.HasValue && m_Node.Item.TermedPrice.Value > m_Node.Item.FinalPrice)
+                            m_Total += m_Node.Item.TermedPrice.Value * m_Node.Amount.Value;
                         else
-                            m_Total += m_Item.FinalPrice.Value * m_Node.Amount.Value;
+                            m_Total += m_Node.BasePrice.Value * m_Node.Amount.Value;
 
                         this.Node_List.Items.Add(m_ViewItem);
                     }
@@ -249,7 +242,7 @@ namespace Muhasebe
                     this.Invoice.Nodes.All(delegate(InvoiceNode m_Node)
                     {
                         m_Total += m_Node.FinalPrice.Value;
-                        m_Tax += m_Node.FinalPrice.Value - m_Node.BasePrice.Value;
+                        m_Tax += m_Node.FinalPrice.Value * ((decimal)(m_Node.Tax.Value / 100));
 
                         m_Context.Items.Attach(m_Node.Item);
                         m_Context.Products.Attach(m_Node.Item.Product);
@@ -257,7 +250,9 @@ namespace Muhasebe
 
                         m_Node.Item.Amount -= m_Node.Amount.Value;
                         m_Node.InvoiceID = this.Invoice.ID;
+
                         m_Context.InvoiceNodes.Add(m_Node);
+
                         return true;
                     });
 

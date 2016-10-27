@@ -167,9 +167,9 @@ namespace Muhasebe
 
                                 m_Mdi.Shown += (s, a) =>
                                 {
-                                    InvoiceNode m_Node = new InvoiceNode();
-                                    m_Node.ItemID = m_Item.ID;
+                                    InvoiceNode m_Node = new InvoiceNode(m_Item);
                                     m_Node.Amount = 1;
+                                    m_Node.FinalPrice = m_Node.BasePrice * m_Node.Amount;
                                     m_Mdi.Append(m_Node);
                                 };
 
@@ -182,7 +182,13 @@ namespace Muhasebe
                             if (m_Existing != null)
                             {
                                 Manage_Sales_Mdi m_Mdi = m_Existing as Manage_Sales_Mdi;
-                                m_Mdi.BeginInvoke((MethodInvoker)delegate () { m_Mdi.Append(new InvoiceNode() { ItemID = m_Item.ID, Amount = 1 }); });
+                                m_Mdi.BeginInvoke((MethodInvoker)delegate () 
+                                {
+                                    InvoiceNode m_Node = new InvoiceNode(m_Item);
+                                    m_Node.Amount = 1;
+                                    m_Node.FinalPrice = m_Node.BasePrice * m_Node.Amount;
+                                    m_Mdi.Append(m_Node);
+                                });
                             }
                         }
                     }
