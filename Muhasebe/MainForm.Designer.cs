@@ -104,12 +104,12 @@
             this.Storage_Button = new System.Windows.Forms.ToolStripMenuItem();
             this.Items_Button = new System.Windows.Forms.ToolStripMenuItem();
             this.ürünGruplarıYönetimiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.siparişYönetimiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Safe_Button = new System.Windows.Forms.ToolStripDropDownButton();
             this.gelirYönetimiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.giderYönetimiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.istatistiklerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Events_Button = new System.Windows.Forms.ToolStripButton();
-            this.button1 = new System.Windows.Forms.Button();
             this.Menu_Strip.SuspendLayout();
             this.Status_Strip.SuspendLayout();
             this.Notify_Menu_Context.SuspendLayout();
@@ -802,7 +802,8 @@
             this.Inventory_Button.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Storage_Button,
             this.Items_Button,
-            this.ürünGruplarıYönetimiToolStripMenuItem});
+            this.ürünGruplarıYönetimiToolStripMenuItem,
+            this.siparişYönetimiToolStripMenuItem});
             this.Inventory_Button.Image = global::Muhasebe.Properties.Resources.server_components;
             this.Inventory_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Inventory_Button.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -831,6 +832,13 @@
             this.ürünGruplarıYönetimiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ürünGruplarıYönetimiToolStripMenuItem.Text = "Ürün Grupları Yönetimi";
             this.ürünGruplarıYönetimiToolStripMenuItem.Click += new System.EventHandler(this.ürünGruplarıYönetimiToolStripMenuItem_Click);
+            // 
+            // siparişYönetimiToolStripMenuItem
+            // 
+            this.siparişYönetimiToolStripMenuItem.Name = "siparişYönetimiToolStripMenuItem";
+            this.siparişYönetimiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.siparişYönetimiToolStripMenuItem.Text = "Sipariş Yönetimi";
+            this.siparişYönetimiToolStripMenuItem.Click += new System.EventHandler(this.siparişYönetimiToolStripMenuItem_Click);
             // 
             // Safe_Button
             // 
@@ -881,22 +889,11 @@
             this.Events_Button.Text = "Hareketler";
             this.Events_Button.Click += new System.EventHandler(this.Events_Button_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(911, 37);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1254, 726);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.Grid_Panel);
             this.Controls.Add(this.Navigation_Strip);
             this.Controls.Add(this.Status_Strip);
@@ -907,7 +904,7 @@
             this.MainMenuStrip = this.Menu_Strip;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Daflan - Mikro Kaynak Yönetimi - Version: 0.3.2";
+            this.Text = "Daflan - Mikro Kaynak Yönetimi - Version: 0.3.3";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MdiChildActivate += new System.EventHandler(this.MainForm_MdiChildActivate);
@@ -1010,7 +1007,7 @@
         private System.Windows.Forms.ToolStripMenuItem barkodTasarımYönetimiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ürünGruplarıYönetimiToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ürünGruplarıYönetimiToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem siparişYönetimiToolStripMenuItem;
     }
 }
 

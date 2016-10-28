@@ -141,6 +141,12 @@
     <Compile Include="Add_Inventory_Pop.Designer.cs">
       <DependentUpon>Add_Inventory_Pop.cs</DependentUpon>
     </Compile>
+    <Compile Include="Add_Order_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_Order_Mdi.Designer.cs">
+      <DependentUpon>Add_Order_Mdi.cs</DependentUpon>
+    </Compile>
     <Compile Include="BarcodeTemplate.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>
@@ -398,6 +404,12 @@
     <Compile Include="Manage_Items_Mdi.Designer.cs">
       <DependentUpon>Manage_Items_Mdi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Manage_Orders_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_Orders_Mdi.Designer.cs">
+      <DependentUpon>Manage_Orders_Mdi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Manage_PaymentType_Mdi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -510,6 +522,9 @@
     <EmbeddedResource Include="Add_Inventory_Pop.resx">
       <DependentUpon>Add_Inventory_Pop.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Add_Order_Mdi.resx">
+      <DependentUpon>Add_Order_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Edit_BarcodeTemplate_Pop.resx">
       <DependentUpon>Edit_BarcodeTemplate_Pop.cs</DependentUpon>
     </EmbeddedResource>
@@ -600,6 +615,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Manage_Items_Mdi.resx">
       <DependentUpon>Manage_Items_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_Orders_Mdi.resx">
+      <DependentUpon>Manage_Orders_Mdi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Manage_PaymentType_Mdi.resx">
       <DependentUpon>Manage_PaymentType_Mdi.cs</DependentUpon>

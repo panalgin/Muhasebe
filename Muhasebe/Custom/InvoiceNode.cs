@@ -12,7 +12,7 @@ namespace Muhasebe
 
         public InvoiceNode()
         {
-            throw new Exception("Ürün nesnesi oluşturulurken hata oluştur.");
+            //throw new Exception("Ürün nesnesi oluşturulurken hata oluştur.");
         }
 
         public InvoiceNode(Item item)

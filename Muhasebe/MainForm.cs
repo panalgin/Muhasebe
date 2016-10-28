@@ -638,6 +638,14 @@ namespace Muhasebe
             m_Mdi.Show();
         }
 
+        private void siparişYönetimiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Manage_Orders_Mdi m_Mdi = new Manage_Orders_Mdi();
+            m_Mdi.MdiParent = this;
+            m_Mdi.WindowState = FormWindowState.Maximized;
+            m_Mdi.Show();
+        }
+
         private void ShowBackgroundLogo()
         {
             this.BackgroundImageLayout = ImageLayout.Center;
