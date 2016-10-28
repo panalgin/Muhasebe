@@ -100,7 +100,7 @@ namespace Muhasebe
                         m_ViewItem.SubItems.Add(m_Node.Item.UnitType.Name);
                         m_ViewItem.SubItems.Add(string.Format("%{0}", m_Node.Item.Tax.Value.ToString()));
 
-                        if (this.Invoice.PaymentTypeID.HasValue && this.Invoice.PaymentTypeID == 3 && m_Node.Item.TermedPrice.HasValue && m_Node.Item.TermedPrice.Value > m_Node.Item.FinalPrice)
+                        if (this.Invoice.PaymentTypeID.HasValue && this.Invoice.PaymentTypeID == 3 && m_Node.Item.TermedPrice.HasValue && m_Node.Item.TermedPrice.Value > m_Node.Item.FinalPrice && m_Node.UseCustomPricing == false)
                         {
                             m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Node.Item.TermedPrice.Value));
                             m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Node.Item.TermedPrice.Value * m_Node.Amount)); // format shit

@@ -17,6 +17,7 @@ using System.Data.Entity;
 using RawInputInterface;
 using Muhasebe.Scripts;
 using IO = System.IO;
+using OpenHtmlToPdf;
 
 namespace Muhasebe
 {
@@ -148,7 +149,7 @@ namespace Muhasebe
 
                     if (m_Item == null)
                     {
-                        this.Invoke((MethodInvoker)delegate()
+                        this.Invoke((MethodInvoker)delegate ()
                         {
                             Add_Item_Pop m_Pop = new Add_Item_Pop(m_Barcode);
                             m_Pop.ShowDialog();
@@ -182,7 +183,7 @@ namespace Muhasebe
                             if (m_Existing != null)
                             {
                                 Manage_Sales_Mdi m_Mdi = m_Existing as Manage_Sales_Mdi;
-                                m_Mdi.BeginInvoke((MethodInvoker)delegate () 
+                                m_Mdi.BeginInvoke((MethodInvoker)delegate ()
                                 {
                                     InvoiceNode m_Node = new InvoiceNode(m_Item);
                                     m_Node.Amount = 1;
@@ -231,15 +232,15 @@ namespace Muhasebe
 
         private void MainForm_Resize(object sender, EventArgs e)
         {
-         /*   if (this.WindowState == FormWindowState.Minimized)
-            {
-                this.ShowInTaskbar = false;
-                this.Hide();
-            }
-            else
-            {
-                this.ShowInTaskbar = true;
-            }*/
+            /*   if (this.WindowState == FormWindowState.Minimized)
+               {
+                   this.ShowInTaskbar = false;
+                   this.Hide();
+               }
+               else
+               {
+                   this.ShowInTaskbar = true;
+               }*/
         }
 
         private void Notify_Icon_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -292,7 +293,7 @@ namespace Muhasebe
             m_Mdi.WindowState = FormWindowState.Maximized;
             m_Mdi.MdiParent = this;
             m_Mdi.Show();
-            
+
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -335,7 +336,7 @@ namespace Muhasebe
 
                 var m_Downwards = m_Context.PropertyReminders.Where(q => q.OwnerID == Program.User.WorksAtID && q.Item.Amount <= q.Minimum).ToList();
 
-                m_Downwards.All(delegate(PropertyReminder m_Reminder)
+                m_Downwards.All(delegate (PropertyReminder m_Reminder)
                 {
                     ListViewItem m_ViewItem = new ListViewItem();
                     m_ViewItem.Text = m_Reminder.Item.Product.Name;
@@ -361,13 +362,13 @@ namespace Muhasebe
                 DateTime m_Begin = new DateTime(m_Now.Year, m_Now.Month, m_Now.Day, 0, 0, 0);
                 var m_Invoices = m_Context.Invoices.Where(q => q.OwnerID == Program.User.WorksAtID && q.CreatedAt >= m_Begin).ToList();
 
-                m_Invoices.All(delegate(Invoice m_Invoice)
+                m_Invoices.All(delegate (Invoice m_Invoice)
                 {
                     m_Net += m_Invoice.Nodes.Sum(q => q.FinalPrice - q.BasePrice).Value;
                     m_Cost += m_Invoice.Nodes.Sum(q => q.BasePrice).Value;
                     m_Total += m_Invoice.Nodes.Sum(q => q.FinalPrice).Value;
                     m_Tax += m_Invoice.Nodes.Sum(q => (q.FinalPrice / 100) * q.Tax).Value;
-                    
+
                     return true;
                 });
 
@@ -394,18 +395,18 @@ namespace Muhasebe
                 var m_RevData = m_Context.Incomes.Where(q => q.OwnerID == Program.User.WorksAtID && q.CreatedAt >= m_Monthly).
                     GroupBy(q => new { Year = q.CreatedAt.Value.Year, Month = q.CreatedAt.Value.Month, Day = q.CreatedAt.Value.Day }).
                     Select(q => new
-                {
-                    Amount = q.Sum(x => x.Amount),
-                    CreatedAt = q.FirstOrDefault().CreatedAt
-                }).OrderBy(q => q.CreatedAt).ToList();
+                    {
+                        Amount = q.Sum(x => x.Amount),
+                        CreatedAt = q.FirstOrDefault().CreatedAt
+                    }).OrderBy(q => q.CreatedAt).ToList();
 
                 var m_ExpData = m_Context.Expenditures.Where(q => q.OwnerID == Program.User.WorksAtID && q.CreatedAt >= m_Monthly).
                     GroupBy(q => new { Year = q.CreatedAt.Value.Year, Month = q.CreatedAt.Value.Month, Day = q.CreatedAt.Value.Day }).
                     Select(q => new
-                {
-                    Amount = q.Sum(x => x.Amount),
-                    CreatedAt = q.FirstOrDefault().CreatedAt
-                }).OrderBy(q => q.CreatedAt).ToList();
+                    {
+                        Amount = q.Sum(x => x.Amount),
+                        CreatedAt = q.FirstOrDefault().CreatedAt
+                    }).OrderBy(q => q.CreatedAt).ToList();
 
                 Series m_Revenues = new Series();
                 m_Revenues.Name = "Gelirler";
@@ -417,7 +418,7 @@ namespace Muhasebe
                 decimal m_TotalMonthlyRevenue = 0.0000m;
                 decimal m_TotalMonthlyExpenditure = 0.0000m;
 
-                m_RevData.All(q => 
+                m_RevData.All(q =>
                 {
                     DateTime m_DateKey = new DateTime(q.CreatedAt.Value.Year, q.CreatedAt.Value.Month, q.CreatedAt.Value.Day);
                     DataPoint m_Point = new DataPoint(m_DateKey.ToOADate(), Convert.ToDouble(q.Amount));
@@ -495,7 +496,7 @@ namespace Muhasebe
                 this.chart2.Series.Add(m_MostSoldSerie);
 
                 i = 0;
-                
+
                 Series m_MostProfitableSerie = new Series();
                 m_MostProfitableSerie.ChartType = SeriesChartType.StackedColumn;
                 m_MostProfitableSerie.SmartLabelStyle.Enabled = false;
@@ -509,7 +510,7 @@ namespace Muhasebe
                     m_Point.AxisLabel = q.Item.Product.Name;
                     m_Point.LabelAngle = -90;
                     m_MostProfitableSerie.Points.Add(m_Point);
-                    
+
 
                     i++;
 
@@ -577,10 +578,10 @@ namespace Muhasebe
 
         private void istatistiklerToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-           /* Manage_Statistics_Mdi m_Mdi = new Manage_Statistics_Mdi();
-            m_Mdi.MdiParent = this;
-            m_Mdi.WindowState = FormWindowState.Maximized;
-            m_Mdi.Show();*/
+            /* Manage_Statistics_Mdi m_Mdi = new Manage_Statistics_Mdi();
+             m_Mdi.MdiParent = this;
+             m_Mdi.WindowState = FormWindowState.Maximized;
+             m_Mdi.Show();*/
         }
 
         private void Storge_Control_Click(object sender, EventArgs e)
@@ -648,7 +649,7 @@ namespace Muhasebe
                     string m_FilePath = Program.User.WorksAt.BackgroundLogo;
 
                     if (m_FilePath != string.Empty && IO.File.Exists(m_FilePath))
-                    { 
+                    {
                         ctl.BackgroundImageLayout = ImageLayout.Center;
                         ctl.BackgroundImage = Image.FromFile(m_FilePath);
                     }
@@ -656,6 +657,50 @@ namespace Muhasebe
                     break;
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string html = "";
+            string m_LocalPath = Application.StartupPath;
+            string m_IndexPath = IO.Path.Combine(m_LocalPath, "View\\OrderForm\\index.html");
+            string m_AbsPath = IO.Path.Combine(m_LocalPath, "View\\OrderForm\\");
+
+            using(IO.StreamReader m_Reader = new IO.StreamReader(m_IndexPath, Encoding.UTF8, true))
+            {
+                html = m_Reader.ReadToEnd();
+            }
+
+            html = html.Replace("{PATH}", m_AbsPath);
+            html = html.Replace("{BASEPATH}", m_LocalPath);
+            html = html.Replace("{COMPANY-NAME}", Program.User.WorksAt.Name);
+            html = html.Replace("{TAXID}", Program.User.WorksAt.TaxID);
+            html = html.Replace("{TAXPLACE}", Program.User.WorksAt.TaxDepartment);
+            html = html.Replace("{ADDRESS}", Program.User.WorksAt.Address);
+            html = html.Replace("{DISTRICT}", Program.User.WorksAt.District);
+            html = html.Replace("{PROVINCE}", Program.User.WorksAt.Province);
+            html = html.Replace("{TELEPHONE}", Program.User.WorksAt.Phone);
+            html = html.Replace("{EMAIL}", Program.User.WorksAt.Email);
+
+            var pdf = Pdf
+                .From(html)
+                .OfSize(PaperSize.A4)
+                .WithTitle("Title")
+                .WithMargins(0.8.Centimeters())
+                .WithoutOutline()
+                .Portrait()
+                .Comressed()
+                .Content();
+
+            IO.FileStream m_Stream = new IO.FileStream(string.Format("C:\\test-{0}.pdf", IO.Path.GetRandomFileName()), IO.FileMode.Create);
+
+            using (IO.BinaryWriter m_Writer = new IO.BinaryWriter(m_Stream))
+            {
+                m_Writer.Write(pdf, 0, pdf.Length);
+            }
+
+            m_Stream.Close();
+            m_Stream.Dispose();
         }
     }
 }

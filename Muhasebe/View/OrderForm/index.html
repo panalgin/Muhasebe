@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>{COMPANY-NAME} - Sipariş Formu</title>
+    <link href="{PATH}\css\main.css" type="text/css" rel="stylesheet" />
+    <link href="css/main.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="top">
+            <img class="logo" src="{PATH}\img\celik.png" />
+            <div class="company-tag">
+                <span>{COMPANY-NAME}</span>
+                <span>Vergi No: {TAXID}</span>
+                <span>Vergi Dairesi: {TAXPLACE}</span>
+                <span>Adres: {ADDRESS} {DISTRICT}/{PROVINCE}</span>
+                <span>Tel: {TELEPHONE}</span>
+                <span>Email: {EMAIL}</span>
+            </div>
+        </div>
+        <div class="main">
+            <div class="author">
+                <div class="header">Firma Yetkilisi</div>
+                <span>Mustafa YILDIZ</span>
+                <span>Pozisyon: İşyeri Sahibi</span>
+                <span>Gsm: 05414354339</span>
+                <span>Email: info@daflan.com</span>
+            </div>
+            <div class="attn">
+                <div class="header">İlgilinin Dikkatine</div>
+                <span>Sayın <b>{ATTN-NAME}</b> dikkatine;</span>
+                <span>Aşağıda belirtmiş olduğumuz ürünler hakkında bilgi/fiyat talep ediyoruz.</span>
+                <span>Saygılarımızla</span>
+            </div>
+            <div class="author form-details">
+                <div class="header">Form Detayı</div>
+                <span>Form No: 123</span>
+                <span>Tür: Sipariş Talep Formu</span>
+                <span>Geçerlilik Süresi: 20.10.2016 - 30.10.2016</span>
+            </div>
+            <div class="products">
+                <div class="column-names">
+                    <div class="img-col">Ürün Resmi</div>
+                    <div class="code-col">Ürün Kodu</div>
+                    <div class="name-col">Ürün İsmi</div>
+                    <div class="quantity-col">İstenilen Adet</div>
+                    <div class="desc-col">Açıklama</div>
+                </div>
+                <table>
+                    <tbody>
+                        <tr class="item">
+                            <td class="pro-img"><img src="{BASEPATH}/Images/kttd2vwops5.png" /></td>
+                            <td class="pro-code">LA321219900</td>
+                            <td class="pro-name">AgroParts - Hız Sensörü</td>
+                            <td class="pro-quantity">25 Adet</td>
+                            <td class="pro-desc">Gerekli açıklama buraya gelecek</td>
+                        </tr>
+                        <tr class="item gray">
+                            <td class="pro-img"><img src="{BASEPATH}/Images/kttd2vwops5.png" /></td>
+                            <td class="pro-code">LA321219900</td>
+                            <td class="pro-name">AgroParts - Hız Sensörü</td>
+                            <td class="pro-quantity">25 Adet</td>
+                            <td class="pro-desc">Gerekli açıklama buraya gelecek</td>
+                        </tr>
+                        <tr class="item">
+                            <td class="pro-img"><img src="{BASEPATH}/Images/kttd2vwops5.png" /></td>
+                            <td class="pro-code">LA321219900</td>
+                            <td class="pro-name">AgroParts - Hız Sensörü</td>
+                            <td class="pro-quantity">25 Adet</td>
+                            <td class="pro-desc">
+                                Gerekli açıklama buraya gelecek
+                                Gerekli açıklama buraya gelecek
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="bank">
+            <div class="header">Banka Hesap Bilgilerimiz</div>
+            <div class="content">
+                <span>AKBANK - Malkara Şubesi - Şube Kodu: 683 - Hesap No: 234325346 - IBAN: TR000000000000000000000000</span>
+                <span>GARANTİ - Malkara Şubesi - Şube Kodu: 683 - Hesap No: 234325346 - IBAN: TR000000000000000000000000</span>
+                <span>VAKIFBANK - Malkara Şubesi - Şube Kodu: 683 - Hesap No: 234325346 - IBAN: TR000000000000000000000000</span>
+            </div>
+        </div>
+        <div class="footer">
+            <img class="logo" src="{PATH}\img/logo.png" alt="Daflan Bilişim" />
+            <span class="desc">Bu form Daflan - Mikro Kaynak Yönetim Version: 0.3.3 kullanılarak üretilmiştir.</span>
+            <a class="link" href="http://www.daflan.com">www.daflan.com</a>
+            <span class="copyright">Copyright © Daflan Bilişim 2016</span>
+        </div>
+    </div>
+</body>
+</html>

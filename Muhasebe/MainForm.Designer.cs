@@ -92,10 +92,10 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.Grid_Panel = new System.Windows.Forms.Panel();
+            this.Image_List = new System.Windows.Forms.ImageList(this.components);
             this.Downward_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Image_List = new System.Windows.Forms.ImageList(this.components);
             this.Navigation_Strip = new Muhasebe.Custom.ToolStripEx();
             this.Home_Button = new System.Windows.Forms.ToolStripButton();
             this.Accounts_Button = new System.Windows.Forms.ToolStripButton();
@@ -109,6 +109,7 @@
             this.giderYönetimiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.istatistiklerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Events_Button = new System.Windows.Forms.ToolStripButton();
+            this.button1 = new System.Windows.Forms.Button();
             this.Menu_Strip.SuspendLayout();
             this.Status_Strip.SuspendLayout();
             this.Notify_Menu_Context.SuspendLayout();
@@ -709,6 +710,12 @@
             this.Grid_Panel.Visible = false;
             this.Grid_Panel.VisibleChanged += new System.EventHandler(this.Grid_Panel_VisibleChanged);
             // 
+            // Image_List
+            // 
+            this.Image_List.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Image_List.ImageStream")));
+            this.Image_List.TransparentColor = System.Drawing.Color.Transparent;
+            this.Image_List.Images.SetKeyName(0, "package.png");
+            // 
             // Downward_List
             // 
             this.Downward_List.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -734,12 +741,6 @@
             // 
             this.columnHeader1.Text = "Azalan Ürünler";
             this.columnHeader1.Width = 254;
-            // 
-            // Image_List
-            // 
-            this.Image_List.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Image_List.ImageStream")));
-            this.Image_List.TransparentColor = System.Drawing.Color.Transparent;
-            this.Image_List.Images.SetKeyName(0, "package.png");
             // 
             // Navigation_Strip
             // 
@@ -880,11 +881,22 @@
             this.Events_Button.Text = "Hareketler";
             this.Events_Button.Click += new System.EventHandler(this.Events_Button_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(911, 37);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1254, 726);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.Grid_Panel);
             this.Controls.Add(this.Navigation_Strip);
             this.Controls.Add(this.Status_Strip);
@@ -895,7 +907,7 @@
             this.MainMenuStrip = this.Menu_Strip;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Daflan - Mikro Kaynak Yönetimi - Version: 0.3.1";
+            this.Text = "Daflan - Mikro Kaynak Yönetimi - Version: 0.3.2";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MdiChildActivate += new System.EventHandler(this.MainForm_MdiChildActivate);
@@ -998,6 +1010,7 @@
         private System.Windows.Forms.ToolStripMenuItem barkodTasarımYönetimiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ürünGruplarıYönetimiToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ürünGruplarıYönetimiToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }
 

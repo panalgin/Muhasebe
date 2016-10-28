@@ -40,6 +40,9 @@ namespace Muhasebe
         public string Fax { get; set; }
         public Nullable<int> OwnerID { get; set; }
         public string BackgroundLogo { get; set; }
+        public string TaxID { get; set; }
+        public string TaxDepartment { get; set; }
+        public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Workers { get; set; }

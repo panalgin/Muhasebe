@@ -41,6 +41,9 @@ namespace Muhasebe
                     m_Node.BasePrice = this.PerPrice_Num.Value;
                     m_Node.FinalPrice = this.TotalPrice_Num.Value;
 
+                    if (this.UseCustumPricing_Check.Checked)
+                        m_Node.UseCustomPricing = true;
+
                     this.SalesForm.Append(m_Node);
                 }
             }

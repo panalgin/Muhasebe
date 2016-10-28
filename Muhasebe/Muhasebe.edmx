@@ -64,6 +64,9 @@
           <Property Name="Gsm" Type="nvarchar" MaxLength="11" />
           <Property Name="Fax" Type="nvarchar" MaxLength="11" />
           <Property Name="BackgroundLogo" Type="nvarchar" MaxLength="250" />
+          <Property Name="TaxID" Type="nvarchar" MaxLength="50" />
+          <Property Name="TaxDepartment" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="ConnectionTypes">
           <Key>
@@ -619,6 +622,9 @@
           <NavigationProperty Name="BarcodeTemplates" Relationship="MuhasebeModel.BarcodeTemplateCompany" FromRole="Company" ToRole="BarcodeTemplate" />
           <NavigationProperty Name="Accounts" Relationship="MuhasebeModel.AccountCompany" FromRole="Company" ToRole="Account" />
           <Property Name="BackgroundLogo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="TaxID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TaxDepartment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="UserCompany">
           <End Type="MuhasebeModel.User" Role="User" Multiplicity="*" />
@@ -1363,6 +1369,9 @@
           <EntitySetMapping Name="Companies">
             <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.Company)">
               <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TaxDepartment" ColumnName="TaxDepartment" />
+                <ScalarProperty Name="TaxID" ColumnName="TaxID" />
                 <ScalarProperty Name="BackgroundLogo" ColumnName="BackgroundLogo" />
                 <ScalarProperty Name="Fax" ColumnName="Fax" />
                 <ScalarProperty Name="Gsm" ColumnName="Gsm" />
