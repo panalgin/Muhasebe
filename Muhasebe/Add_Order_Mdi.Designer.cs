@@ -42,14 +42,16 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.düzenleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.silToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Save_Button = new System.Windows.Forms.Button();
-            this.Cancel_Button = new System.Windows.Forms.Button();
             this.Edit_Button = new System.Windows.Forms.Button();
             this.Delete_Button = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.Attn_Note = new System.Windows.Forms.TextBox();
-            this.searchBox1 = new Muhasebe.Custom.SearchBox();
+            this.Cancel_Button = new System.Windows.Forms.Button();
+            this.Save_Button = new System.Windows.Forms.Button();
+            this.Error_Provider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.Account_Box = new Muhasebe.Custom.SearchBox();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Error_Provider)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -63,6 +65,7 @@
             // 
             // Name_Box
             // 
+            this.Error_Provider.SetIconPadding(this.Name_Box, -20);
             this.Name_Box.Location = new System.Drawing.Point(103, 17);
             this.Name_Box.Name = "Name_Box";
             this.Name_Box.Size = new System.Drawing.Size(216, 20);
@@ -106,6 +109,7 @@
             this.listView1.TabIndex = 8;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnHeader6
             // 
@@ -156,17 +160,47 @@
             this.silToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.silToolStripMenuItem.Text = "Sil";
             // 
-            // Save_Button
+            // Edit_Button
             // 
-            this.Save_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Save_Button.Image = global::Muhasebe.Properties.Resources.tick;
-            this.Save_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Save_Button.Location = new System.Drawing.Point(521, 445);
-            this.Save_Button.Name = "Save_Button";
-            this.Save_Button.Size = new System.Drawing.Size(89, 23);
-            this.Save_Button.TabIndex = 7;
-            this.Save_Button.Text = "Kaydet";
-            this.Save_Button.UseVisualStyleBackColor = true;
+            this.Edit_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Edit_Button.Enabled = false;
+            this.Edit_Button.Location = new System.Drawing.Point(608, 95);
+            this.Edit_Button.Name = "Edit_Button";
+            this.Edit_Button.Size = new System.Drawing.Size(75, 23);
+            this.Edit_Button.TabIndex = 5;
+            this.Edit_Button.Text = "Düzenle";
+            this.Edit_Button.UseVisualStyleBackColor = true;
+            this.Edit_Button.Click += new System.EventHandler(this.Edit_Button_Click);
+            // 
+            // Delete_Button
+            // 
+            this.Delete_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Delete_Button.Enabled = false;
+            this.Delete_Button.Location = new System.Drawing.Point(608, 124);
+            this.Delete_Button.Name = "Delete_Button";
+            this.Delete_Button.Size = new System.Drawing.Size(75, 23);
+            this.Delete_Button.TabIndex = 6;
+            this.Delete_Button.Text = "Sil";
+            this.Delete_Button.UseVisualStyleBackColor = true;
+            this.Delete_Button.Click += new System.EventHandler(this.Delete_Button_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(352, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(69, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Yetkiliye Not:";
+            // 
+            // Attn_Note
+            // 
+            this.Error_Provider.SetIconPadding(this.Attn_Note, -20);
+            this.Attn_Note.Location = new System.Drawing.Point(427, 17);
+            this.Attn_Note.Multiline = true;
+            this.Attn_Note.Name = "Attn_Note";
+            this.Attn_Note.Size = new System.Drawing.Size(256, 47);
+            this.Attn_Note.TabIndex = 4;
             // 
             // Cancel_Button
             // 
@@ -180,60 +214,40 @@
             this.Cancel_Button.Text = "İptal";
             this.Cancel_Button.UseVisualStyleBackColor = true;
             // 
-            // Edit_Button
+            // Save_Button
             // 
-            this.Edit_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Edit_Button.Location = new System.Drawing.Point(608, 130);
-            this.Edit_Button.Name = "Edit_Button";
-            this.Edit_Button.Size = new System.Drawing.Size(75, 23);
-            this.Edit_Button.TabIndex = 5;
-            this.Edit_Button.Text = "Düzenle";
-            this.Edit_Button.UseVisualStyleBackColor = true;
+            this.Save_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Save_Button.Image = global::Muhasebe.Properties.Resources.tick;
+            this.Save_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Save_Button.Location = new System.Drawing.Point(521, 445);
+            this.Save_Button.Name = "Save_Button";
+            this.Save_Button.Size = new System.Drawing.Size(89, 23);
+            this.Save_Button.TabIndex = 7;
+            this.Save_Button.Text = "Kaydet";
+            this.Save_Button.UseVisualStyleBackColor = true;
+            this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
             // 
-            // Delete_Button
+            // Error_Provider
             // 
-            this.Delete_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Delete_Button.Location = new System.Drawing.Point(608, 159);
-            this.Delete_Button.Name = "Delete_Button";
-            this.Delete_Button.Size = new System.Drawing.Size(75, 23);
-            this.Delete_Button.TabIndex = 6;
-            this.Delete_Button.Text = "Sil";
-            this.Delete_Button.UseVisualStyleBackColor = true;
+            this.Error_Provider.ContainerControl = this;
             // 
-            // label5
+            // Account_Box
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(352, 20);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Yetkiliye Not:";
-            // 
-            // Attn_Note
-            // 
-            this.Attn_Note.Location = new System.Drawing.Point(427, 17);
-            this.Attn_Note.Multiline = true;
-            this.Attn_Note.Name = "Attn_Note";
-            this.Attn_Note.Size = new System.Drawing.Size(256, 47);
-            this.Attn_Note.TabIndex = 4;
-            // 
-            // searchBox1
-            // 
-            this.searchBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.searchBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.searchBox1.FillType = Muhasebe.Custom.SearchBox.Fillable.Account;
-            this.searchBox1.FormattingEnabled = true;
-            this.searchBox1.Location = new System.Drawing.Point(103, 43);
-            this.searchBox1.Name = "searchBox1";
-            this.searchBox1.Size = new System.Drawing.Size(216, 21);
-            this.searchBox1.TabIndex = 14;
+            this.Account_Box.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.Account_Box.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.Account_Box.FillType = Muhasebe.Custom.SearchBox.Fillable.Account;
+            this.Account_Box.FormattingEnabled = true;
+            this.Account_Box.Location = new System.Drawing.Point(103, 43);
+            this.Account_Box.Name = "Account_Box";
+            this.Account_Box.Size = new System.Drawing.Size(216, 21);
+            this.Account_Box.TabIndex = 14;
             // 
             // Add_Order_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 480);
-            this.Controls.Add(this.searchBox1);
+            this.Controls.Add(this.Account_Box);
             this.Controls.Add(this.Attn_Note);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.Delete_Button);
@@ -253,6 +267,7 @@
             this.Text = "Yeni Sipariş Ekle";
             this.Load += new System.EventHandler(this.Add_Order_Mdi_Load);
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Error_Provider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,6 +294,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem düzenleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem silToolStripMenuItem;
-        private Custom.SearchBox searchBox1;
+        private Custom.SearchBox Account_Box;
+        private System.Windows.Forms.ErrorProvider Error_Provider;
     }
 }

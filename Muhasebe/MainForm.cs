@@ -141,6 +141,13 @@ namespace Muhasebe
         {
             if (args.Barcode != string.Empty)
             {
+                if (this.Visible && !this.CanFocus)
+                {
+                    // modal child windows are open
+
+                    return;
+                }
+
                 using (MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
                     string m_Barcode = args.Barcode;
