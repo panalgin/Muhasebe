@@ -163,6 +163,9 @@
     <Compile Include="Custom\Device.partial.cs" />
     <Compile Include="Custom\InvoiceNode.cs" />
     <Compile Include="Custom\NetworkConnectionParameters.cs" />
+    <Compile Include="Custom\SearchBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Custom\SerialConnectionParameters.cs" />
     <Compile Include="Custom\UsbConnectionParameters.cs" />
     <Compile Include="Device.cs">
@@ -472,6 +475,12 @@
     </Compile>
     <Compile Include="Options_Mdi.Designer.cs">
       <DependentUpon>Options_Mdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderNode.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>
     <Compile Include="PaymentType.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>

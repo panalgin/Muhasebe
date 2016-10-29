@@ -52,5 +52,7 @@ namespace Muhasebe
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Province> Provinces { get; set; }
         public virtual DbSet<AccountType> AccountTypes { get; set; }
+        public virtual DbSet<OrderNode> OrderNodes { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
     }
 }

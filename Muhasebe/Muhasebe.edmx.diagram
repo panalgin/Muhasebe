@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="77ff789032bb42378e8fb0399c51bfd2" Name="Diagram1" ZoomLevel="96" >
+      <Diagram DiagramId="77ff789032bb42378e8fb0399c51bfd2" Name="Diagram1" ZoomLevel="106" >
         <EntityTypeShape EntityType="MuhasebeModel.Product" Width="1.5" PointX="6" PointY="29.75" />
         <EntityTypeShape EntityType="MuhasebeModel.User" Width="1.5" PointX="3" PointY="5" />
         <EntityTypeShape EntityType="MuhasebeModel.Inventory" Width="1.5" PointX="6" PointY="26.5" />
@@ -69,6 +69,13 @@
         <EntityTypeShape EntityType="MuhasebeModel.AccountType" Width="1.5" PointX="3.375" PointY="0.75" />
         <AssociationConnector Association="MuhasebeModel.AccountTypeAccount" />
         <AssociationConnector Association="MuhasebeModel.AccountCompany" />
+        <EntityTypeShape EntityType="MuhasebeModel.OrderNode" Width="1.5" PointX="12.875" PointY="6.625" />
+        <EntityTypeShape EntityType="MuhasebeModel.Order" Width="1.5" PointX="10.625" PointY="6.625" />
+        <AssociationConnector Association="MuhasebeModel.OrderNodeOrder" />
+        <AssociationConnector Association="MuhasebeModel.OrderAccount" />
+        <AssociationConnector Association="MuhasebeModel.OrderUser" />
+        <AssociationConnector Association="MuhasebeModel.OrderCompany" />
+        <AssociationConnector Association="MuhasebeModel.OrderNodeItem" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -16,5 +16,10 @@ namespace Muhasebe
         {
             InitializeComponent();
         }
+
+        private void Add_Order_Mdi_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

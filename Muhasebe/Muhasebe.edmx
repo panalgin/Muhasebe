@@ -219,6 +219,28 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="45" />
         </EntityType>
+        <EntityType Name="OrderNodes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AccountID" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="AuthorID" Type="int" Nullable="false" />
+          <Property Name="OwnerID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="PaymentTypes">
           <Key>
             <PropertyRef Name="ID" />
@@ -312,6 +334,8 @@
           <EntitySet Name="ItemGroups" EntityType="Self.ItemGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobPositions" EntityType="Self.JobPositions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderNodes" EntityType="Self.OrderNodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentTypes" EntityType="Self.PaymentTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropertyReminders" EntityType="Self.PropertyReminders" Schema="dbo" store:Type="Tables" />
@@ -508,6 +532,28 @@
             <End Role="Account" EntitySet="Accounts" />
             <End Role="Company" EntitySet="Companies" />
           </AssociationSet>
+          <EntitySet Name="OrderNodes" EntityType="MuhasebeModel.OrderNode" />
+          <EntitySet Name="Orders" EntityType="MuhasebeModel.Order" />
+          <AssociationSet Name="OrderNodeOrder" Association="MuhasebeModel.OrderNodeOrder">
+            <End Role="OrderNode" EntitySet="OrderNodes" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="OrderAccount" Association="MuhasebeModel.OrderAccount">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="OrderUser" Association="MuhasebeModel.OrderUser">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="OrderCompany" Association="MuhasebeModel.OrderCompany">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="OrderNodeItem" Association="MuhasebeModel.OrderNodeItem">
+            <End Role="OrderNode" EntitySet="OrderNodes" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Product">
           <Key>
@@ -625,6 +671,7 @@
           <Property Name="TaxID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TaxDepartment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="MuhasebeModel.OrderCompany" FromRole="Company" ToRole="Order" />
         </EntityType>
         <Association Name="UserCompany">
           <End Type="MuhasebeModel.User" Role="User" Multiplicity="*" />
@@ -1317,6 +1364,94 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="OrderNode">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemID" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="MuhasebeModel.OrderNodeOrder" FromRole="OrderNode" ToRole="Order" />
+          <NavigationProperty Name="Item" Relationship="MuhasebeModel.OrderNodeItem" FromRole="OrderNode" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AccountID" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
+          <Property Name="AuthorID" Type="Int32" Nullable="false" />
+          <Property Name="OwnerID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Nodes" Relationship="MuhasebeModel.OrderNodeOrder" FromRole="Order" ToRole="OrderNode" />
+          <NavigationProperty Name="Account" Relationship="MuhasebeModel.OrderAccount" FromRole="Order" ToRole="Account" />
+          <NavigationProperty Name="Author" Relationship="MuhasebeModel.OrderUser" FromRole="Order" ToRole="User" />
+          <NavigationProperty Name="Owner" Relationship="MuhasebeModel.OrderCompany" FromRole="Order" ToRole="Company" />
+        </EntityType>
+        <Association Name="OrderNodeOrder">
+          <End Type="MuhasebeModel.OrderNode" Role="OrderNode" Multiplicity="*" />
+          <End Type="MuhasebeModel.Order" Role="Order" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderNode">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderAccount">
+          <End Type="MuhasebeModel.Order" Role="Order" Multiplicity="*" />
+          <End Type="MuhasebeModel.Account" Role="Account" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderUser">
+          <End Type="MuhasebeModel.Order" Role="Order" Multiplicity="*" />
+          <End Type="MuhasebeModel.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderCompany">
+          <End Type="MuhasebeModel.Order" Role="Order" Multiplicity="*" />
+          <End Type="MuhasebeModel.Company" Role="Company" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderNodeItem">
+          <End Type="MuhasebeModel.OrderNode" Role="OrderNode" Multiplicity="*" />
+          <End Type="MuhasebeModel.Item" Role="Item" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderNode">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1631,6 +1766,30 @@
           <EntitySetMapping Name="AccountTypes">
             <EntityTypeMapping TypeName="MuhasebeModel.AccountType">
               <MappingFragment StoreEntitySet="AccountTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderNodes">
+            <EntityTypeMapping TypeName="MuhasebeModel.OrderNode">
+              <MappingFragment StoreEntitySet="OrderNodes">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="MuhasebeModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
