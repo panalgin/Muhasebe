@@ -84,6 +84,9 @@ namespace Muhasebe
                 {
                     m_Node.Item = m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault();
 
+                    if (m_Node.Item == null)
+                        return true;
+
                     ListViewItem m_Item = new ListViewItem();
                     m_Item.Tag = m_Node.ID;
 

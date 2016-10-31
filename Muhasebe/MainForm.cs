@@ -286,16 +286,23 @@ namespace Muhasebe
                     this.Grid_Panel.Visible = true;
                 }
 
-                this.MdiChildren.All(delegate (Form m_Form)
-                {
-                    m_Form.Close();
-                    return true;
-                });
+                ClearMdis();
             }
+        }
+
+        private void ClearMdis()
+        {
+            this.MdiChildren.All(delegate (Form m_Form)
+            {
+                m_Form.Close();
+                return true;
+            });
         }
 
         private void hakkındaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ClearMdis();
+
             About_Mdi m_Mdi = new About_Mdi();
             m_Mdi.WindowState = FormWindowState.Maximized;
             m_Mdi.MdiParent = this;
@@ -310,6 +317,8 @@ namespace Muhasebe
 
         private void Sales_Button_Click(object sender, EventArgs e)
         {
+            ClearMdis();
+
             Manage_Sales_Mdi m_Mdi = new Manage_Sales_Mdi();
             m_Mdi.MdiParent = this;
             m_Mdi.WindowState = FormWindowState.Maximized;
@@ -323,6 +332,8 @@ namespace Muhasebe
 
         private void ödemeSeçenekleriToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ClearMdis();
+
             Manage_PaymentType_Mdi m_Mdi = new Manage_PaymentType_Mdi();
             m_Mdi.MdiParent = this;
             m_Mdi.WindowState = FormWindowState.Maximized;
@@ -534,6 +545,8 @@ namespace Muhasebe
 
         private void kullanıcıYönetimiToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ClearMdis();
+
             Manage_Users_Mdi m_Mdi = new Manage_Users_Mdi();
             m_Mdi.MdiParent = this;
             m_Mdi.WindowState = FormWindowState.Maximized;
@@ -542,6 +555,8 @@ namespace Muhasebe
 
         private void Events_Button_Click(object sender, EventArgs e)
         {
+            ClearMdis();
+
             Manage_Events_Mdi m_Mdi = new Manage_Events_Mdi();
             m_Mdi.MdiParent = this;
             m_Mdi.WindowState = FormWindowState.Maximized;
@@ -550,6 +565,8 @@ namespace Muhasebe
 
         private void gelirYönetimiToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ClearMdis();
+
             Manage_Revenue_Mdi m_Mdi = new Manage_Revenue_Mdi();
             m_Mdi.MdiParent = this;
             m_Mdi.WindowState = FormWindowState.Maximized;
@@ -558,6 +575,8 @@ namespace Muhasebe
 
         private void giderYönetimiToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ClearMdis();
+
             Manage_Expenditure_Mdi m_Mdi = new Manage_Expenditure_Mdi();
             m_Mdi.MdiParent = this;
             m_Mdi.WindowState = FormWindowState.Maximized;
@@ -577,6 +596,8 @@ namespace Muhasebe
 
         private void azalanÜrünYönetimiToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ClearMdis();
+
             Manage_Reminder_Mdi m_Mdi = new Manage_Reminder_Mdi();
             m_Mdi.MdiParent = this;
             m_Mdi.WindowState = FormWindowState.Maximized;
@@ -593,6 +614,8 @@ namespace Muhasebe
 
         private void Storge_Control_Click(object sender, EventArgs e)
         {
+            ClearMdis();
+
             Manage_Inventory_Mdi m_Mdi = new Manage_Inventory_Mdi();
             m_Mdi.MdiParent = this;
             m_Mdi.WindowState = FormWindowState.Maximized;
@@ -601,6 +624,8 @@ namespace Muhasebe
 
         private void Item_Control_Click(object sender, EventArgs e)
         {
+            ClearMdis();
+
             Manage_Items_Mdi m_Mdi = new Manage_Items_Mdi();
             m_Mdi.MdiParent = this;
             m_Mdi.WindowState = FormWindowState.Maximized;
@@ -609,6 +634,8 @@ namespace Muhasebe
 
         private void Accounts_Button_Click(object sender, EventArgs e)
         {
+            ClearMdis();
+
             Manage_Accounts_Mdi m_Mdi = new Manage_Accounts_Mdi();
             m_Mdi.MdiParent = this;
             m_Mdi.WindowState = FormWindowState.Maximized;
@@ -617,12 +644,16 @@ namespace Muhasebe
 
         private void seçeneklerToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ClearMdis();
+            
             Options_Mdi m_Mdi = new Options_Mdi();
             m_Mdi.ShowDialog();
         }
 
         private void barkodTasarımYönetimiToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ClearMdis();
+
             Manage_BarcodeTemplates_Mdi m_Mdi = new Manage_BarcodeTemplates_Mdi();
             m_Mdi.MdiParent = this;
             m_Mdi.WindowState = FormWindowState.Maximized;
@@ -631,6 +662,8 @@ namespace Muhasebe
 
         private void ürünGruplarıYönetimiToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            ClearMdis();
+
             Manage_ItemGroups_Mdi m_Mdi = new Manage_ItemGroups_Mdi();
             m_Mdi.MdiParent = this;
             m_Mdi.WindowState = FormWindowState.Maximized;
@@ -639,6 +672,8 @@ namespace Muhasebe
 
         private void ürünGruplarıYönetimiToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ClearMdis();
+
             Manage_ItemGroups_Mdi m_Mdi = new Manage_ItemGroups_Mdi();
             m_Mdi.MdiParent = this;
             m_Mdi.WindowState = FormWindowState.Maximized;
@@ -647,6 +682,8 @@ namespace Muhasebe
 
         private void siparişYönetimiToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ClearMdis();
+
             Manage_Orders_Mdi m_Mdi = new Manage_Orders_Mdi();
             m_Mdi.MdiParent = this;
             m_Mdi.WindowState = FormWindowState.Maximized;

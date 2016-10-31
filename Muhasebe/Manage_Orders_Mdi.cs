@@ -185,6 +185,9 @@ namespace Muhasebe
 
                         m_Order.Nodes.All(delegate (OrderNode node)
                         {
+                            if (node.Item == null)
+                                return true;
+
                             string m_ProImgPath = Path.Combine(m_LocalPath, node.Item.LocalImagePath);
 
                             m_Data += string.Format(m_Template, File.Exists(m_ProImgPath) ? m_ProImgPath : "", string.IsNullOrEmpty(node.Item.OrderCode) ? "Yok" : node.Item.OrderCode, node.Item.Product.Name, GetFormattedAmount(node.Amount, node.Item.UnitType.DecimalPlaces, node.Item.UnitType.Name), node.Description);
