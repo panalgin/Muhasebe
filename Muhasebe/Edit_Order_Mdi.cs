@@ -13,32 +13,43 @@ using System.Windows.Forms;
 
 namespace Muhasebe
 {
-    public partial class Add_Order_Mdi : Form
+    public partial class Edit_Order_Mdi : Form
     {
         public Order Order { get; set; }
-        public Add_Order_Mdi()
+        public Edit_Order_Mdi()
         {
             InitializeComponent();
-
-            this.Order = new Order();
         }
 
-        private void Add_Order_Mdi_Load(object sender, EventArgs e)
+        private void Edit_Order_Mdi_Load(object sender, EventArgs e)
         {
-            using(MuhasebeEntities m_Context = new MuhasebeEntities())
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
                 if (this.Order == null)
                     this.Order = new Order();
             }
 
             EventSink.BarcodeScanned += EventSink_BarcodeScanned;
+
+            this.Name_Box.Text = this.Order.Name;
+
+            if (this.Order.Account != null)
+            {
+                this.Account_Box.BeginInvoke((MethodInvoker)delegate ()
+                {
+                    this.Account_Box.SelectedText = this.Order.Account.Name;
+                });
+            }
+            this.Attn_Note.Text = this.Order.Note;
+
+            PopulateListView();
         }
 
         private void EventSink_BarcodeScanned(object sender, BarcodeScannedEventArgs args)
         {
             if (args.Barcode != null)
             {
-                using(MuhasebeEntities m_Context = new MuhasebeEntities())
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
                     var m_Item = m_Context.Items.Where(q => q.Product.Barcode == args.Barcode).FirstOrDefault();
 
@@ -67,7 +78,8 @@ namespace Muhasebe
         {
             this.listView1.Items.Clear();
 
-            using (MuhasebeEntities m_Context = new MuhasebeEntities()) {
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
+            {
                 this.Order.Nodes.All(delegate (OrderNode m_Node)
                 {
                     m_Node.Item = m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault();
@@ -160,26 +172,40 @@ namespace Muhasebe
         {
             if (ValidateAll())
             {
-                using(MuhasebeEntities m_Context = new MuhasebeEntities())
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
-                    this.Order.Nodes.All(delegate (OrderNode node) { m_Context.OrderNodes.Add(node); return true; });
+                    Order m_Actual = m_Context.Orders.Where(q => q.ID == this.Order.ID).FirstOrDefault();
 
-                    this.Order.AuthorID = Program.User.ID;
-                    this.Order.CreatedAt = DateTime.Now;
-                    this.Order.OwnerID = Program.User.WorksAtID.Value;
-                    this.Order.Name = this.Name_Box.Text;
-                    this.Order.Note = this.Attn_Note.Text;
-
-                    if (this.Account_Box.SelectedValue != null)
+                    if (m_Actual != null)
                     {
-                        int m_AccountID = Convert.ToInt32(this.Account_Box.SelectedValue);
-                        this.Order.AccountID = m_AccountID;
+                        m_Context.OrderNodes.RemoveRange(m_Actual.Nodes);
+
+                        m_Actual.Nodes.Clear();
+                        m_Context.SaveChanges();
+
+                        this.Order.Nodes.All(delegate (OrderNode node) 
+                        {
+                            m_Actual.Nodes.Add(new OrderNode() { ItemID = node.ItemID, OrderID = node.OrderID, Amount = node.Amount, Description = node.Description });
+
+                            return true;
+                        });
+
+                        m_Actual.AuthorID = Program.User.ID;
+                        m_Actual.CreatedAt = DateTime.Now;
+                        m_Actual.OwnerID = Program.User.WorksAtID.Value;
+                        m_Actual.Name = this.Name_Box.Text;
+                        m_Actual.Note = this.Attn_Note.Text;
+
+                        if (this.Account_Box.SelectedValue != null)
+                        {
+                            int m_AccountID = Convert.ToInt32(this.Account_Box.SelectedValue);
+                            m_Actual.AccountID = m_AccountID;
+                        }
+
+                        m_Context.SaveChanges();
+
+                        this.Close();
                     }
-
-                    m_Context.Orders.Add(this.Order);
-                    m_Context.SaveChanges();
-
-                    this.Close();
                 }
             }
         }
@@ -202,9 +228,9 @@ namespace Muhasebe
             else
                 this.Error_Provider.SetError(this.Attn_Note, "");
 
-            using(MuhasebeEntities m_Context = new MuhasebeEntities())
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
-                Order m_Existing = m_Context.Orders.Where(q => q.Name == this.Name_Box.Text).FirstOrDefault();
+                Order m_Existing = m_Context.Orders.Where(q => q.ID != this.Order.ID && q.Name == this.Name_Box.Text).FirstOrDefault();
 
                 if (m_Existing != null)
                 {

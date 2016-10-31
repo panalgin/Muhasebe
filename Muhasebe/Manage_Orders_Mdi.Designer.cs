@@ -34,8 +34,8 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Delete_Btn = new System.Windows.Forms.Button();
-            this.Edit_Btn = new System.Windows.Forms.Button();
+            this.Delete_Button = new System.Windows.Forms.Button();
+            this.Edit_Button = new System.Windows.Forms.Button();
             this.Add_Button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -59,6 +59,7 @@
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -89,25 +90,29 @@
             this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader5.Width = 153;
             // 
-            // Delete_Btn
+            // Delete_Button
             // 
-            this.Delete_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Delete_Btn.Location = new System.Drawing.Point(834, 70);
-            this.Delete_Btn.Name = "Delete_Btn";
-            this.Delete_Btn.Size = new System.Drawing.Size(75, 23);
-            this.Delete_Btn.TabIndex = 6;
-            this.Delete_Btn.Text = "Sil";
-            this.Delete_Btn.UseVisualStyleBackColor = true;
+            this.Delete_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Delete_Button.Enabled = false;
+            this.Delete_Button.Location = new System.Drawing.Point(834, 70);
+            this.Delete_Button.Name = "Delete_Button";
+            this.Delete_Button.Size = new System.Drawing.Size(75, 23);
+            this.Delete_Button.TabIndex = 6;
+            this.Delete_Button.Text = "Sil";
+            this.Delete_Button.UseVisualStyleBackColor = true;
+            this.Delete_Button.Click += new System.EventHandler(this.Delete_Button_Click);
             // 
-            // Edit_Btn
+            // Edit_Button
             // 
-            this.Edit_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Edit_Btn.Location = new System.Drawing.Point(834, 41);
-            this.Edit_Btn.Name = "Edit_Btn";
-            this.Edit_Btn.Size = new System.Drawing.Size(75, 23);
-            this.Edit_Btn.TabIndex = 5;
-            this.Edit_Btn.Text = "Düzenle";
-            this.Edit_Btn.UseVisualStyleBackColor = true;
+            this.Edit_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Edit_Button.Enabled = false;
+            this.Edit_Button.Location = new System.Drawing.Point(834, 41);
+            this.Edit_Button.Name = "Edit_Button";
+            this.Edit_Button.Size = new System.Drawing.Size(75, 23);
+            this.Edit_Button.TabIndex = 5;
+            this.Edit_Button.Text = "Düzenle";
+            this.Edit_Button.UseVisualStyleBackColor = true;
+            this.Edit_Button.Click += new System.EventHandler(this.Edit_Button_Click);
             // 
             // Add_Button
             // 
@@ -125,8 +130,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(921, 628);
-            this.Controls.Add(this.Delete_Btn);
-            this.Controls.Add(this.Edit_Btn);
+            this.Controls.Add(this.Delete_Button);
+            this.Controls.Add(this.Edit_Button);
             this.Controls.Add(this.Add_Button);
             this.Controls.Add(this.listView1);
             this.Name = "Manage_Orders_Mdi";
@@ -144,8 +149,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.Button Delete_Btn;
-        private System.Windows.Forms.Button Edit_Btn;
+        private System.Windows.Forms.Button Delete_Button;
+        private System.Windows.Forms.Button Edit_Button;
         private System.Windows.Forms.Button Add_Button;
     }
 }

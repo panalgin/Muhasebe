@@ -57,7 +57,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 20);
+            this.label1.Location = new System.Drawing.Point(12, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 13);
             this.label1.TabIndex = 0;
@@ -66,7 +66,7 @@
             // Name_Box
             // 
             this.Error_Provider.SetIconPadding(this.Name_Box, -20);
-            this.Name_Box.Location = new System.Drawing.Point(103, 17);
+            this.Name_Box.Location = new System.Drawing.Point(103, 12);
             this.Name_Box.Name = "Name_Box";
             this.Name_Box.Size = new System.Drawing.Size(216, 20);
             this.Name_Box.TabIndex = 0;
@@ -74,7 +74,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(36, 46);
+            this.label3.Location = new System.Drawing.Point(36, 41);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 13);
             this.label3.TabIndex = 3;
@@ -83,7 +83,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 79);
+            this.label4.Location = new System.Drawing.Point(12, 74);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(73, 13);
             this.label4.TabIndex = 7;
@@ -103,9 +103,9 @@
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(12, 95);
+            this.listView1.Location = new System.Drawing.Point(12, 90);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(590, 338);
+            this.listView1.Size = new System.Drawing.Size(590, 339);
             this.listView1.TabIndex = 8;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -164,7 +164,7 @@
             // 
             this.Edit_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Edit_Button.Enabled = false;
-            this.Edit_Button.Location = new System.Drawing.Point(608, 95);
+            this.Edit_Button.Location = new System.Drawing.Point(608, 90);
             this.Edit_Button.Name = "Edit_Button";
             this.Edit_Button.Size = new System.Drawing.Size(75, 23);
             this.Edit_Button.TabIndex = 5;
@@ -176,7 +176,7 @@
             // 
             this.Delete_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Delete_Button.Enabled = false;
-            this.Delete_Button.Location = new System.Drawing.Point(608, 124);
+            this.Delete_Button.Location = new System.Drawing.Point(608, 119);
             this.Delete_Button.Name = "Delete_Button";
             this.Delete_Button.Size = new System.Drawing.Size(75, 23);
             this.Delete_Button.TabIndex = 6;
@@ -187,7 +187,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(352, 20);
+            this.label5.Location = new System.Drawing.Point(352, 15);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 13);
             this.label5.TabIndex = 13;
@@ -196,7 +196,7 @@
             // Attn_Note
             // 
             this.Error_Provider.SetIconPadding(this.Attn_Note, -20);
-            this.Attn_Note.Location = new System.Drawing.Point(427, 17);
+            this.Attn_Note.Location = new System.Drawing.Point(427, 12);
             this.Attn_Note.Multiline = true;
             this.Attn_Note.Name = "Attn_Note";
             this.Attn_Note.Size = new System.Drawing.Size(256, 47);
@@ -207,19 +207,20 @@
             this.Cancel_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Cancel_Button.Image = global::Muhasebe.Properties.Resources.cancel;
             this.Cancel_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Cancel_Button.Location = new System.Drawing.Point(616, 445);
+            this.Cancel_Button.Location = new System.Drawing.Point(608, 445);
             this.Cancel_Button.Name = "Cancel_Button";
             this.Cancel_Button.Size = new System.Drawing.Size(75, 23);
             this.Cancel_Button.TabIndex = 8;
             this.Cancel_Button.Text = "İptal";
             this.Cancel_Button.UseVisualStyleBackColor = true;
+            this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
             // Save_Button
             // 
             this.Save_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Save_Button.Image = global::Muhasebe.Properties.Resources.tick;
             this.Save_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Save_Button.Location = new System.Drawing.Point(521, 445);
+            this.Save_Button.Location = new System.Drawing.Point(513, 445);
             this.Save_Button.Name = "Save_Button";
             this.Save_Button.Size = new System.Drawing.Size(89, 23);
             this.Save_Button.TabIndex = 7;
@@ -237,7 +238,7 @@
             this.Account_Box.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.Account_Box.FillType = Muhasebe.Custom.SearchBox.Fillable.Account;
             this.Account_Box.FormattingEnabled = true;
-            this.Account_Box.Location = new System.Drawing.Point(103, 43);
+            this.Account_Box.Location = new System.Drawing.Point(103, 38);
             this.Account_Box.Name = "Account_Box";
             this.Account_Box.Size = new System.Drawing.Size(216, 21);
             this.Account_Box.TabIndex = 14;
@@ -294,7 +295,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem düzenleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem silToolStripMenuItem;
-        private Custom.SearchBox Account_Box;
         private System.Windows.Forms.ErrorProvider Error_Provider;
+        private Custom.SearchBox Account_Box;
     }
 }

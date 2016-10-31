@@ -20,7 +20,7 @@ namespace Muhasebe.Custom
 
         [Description("Select what type of object to fill in"),
         Category("Data"),
-        DefaultValue(typeof(TextBox), null),
+        DefaultValue(typeof(ComboBox), null),
         Browsable(true)]
         public Fillable FillType { get; set; }
 
@@ -48,6 +48,7 @@ namespace Muhasebe.Custom
                         sb.DisplayMember = "Name";
                         sb.ValueMember = "ID";
                         sb.AutoCompleteSource = AutoCompleteSource.ListItems;
+                        sb.AutoCompleteMode = AutoCompleteMode.Suggest;
                         sb.DataSource = results;
                     }
                 }

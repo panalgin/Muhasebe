@@ -1393,7 +1393,8 @@
           <NavigationProperty Name="Owner" Relationship="MuhasebeModel.OrderCompany" FromRole="Order" ToRole="Company" />
         </EntityType>
         <Association Name="OrderNodeOrder">
-          <End Type="MuhasebeModel.OrderNode" Role="OrderNode" Multiplicity="*" />
+          <End Type="MuhasebeModel.OrderNode" Role="OrderNode" Multiplicity="*" >
+          </End>
           <End Type="MuhasebeModel.Order" Role="Order" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="Order">
