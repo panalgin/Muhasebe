@@ -201,6 +201,7 @@
             this.Attn_Note.Name = "Attn_Note";
             this.Attn_Note.Size = new System.Drawing.Size(256, 47);
             this.Attn_Note.TabIndex = 4;
+            this.Attn_Note.Text = "Aşağıda belirtmiş olduğumuz ürünler hakkında bilgi/fiyat talep ediyoruz.";
             // 
             // Cancel_Button
             // 

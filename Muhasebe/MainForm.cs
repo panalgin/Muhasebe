@@ -673,49 +673,5 @@ namespace Muhasebe
                 }
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string html = "";
-            string m_LocalPath = Application.StartupPath;
-            string m_IndexPath = IO.Path.Combine(m_LocalPath, "View\\OrderForm\\index.html");
-            string m_AbsPath = IO.Path.Combine(m_LocalPath, "View\\OrderForm\\");
-
-            using(IO.StreamReader m_Reader = new IO.StreamReader(m_IndexPath, Encoding.UTF8, true))
-            {
-                html = m_Reader.ReadToEnd();
-            }
-
-            html = html.Replace("{PATH}", m_AbsPath);
-            html = html.Replace("{BASEPATH}", m_LocalPath);
-            html = html.Replace("{COMPANY-NAME}", Program.User.WorksAt.Name);
-            html = html.Replace("{TAXID}", Program.User.WorksAt.TaxID);
-            html = html.Replace("{TAXPLACE}", Program.User.WorksAt.TaxDepartment);
-            html = html.Replace("{ADDRESS}", Program.User.WorksAt.Address);
-            html = html.Replace("{DISTRICT}", Program.User.WorksAt.District);
-            html = html.Replace("{PROVINCE}", Program.User.WorksAt.Province);
-            html = html.Replace("{TELEPHONE}", Program.User.WorksAt.Phone);
-            html = html.Replace("{EMAIL}", Program.User.WorksAt.Email);
-
-            var pdf = Pdf
-                .From(html)
-                .OfSize(PaperSize.A4)
-                .WithTitle("Title")
-                .WithMargins(0.8.Centimeters())
-                .WithoutOutline()
-                .Portrait()
-                .Comressed()
-                .Content();
-
-            IO.FileStream m_Stream = new IO.FileStream(string.Format("C:\\test-{0}.pdf", IO.Path.GetRandomFileName()), IO.FileMode.Create);
-
-            using (IO.BinaryWriter m_Writer = new IO.BinaryWriter(m_Stream))
-            {
-                m_Writer.Write(pdf, 0, pdf.Length);
-            }
-
-            m_Stream.Close();
-            m_Stream.Dispose();
-        }
     }
 }

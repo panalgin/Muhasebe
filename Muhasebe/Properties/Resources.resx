@@ -124,26 +124,20 @@
   <data name="Icon-user" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icon-user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="clipboard_invoice" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\clipboard_invoice.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="phone" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\phone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="phone_handset" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\phone_handset.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Icon-user1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icon-user1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cash_register_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cash_register_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="195-barcode-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\195-barcode-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="export_excel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\export_excel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="map_torn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\map_torn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Exclamation_Point_Emoticon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Exclamation_Point_Emoticon.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="radar_chart" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\radar_chart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,8 +166,11 @@
   <data name="pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="phone2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\phone2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cash_register_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cash_register_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="finance" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\finance.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="marketwatch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\marketwatch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,14 +187,11 @@
   <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Exclamation_Point_Emoticon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Exclamation_Point_Emoticon.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="195-barcode-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\195-barcode-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="chart_bar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chart_bar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="map_torn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\map_torn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sort_descending" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sort_descending.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -217,6 +211,12 @@
   <data name="basket_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\basket_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="yeni3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\yeni3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clipboard_invoice" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clipboard_invoice.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="what_if_analysis" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\what_if_analysis.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -235,11 +235,11 @@
   <data name="info_rhombus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\info_rhombus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="google_web_elements" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\google_web_elements.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="phone_handset" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\phone_handset.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="yeni3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\yeni3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="phone2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\phone2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="daflan-logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\daflan-logo8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -256,8 +256,8 @@
   <data name="delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="finance" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\finance.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="google_web_elements" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\google_web_elements.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="house" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\house.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -265,10 +265,13 @@
   <data name="innerbg-login" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\innerbg-login.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="celik" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\Images\celik.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="server_components" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\server_components.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="celik" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Images\celik.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="script_export" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\script_export.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

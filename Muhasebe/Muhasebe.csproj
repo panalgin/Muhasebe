@@ -893,6 +893,7 @@
     <None Include="Resources\Icon-user1.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\script_export.png" />
     <Content Include="View\OrderForm\css\main.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

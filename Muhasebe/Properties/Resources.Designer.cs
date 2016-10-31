@@ -503,6 +503,16 @@ namespace Muhasebe.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap script_export {
+            get {
+                object obj = ResourceManager.GetObject("script_export", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap server_components {
             get {
                 object obj = ResourceManager.GetObject("server_components", resourceCulture);
