@@ -47,7 +47,17 @@ namespace Muhasebe
                     m_Data = m_Data.Replace("{LINE-2}", text.Substring(25, left));
                 }
 
+                string barcodeText = barcode;
+                string barcodeData = barcode;
+
+                if (char.IsLetter(barcode[0]))
+                {
+                    barcodeData = barcodeData.Insert(3, "&D");
+                }
+
                 m_Data = m_Data.Replace("{BARCODE}", barcode);
+                m_Data = m_Data.Replace("{BARCODE-TEXT}", barcodeText);
+                m_Data = m_Data.Replace("{BARCODE-DATA}", barcodeData);
 
                 string m_TempPath = Path.Combine(Program.BasePath, "Temp.prn");
 
