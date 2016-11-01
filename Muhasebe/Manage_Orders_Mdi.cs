@@ -99,7 +99,6 @@ namespace Muhasebe
                         }
                     }
                 }
-
             }
         }
 
@@ -171,7 +170,6 @@ namespace Muhasebe
                         html = html.Replace("{AUTHOR-GSM}", Program.User.WorksAt.Gsm);
                         html = html.Replace("{ORDER-ID}", m_Order.ID.ToString());
                         html = html.Replace("{ATTN-NOTE}", m_Order.Note);
-
 
                         string m_Template = "<tr class=\"item\">" +
                                     "<td class=\"pro-img\"><img src=\"{0}\" /></td>" +

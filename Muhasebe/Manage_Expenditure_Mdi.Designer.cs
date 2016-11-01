@@ -41,7 +41,7 @@
             this.Sort_Label = new System.Windows.Forms.Label();
             this.Sort_Combo = new System.Windows.Forms.ComboBox();
             this.Edit_Button = new System.Windows.Forms.Button();
-            this.listView1 = new Muhasebe.Custom.ListViewEx();
+            this.Expenditure_List = new Muhasebe.Custom.ListViewEx();
             this.Stats_Label = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Delete_Button = new System.Windows.Forms.Button();
@@ -53,7 +53,7 @@
             // 
             this.columnHeader6.Text = "Açıklama";
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader6.Width = 405;
+            this.columnHeader6.Width = 100;
             // 
             // columnHeader4
             // 
@@ -75,7 +75,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Tarih";
-            this.columnHeader1.Width = 142;
+            this.columnHeader1.Width = 69;
             // 
             // columnHeader5
             // 
@@ -163,28 +163,28 @@
             this.Edit_Button.UseVisualStyleBackColor = true;
             this.Edit_Button.Click += new System.EventHandler(this.Edit_Button_Click);
             // 
-            // listView1
+            // Expenditure_List
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Expenditure_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Expenditure_List.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Expenditure_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader3,
             this.columnHeader2,
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(12, 36);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(700, 490);
-            this.listView1.TabIndex = 29;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.Expenditure_List.FullRowSelect = true;
+            this.Expenditure_List.GridLines = true;
+            this.Expenditure_List.Location = new System.Drawing.Point(12, 36);
+            this.Expenditure_List.Name = "Expenditure_List";
+            this.Expenditure_List.Size = new System.Drawing.Size(700, 490);
+            this.Expenditure_List.TabIndex = 29;
+            this.Expenditure_List.UseCompatibleStateImageBehavior = false;
+            this.Expenditure_List.View = System.Windows.Forms.View.Details;
+            this.Expenditure_List.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // Stats_Label
             // 
@@ -250,7 +250,7 @@
             this.Controls.Add(this.Delete_Button);
             this.Controls.Add(this.Edit_Button);
             this.Controls.Add(this.Add_Button);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.Expenditure_List);
             this.Name = "Manage_Expenditure_Mdi";
             this.Text = "Gider Yönetimi";
             this.Load += new System.EventHandler(this.Manage_Expenditure_Mdi_Load);
@@ -278,7 +278,7 @@
         private System.Windows.Forms.Button Delete_Button;
         private System.Windows.Forms.Button Edit_Button;
         private System.Windows.Forms.Button Add_Button;
-        private Custom.ListViewEx listView1;
+        private Custom.ListViewEx Expenditure_List;
         private System.Windows.Forms.Label Stats_Label;
         private System.Windows.Forms.Panel panel1;
     }

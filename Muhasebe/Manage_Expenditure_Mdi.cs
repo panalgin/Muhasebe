@@ -45,7 +45,7 @@ namespace Muhasebe
 
         private void PopulateListView()
         {
-            this.listView1.Items.Clear();
+            this.Expenditure_List.Items.Clear();
             MuhasebeEntities m_Context = new MuhasebeEntities();
             DateTime m_Now = DateTime.Now;
 
@@ -107,8 +107,8 @@ namespace Muhasebe
 
             this.BeginInvoke((MethodInvoker)delegate()
             {
-                this.listView1.BeginUpdate();
-                this.listView1.Items.Clear();
+                this.Expenditure_List.BeginUpdate();
+                this.Expenditure_List.Items.Clear();
 
                 m_Expenditures.ForEach(delegate(Expenditure m_Expenditure)
                 {
@@ -129,11 +129,11 @@ namespace Muhasebe
 
                     m_Item.SubItems.Add(m_Expenditure.Description);
 
-                    this.listView1.Items.Add(m_Item);
+                    this.Expenditure_List.Items.Add(m_Item);
                     
                 });
 
-                this.listView1.EndUpdate();
+                this.Expenditure_List.EndUpdate();
             });
 
             this.Stats_Label.Text = string.Format("Toplam Kayıt: {0} adet, Toplam Gider: {1} TL", m_Count, m_Total.Value);
@@ -163,10 +163,10 @@ namespace Muhasebe
 
         private void Edit_Button_Click(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedItems.Count > 0)
+            if (this.Expenditure_List.SelectedItems.Count > 0)
             {
                 MuhasebeEntities m_Context = new MuhasebeEntities();
-                ListViewItem m_Selected = this.listView1.SelectedItems[0];
+                ListViewItem m_Selected = this.Expenditure_List.SelectedItems[0];
                 int m_ItemID = Convert.ToInt32(m_Selected.Tag);
 
                 if (m_ItemID > 0)
@@ -194,7 +194,7 @@ namespace Muhasebe
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedItems.Count > 0)
+            if (this.Expenditure_List.SelectedItems.Count > 0)
             {
                 this.Edit_Button.Enabled = true;
                 this.Delete_Button.Enabled = true;
@@ -208,9 +208,9 @@ namespace Muhasebe
 
         private void Delete_Button_Click(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedItems.Count > 0)
+            if (this.Expenditure_List.SelectedItems.Count > 0)
             {
-                ListViewItem m_Selected = this.listView1.SelectedItems[0];
+                ListViewItem m_Selected = this.Expenditure_List.SelectedItems[0];
 
                 if (m_Selected.Tag != null)
                 {
