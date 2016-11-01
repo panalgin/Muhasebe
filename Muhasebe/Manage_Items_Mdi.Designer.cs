@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manage_Items_Mdi));
-            this.listView1 = new Custom.ListViewEx();
+            this.Items_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -49,20 +49,20 @@
             this.Delete_Button = new System.Windows.Forms.Button();
             this.Add_Button = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.All_Radio = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // listView1
+            // Items_List
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Items_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Items_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
@@ -72,15 +72,15 @@
             this.columnHeader7,
             this.columnHeader9,
             this.columnHeader8});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(167, 12);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(775, 568);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.Listview_SelectedIndexChanged);
+            this.Items_List.FullRowSelect = true;
+            this.Items_List.GridLines = true;
+            this.Items_List.Location = new System.Drawing.Point(167, 12);
+            this.Items_List.Name = "Items_List";
+            this.Items_List.Size = new System.Drawing.Size(775, 568);
+            this.Items_List.TabIndex = 0;
+            this.Items_List.UseCompatibleStateImageBehavior = false;
+            this.Items_List.View = System.Windows.Forms.View.Details;
+            this.Items_List.SelectedIndexChanged += new System.EventHandler(this.Listview_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -250,16 +250,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gösterim Seçenekleri";
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 502);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "İsim İle Ürün Arayın:";
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -285,6 +275,16 @@
             this.All_Radio.UseVisualStyleBackColor = true;
             this.All_Radio.CheckedChanged += new System.EventHandler(this.All_Radio_CheckedChanged);
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 502);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "İsim İle Ürün Arayın:";
+            // 
             // Manage_Items_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -295,7 +295,7 @@
             this.Controls.Add(this.Delete_Button);
             this.Controls.Add(this.Edit_Button);
             this.Controls.Add(this.Add_Button);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.Items_List);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Manage_Items_Mdi";
             this.Text = "Ürün Yönetimi";
@@ -313,7 +313,7 @@
 
         #endregion
 
-        private Custom.ListViewEx listView1;
+        private Custom.ListViewEx Items_List;
         private System.Windows.Forms.Button Add_Button;
         private System.Windows.Forms.Button Edit_Button;
         private System.Windows.Forms.Button Delete_Button;
