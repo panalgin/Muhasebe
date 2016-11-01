@@ -31,7 +31,7 @@
             this.Delete_Button = new System.Windows.Forms.Button();
             this.Edit_Button = new System.Windows.Forms.Button();
             this.Add_Button = new System.Windows.Forms.Button();
-            this.Payment_List = new System.Windows.Forms.ListView();
+            this.PaymentTypes_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
@@ -74,22 +74,22 @@
             this.Add_Button.UseVisualStyleBackColor = true;
             this.Add_Button.Click += new System.EventHandler(this.Add_Button_Click);
             // 
-            // Payment_List
+            // PaymentTypes_List
             // 
-            this.Payment_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.PaymentTypes_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Payment_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.PaymentTypes_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
-            this.Payment_List.FullRowSelect = true;
-            this.Payment_List.GridLines = true;
-            this.Payment_List.Location = new System.Drawing.Point(12, 12);
-            this.Payment_List.Name = "Payment_List";
-            this.Payment_List.Size = new System.Drawing.Size(262, 147);
-            this.Payment_List.TabIndex = 8;
-            this.Payment_List.UseCompatibleStateImageBehavior = false;
-            this.Payment_List.View = System.Windows.Forms.View.Details;
-            this.Payment_List.SelectedIndexChanged += new System.EventHandler(this.Payment_List_SelectedIndexChanged);
+            this.PaymentTypes_List.FullRowSelect = true;
+            this.PaymentTypes_List.GridLines = true;
+            this.PaymentTypes_List.Location = new System.Drawing.Point(12, 12);
+            this.PaymentTypes_List.Name = "PaymentTypes_List";
+            this.PaymentTypes_List.Size = new System.Drawing.Size(262, 147);
+            this.PaymentTypes_List.TabIndex = 8;
+            this.PaymentTypes_List.UseCompatibleStateImageBehavior = false;
+            this.PaymentTypes_List.View = System.Windows.Forms.View.Details;
+            this.PaymentTypes_List.SelectedIndexChanged += new System.EventHandler(this.Payment_List_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -104,7 +104,7 @@
             this.Controls.Add(this.Delete_Button);
             this.Controls.Add(this.Edit_Button);
             this.Controls.Add(this.Add_Button);
-            this.Controls.Add(this.Payment_List);
+            this.Controls.Add(this.PaymentTypes_List);
             this.Name = "Manage_PaymentType_Mdi";
             this.Text = "Ödeme Seçenekleri";
             this.Load += new System.EventHandler(this.Manage_PaymentType_Mdi_Load);
@@ -117,7 +117,7 @@
         private System.Windows.Forms.Button Delete_Button;
         private System.Windows.Forms.Button Edit_Button;
         private System.Windows.Forms.Button Add_Button;
-        private System.Windows.Forms.ListView Payment_List;
+        private Custom.ListViewEx PaymentTypes_List;
         private System.Windows.Forms.ColumnHeader columnHeader1;
     }
 }

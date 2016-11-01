@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.Orders_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -41,27 +41,27 @@
             this.Save_Dialog = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
-            // listView1
+            // Orders_List
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Orders_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Orders_List.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Orders_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(12, 12);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(792, 604);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.Orders_List.FullRowSelect = true;
+            this.Orders_List.GridLines = true;
+            this.Orders_List.Location = new System.Drawing.Point(12, 12);
+            this.Orders_List.Name = "Orders_List";
+            this.Orders_List.Size = new System.Drawing.Size(792, 604);
+            this.Orders_List.TabIndex = 1;
+            this.Orders_List.UseCompatibleStateImageBehavior = false;
+            this.Orders_List.View = System.Windows.Forms.View.Details;
+            this.Orders_List.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -155,7 +155,7 @@
             this.Controls.Add(this.Delete_Button);
             this.Controls.Add(this.Edit_Button);
             this.Controls.Add(this.Add_Button);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.Orders_List);
             this.Name = "Manage_Orders_Mdi";
             this.Text = "Sipariş Formlarını Yönet";
             this.Load += new System.EventHandler(this.Manage_Orders_Mdi_Load);
@@ -165,7 +165,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
+        private Custom.ListViewEx Orders_List;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;

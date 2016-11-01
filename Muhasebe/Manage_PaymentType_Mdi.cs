@@ -23,7 +23,7 @@ namespace Muhasebe
         }
         private void PopulateList()
         {
-            this.Payment_List.Items.Clear();
+            this.PaymentTypes_List.Items.Clear();
             MuhasebeEntities m_Context = new MuhasebeEntities();
 
             var m_PaymentTypes = m_Context.PaymentTypes.Where(q => q.OwnerID == null || q.OwnerID == Program.User.WorksAtID).ToList();
@@ -34,7 +34,7 @@ namespace Muhasebe
                 m_Item.Tag = m_Type.ID;
                 m_Item.Text = m_Type.Name;
 
-                this.Payment_List.Items.Add(m_Item);
+                this.PaymentTypes_List.Items.Add(m_Item);
 
                 return true;
             });
@@ -54,10 +54,10 @@ namespace Muhasebe
 
         private void Edit_Button_Click(object sender, EventArgs e)
         {
-            if (this.Payment_List.SelectedItems.Count > 0)
+            if (this.PaymentTypes_List.SelectedItems.Count > 0)
             {
                 MuhasebeEntities m_Context = new MuhasebeEntities();
-                ListViewItem m_Select = this.Payment_List.SelectedItems[0];
+                ListViewItem m_Select = this.PaymentTypes_List.SelectedItems[0];
                 int m_ItemID = Convert.ToInt32(m_Select.Tag);
 
                 if (m_ItemID > 0)
@@ -85,7 +85,7 @@ namespace Muhasebe
 
         private void Payment_List_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.Payment_List.SelectedItems.Count > 0)
+            if (this.PaymentTypes_List.SelectedItems.Count > 0)
             {
                 this.Delete_Button.Enabled = true;
                 this.Edit_Button.Enabled = true;
@@ -99,9 +99,9 @@ namespace Muhasebe
 
         private void Delete_Button_Click(object sender, EventArgs e)
         {
-            if (this.Payment_List.SelectedItems.Count > 0)
+            if (this.PaymentTypes_List.SelectedItems.Count > 0)
             {
-                ListViewItem m_Item = this.Payment_List.SelectedItems[0];
+                ListViewItem m_Item = this.PaymentTypes_List.SelectedItems[0];
 
                 if (m_Item.Tag != null)
                 {

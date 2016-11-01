@@ -33,7 +33,7 @@
             this.Add_Button = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.Account_History_View = new Muhasebe.Custom.ListViewEx();
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -104,7 +104,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.listView1);
+            this.tabPage1.Controls.Add(this.Account_History_View);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -113,24 +113,24 @@
             this.tabPage1.Text = "İşlem Geçmişi";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // listView1
+            // Account_History_View
             // 
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Account_History_View.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Account_History_View.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader9,
             this.columnHeader10,
             this.columnHeader11,
             this.columnHeader12});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(3, 3);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(642, 259);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.Account_History_View.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Account_History_View.FullRowSelect = true;
+            this.Account_History_View.GridLines = true;
+            this.Account_History_View.Location = new System.Drawing.Point(3, 3);
+            this.Account_History_View.MultiSelect = false;
+            this.Account_History_View.Name = "Account_History_View";
+            this.Account_History_View.Size = new System.Drawing.Size(642, 259);
+            this.Account_History_View.TabIndex = 0;
+            this.Account_History_View.UseCompatibleStateImageBehavior = false;
+            this.Account_History_View.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader9
             // 
@@ -275,7 +275,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ListView listView1;
+        private Muhasebe.Custom.ListViewEx Account_History_View;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.ColumnHeader columnHeader11;

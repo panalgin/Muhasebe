@@ -34,7 +34,7 @@ namespace Muhasebe
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Bağlı Aygıtlar", System.Windows.Forms.HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manage_Devices_Mdi));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Device_List = new Muhasebe.Custom.ListViewEx();
+            this.Device_List = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ImageList = new System.Windows.Forms.ImageList(this.components);
@@ -206,7 +206,7 @@ namespace Muhasebe
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button Edit_Button;
         private System.Windows.Forms.Button Delete_Button;
-        private ListViewEx Device_List;
+        private System.Windows.Forms.ListView Device_List;
         private System.Windows.Forms.ImageList ImageList;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label4;

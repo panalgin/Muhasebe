@@ -33,7 +33,7 @@ namespace Muhasebe
 
         private void PopulateListView()
         {
-            this.listView1.Items.Clear();
+            this.Orders_List.Items.Clear();
 
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
@@ -54,7 +54,7 @@ namespace Muhasebe
 
                     m_Item.SubItems.Add(order.Note);
 
-                    this.listView1.Items.Add(m_Item);
+                    this.Orders_List.Items.Add(m_Item);
 
                     return true;
                 });
@@ -63,7 +63,7 @@ namespace Muhasebe
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedItems.Count > 0)
+            if (this.Orders_List.SelectedItems.Count > 0)
             {
                 this.Edit_Button.Enabled = true;
                 this.Delete_Button.Enabled = true;
@@ -79,9 +79,9 @@ namespace Muhasebe
 
         private void Delete_Button_Click(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedItems.Count == 1)
+            if (this.Orders_List.SelectedItems.Count == 1)
             {
-                ListViewItem m_Item = this.listView1.SelectedItems[0];
+                ListViewItem m_Item = this.Orders_List.SelectedItems[0];
                 int m_OrderID = Convert.ToInt32(m_Item.Tag);
 
                 using (MuhasebeEntities m_Context = new MuhasebeEntities())
@@ -104,9 +104,9 @@ namespace Muhasebe
 
         private void Edit_Button_Click(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedItems.Count == 1)
+            if (this.Orders_List.SelectedItems.Count == 1)
             {
-                ListViewItem m_Item = this.listView1.SelectedItems[0];
+                ListViewItem m_Item = this.Orders_List.SelectedItems[0];
                 int m_OrderID = Convert.ToInt32(m_Item.Tag);
 
                 using (MuhasebeEntities m_Context = new MuhasebeEntities())
@@ -133,7 +133,7 @@ namespace Muhasebe
             {
                 using (MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
-                    ListViewItem m_Item = this.listView1.SelectedItems[0];
+                    ListViewItem m_Item = this.Orders_List.SelectedItems[0];
                     int m_OrderID = Convert.ToInt32(m_Item.Tag);
 
                     Order m_Order = m_Context.Orders.Where(q => q.ID == m_OrderID).FirstOrDefault();

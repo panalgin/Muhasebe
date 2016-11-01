@@ -24,7 +24,7 @@ namespace Muhasebe
 
         void PopulateList()
         {
-            this.listView1.Items.Clear();
+            this.Inventory_List.Items.Clear();
 
             MuhasebeEntities m_Context = new MuhasebeEntities();
 
@@ -40,7 +40,7 @@ namespace Muhasebe
                 m_ListView.SubItems.Add(m_Inventory.Items.Count.ToString() + " Kalem");
                 m_ListView.SubItems.Add(m_Inventory.Description);
 
-                this.listView1.Items.Add(m_ListView);
+                this.Inventory_List.Items.Add(m_ListView);
                 return true;
             });
         }
@@ -59,10 +59,10 @@ namespace Muhasebe
 
         private void Edit_Btn_Click(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedItems.Count > 0)
+            if (this.Inventory_List.SelectedItems.Count > 0)
             {
                 MuhasebeEntities m_Context = new MuhasebeEntities();
-                ListViewItem m_Select = this.listView1.SelectedItems[0];
+                ListViewItem m_Select = this.Inventory_List.SelectedItems[0];
                 int m_ItemID = Convert.ToInt32(m_Select.Tag);
 
                 if (m_ItemID > 0)
@@ -84,7 +84,7 @@ namespace Muhasebe
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedItems.Count > 0)
+            if (this.Inventory_List.SelectedItems.Count > 0)
             {
                 this.Edit_Btn.Enabled = true;
                 this.Delete_Btn.Enabled = true;
@@ -98,9 +98,9 @@ namespace Muhasebe
 
         private void Delete_Btn_Click(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedItems.Count > 0)
+            if (this.Inventory_List.SelectedItems.Count > 0)
             {
-                ListViewItem m_Item = this.listView1.SelectedItems[0];
+                ListViewItem m_Item = this.Inventory_List.SelectedItems[0];
 
                 if (m_Item.Tag != null)
                 {

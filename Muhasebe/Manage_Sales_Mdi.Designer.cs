@@ -39,7 +39,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.Node_List = new System.Windows.Forms.ListView();
+            this.SaleScreen_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -176,15 +176,15 @@
             this.label9.Text = "Kdv Toplam:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // Node_List
+            // SaleScreen_List
             // 
-            this.Node_List.AllowColumnReorder = true;
-            this.Node_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.SaleScreen_List.AllowColumnReorder = true;
+            this.SaleScreen_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Node_List.AutoArrange = false;
-            this.Node_List.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Node_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.SaleScreen_List.AutoArrange = false;
+            this.SaleScreen_List.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SaleScreen_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
@@ -192,15 +192,15 @@
             this.columnHeader8,
             this.columnHeader9,
             this.columnHeader10});
-            this.Node_List.ContextMenuStrip = this.Context_Menu;
-            this.Node_List.FullRowSelect = true;
-            this.Node_List.GridLines = true;
-            this.Node_List.Location = new System.Drawing.Point(12, 25);
-            this.Node_List.Name = "Node_List";
-            this.Node_List.Size = new System.Drawing.Size(650, 347);
-            this.Node_List.TabIndex = 18;
-            this.Node_List.UseCompatibleStateImageBehavior = false;
-            this.Node_List.View = System.Windows.Forms.View.Details;
+            this.SaleScreen_List.ContextMenuStrip = this.Context_Menu;
+            this.SaleScreen_List.FullRowSelect = true;
+            this.SaleScreen_List.GridLines = true;
+            this.SaleScreen_List.Location = new System.Drawing.Point(12, 25);
+            this.SaleScreen_List.Name = "SaleScreen_List";
+            this.SaleScreen_List.Size = new System.Drawing.Size(650, 347);
+            this.SaleScreen_List.TabIndex = 18;
+            this.SaleScreen_List.UseCompatibleStateImageBehavior = false;
+            this.SaleScreen_List.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -378,7 +378,7 @@
             this.Controls.Add(this.Sale_Button);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.Node_List);
+            this.Controls.Add(this.SaleScreen_List);
             this.Controls.Add(this.Author_Label);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
@@ -412,7 +412,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ListView Node_List;
+        private Custom.ListViewEx SaleScreen_List;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;

@@ -28,38 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.Inventory_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Add_Btn = new System.Windows.Forms.Button();
             this.Edit_Btn = new System.Windows.Forms.Button();
             this.Delete_Btn = new System.Windows.Forms.Button();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
-            // listView1
+            // Inventory_List
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Inventory_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Inventory_List.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Inventory_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(13, 13);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(569, 428);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.Inventory_List.FullRowSelect = true;
+            this.Inventory_List.GridLines = true;
+            this.Inventory_List.Location = new System.Drawing.Point(13, 13);
+            this.Inventory_List.Name = "Inventory_List";
+            this.Inventory_List.Size = new System.Drawing.Size(569, 428);
+            this.Inventory_List.TabIndex = 0;
+            this.Inventory_List.UseCompatibleStateImageBehavior = false;
+            this.Inventory_List.View = System.Windows.Forms.View.Details;
+            this.Inventory_List.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -83,6 +83,12 @@
             this.columnHeader4.Text = "Mevcut";
             this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader4.Width = 134;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Açıklama";
+            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader5.Width = 153;
             // 
             // Add_Btn
             // 
@@ -117,12 +123,6 @@
             this.Delete_Btn.UseVisualStyleBackColor = true;
             this.Delete_Btn.Click += new System.EventHandler(this.Delete_Btn_Click);
             // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Açıklama";
-            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader5.Width = 153;
-            // 
             // Manage_Inventory_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -131,7 +131,7 @@
             this.Controls.Add(this.Delete_Btn);
             this.Controls.Add(this.Edit_Btn);
             this.Controls.Add(this.Add_Btn);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.Inventory_List);
             this.Name = "Manage_Inventory_Mdi";
             this.Text = "Depo Yönetimi";
             this.Load += new System.EventHandler(this.Manage_Inventory_Mdi_Load);
@@ -141,7 +141,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
+        private Custom.ListViewEx Inventory_List;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;

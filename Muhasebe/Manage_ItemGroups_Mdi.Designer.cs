@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.Edit_Button = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.ItemGroups_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -49,24 +49,24 @@
             this.Edit_Button.UseVisualStyleBackColor = true;
             this.Edit_Button.Click += new System.EventHandler(this.Edit_Button_Click);
             // 
-            // listView1
+            // ItemGroups_List
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ItemGroups_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ItemGroups_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader8});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(12, 12);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(584, 444);
-            this.listView1.TabIndex = 6;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.ItemGroups_List.FullRowSelect = true;
+            this.ItemGroups_List.GridLines = true;
+            this.ItemGroups_List.Location = new System.Drawing.Point(12, 12);
+            this.ItemGroups_List.Name = "ItemGroups_List";
+            this.ItemGroups_List.Size = new System.Drawing.Size(584, 444);
+            this.ItemGroups_List.TabIndex = 6;
+            this.ItemGroups_List.UseCompatibleStateImageBehavior = false;
+            this.ItemGroups_List.View = System.Windows.Forms.View.Details;
+            this.ItemGroups_List.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -123,7 +123,7 @@
             this.Controls.Add(this.Delete_Button);
             this.Controls.Add(this.Edit_Button);
             this.Controls.Add(this.Add_Button);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.ItemGroups_List);
             this.Name = "Manage_ItemGroups_Mdi";
             this.Text = "Ürün Grupları Yönetimi";
             this.Load += new System.EventHandler(this.Manage_ItemGroups_Mdi_Load);
@@ -135,7 +135,7 @@
         private System.Windows.Forms.Button Delete_Button;
         private System.Windows.Forms.Button Edit_Button;
         private System.Windows.Forms.Button Add_Button;
-        private System.Windows.Forms.ListView listView1;
+        private Custom.ListViewEx ItemGroups_List;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader8;

@@ -75,7 +75,7 @@ namespace Muhasebe
         {
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
-                this.Node_List.Items.Clear();
+                this.SaleScreen_List.Items.Clear();
                 var m_Nodes = this.Invoice.Nodes;
 
                 decimal m_Subtotal = 0;
@@ -131,7 +131,7 @@ namespace Muhasebe
                         else
                             m_Total += m_Node.BasePrice.Value * m_Node.Amount.Value;
 
-                        this.Node_List.Items.Add(m_ViewItem);
+                        this.SaleScreen_List.Items.Add(m_ViewItem);
                     }
 
                     return true;
@@ -171,13 +171,13 @@ namespace Muhasebe
 
         private void Context_Menu_Opening(object sender, CancelEventArgs e)
         {
-            if (this.Node_List.SelectedItems.Count == 1)
+            if (this.SaleScreen_List.SelectedItems.Count == 1)
                 this.düzenleToolStripMenuItem.Enabled = true;
 
-            if (this.Node_List.SelectedItems.Count >= 1)
+            if (this.SaleScreen_List.SelectedItems.Count >= 1)
                 this.silToolStripMenuItem.Enabled = true;
 
-            if (this.Node_List.SelectedItems.Count == 0)
+            if (this.SaleScreen_List.SelectedItems.Count == 0)
             {
                 this.düzenleToolStripMenuItem.Enabled = false;
                 this.silToolStripMenuItem.Enabled = false;
@@ -186,9 +186,9 @@ namespace Muhasebe
 
         private void düzenleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.Node_List.SelectedItems.Count == 1)
+            if (this.SaleScreen_List.SelectedItems.Count == 1)
             {
-                int m_ItemID = Convert.ToInt32(this.Node_List.SelectedItems[0].Tag);
+                int m_ItemID = Convert.ToInt32(this.SaleScreen_List.SelectedItems[0].Tag);
 
                 InvoiceNode m_Node = this.Invoice.Nodes.Where(q => q.ItemID == m_ItemID).FirstOrDefault();
 
@@ -204,11 +204,11 @@ namespace Muhasebe
 
         private void silToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.Node_List.SelectedItems.Count > 0)
+            if (this.SaleScreen_List.SelectedItems.Count > 0)
             {
-                if (MessageBox.Show(string.Format("Seçili {0} objeyi silmek istediğinizden emin misiniz?", this.Node_List.SelectedItems.Count), "Dikkat", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(string.Format("Seçili {0} objeyi silmek istediğinizden emin misiniz?", this.SaleScreen_List.SelectedItems.Count), "Dikkat", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    foreach (ListViewItem m_ViewItem in this.Node_List.SelectedItems)
+                    foreach (ListViewItem m_ViewItem in this.SaleScreen_List.SelectedItems)
                     {
                         int m_ItemID = Convert.ToInt32(m_ViewItem.Tag);
 

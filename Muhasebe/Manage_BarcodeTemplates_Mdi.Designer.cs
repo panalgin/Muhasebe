@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.Edit_Button = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.BarcodeTemplates_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -53,12 +53,12 @@
             this.Edit_Button.UseVisualStyleBackColor = true;
             this.Edit_Button.Click += new System.EventHandler(this.Edit_Button_Click);
             // 
-            // listView1
+            // BarcodeTemplates_List
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.BarcodeTemplates_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.BarcodeTemplates_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
@@ -66,16 +66,16 @@
             this.columnHeader5,
             this.columnHeader8,
             this.columnHeader6});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(12, 12);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(676, 383);
-            this.listView1.TabIndex = 4;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.BarcodeTemplates_List.FullRowSelect = true;
+            this.BarcodeTemplates_List.GridLines = true;
+            this.BarcodeTemplates_List.Location = new System.Drawing.Point(12, 12);
+            this.BarcodeTemplates_List.MultiSelect = false;
+            this.BarcodeTemplates_List.Name = "BarcodeTemplates_List";
+            this.BarcodeTemplates_List.Size = new System.Drawing.Size(676, 383);
+            this.BarcodeTemplates_List.TabIndex = 4;
+            this.BarcodeTemplates_List.UseCompatibleStateImageBehavior = false;
+            this.BarcodeTemplates_List.View = System.Windows.Forms.View.Details;
+            this.BarcodeTemplates_List.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -155,7 +155,7 @@
             this.Controls.Add(this.Delete_Button);
             this.Controls.Add(this.Edit_Button);
             this.Controls.Add(this.Add_Button);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.BarcodeTemplates_List);
             this.Name = "Manage_BarcodeTemplates_Mdi";
             this.Text = "Barkod Tasarımı Yönetimi";
             this.Load += new System.EventHandler(this.Manage_BarcodeTemplates_Mdi_Load);
@@ -168,7 +168,7 @@
         private System.Windows.Forms.Button Delete_Button;
         private System.Windows.Forms.Button Edit_Button;
         private System.Windows.Forms.Button Add_Button;
-        private System.Windows.Forms.ListView listView1;
+        private Custom.ListViewEx BarcodeTemplates_List;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;

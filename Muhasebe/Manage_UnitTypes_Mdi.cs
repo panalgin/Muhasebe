@@ -24,7 +24,7 @@ namespace Muhasebe
 
         private void PopulateList()
         {
-            this.listView1.Items.Clear();
+            this.UnitTypes_List.Items.Clear();
             MuhasebeEntities m_Context = new MuhasebeEntities();
 
             var m_Units = m_Context.UnitTypes.Where(q => q.OwnerID == null || q.OwnerID == Program.User.WorksAtID).ToList();
@@ -58,7 +58,7 @@ namespace Muhasebe
                     m_Item.BackColor = System.Drawing.Color.WhiteSmoke;
                 }
 
-                this.listView1.Items.Add(m_Item);
+                this.UnitTypes_List.Items.Add(m_Item);
 
                 return true;
             });
@@ -78,9 +78,9 @@ namespace Muhasebe
 
         private void Delete_Button_Click(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedItems.Count > 0)
+            if (this.UnitTypes_List.SelectedItems.Count > 0)
             {
-                ListViewItem m_Item = this.listView1.SelectedItems[0];
+                ListViewItem m_Item = this.UnitTypes_List.SelectedItems[0];
 
                 if (m_Item.Tag != null)
                 {
@@ -106,10 +106,10 @@ namespace Muhasebe
 
         private void Edit_Button_Click(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedItems.Count > 0)
+            if (this.UnitTypes_List.SelectedItems.Count > 0)
             {
                 MuhasebeEntities m_Context = new MuhasebeEntities();
-                ListViewItem m_Select = this.listView1.SelectedItems[0];
+                ListViewItem m_Select = this.UnitTypes_List.SelectedItems[0];
                 int m_ItemID = Convert.ToInt32(m_Select.Tag);
 
                 if (m_ItemID > 0)
@@ -138,7 +138,7 @@ namespace Muhasebe
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedItems.Count > 0)
+            if (this.UnitTypes_List.SelectedItems.Count > 0)
             {
                 this.Delete_Button.Enabled = true;
                 this.Edit_Button.Enabled = true;

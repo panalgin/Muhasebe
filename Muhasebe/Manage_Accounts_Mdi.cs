@@ -93,7 +93,7 @@ namespace Muhasebe
 
         private void PopulateAccountHistory(Account account)
         {
-            this.listView1.Items.Clear();
+            this.Account_History_View.Items.Clear();
 
             if (account != null)
             {
@@ -110,7 +110,7 @@ namespace Muhasebe
                         m_Item.SubItems.Add(invoice.PaymentType.Name);
                         m_Item.SubItems.Add(invoice.Nodes.Sum(q => q.FinalPrice).Value.ToString());
 
-                        this.listView1.Items.Add(m_Item);
+                        this.Account_History_View.Items.Add(m_Item);
 
                         return true;
                     });

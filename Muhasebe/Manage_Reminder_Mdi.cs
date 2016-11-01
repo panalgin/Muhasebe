@@ -24,7 +24,7 @@ namespace Muhasebe
 
         private void PopulateListView()
         {
-            this.listView1.Items.Clear();
+            this.Reminding_List.Items.Clear();
 
             MuhasebeEntities m_Context = new MuhasebeEntities();
 
@@ -58,17 +58,17 @@ namespace Muhasebe
                     m_ViewItem.UseItemStyleForSubItems = true;
                 }
 
-                this.listView1.Items.Add(m_ViewItem);
+                this.Reminding_List.Items.Add(m_ViewItem);
                 return true;
             });
         }
 
         private void Edit_Button_Click(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedItems.Count > 0)
+            if (this.Reminding_List.SelectedItems.Count > 0)
             {
                 MuhasebeEntities m_Context = new MuhasebeEntities();
-                ListViewItem m_Select = this.listView1.SelectedItems[0];
+                ListViewItem m_Select = this.Reminding_List.SelectedItems[0];
                 int m_ItemID = Convert.ToInt32(m_Select.Tag);
 
                 if (m_ItemID > 0)
@@ -91,7 +91,7 @@ namespace Muhasebe
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedItems.Count > 0)
+            if (this.Reminding_List.SelectedItems.Count > 0)
             {
                 this.Delete_Button.Enabled = true;
                 this.Edit_Button.Enabled = true;
@@ -105,12 +105,12 @@ namespace Muhasebe
 
         private void Delete_Button_Click(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedItems.Count > 0)
+            if (this.Reminding_List.SelectedItems.Count > 0)
             {
                 if (MessageBox.Show("Seçili nesne(leri) silmek istediğinizden emin misiniz?", "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     MuhasebeEntities m_Context = new MuhasebeEntities();
-                    ListViewItem m_Select = this.listView1.SelectedItems[0];
+                    ListViewItem m_Select = this.Reminding_List.SelectedItems[0];
                     int m_ItemID = Convert.ToInt32(m_Select.Tag);
 
                     if (m_Select.Tag != null && m_ItemID > 0)
