@@ -249,7 +249,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Manuel Satış";
             this.Load += new System.EventHandler(this.Add_Sales_Mdi_Load);
             this.groupBox2.ResumeLayout(false);

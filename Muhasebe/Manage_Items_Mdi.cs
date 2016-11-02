@@ -232,6 +232,8 @@ namespace Muhasebe
 
         private void DoPopulateListView(List<Faker> m_Items)
         {
+            this.Items_List.BeginUpdate();
+
             this.Items_List.Items.Clear();
 
             int i = 0;
@@ -280,6 +282,8 @@ namespace Muhasebe
             this.Total_Distinct_Item_Label.Text = string.Format("Toplam: {0} kalem ürün", m_Distinct);
             this.Total_Cost_Label.Text = string.Format("Toplam Maliyet: {0:0.00} TL", m_Cost);
             this.Potential_Final_Label.Text = string.Format("Potansiyel Satış Değeri: {0:0.00} TL", m_Final);
+
+            this.Items_List.EndUpdate();
         }
 
         private void Add_Button_Click(object sender, EventArgs e)

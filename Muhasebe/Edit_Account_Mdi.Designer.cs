@@ -1,6 +1,6 @@
 ﻿namespace Muhasebe
 {
-    partial class Add_Account_Mdi
+    partial class Edit_Account_Mdi
     {
         /// <summary>
         /// Required designer variable.
@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.AccountName_Box = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.AccountType_Combo = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Email_Box = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -47,61 +42,18 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.Error_Provider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.AccountName_Box = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.AccountType_Combo = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.Cancel_Button = new System.Windows.Forms.Button();
             this.Save_Button = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.Error_Provider = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Error_Provider)).BeginInit();
             this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.AccountName_Box);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.AccountType_Combo);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(284, 127);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Hesap Bilgileri";
-            // 
-            // AccountName_Box
-            // 
-            this.Error_Provider.SetIconPadding(this.AccountName_Box, -20);
-            this.AccountName_Box.Location = new System.Drawing.Point(119, 46);
-            this.AccountName_Box.Name = "AccountName_Box";
-            this.AccountName_Box.Size = new System.Drawing.Size(159, 20);
-            this.AccountName_Box.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(54, 49);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Hesap Adı:";
-            // 
-            // AccountType_Combo
-            // 
-            this.AccountType_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.AccountType_Combo.FormattingEnabled = true;
-            this.AccountType_Combo.Location = new System.Drawing.Point(119, 19);
-            this.AccountType_Combo.Name = "AccountType_Combo";
-            this.AccountType_Combo.Size = new System.Drawing.Size(159, 21);
-            this.AccountType_Combo.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(47, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Hesap Türü:";
             // 
             // groupBox2
             // 
@@ -120,7 +72,7 @@
             this.groupBox2.Location = new System.Drawing.Point(302, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(284, 253);
-            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "İletişim Bilgileri";
             // 
@@ -225,9 +177,53 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Adres:";
             // 
-            // Error_Provider
+            // groupBox1
             // 
-            this.Error_Provider.ContainerControl = this;
+            this.groupBox1.Controls.Add(this.AccountName_Box);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.AccountType_Combo);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(284, 127);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Hesap Bilgileri";
+            // 
+            // AccountName_Box
+            // 
+            this.Error_Provider.SetIconPadding(this.AccountName_Box, -20);
+            this.AccountName_Box.Location = new System.Drawing.Point(119, 46);
+            this.AccountName_Box.Name = "AccountName_Box";
+            this.AccountName_Box.Size = new System.Drawing.Size(159, 20);
+            this.AccountName_Box.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(54, 49);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Hesap Adı:";
+            // 
+            // AccountType_Combo
+            // 
+            this.AccountType_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.AccountType_Combo.FormattingEnabled = true;
+            this.AccountType_Combo.Location = new System.Drawing.Point(119, 19);
+            this.AccountType_Combo.Name = "AccountType_Combo";
+            this.AccountType_Combo.Size = new System.Drawing.Size(159, 21);
+            this.AccountType_Combo.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(47, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Hesap Türü:";
             // 
             // Cancel_Button
             // 
@@ -237,7 +233,7 @@
             this.Cancel_Button.Location = new System.Drawing.Point(490, 352);
             this.Cancel_Button.Name = "Cancel_Button";
             this.Cancel_Button.Size = new System.Drawing.Size(96, 23);
-            this.Cancel_Button.TabIndex = 3;
+            this.Cancel_Button.TabIndex = 7;
             this.Cancel_Button.Text = "İptal";
             this.Cancel_Button.UseVisualStyleBackColor = true;
             this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
@@ -250,12 +246,16 @@
             this.Save_Button.Location = new System.Drawing.Point(388, 352);
             this.Save_Button.Name = "Save_Button";
             this.Save_Button.Size = new System.Drawing.Size(96, 23);
-            this.Save_Button.TabIndex = 2;
+            this.Save_Button.TabIndex = 6;
             this.Save_Button.Text = "Kaydet";
             this.Save_Button.UseVisualStyleBackColor = true;
             this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
             // 
-            // Add_Account_Mdi
+            // Error_Provider
+            // 
+            this.Error_Provider.ContainerControl = this;
+            // 
+            // Edit_Account_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -267,14 +267,14 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Add_Account_Mdi";
+            this.Name = "Edit_Account_Mdi";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Yeni Hesap Ekle";
-            this.Load += new System.EventHandler(this.Add_Account_Mdi_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Text = "Hesabı Düzenle";
+            this.Load += new System.EventHandler(this.Edit_Account_Mdi_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Error_Provider)).EndInit();
             this.ResumeLayout(false);
 
@@ -282,26 +282,26 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button Save_Button;
-        private System.Windows.Forms.Button Cancel_Button;
-        private System.Windows.Forms.ComboBox AccountType_Combo;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox AccountName_Box;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox Email_Box;
+        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox Gsm_Box;
         private System.Windows.Forms.TextBox Phone_Box;
         private System.Windows.Forms.ComboBox Province_Combo;
-        private System.Windows.Forms.ComboBox City_Combo;
         private System.Windows.Forms.TextBox Address_Box;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox City_Combo;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox Email_Box;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button Cancel_Button;
+        private System.Windows.Forms.Button Save_Button;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox AccountName_Box;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox AccountType_Combo;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ErrorProvider Error_Provider;
     }
 }

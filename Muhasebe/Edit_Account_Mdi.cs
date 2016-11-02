@@ -5,22 +5,23 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Muhasebe
 {
-    public partial class Add_Account_Mdi : Form
+    public partial class Edit_Account_Mdi : Form
     {
-        public Add_Account_Mdi()
+        public Account Account { get; set; }
+
+        public Edit_Account_Mdi()
         {
             InitializeComponent();
         }
 
-        private void Add_Account_Mdi_Load(object sender, EventArgs e)
+        private void Edit_Account_Mdi_Load(object sender, EventArgs e)
         {
-            using(MuhasebeEntities m_Context = new MuhasebeEntities())
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
                 var m_Cities = m_Context.Cities.Select(q => new { ID = q.ID, Name = q.Name }).ToList();
 
@@ -29,7 +30,7 @@ namespace Muhasebe
                 this.City_Combo.DisplayMember = "Name";
 
                 this.City_Combo.SelectedIndexChanged += City_Combo_SelectedIndexChanged;
-                
+
                 this.City_Combo.Invalidate();
 
                 var m_AccountTypes = m_Context.AccountTypes.ToList();
@@ -40,20 +41,20 @@ namespace Muhasebe
                 this.AccountType_Combo.Invalidate();
             }
 
-            this.City_Combo.BeginInvoke((MethodInvoker)delegate ()
-            {
-                this.City_Combo.SelectedIndex = 58;
-            });
+            this.AccountType_Combo.SelectedValue = this.Account.AccountTypeID;
+            this.AccountName_Box.Text = this.Account.Name;
+            this.City_Combo.SelectedValue = this.Account.CityID;
+            this.Province_Combo.SelectedValue = this.Account.ProvinceID;
 
-            this.AccountType_Combo.BeginInvoke((MethodInvoker)delegate ()
-            {
-                this.AccountType_Combo.SelectedIndex = 0;
-            });
+            this.Address_Box.Text = this.Account.Address;
+            this.Phone_Box.Text = this.Account.Phone;
+            this.Gsm_Box.Text = this.Account.Gsm;
+            this.Email_Box.Text = this.Account.Email;
         }
 
         private void City_Combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using(MuhasebeEntities m_Context = new MuhasebeEntities())
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
                 int m_CityID = Convert.ToInt32(this.City_Combo.SelectedValue);
                 City m_City = m_Context.Cities.Where(q => q.ID == m_CityID).FirstOrDefault();
@@ -68,7 +69,7 @@ namespace Muhasebe
 
                     this.Province_Combo.Invalidate();
                 }
-            } 
+            }
         }
 
         private void Cancel_Button_Click(object sender, EventArgs e)
@@ -82,7 +83,7 @@ namespace Muhasebe
             {
                 using (MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
-                    Account m_Account = new Account();
+                    /*Account m_Account = new Account();
                     m_Account.AccountTypeID = Convert.ToInt32(this.AccountType_Combo.SelectedValue);
                     m_Account.Name = this.AccountName_Box.Text;
                     m_Account.CityID = Convert.ToInt32(this.City_Combo.SelectedValue);
@@ -94,7 +95,7 @@ namespace Muhasebe
                     m_Account.OwnerID = Program.User.WorksAtID.Value;
 
                     m_Context.Accounts.Add(m_Account);
-                    m_Context.SaveChanges();
+                    m_Context.SaveChanges();*/
 
                     this.Close();
                 }
@@ -119,7 +120,7 @@ namespace Muhasebe
             else
                 this.Error_Provider.SetError(this.Address_Box, "");*/
 
-            using(MuhasebeEntities m_Context = new MuhasebeEntities())
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
                 Account m_Account = m_Context.Accounts.Where(q => q.Name == this.AccountName_Box.Text).FirstOrDefault();
 
