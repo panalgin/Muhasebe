@@ -114,7 +114,32 @@ namespace Muhasebe
 
         private void Delete_Button_Click(object sender, EventArgs e)
         {
+            if (this.Customers_List.SelectedItems.Count > 0 || this.Suppliers_List.SelectedItems.Count > 0)
+            {
+                int m_AccountID = 0;
 
+                if (this.Customers_List.SelectedItems.Count > 0)
+                    m_AccountID = Convert.ToInt32(this.Customers_List.SelectedItems[0].Tag);
+                else
+                    m_AccountID = Convert.ToInt32(this.Suppliers_List.SelectedItems[0].Tag);
+
+                using(MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    Account m_Account = m_Context.Accounts.Where(q => q.ID == m_AccountID).FirstOrDefault();
+
+                    if (m_Account != null)
+                    {
+                        string m_Message = string.Format("{0} adlı {1} hesabı silinecek, emin misiniz?", m_Account.Name, m_Account.AccountType.Name);
+
+                        if (MessageBox.Show(m_Message, "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            m_Context.Accounts.Remove(m_Account);
+                            m_Context.SaveChanges();
+                            PopulateList();
+                        }
+                    }
+                }
+            }
         }
 
         private void Customers_List_SelectedIndexChanged(object sender, EventArgs e)
@@ -139,6 +164,29 @@ namespace Muhasebe
                 this.Delete_Button.Enabled = false;
             }
 
+        }
+
+        private void Suppliers_List_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.Suppliers_List.SelectedItems.Count > 0)
+            {
+                this.Edit_Button.Enabled = true;
+                this.Delete_Button.Enabled = true;
+
+                int m_AccountID = Convert.ToInt32(this.Suppliers_List.SelectedItems[0].Tag);
+
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    Account m_Account = m_Context.Accounts.Where(q => q.ID == m_AccountID).FirstOrDefault();
+                    PopulateAccountHistory(m_Account);
+                }
+
+            }
+            else
+            {
+                this.Edit_Button.Enabled = false;
+                this.Delete_Button.Enabled = false;
+            }
         }
 
         private void PopulateAccountHistory(Account account)

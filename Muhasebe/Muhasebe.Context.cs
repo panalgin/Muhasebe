@@ -54,5 +54,7 @@ namespace Muhasebe
         public virtual DbSet<AccountType> AccountTypes { get; set; }
         public virtual DbSet<OrderNode> OrderNodes { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<AccountMovement> AccountMovements { get; set; }
+        public virtual DbSet<AccountMovementType> AccountMovementTypes { get; set; }
     }
 }

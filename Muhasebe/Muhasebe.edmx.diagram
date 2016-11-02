@@ -4,27 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="77ff789032bb42378e8fb0399c51bfd2" Name="Diagram1" ZoomLevel="106" >
-        <EntityTypeShape EntityType="MuhasebeModel.Product" Width="1.5" PointX="6" PointY="29.75" />
-        <EntityTypeShape EntityType="MuhasebeModel.User" Width="1.5" PointX="3" PointY="5" />
-        <EntityTypeShape EntityType="MuhasebeModel.Inventory" Width="1.5" PointX="6" PointY="26.5" />
-        <EntityTypeShape EntityType="MuhasebeModel.Item" Width="1.5" PointX="3.75" PointY="25.75" />
-        <EntityTypeShape EntityType="MuhasebeModel.Company" Width="1.5" PointX="8.25" PointY="4.625" />
-        <EntityTypeShape EntityType="MuhasebeModel.UnitType" Width="1.5" PointX="6" PointY="17.875" />
-        <EntityTypeShape EntityType="MuhasebeModel.Device" Width="2.125" PointX="5.375" PointY="22.875" />
-        <EntityTypeShape EntityType="MuhasebeModel.DeviceType" Width="1.5" PointX="8.25" PointY="23.25" />
-        <EntityTypeShape EntityType="MuhasebeModel.InvoiceNode" Width="1.5" PointX="1.5" PointY="15.375" />
-        <EntityTypeShape EntityType="MuhasebeModel.Invoice" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuhasebeModel.PaymentType" Width="1.5" PointX="6" PointY="6" />
-        <EntityTypeShape EntityType="MuhasebeModel.Income" Width="1.5" PointX="0.75" PointY="5.125" />
-        <EntityTypeShape EntityType="MuhasebeModel.IncomeType" Width="1.5" PointX="3" PointY="12.5" />
-        <EntityTypeShape EntityType="MuhasebeModel.Expenditure" Width="1.5" PointX="0.75" PointY="9.75" />
-        <EntityTypeShape EntityType="MuhasebeModel.ExpenditureType" Width="1.5" PointX="6" PointY="20.625" />
-        <EntityTypeShape EntityType="MuhasebeModel.JobPosition" Width="1.5" PointX="5.25" PointY="11.125" />
-        <EntityTypeShape EntityType="MuhasebeModel.Event" Width="1.5" PointX="0.625" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuhasebeModel.EventCategory" Width="1.5" PointX="3" PointY="9.875" />
-        <EntityTypeShape EntityType="MuhasebeModel.PropertyReminder" Width="1.5" PointX="0.75" PointY="19.5" />
-        <EntityTypeShape EntityType="MuhasebeModel.PropertyRemindingMethod" Width="1.5" PointX="3" PointY="20.25" />
+      <Diagram DiagramId="77ff789032bb42378e8fb0399c51bfd2" Name="Diagram1" ZoomLevel="163" >
+        <EntityTypeShape EntityType="MuhasebeModel.Product" Width="1.5" PointX="6" PointY="45" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.User" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.Inventory" Width="1.5" PointX="6" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.Item" Width="1.5" PointX="3.75" PointY="40.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.Company" Width="1.5" PointX="8.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.UnitType" Width="1.5" PointX="6" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.Device" Width="2.125" PointX="5.375" PointY="37.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.DeviceType" Width="1.5" PointX="8.25" PointY="39.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.InvoiceNode" Width="1.5" PointX="1.5" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.Invoice" Width="1.5" PointX="3.75" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.PaymentType" Width="1.5" PointX="6" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.Income" Width="1.5" PointX="3.75" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.IncomeType" Width="1.5" PointX="6" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.Expenditure" Width="1.5" PointX="3.75" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.ExpenditureType" Width="1.5" PointX="6" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.JobPosition" Width="1.5" PointX="8.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.Event" Width="1.5" PointX="3.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.EventCategory" Width="1.5" PointX="6" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.PropertyReminder" Width="1.5" PointX="3.75" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.PropertyRemindingMethod" Width="1.5" PointX="6" PointY="30.625" IsExpanded="true" />
         <AssociationConnector Association="MuhasebeModel.ItemProduct" />
         <AssociationConnector Association="MuhasebeModel.UserCompany" />
         <AssociationConnector Association="MuhasebeModel.InvoiceUser" />
@@ -54,28 +54,35 @@
         <AssociationConnector Association="MuhasebeModel.PropertyReminderCompany" />
         <AssociationConnector Association="MuhasebeModel.PropertyReminderItem" />
         <AssociationConnector Association="MuhasebeModel.PropertyReminderPropertyRemindingMethod" />
-        <EntityTypeShape EntityType="MuhasebeModel.BarcodeTemplate" Width="1.5" PointX="6" PointY="14.875" />
+        <EntityTypeShape EntityType="MuhasebeModel.BarcodeTemplate" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="MuhasebeModel.BarcodeTemplateCompany" />
-        <EntityTypeShape EntityType="MuhasebeModel.ConnectionType" Width="1.5" PointX="6" PointY="8.375" />
-        <EntityTypeShape EntityType="MuhasebeModel.ItemGroup" Width="1.5" PointX="1.5" PointY="26.875" />
+        <EntityTypeShape EntityType="MuhasebeModel.ConnectionType" Width="1.5" PointX="8.25" PointY="37.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.ItemGroup" Width="1.5" PointX="1.5" PointY="42.125" IsExpanded="true" />
         <AssociationConnector Association="MuhasebeModel.ItemGroupItem" />
         <AssociationConnector Association="MuhasebeModel.DeviceConnectionType" />
-        <EntityTypeShape EntityType="MuhasebeModel.Account" Width="1.5" PointX="9" PointY="0.5" />
-        <EntityTypeShape EntityType="MuhasebeModel.City" Width="1.5" PointX="11" PointY="0.5" />
-        <EntityTypeShape EntityType="MuhasebeModel.Province" Width="1.5" PointX="11" PointY="3.5" />
+        <EntityTypeShape EntityType="MuhasebeModel.Account" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.City" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.Province" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
         <AssociationConnector Association="MuhasebeModel.AccountProvince" />
         <AssociationConnector Association="MuhasebeModel.CityAccount" />
         <AssociationConnector Association="MuhasebeModel.CityProvince" />
-        <EntityTypeShape EntityType="MuhasebeModel.AccountType" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MuhasebeModel.AccountType" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
         <AssociationConnector Association="MuhasebeModel.AccountTypeAccount" />
         <AssociationConnector Association="MuhasebeModel.AccountCompany" />
-        <EntityTypeShape EntityType="MuhasebeModel.OrderNode" Width="1.5" PointX="12.875" PointY="6.625" />
-        <EntityTypeShape EntityType="MuhasebeModel.Order" Width="1.5" PointX="10.625" PointY="6.625" />
+        <EntityTypeShape EntityType="MuhasebeModel.OrderNode" Width="1.5" PointX="1.5" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.Order" Width="1.5" PointX="3.75" PointY="14.875" IsExpanded="true" />
         <AssociationConnector Association="MuhasebeModel.OrderNodeOrder" />
         <AssociationConnector Association="MuhasebeModel.OrderAccount" />
         <AssociationConnector Association="MuhasebeModel.OrderUser" />
         <AssociationConnector Association="MuhasebeModel.OrderCompany" />
         <AssociationConnector Association="MuhasebeModel.OrderNodeItem" />
+        <EntityTypeShape EntityType="MuhasebeModel.AccountMovement" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuhasebeModel.AccountMovementType" Width="1.5" PointX="3" PointY="20.125" IsExpanded="true" />
+        <AssociationConnector Association="MuhasebeModel.AccountMovementAccount" />
+        <AssociationConnector Association="MuhasebeModel.AccountMovementCompany" />
+        <AssociationConnector Association="MuhasebeModel.AccountMovementUser" />
+        <AssociationConnector Association="MuhasebeModel.AccountMovementPaymentType" />
+        <AssociationConnector Association="MuhasebeModel.AccountMovementAccountMovementType" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

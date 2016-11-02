@@ -306,6 +306,7 @@
             this.Suppliers_List.TabIndex = 34;
             this.Suppliers_List.UseCompatibleStateImageBehavior = false;
             this.Suppliers_List.View = System.Windows.Forms.View.Details;
+            this.Suppliers_List.SelectedIndexChanged += new System.EventHandler(this.Suppliers_List_SelectedIndexChanged);
             // 
             // columnHeader13
             // 

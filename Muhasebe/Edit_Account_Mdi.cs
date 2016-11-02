@@ -83,19 +83,21 @@ namespace Muhasebe
             {
                 using (MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
-                    /*Account m_Account = new Account();
-                    m_Account.AccountTypeID = Convert.ToInt32(this.AccountType_Combo.SelectedValue);
-                    m_Account.Name = this.AccountName_Box.Text;
-                    m_Account.CityID = Convert.ToInt32(this.City_Combo.SelectedValue);
-                    m_Account.ProvinceID = Convert.ToInt32(this.Province_Combo.SelectedValue);
-                    m_Account.Address = this.Address_Box.Text;
-                    m_Account.Phone = this.Phone_Box.Text;
-                    m_Account.Gsm = this.Gsm_Box.Text;
-                    m_Account.Email = this.Email_Box.Text;
-                    m_Account.OwnerID = Program.User.WorksAtID.Value;
+                    Account m_Existing = m_Context.Accounts.Where(q => q.ID == this.Account.ID).FirstOrDefault();
 
-                    m_Context.Accounts.Add(m_Account);
-                    m_Context.SaveChanges();*/
+                    if (m_Existing != null)
+                    {
+                        m_Existing.AccountTypeID = Convert.ToInt32(this.AccountType_Combo.SelectedValue);
+                        m_Existing.Name = this.AccountName_Box.Text;
+                        m_Existing.CityID = Convert.ToInt32(this.City_Combo.SelectedValue);
+                        m_Existing.ProvinceID = Convert.ToInt32(this.Province_Combo.SelectedValue);
+                        m_Existing.Address = this.Address_Box.Text;
+                        m_Existing.Phone = this.Phone_Box.Text;
+                        m_Existing.Gsm = this.Gsm_Box.Text;
+                        m_Existing.Email = this.Email_Box.Text;
+
+                        m_Context.SaveChanges();
+                    }
 
                     this.Close();
                 }
@@ -122,7 +124,7 @@ namespace Muhasebe
 
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
-                Account m_Account = m_Context.Accounts.Where(q => q.Name == this.AccountName_Box.Text).FirstOrDefault();
+                Account m_Account = m_Context.Accounts.Where(q => q.Name == this.AccountName_Box.Text && q.Name != this.Account.Name).FirstOrDefault();
 
                 if (m_Account != null)
                 {

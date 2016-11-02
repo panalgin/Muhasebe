@@ -108,6 +108,12 @@
     <Compile Include="Account.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>
+    <Compile Include="AccountMovement.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccountMovementType.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
     <Compile Include="AccountType.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>

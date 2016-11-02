@@ -5,6 +5,27 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="MuhasebeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountMovements">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="OwnerID" Type="int" Nullable="false" />
+          <Property Name="AuthorID" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="PaymentTypeID" Type="int" Nullable="false" />
+          <Property Name="Value" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MovementTypeID" Type="int" Nullable="false" />
+          <Property Name="ContractID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountMovementTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Accounts">
           <Key>
             <PropertyRef Name="ID" />
@@ -314,6 +335,8 @@
           <Property Name="Surname" Type="nvarchar" MaxLength="60" />
         </EntityType>
         <EntityContainer Name="MuhasebeModelStoreContainer">
+          <EntitySet Name="AccountMovements" EntityType="Self.AccountMovements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountMovementTypes" EntityType="Self.AccountMovementTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccountTypes" EntityType="Self.AccountTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BarcodeTemplates" EntityType="Self.BarcodeTemplates" Schema="dbo" store:Type="Tables" />
@@ -553,6 +576,28 @@
           <AssociationSet Name="OrderNodeItem" Association="MuhasebeModel.OrderNodeItem">
             <End Role="OrderNode" EntitySet="OrderNodes" />
             <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <EntitySet Name="AccountMovements" EntityType="MuhasebeModel.AccountMovement" />
+          <EntitySet Name="AccountMovementTypes" EntityType="MuhasebeModel.AccountMovementType" />
+          <AssociationSet Name="AccountMovementAccount" Association="MuhasebeModel.AccountMovementAccount">
+            <End Role="AccountMovement" EntitySet="AccountMovements" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="AccountMovementCompany" Association="MuhasebeModel.AccountMovementCompany">
+            <End Role="AccountMovement" EntitySet="AccountMovements" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="AccountMovementUser" Association="MuhasebeModel.AccountMovementUser">
+            <End Role="AccountMovement" EntitySet="AccountMovements" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="AccountMovementPaymentType" Association="MuhasebeModel.AccountMovementPaymentType">
+            <End Role="AccountMovement" EntitySet="AccountMovements" />
+            <End Role="PaymentType" EntitySet="PaymentTypes" />
+          </AssociationSet>
+          <AssociationSet Name="AccountMovementAccountMovementType" Association="MuhasebeModel.AccountMovementAccountMovementType">
+            <End Role="AccountMovement" EntitySet="AccountMovements" />
+            <End Role="AccountMovementType" EntitySet="AccountMovementTypes" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Product">
@@ -1453,6 +1498,92 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AccountMovement">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="OwnerID" Type="Int32" Nullable="false" />
+          <Property Name="AuthorID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
+          <Property Name="PaymentTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="MovementTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ContractID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="MuhasebeModel.AccountMovementAccount" FromRole="AccountMovement" ToRole="Account" />
+          <NavigationProperty Name="Owner" Relationship="MuhasebeModel.AccountMovementCompany" FromRole="AccountMovement" ToRole="Company" />
+          <NavigationProperty Name="Author" Relationship="MuhasebeModel.AccountMovementUser" FromRole="AccountMovement" ToRole="User" />
+          <NavigationProperty Name="PaymentType" Relationship="MuhasebeModel.AccountMovementPaymentType" FromRole="AccountMovement" ToRole="PaymentType" />
+          <NavigationProperty Name="MovementType" Relationship="MuhasebeModel.AccountMovementAccountMovementType" FromRole="AccountMovement" ToRole="AccountMovementType" />
+        </EntityType>
+        <EntityType Name="AccountMovementType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="AccountMovementAccount">
+          <End Type="MuhasebeModel.AccountMovement" Role="AccountMovement" Multiplicity="*" />
+          <End Type="MuhasebeModel.Account" Role="Account" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountMovement">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AccountMovementCompany">
+          <End Type="MuhasebeModel.AccountMovement" Role="AccountMovement" Multiplicity="*" />
+          <End Type="MuhasebeModel.Company" Role="Company" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountMovement">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AccountMovementUser">
+          <End Type="MuhasebeModel.AccountMovement" Role="AccountMovement" Multiplicity="*" />
+          <End Type="MuhasebeModel.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountMovement">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AccountMovementPaymentType">
+          <End Type="MuhasebeModel.AccountMovement" Role="AccountMovement" Multiplicity="*" />
+          <End Type="MuhasebeModel.PaymentType" Role="PaymentType" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountMovement">
+              <PropertyRef Name="PaymentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AccountMovementAccountMovementType">
+          <End Type="MuhasebeModel.AccountMovement" Role="AccountMovement" Multiplicity="*" />
+          <End Type="MuhasebeModel.AccountMovementType" Role="AccountMovementType" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="AccountMovementType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountMovement">
+              <PropertyRef Name="MovementTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1791,6 +1922,29 @@
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountMovements">
+            <EntityTypeMapping TypeName="MuhasebeModel.AccountMovement">
+              <MappingFragment StoreEntitySet="AccountMovements">
+                <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+                <ScalarProperty Name="MovementTypeID" ColumnName="MovementTypeID" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentTypeID" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountMovementTypes">
+            <EntityTypeMapping TypeName="MuhasebeModel.AccountMovementType">
+              <MappingFragment StoreEntitySet="AccountMovementTypes">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

@@ -90,7 +90,7 @@ namespace Muhasebe
 
                     if (m_Order != null)
                     {
-                        if (MessageBox.Show(string.Format("{0} adlı sipariş silinecek, emin misiniz?", m_Order.Name), "Bilgi", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                        if (MessageBox.Show(string.Format("{0} adlı sipariş silinecek, emin misiniz?", m_Order.Name), "Bilgi", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.OK)
                         {
                             m_Context.Orders.Remove(m_Order);
                             m_Context.SaveChanges();
