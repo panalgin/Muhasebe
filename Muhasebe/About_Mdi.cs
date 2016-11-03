@@ -21,5 +21,10 @@ namespace Muhasebe
         {
             this.Close();
         }
+
+        private void About_Mdi_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -175,7 +175,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(251, 13);
             this.label7.TabIndex = 1;
-            this.label7.Text = "Daflan Mikro Kaynak Yönetimi version 0.3.4";
+            this.label7.Text = "Daflan Mikro Kaynak Yönetimi version 0.3.5";
             // 
             // pictureBox4
             // 
@@ -268,6 +268,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "About_Mdi";
             this.Text = "Hakkında";
+            this.Load += new System.EventHandler(this.About_Mdi_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();

@@ -100,36 +100,48 @@ namespace Muhasebe
                         m_ViewItem.SubItems.Add(m_Node.Item.UnitType.Name);
                         m_ViewItem.SubItems.Add(string.Format("%{0}", m_Node.Item.Tax.Value.ToString()));
 
+
+                        decimal basePrice = 0.00m;
+                        decimal finalPrice = 0.00m;
+
+
+
                         if (this.Invoice.PaymentTypeID.HasValue && this.Invoice.PaymentTypeID == 3 && m_Node.Item.TermedPrice.HasValue && m_Node.Item.TermedPrice.Value > m_Node.Item.FinalPrice && m_Node.UseCustomPricing == false)
                         {
-                            m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Node.Item.TermedPrice.Value));
-                            m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Node.Item.TermedPrice.Value * m_Node.Amount)); // format shit
+                            basePrice = m_Node.Item.TermedPrice.Value;
+                            finalPrice = basePrice * m_Node.Amount.Value;
                         }
                         else
                         {
-                            m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Node.BasePrice.Value));
-                            m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", m_Node.BasePrice.Value * m_Node.Amount)); // format shit
+                            if (m_Node.UseCustomPricing == false)
+                            {
+                                basePrice = m_Node.Item.FinalPrice.Value;
+                                finalPrice = basePrice * m_Node.Amount.Value;
+                            }
+                            else
+                            {
+                                basePrice = m_Node.BasePrice.Value;
+                                finalPrice = basePrice * m_Node.Amount.Value;
+                            }
                         }
+
+                        m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", basePrice));
+                        m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", finalPrice)); // format shit
 
 
                         if (i++ % 2 == 1)
                         {
                             m_ViewItem.BackColor = m_Shaded;
                             m_ViewItem.UseItemStyleForSubItems = true;
-                        }
-
-                        if (this.Invoice.PaymentTypeID.HasValue && this.Invoice.PaymentTypeID == 3 && m_Node.Item.TermedPrice.HasValue && m_Node.Item.TermedPrice.Value > m_Node.Item.FinalPrice)
-                            m_Node.FinalPrice = m_Node.Item.TermedPrice * m_Node.Amount.Value;
-                        else
-                            m_Node.FinalPrice = m_Node.BasePrice * m_Node.Amount.Value;
+                        }                            
 
                         m_Subtotal += m_Node.Item.BasePrice.Value * m_Node.Amount.Value;
-                        m_Tax += (m_Node.FinalPrice.Value * ((decimal)m_Node.Tax.Value / 100));
+                        m_Tax += (finalPrice * ((decimal)m_Node.Tax.Value / 100));
 
-                        if (this.Invoice.PaymentTypeID.HasValue && this.Invoice.PaymentTypeID == 3 && m_Node.Item.TermedPrice.HasValue && m_Node.Item.TermedPrice.Value > m_Node.Item.FinalPrice)
-                            m_Total += m_Node.Item.TermedPrice.Value * m_Node.Amount.Value;
-                        else
-                            m_Total += m_Node.BasePrice.Value * m_Node.Amount.Value;
+                        m_Total += finalPrice;
+
+                        m_Node.BasePrice = basePrice;
+                        m_Node.FinalPrice = finalPrice;
 
                         this.SaleScreen_List.Items.Add(m_ViewItem);
                     }
