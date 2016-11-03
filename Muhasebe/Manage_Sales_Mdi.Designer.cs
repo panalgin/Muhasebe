@@ -59,6 +59,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.Sale_Button = new System.Windows.Forms.Button();
             this.Cancel_Button = new System.Windows.Forms.Button();
+            this.Account_Box = new Muhasebe.Custom.SearchBox();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.Context_Menu.SuspendLayout();
@@ -321,6 +322,7 @@
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.Account_Box);
             this.panel4.Controls.Add(this.label6);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.Payment_Combo);
@@ -332,7 +334,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 35);
+            this.label6.Location = new System.Drawing.Point(15, 37);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 13);
             this.label6.TabIndex = 21;
@@ -366,6 +368,17 @@
             this.Cancel_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Cancel_Button.UseVisualStyleBackColor = true;
             this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
+            // 
+            // Account_Box
+            // 
+            this.Account_Box.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.Account_Box.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.Account_Box.FillType = Muhasebe.Custom.SearchBox.Fillable.Account;
+            this.Account_Box.FormattingEnabled = true;
+            this.Account_Box.Location = new System.Drawing.Point(82, 34);
+            this.Account_Box.Name = "Account_Box";
+            this.Account_Box.Size = new System.Drawing.Size(165, 21);
+            this.Account_Box.TabIndex = 22;
             // 
             // Manage_Sales_Mdi
             // 
@@ -432,5 +445,6 @@
         private System.Windows.Forms.ToolStripMenuItem silToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manuelSatışToolStripMenuItem;
         private System.Windows.Forms.Label label6;
+        private Custom.SearchBox Account_Box;
     }
 }

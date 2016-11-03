@@ -201,18 +201,36 @@ namespace Muhasebe
                 {
                     using (MuhasebeEntities m_Context = new MuhasebeEntities())
                     {
-                        var m_Invoices = m_Context.Invoices.Where(q => q.OwnerID == Program.User.WorksAtID && q.TargetID == account.ID).OrderByDescending(q => q.CreatedAt);
+                        var m_Movements = m_Context.AccountMovements.Where(q => q.AccountID == account.ID);
 
-                        m_Invoices.All(delegate (Invoice invoice)
+                        int index = 0;
+                        Color m_Shaded = Color.FromArgb(240, 240, 240);
+
+                        m_Movements.All(delegate (AccountMovement movement)
                         {
                             ListViewItem m_Item = new ListViewItem();
-                            m_Item.Tag = invoice.ID;
-                            m_Item.Text = invoice.CreatedAt.ToString();
-                            m_Item.SubItems.Add(invoice.Author.FullName);
-                            m_Item.SubItems.Add(invoice.PaymentType.Name);
-                            m_Item.SubItems.Add(invoice.Nodes.Sum(q => q.FinalPrice).Value.ToString());
+                            m_Item.Tag = movement.ID;
+                            m_Item.Text = movement.CreatedAt.ToString();
+                            m_Item.SubItems.Add(movement.Author.FullName);
+                            m_Item.SubItems.Add(movement.PaymentType.Name);
+                            m_Item.SubItems.Add(movement.Value.ToString());
+                            m_Item.SubItems.Add(movement.MovementType.Name);
 
-                            this.Account_History_View.Items.Add(m_Item);
+                            if (index++ % 2 == 0)
+                            {
+                                m_Item.BackColor = m_Shaded;
+                                m_Item.UseItemStyleForSubItems = true;
+                            }
+
+                            if (movement.Flag == "Red")
+                                m_Item.ForeColor = Color.Red;
+                            else if (movement.Flag == "Green")
+                                m_Item.ForeColor = Color.Green;
+                            else if (movement.Flag == "Yellow")
+                                m_Item.ForeColor = Color.SaddleBrown;
+
+                            
+                            this.Account_History_View.Items.Insert(0, m_Item);
 
                             return true;
                         });

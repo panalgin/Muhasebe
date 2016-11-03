@@ -267,6 +267,28 @@ namespace Muhasebe
                     m_Income.OwnerID = Program.User.WorksAtID;
                     m_Income.PaymentTypeID = this.Invoice.PaymentTypeID;
 
+                    if (this.Account_Box.SelectedValue != null)
+                    {
+                        int m_AccountID = Convert.ToInt32(this.Account_Box.SelectedValue);
+
+                        Account m_Account = m_Context.Accounts.Where(q => q.ID == m_AccountID).FirstOrDefault();
+
+                        if (m_Account != null)
+                        {
+                            AccountMovement m_Movement = new AccountMovement();
+                            m_Movement.AccountID = m_Account.ID;
+                            m_Movement.AuthorID = Program.User.ID;
+                            m_Movement.MovementTypeID = 1; // Kasadan satış
+                            m_Movement.ContractID = m_Income.ID;
+                            m_Movement.CreatedAt = DateTime.Now;
+                            m_Movement.OwnerID = Program.User.WorksAtID.Value;
+                            m_Movement.PaymentTypeID = this.Invoice.PaymentTypeID.Value;
+                            m_Movement.Value = m_Income.Amount.Value;
+
+                            m_Context.AccountMovements.Add(m_Movement);
+                        }
+                    }
+
                     m_Context.Incomes.Add(m_Income);
                     m_Context.SaveChanges();
 

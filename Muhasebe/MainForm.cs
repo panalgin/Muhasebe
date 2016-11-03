@@ -128,7 +128,7 @@ namespace Muhasebe
                     m_Event.Description = "Kullanıcı oturum açtı.";
 
                     m_Context.Events.Add(m_Event);
-                    m_Context.SaveChangesAsync();
+                    m_Context.SaveChanges();
                 }
             }
             else
