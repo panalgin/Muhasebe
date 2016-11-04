@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -92,21 +93,30 @@ namespace Muhasebe
             {
                 int m_AccountID = 0;
 
-                if (this.Customers_List.SelectedItems.Count > 0)
-                    m_AccountID = Convert.ToInt32(this.Customers_List.SelectedItems[0].Tag);
-                else
-                    m_AccountID = Convert.ToInt32(this.Suppliers_List.SelectedItems[0].Tag);
-
-                using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                if (this.Accounts_Tab.SelectedIndex == 0)
                 {
-                    Account m_Account = m_Context.Accounts.Where(q => q.ID == m_AccountID).FirstOrDefault();
+                    if (this.Customers_List.SelectedItems.Count > 0)
+                        m_AccountID = Convert.ToInt32(this.Customers_List.SelectedItems[0].Tag);
+                }
+                else
+                {
+                    if (this.Suppliers_List.SelectedItems.Count > 0)
+                        m_AccountID = Convert.ToInt32(this.Suppliers_List.SelectedItems[0].Tag);
+                }
 
-                    if (m_Account != null)
+                if (m_AccountID > 0)
+                {
+                    using (MuhasebeEntities m_Context = new MuhasebeEntities())
                     {
-                        Edit_Account_Mdi m_Mdi = new Edit_Account_Mdi();
-                        m_Mdi.Account = m_Account;
-                        m_Mdi.ShowDialog();
-                        PopulateList();
+                        Account m_Account = m_Context.Accounts.Where(q => q.ID == m_AccountID).FirstOrDefault();
+
+                        if (m_Account != null)
+                        {
+                            Edit_Account_Mdi m_Mdi = new Edit_Account_Mdi();
+                            m_Mdi.Account = m_Account;
+                            m_Mdi.ShowDialog();
+                            PopulateList();
+                        }
                     }
                 }
             }
@@ -156,14 +166,12 @@ namespace Muhasebe
                     Account m_Account = m_Context.Accounts.Where(q => q.ID == m_AccountID).FirstOrDefault();
                     PopulateAccountHistory(m_Account);
                 }
-                
             }
             else
             {
                 this.Edit_Button.Enabled = false;
                 this.Delete_Button.Enabled = false;
             }
-
         }
 
         private void Suppliers_List_SelectedIndexChanged(object sender, EventArgs e)
@@ -180,7 +188,6 @@ namespace Muhasebe
                     Account m_Account = m_Context.Accounts.Where(q => q.ID == m_AccountID).FirstOrDefault();
                     PopulateAccountHistory(m_Account);
                 }
-
             }
             else
             {
@@ -301,6 +308,27 @@ namespace Muhasebe
                 else
                     this.Net_State_Label.Text = "Nötr";
             });
+        }
+
+        private void Accounts_Tab_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.Accounts_Tab.SelectedIndex == 0)
+            {
+                foreach (ListViewItem item in this.Suppliers_List.SelectedItems)
+                {
+                    item.Selected = false;
+                }
+            }
+            else if (this.Accounts_Tab.SelectedIndex == 1)
+            {
+                foreach (ListViewItem item in this.Customers_List.SelectedItems)
+                {
+                    item.Selected = false;
+                }
+            }
+
+            this.Edit_Button.Enabled = false;
+            this.Delete_Button.Enabled = false;
         }
     }
 }

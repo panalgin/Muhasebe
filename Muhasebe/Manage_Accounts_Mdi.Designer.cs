@@ -33,6 +33,14 @@
             this.Add_Button = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Net_Debt_Label = new System.Windows.Forms.Label();
+            this.Net_Loan_Label = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.Paid_Label = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.Charged_Label = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.Debt_Label = new System.Windows.Forms.Label();
             this.Loan_Label = new System.Windows.Forms.Label();
             this.Sell_Volume_Label = new System.Windows.Forms.Label();
@@ -44,18 +52,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.Account_History_View = new Muhasebe.Custom.ListViewEx();
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Inspect_Button = new System.Windows.Forms.Button();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.Accounts_Tab = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
-            this.Charged_Label = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.Paid_Label = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.Net_Loan_Label = new System.Windows.Forms.Label();
-            this.Net_Debt_Label = new System.Windows.Forms.Label();
             this.Customers_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -65,6 +70,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.Suppliers_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -74,15 +80,9 @@
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Account_History_View = new Muhasebe.Custom.ListViewEx();
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabControl2.SuspendLayout();
+            this.Accounts_Tab.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.SuspendLayout();
@@ -166,6 +166,84 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "İşlem Geçmişi";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // Net_Debt_Label
+            // 
+            this.Net_Debt_Label.AutoSize = true;
+            this.Net_Debt_Label.Location = new System.Drawing.Point(672, 236);
+            this.Net_Debt_Label.Name = "Net_Debt_Label";
+            this.Net_Debt_Label.Size = new System.Drawing.Size(44, 13);
+            this.Net_Debt_Label.TabIndex = 48;
+            this.Net_Debt_Label.Text = "0.00 TL";
+            // 
+            // Net_Loan_Label
+            // 
+            this.Net_Loan_Label.AutoSize = true;
+            this.Net_Loan_Label.Location = new System.Drawing.Point(672, 214);
+            this.Net_Loan_Label.Name = "Net_Loan_Label";
+            this.Net_Loan_Label.Size = new System.Drawing.Size(44, 13);
+            this.Net_Loan_Label.TabIndex = 47;
+            this.Net_Loan_Label.Text = "0.00 TL";
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(591, 236);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(75, 13);
+            this.label9.TabIndex = 46;
+            this.label9.Text = "Net Borcunuz:";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(588, 214);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(78, 13);
+            this.label8.TabIndex = 45;
+            this.label8.Text = "Net Alacağınız:";
+            // 
+            // Paid_Label
+            // 
+            this.Paid_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Paid_Label.AutoSize = true;
+            this.Paid_Label.Location = new System.Drawing.Point(487, 236);
+            this.Paid_Label.Name = "Paid_Label";
+            this.Paid_Label.Size = new System.Drawing.Size(44, 13);
+            this.Paid_Label.TabIndex = 44;
+            this.Paid_Label.Text = "0.00 TL";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(394, 236);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(87, 13);
+            this.label7.TabIndex = 43;
+            this.label7.Text = "Ödediğiniz Tutar:";
+            // 
+            // Charged_Label
+            // 
+            this.Charged_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Charged_Label.AutoSize = true;
+            this.Charged_Label.Location = new System.Drawing.Point(487, 214);
+            this.Charged_Label.Name = "Charged_Label";
+            this.Charged_Label.Size = new System.Drawing.Size(44, 13);
+            this.Charged_Label.TabIndex = 42;
+            this.Charged_Label.Text = "0.00 TL";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(405, 214);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 13);
+            this.label6.TabIndex = 41;
+            this.label6.Text = "Aldığınız Tutar:";
             // 
             // Debt_Label
             // 
@@ -279,6 +357,56 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Ticaret Hacminiz[Alış]:";
             // 
+            // Account_History_View
+            // 
+            this.Account_History_View.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Account_History_View.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader21});
+            this.Account_History_View.FullRowSelect = true;
+            this.Account_History_View.GridLines = true;
+            this.Account_History_View.Location = new System.Drawing.Point(3, 3);
+            this.Account_History_View.MultiSelect = false;
+            this.Account_History_View.Name = "Account_History_View";
+            this.Account_History_View.Size = new System.Drawing.Size(973, 199);
+            this.Account_History_View.TabIndex = 0;
+            this.Account_History_View.UseCompatibleStateImageBehavior = false;
+            this.Account_History_View.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Tarih";
+            this.columnHeader9.Width = 100;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "İşlemi Yapan";
+            this.columnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader10.Width = 100;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Ödeme Türü";
+            this.columnHeader11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader11.Width = 100;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "Tutar";
+            this.columnHeader12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader12.Width = 100;
+            // 
+            // columnHeader21
+            // 
+            this.columnHeader21.Text = "Hareket Türü";
+            this.columnHeader21.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader21.Width = 115;
+            // 
             // Inspect_Button
             // 
             this.Inspect_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -292,19 +420,20 @@
             this.Inspect_Button.UseVisualStyleBackColor = true;
             this.Inspect_Button.Click += new System.EventHandler(this.Inspect_Button_Click);
             // 
-            // tabControl2
+            // Accounts_Tab
             // 
-            this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Accounts_Tab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl2.Controls.Add(this.tabPage2);
-            this.tabControl2.Controls.Add(this.tabPage3);
-            this.tabControl2.Location = new System.Drawing.Point(12, 12);
-            this.tabControl2.Multiline = true;
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(987, 242);
-            this.tabControl2.TabIndex = 39;
+            this.Accounts_Tab.Controls.Add(this.tabPage2);
+            this.Accounts_Tab.Controls.Add(this.tabPage3);
+            this.Accounts_Tab.Location = new System.Drawing.Point(12, 12);
+            this.Accounts_Tab.Multiline = true;
+            this.Accounts_Tab.Name = "Accounts_Tab";
+            this.Accounts_Tab.SelectedIndex = 0;
+            this.Accounts_Tab.Size = new System.Drawing.Size(987, 242);
+            this.Accounts_Tab.TabIndex = 39;
+            this.Accounts_Tab.SelectedIndexChanged += new System.EventHandler(this.Accounts_Tab_SelectedIndexChanged);
             // 
             // tabPage2
             // 
@@ -316,95 +445,6 @@
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Müşteriler";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.Suppliers_List);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(979, 216);
-            this.tabPage3.TabIndex = 1;
-            this.tabPage3.Text = "Tedarikçiler";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(405, 214);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 13);
-            this.label6.TabIndex = 41;
-            this.label6.Text = "Aldığınız Tutar:";
-            // 
-            // Charged_Label
-            // 
-            this.Charged_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.Charged_Label.AutoSize = true;
-            this.Charged_Label.Location = new System.Drawing.Point(487, 214);
-            this.Charged_Label.Name = "Charged_Label";
-            this.Charged_Label.Size = new System.Drawing.Size(44, 13);
-            this.Charged_Label.TabIndex = 42;
-            this.Charged_Label.Text = "0.00 TL";
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(394, 236);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(87, 13);
-            this.label7.TabIndex = 43;
-            this.label7.Text = "Ödediğiniz Tutar:";
-            // 
-            // Paid_Label
-            // 
-            this.Paid_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.Paid_Label.AutoSize = true;
-            this.Paid_Label.Location = new System.Drawing.Point(487, 236);
-            this.Paid_Label.Name = "Paid_Label";
-            this.Paid_Label.Size = new System.Drawing.Size(44, 13);
-            this.Paid_Label.TabIndex = 44;
-            this.Paid_Label.Text = "0.00 TL";
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(588, 214);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(78, 13);
-            this.label8.TabIndex = 45;
-            this.label8.Text = "Net Alacağınız:";
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(591, 236);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(75, 13);
-            this.label9.TabIndex = 46;
-            this.label9.Text = "Net Borcunuz:";
-            // 
-            // Net_Loan_Label
-            // 
-            this.Net_Loan_Label.AutoSize = true;
-            this.Net_Loan_Label.Location = new System.Drawing.Point(672, 214);
-            this.Net_Loan_Label.Name = "Net_Loan_Label";
-            this.Net_Loan_Label.Size = new System.Drawing.Size(44, 13);
-            this.Net_Loan_Label.TabIndex = 47;
-            this.Net_Loan_Label.Text = "0.00 TL";
-            // 
-            // Net_Debt_Label
-            // 
-            this.Net_Debt_Label.AutoSize = true;
-            this.Net_Debt_Label.Location = new System.Drawing.Point(672, 236);
-            this.Net_Debt_Label.Name = "Net_Debt_Label";
-            this.Net_Debt_Label.Size = new System.Drawing.Size(44, 13);
-            this.Net_Debt_Label.TabIndex = 48;
-            this.Net_Debt_Label.Text = "0.00 TL";
             // 
             // Customers_List
             // 
@@ -474,6 +514,17 @@
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader6.Width = 117;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.Suppliers_List);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(979, 216);
+            this.tabPage3.TabIndex = 1;
+            this.tabPage3.Text = "Tedarikçiler";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
             // Suppliers_List
             // 
             this.Suppliers_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -542,62 +593,12 @@
             this.columnHeader20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader20.Width = 117;
             // 
-            // Account_History_View
-            // 
-            this.Account_History_View.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Account_History_View.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader9,
-            this.columnHeader10,
-            this.columnHeader11,
-            this.columnHeader12,
-            this.columnHeader21});
-            this.Account_History_View.FullRowSelect = true;
-            this.Account_History_View.GridLines = true;
-            this.Account_History_View.Location = new System.Drawing.Point(3, 3);
-            this.Account_History_View.MultiSelect = false;
-            this.Account_History_View.Name = "Account_History_View";
-            this.Account_History_View.Size = new System.Drawing.Size(973, 199);
-            this.Account_History_View.TabIndex = 0;
-            this.Account_History_View.UseCompatibleStateImageBehavior = false;
-            this.Account_History_View.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "Tarih";
-            this.columnHeader9.Width = 100;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "İşlemi Yapan";
-            this.columnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader10.Width = 100;
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "Ödeme Türü";
-            this.columnHeader11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader11.Width = 100;
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "Tutar";
-            this.columnHeader12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader12.Width = 100;
-            // 
-            // columnHeader21
-            // 
-            this.columnHeader21.Text = "Hareket Türü";
-            this.columnHeader21.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader21.Width = 115;
-            // 
             // Manage_Accounts_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1092, 563);
-            this.Controls.Add(this.tabControl2);
+            this.Controls.Add(this.Accounts_Tab);
             this.Controls.Add(this.Inspect_Button);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.Delete_Button);
@@ -609,7 +610,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabControl2.ResumeLayout(false);
+            this.Accounts_Tab.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -638,7 +639,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.Button Inspect_Button;
-        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabControl Accounts_Tab;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private Custom.ListViewEx Suppliers_List;
