@@ -268,16 +268,26 @@ namespace Muhasebe
                         return true;
                     });
 
-                    Income m_Income = new Income();
-                    m_Income.Amount = m_Total;
-                    m_Income.AuthorID = Program.User.ID;
-                    m_Income.CreatedAt = DateTime.Now;
-                    m_Income.Description = "Ticari mal satışı yapıldı.";
-                    m_Income.CreatedAt = DateTime.Now;
-                    m_Income.IncomeTypeID = 1; // Gayrisafi
-                    m_Income.Invoice = this.Invoice;
-                    m_Income.OwnerID = Program.User.WorksAtID;
-                    m_Income.PaymentTypeID = this.Invoice.PaymentTypeID;
+                    if (this.Invoice.PaymentTypeID != 3) //Vadeli bir satış değilse gelir olarak geçmişe ekleyelim
+                    {
+                        Income m_Income = new Income();
+                        m_Income.Amount = m_Total;
+                        m_Income.AuthorID = Program.User.ID;
+                        m_Income.CreatedAt = DateTime.Now;
+                        m_Income.Description = "Ticari mal satışı yapıldı.";
+                        m_Income.CreatedAt = DateTime.Now;
+                        m_Income.IncomeTypeID = 1; // Gayrisafi
+                        m_Income.Invoice = this.Invoice;
+                        m_Income.OwnerID = Program.User.WorksAtID;
+
+                        if (this.Account_Box.SelectedValue != null)
+                        {
+                            int m_AccountID = Convert.ToInt32(this.Account_Box.SelectedValue);
+                            m_Income.AccountID = m_AccountID;
+                        }
+
+                        m_Context.Incomes.Add(m_Income);
+                    }
 
                     if (this.Account_Box.SelectedValue != null)
                     {
@@ -291,17 +301,16 @@ namespace Muhasebe
                             m_Movement.AccountID = m_Account.ID;
                             m_Movement.AuthorID = Program.User.ID;
                             m_Movement.MovementTypeID = 1; // Kasadan satış
-                            m_Movement.ContractID = m_Income.ID;
+                            m_Movement.ContractID = 0; // m_Income.ID;
                             m_Movement.CreatedAt = DateTime.Now;
                             m_Movement.OwnerID = Program.User.WorksAtID.Value;
                             m_Movement.PaymentTypeID = this.Invoice.PaymentTypeID.Value;
-                            m_Movement.Value = m_Income.Amount.Value;
+                            m_Movement.Value = m_Total; // m_Income.Amount.Value;
 
                             m_Context.AccountMovements.Add(m_Movement);
                         }
                     }
 
-                    m_Context.Incomes.Add(m_Income);
                     m_Context.SaveChanges();
 
                     this.Close();

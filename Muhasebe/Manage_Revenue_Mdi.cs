@@ -119,10 +119,10 @@ namespace Muhasebe
                     m_Item.SubItems.Add(m_Income.IncomeType.Name);
                     m_Item.SubItems.Add(m_Income.Amount.Value.ToString());
 
-                    if (m_Income.PaymentType != null)
-                        m_Item.SubItems.Add(m_Income.PaymentType.Name);
+                    if (m_Income.Account != null)
+                        m_Item.SubItems.Add(m_Income.Account.Name);
                     else
-                        m_Item.SubItems.Add("Hata");
+                        m_Item.SubItems.Add("Yok");
 
                     if (m_Income.Author != null)
                         m_Item.SubItems.Add(string.Format("{0} {1}", m_Income.Author.Name, m_Income.Author.Surname));
@@ -221,12 +221,12 @@ namespace Muhasebe
 
                 if (m_ItemID > 0)
                 {
-                    Income m_Item = m_Context.Incomes.Where(q => q.ID == m_ItemID).FirstOrDefault();
+                    Income m_Income = m_Context.Incomes.Where(q => q.ID == m_ItemID).FirstOrDefault();
 
-                    if (m_Item.OwnerID != null && m_Item.OwnerID == Program.User.WorksAtID)
+                    if (m_Income.OwnerID != null && m_Income.OwnerID == Program.User.WorksAtID)
                     {
                         Edit_Revenue_Pop m_Pop = new Edit_Revenue_Pop();
-                        m_Pop.Item = m_Item;
+                        m_Pop.Income = m_Income;
                         m_Pop.RevenueEdited += Pop_RevenueEdited;
                         m_Pop.ShowDialog();
                     }

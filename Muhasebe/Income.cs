@@ -22,12 +22,12 @@ namespace Muhasebe
         public Nullable<int> InvoiceID { get; set; }
         public string Description { get; set; }
         public Nullable<int> IncomeTypeID { get; set; }
-        public Nullable<int> PaymentTypeID { get; set; }
+        public Nullable<int> AccountID { get; set; }
     
         public virtual Company Owner { get; set; }
         public virtual User Author { get; set; }
         public virtual Invoice Invoice { get; set; }
-        public virtual PaymentType PaymentType { get; set; }
         public virtual IncomeType IncomeType { get; set; }
+        public virtual Account Account { get; set; }
     }
 }

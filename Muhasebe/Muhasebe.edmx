@@ -164,7 +164,7 @@
           <Property Name="InvoiceID" Type="int" />
           <Property Name="Description" Type="nvarchar" MaxLength="1000" />
           <Property Name="IncomeTypeID" Type="int" />
-          <Property Name="PaymentTypeID" Type="int" />
+          <Property Name="AccountID" Type="int" />
         </EntityType>
         <EntityType Name="IncomeTypes">
           <Key>
@@ -452,10 +452,6 @@
             <End Role="Income" EntitySet="Incomes" />
             <End Role="Invoice" EntitySet="Invoices" />
           </AssociationSet>
-          <AssociationSet Name="IncomePaymentType" Association="MuhasebeModel.IncomePaymentType">
-            <End Role="Income" EntitySet="Incomes" />
-            <End Role="PaymentType" EntitySet="PaymentTypes" />
-          </AssociationSet>
           <EntitySet Name="IncomeTypes" EntityType="MuhasebeModel.IncomeType" />
           <AssociationSet Name="IncomeIncomeType" Association="MuhasebeModel.IncomeIncomeType">
             <End Role="Income" EntitySet="Incomes" />
@@ -598,6 +594,10 @@
           <AssociationSet Name="AccountMovementAccountMovementType" Association="MuhasebeModel.AccountMovementAccountMovementType">
             <End Role="AccountMovement" EntitySet="AccountMovements" />
             <End Role="AccountMovementType" EntitySet="AccountMovementTypes" />
+          </AssociationSet>
+          <AssociationSet Name="IncomeAccount" Association="MuhasebeModel.IncomeAccount">
+            <End Role="Income" EntitySet="Incomes" />
+            <End Role="Account" EntitySet="Accounts" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Product">
@@ -945,12 +945,12 @@
           <Property Type="Int32" Name="InvoiceID" />
           <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="IncomeTypeID" />
-          <Property Type="Int32" Name="PaymentTypeID" />
           <NavigationProperty Name="Owner" Relationship="MuhasebeModel.IncomeCompany" FromRole="Income" ToRole="Company" />
           <NavigationProperty Name="Author" Relationship="MuhasebeModel.IncomeUser" FromRole="Income" ToRole="User" />
           <NavigationProperty Name="Invoice" Relationship="MuhasebeModel.IncomeInvoice" FromRole="Income" ToRole="Invoice" />
-          <NavigationProperty Name="PaymentType" Relationship="MuhasebeModel.IncomePaymentType" FromRole="Income" ToRole="PaymentType" />
           <NavigationProperty Name="IncomeType" Relationship="MuhasebeModel.IncomeIncomeType" FromRole="Income" ToRole="IncomeType" />
+          <Property Name="AccountID" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="MuhasebeModel.IncomeAccount" FromRole="Income" ToRole="Account" />
         </EntityType>
         <Association Name="IncomeCompany">
           <End Type="MuhasebeModel.Income" Role="Income" Multiplicity="*" />
@@ -985,18 +985,6 @@
             </Principal>
             <Dependent Role="Income">
               <PropertyRef Name="InvoiceID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="IncomePaymentType">
-          <End Type="MuhasebeModel.Income" Role="Income" Multiplicity="*" />
-          <End Type="MuhasebeModel.PaymentType" Role="PaymentType" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="PaymentType">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Income">
-              <PropertyRef Name="PaymentTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1584,6 +1572,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="IncomeAccount">
+          <End Type="MuhasebeModel.Income" Role="Income" Multiplicity="*" />
+          <End Type="MuhasebeModel.Account" Role="Account" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Income">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1667,7 +1667,7 @@
           <EntitySetMapping Name="Incomes">
             <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.Income)">
               <MappingFragment StoreEntitySet="Incomes">
-                <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentTypeID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
                 <ScalarProperty Name="IncomeTypeID" ColumnName="IncomeTypeID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />

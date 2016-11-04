@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="77ff789032bb42378e8fb0399c51bfd2" Name="Diagram1" ZoomLevel="163" >
+      <Diagram DiagramId="77ff789032bb42378e8fb0399c51bfd2" Name="Diagram1" ZoomLevel="203" >
         <EntityTypeShape EntityType="MuhasebeModel.Product" Width="1.5" PointX="6" PointY="45" IsExpanded="true" />
         <EntityTypeShape EntityType="MuhasebeModel.User" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MuhasebeModel.Inventory" Width="1.5" PointX="6" PointY="41.75" IsExpanded="true" />
@@ -44,7 +44,6 @@
         <AssociationConnector Association="MuhasebeModel.InvoiceCompany" />
         <AssociationConnector Association="MuhasebeModel.InvoicePaymentType" />
         <AssociationConnector Association="MuhasebeModel.PaymentTypeCompany" />
-        <AssociationConnector Association="MuhasebeModel.IncomePaymentType" />
         <AssociationConnector Association="MuhasebeModel.ExpenditurePaymentType" />
         <AssociationConnector Association="MuhasebeModel.IncomeCompany" />
         <AssociationConnector Association="MuhasebeModel.IncomeIncomeType" />
@@ -83,6 +82,7 @@
         <AssociationConnector Association="MuhasebeModel.AccountMovementUser" />
         <AssociationConnector Association="MuhasebeModel.AccountMovementPaymentType" />
         <AssociationConnector Association="MuhasebeModel.AccountMovementAccountMovementType" />
+        <AssociationConnector Association="MuhasebeModel.IncomeAccount" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

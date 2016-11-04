@@ -205,7 +205,7 @@
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "Ödeme Yöntemi";
+            this.columnHeader4.Text = "İlgili Hesap";
             this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader4.Width = 95;
             // 
