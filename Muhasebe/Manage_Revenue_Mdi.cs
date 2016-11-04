@@ -193,6 +193,20 @@ namespace Muhasebe
                     {
                         if (m_Income.InvoiceID != null && m_Income.InvoiceID != 0)
                         {
+                            AccountMovement m_Movement = m_Context.AccountMovements.Where(q => (q.MovementTypeID == 1 || q.MovementTypeID == 2) && q.ContractID == m_Income.InvoiceID).FirstOrDefault();
+
+                            if (m_Movement != null)
+                                m_Context.AccountMovements.Remove(m_Movement); // Ticari Mal Satışı yada Alacak tahsilatı olan gelire ait hareketi sil
+
+
+                            m_Income.Invoice.Nodes.All(delegate (InvoiceNode node)
+                            {
+                                if (node.Item != null)
+                                    node.Item.Amount += node.Amount.Value;
+
+                                return true;
+                            });
+
                             m_Context.InvoiceNodes.RemoveRange(m_Income.Invoice.Nodes);
                             m_Context.Invoices.Remove(m_Income.Invoice);
                         }

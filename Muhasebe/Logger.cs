@@ -17,15 +17,22 @@ namespace Muhasebe
 
             EventSink.InvokeError("Logger", m_Args);
 
-            using (MuhasebeEntities m_Context = new MuhasebeEntities())
+            try
             {
-                Event m_Event = new Event();
-                m_Event.AuthorID = Program.User.ID;
-                m_Event.CreatedAt = DateTime.Now;
-                m_Event.Description = string.Format("{0} - {1}", ex.Message, ex.StackTrace);
-                m_Event.CategoryID = 3; //Hata
-                m_Context.Events.Add(m_Event);
-                m_Context.SaveChanges();
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    Event m_Event = new Event();
+                    m_Event.AuthorID = Program.User.ID;
+                    m_Event.CreatedAt = DateTime.Now;
+                    m_Event.Description = string.Format("{0} - {1}", ex.Message, ex.StackTrace);
+                    m_Event.CategoryID = 3; //Hata
+                    m_Context.Events.Add(m_Event);
+                    m_Context.SaveChanges();
+                }
+            }
+            catch (Exception exp)
+            {
+
             }
         }
     }

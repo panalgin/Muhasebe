@@ -248,30 +248,29 @@ namespace Muhasebe
 
                     this.Invoice.State = "Complete";
 
-                    m_Context.Invoices.Add(this.Invoice);
-                    m_Context.SaveChanges();
+                    m_Context.Invoices.Attach(this.Invoice);
+                    m_Context.Entry(this.Invoice).State = System.Data.Entity.EntityState.Added;
 
                     decimal m_Total = 0;
                     decimal m_Tax = 0;
 
-                    this.Invoice.Nodes.All(delegate(InvoiceNode m_Node)
+                    this.Invoice.Nodes.All(delegate (InvoiceNode m_Node)
                     {
                         m_Total += m_Node.FinalPrice.Value;
                         m_Tax += m_Node.FinalPrice.Value * ((decimal)(m_Node.Tax.Value / 100));
 
-                        m_Context.Items.Attach(m_Node.Item);
-                        m_Context.Products.Attach(m_Node.Item.Product);
-                        m_Context.UnitTypes.Attach(m_Node.Item.UnitType);
+                        Item m_ToUpdate = m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault();
 
-                        m_Node.Item.Amount -= m_Node.Amount.Value;
+                        if (m_ToUpdate != null)
+                            m_ToUpdate.Amount -= m_Node.Amount.Value;
+
                         m_Node.InvoiceID = this.Invoice.ID;
 
-                        m_Context.InvoiceNodes.Add(m_Node);
+                        m_Context.InvoiceNodes.Attach(m_Node);
+                        m_Context.Entry(m_Node).State = System.Data.Entity.EntityState.Added;
 
                         return true;
                     });
-
-
 
                     if (this.Invoice.PaymentTypeID != 3) //Vadeli bir satış değilse gelir olarak geçmişe ekleyelim
                     {
@@ -280,7 +279,6 @@ namespace Muhasebe
                         m_Income.AuthorID = Program.User.ID;
                         m_Income.CreatedAt = DateTime.Now;
                         m_Income.Description = "Ticari mal satışı yapıldı.";
-                        m_Income.CreatedAt = DateTime.Now;
                         m_Income.IncomeTypeID = 1; // Genel
                         m_Income.InvoiceID = this.Invoice.ID;
                         m_Income.OwnerID = Program.User.WorksAtID;
@@ -318,6 +316,8 @@ namespace Muhasebe
                             m_Movement.OwnerID = Program.User.WorksAtID.Value;
                             m_Movement.PaymentTypeID = this.Invoice.PaymentTypeID.Value;
                             m_Movement.Value = m_Total; // m_Income.Amount.Value;
+
+                            this.Invoice.TargetID = m_Account.ID;
 
                             m_Context.AccountMovements.Add(m_Movement);
                         }
