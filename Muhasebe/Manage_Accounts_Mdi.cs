@@ -143,8 +143,34 @@ namespace Muhasebe
 
                         if (MessageBox.Show(m_Message, "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
+
+                            var m_Movements = m_Context.AccountMovements.Where(q => q.AccountID == m_Account.ID);
+                            m_Context.AccountMovements.RemoveRange(m_Movements);
+
+                            var m_Incomes = m_Context.Incomes.Where(q => q.AccountID == m_AccountID);
+                            m_Incomes.All(delegate (Income m_Income)
+                            {
+                                if (m_Income.Invoice != null)
+                                {
+                                    m_Income.Invoice.Nodes.All(delegate (InvoiceNode node)
+                                    {
+                                        if (node.Item != null)
+                                            node.Item.Amount += node.Amount.Value;
+
+                                        return true;
+                                    });
+
+                                    m_Context.InvoiceNodes.RemoveRange(m_Income.Invoice.Nodes);
+                                    m_Context.Invoices.Remove(m_Income.Invoice);
+                                }
+                                return true;
+                            });
+
+                            m_Context.Incomes.RemoveRange(m_Incomes);
                             m_Context.Accounts.Remove(m_Account);
                             m_Context.SaveChanges();
+
+                            ClearAccountHistory();
                             PopulateList();
                         }
                     }
@@ -194,6 +220,26 @@ namespace Muhasebe
                 this.Edit_Button.Enabled = false;
                 this.Delete_Button.Enabled = false;
             }
+        }
+
+        private void ClearAccountHistory()
+        {
+            this.Account_History_View.Items.Clear();
+
+            this.Buy_Volume_Label.Text = "0 TL";
+            this.Sell_Volume_Label.Text = "0 TL";
+
+            this.Loan_Label.Text = "0 TL";
+            this.Debt_Label.Text = "0 TL";
+
+            this.Charged_Label.Text = "0 TL";
+            this.Paid_Label.Text = "0 TL";
+
+            this.Net_Loan_Label.Text = "0 TL";
+            this.Net_Debt_Label.Text = "0 TL";
+
+            this.Net_Value_Label.Text = "0 TL";
+            this.Net_State_Label.Text = "Nötr";
         }
 
         private void PopulateAccountHistory(Account account)
