@@ -146,7 +146,6 @@ namespace Muhasebe
 
                     this.Event_List.Items.Add(m_Item);
 
-
                     return true;
                 });
             }

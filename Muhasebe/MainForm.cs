@@ -503,9 +503,12 @@ namespace Muhasebe
 
                 m_MostSoldData.All(q =>
                 {
-                    DataPoint m_Point = new DataPoint(i, (double)q.Amount.Value);
-                    m_Point.Label = q.Item.Product.Name;
-                    m_MostSoldSerie.Points.Add(m_Point);
+                    if (q.Item != null)
+                    {
+                        DataPoint m_Point = new DataPoint(i, (double)q.Amount.Value);
+                        m_Point.Label = q.Item.Product.Name;
+                        m_MostSoldSerie.Points.Add(m_Point);
+                    }
 
                     i++;
                     return true;
@@ -524,10 +527,13 @@ namespace Muhasebe
 
                 m_MostProfitableData.All(q =>
                 {
-                    DataPoint m_Point = new DataPoint(i, (double)q.Percent.Value);
-                    m_Point.AxisLabel = q.Item.Product.Name;
-                    m_Point.LabelAngle = -90;
-                    m_MostProfitableSerie.Points.Add(m_Point);
+                    if (q.Item != null)
+                    {
+                        DataPoint m_Point = new DataPoint(i, (double)q.Percent.Value);
+                        m_Point.AxisLabel = q.Item.Product.Name;
+                        m_Point.LabelAngle = -90;
+                        m_MostProfitableSerie.Points.Add(m_Point);
+                    }
 
 
                     i++;
