@@ -139,14 +139,40 @@ namespace Muhasebe
 
                     if (m_Account != null)
                     {
-                        string m_Message = string.Format("{0} adlı {1} hesabı silinecek, emin misiniz?", m_Account.Name, m_Account.AccountType.Name);
+                        string m_Message = string.Format("{0} adlı {1} hesabı ve ona ait tüm gelir/gider bilgisi silinecek, emin misiniz?", m_Account.Name, m_Account.AccountType.Name);
 
                         if (MessageBox.Show(m_Message, "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
 
                             var m_Movements = m_Context.AccountMovements.Where(q => q.AccountID == m_Account.ID);
+
+                            m_Movements.Where(q => q.MovementTypeID == 1).All(delegate (AccountMovement mov)
+                            {
+                                //Bu sefer InvoiceID var Contractta
+
+                                Invoice m_Invoice = m_Context.Invoices.Where(q => q.ID == mov.ContractID).FirstOrDefault();
+
+                                if (m_Invoice != null)
+                                {
+                                    m_Invoice.Nodes.All(delegate (InvoiceNode node)
+                                    {
+                                        /*if (node.Item != null)
+                                            node.Item.Amount += node.Amount.Value;*/
+
+                                        return true;
+                                    });
+
+                                    m_Context.InvoiceNodes.RemoveRange(m_Invoice.Nodes);
+                                    m_Context.Invoices.Remove(m_Invoice);
+                                }
+
+
+                                return true;
+                            });
+
                             m_Context.AccountMovements.RemoveRange(m_Movements);
 
+                            //Peşin satışlardan sonra üretilen gelirlerdeki ürünleri geri koy
                             var m_Incomes = m_Context.Incomes.Where(q => q.AccountID == m_AccountID);
                             m_Incomes.All(delegate (Income m_Income)
                             {
@@ -154,8 +180,8 @@ namespace Muhasebe
                                 {
                                     m_Income.Invoice.Nodes.All(delegate (InvoiceNode node)
                                     {
-                                        if (node.Item != null)
-                                            node.Item.Amount += node.Amount.Value;
+                                        /*if (node.Item != null)
+                                            node.Item.Amount += node.Amount.Value;*/
 
                                         return true;
                                     });
@@ -163,6 +189,7 @@ namespace Muhasebe
                                     m_Context.InvoiceNodes.RemoveRange(m_Income.Invoice.Nodes);
                                     m_Context.Invoices.Remove(m_Income.Invoice);
                                 }
+
                                 return true;
                             });
 
@@ -375,6 +402,102 @@ namespace Muhasebe
 
             this.Edit_Button.Enabled = false;
             this.Delete_Button.Enabled = false;
+        }
+
+        private void Delete_Movement_Button_Click(object sender, EventArgs e)
+        {
+            if (this.Account_History_View.SelectedItems.Count > 0)
+            {
+                int m_MovementID = Convert.ToInt32(this.Account_History_View.SelectedItems[0].Tag);
+
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    AccountMovement m_Movement = m_Context.AccountMovements.Where(q => q.ID == m_MovementID).FirstOrDefault();
+
+                    if (m_Movement != null)
+                    {
+                        Account m_Account = m_Context.Accounts.Where(q => q.ID == m_Movement.AccountID).FirstOrDefault();
+
+                        switch (m_Movement.MovementTypeID)
+                        {
+                            case 1: //Ticari Mal Satışı (Peşin / Vadeli)
+                                {
+                                    string message = "Yaptığınız {0} TL tutarındaki {1} satışa ait tüm gelir bilgileri silinecek, sattığınız ürünlerin adetleri stoğunuza geri eklenecek, onaylıyor musunuz?";
+
+                                    Invoice m_Invoice = m_Context.Invoices.Where(q => q.ID == m_Movement.ContractID).FirstOrDefault();
+
+                                    if (m_Invoice != null)
+                                    {
+                                        message = string.Format(message, m_Invoice.Nodes.Sum(q => q.FinalPrice).Value, m_Movement.PaymentTypeID == 3 ? "vadeli" : "peşin");
+
+                                        if (MessageBox.Show(message, "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                        {
+                                            if (m_Movement.PaymentTypeID != 3) // vadeli değil yani ödenmiş ve gelir oluşmuş
+                                            {
+                                                Income m_Income = m_Context.Incomes.Where(q => q.InvoiceID == m_Invoice.ID).FirstOrDefault();
+
+                                                if (m_Income != null)
+                                                    m_Context.Incomes.Remove(m_Income);
+                                            }
+
+                                            m_Invoice.Nodes.All(delegate (InvoiceNode node)
+                                            {
+                                                node.Item.Amount += node.Amount.Value;
+
+                                                return true;
+                                            });
+
+                                            m_Context.InvoiceNodes.RemoveRange(m_Invoice.Nodes);
+                                            m_Context.Invoices.Remove(m_Invoice);
+
+                                        }
+                                    }
+
+                                    m_Context.AccountMovements.Remove(m_Movement);
+                                    m_Context.SaveChanges();
+
+                                    break;
+                                }
+
+                            case 2: //Vadenin Tahsilatı
+                                {
+                                    string message = "Yaptığınız {0} TL tutarındaki alacak tahsilatı iptal edilecek ve bu işleme ait geliriniz silinecek, onaylıyor musunuz?";
+
+                                    Income m_Income = m_Context.Incomes.Where(q => q.ID == m_Movement.ContractID).FirstOrDefault();
+
+                                    if (m_Income != null)
+                                    {
+                                        message = string.Format(message, m_Income.Amount.Value);
+
+                                        if (MessageBox.Show(message, "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                        {
+                                            m_Context.Incomes.Remove(m_Income);
+                                        }
+                                    }
+
+                                    m_Context.AccountMovements.Remove(m_Movement);
+                                    m_Context.SaveChanges();
+
+                                    break;
+                                }
+                        }
+
+                        PopulateAccountHistory(m_Account);
+                    }
+                }
+            }
+        }
+
+        private void Account_History_View_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.Account_History_View.SelectedItems.Count > 0)
+            {
+                this.Delete_Movement_Button.Enabled = true;
+            }
+            else
+            {
+                this.Delete_Movement_Button.Enabled = false;
+            }
         }
     }
 }

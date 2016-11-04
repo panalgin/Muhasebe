@@ -80,6 +80,7 @@
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Delete_Movement_Button = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.Accounts_Tab.SuspendLayout();
@@ -377,6 +378,7 @@
             this.Account_History_View.TabIndex = 0;
             this.Account_History_View.UseCompatibleStateImageBehavior = false;
             this.Account_History_View.View = System.Windows.Forms.View.Details;
+            this.Account_History_View.SelectedIndexChanged += new System.EventHandler(this.Account_History_View_SelectedIndexChanged);
             // 
             // columnHeader9
             // 
@@ -410,6 +412,7 @@
             // Inspect_Button
             // 
             this.Inspect_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Inspect_Button.Enabled = false;
             this.Inspect_Button.Image = global::Muhasebe.Properties.Resources.magnifier;
             this.Inspect_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Inspect_Button.Location = new System.Drawing.Point(1005, 282);
@@ -593,11 +596,26 @@
             this.columnHeader20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader20.Width = 117;
             // 
+            // Delete_Movement_Button
+            // 
+            this.Delete_Movement_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Delete_Movement_Button.Enabled = false;
+            this.Delete_Movement_Button.Image = global::Muhasebe.Properties.Resources.delete;
+            this.Delete_Movement_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Delete_Movement_Button.Location = new System.Drawing.Point(1005, 311);
+            this.Delete_Movement_Button.Name = "Delete_Movement_Button";
+            this.Delete_Movement_Button.Size = new System.Drawing.Size(75, 23);
+            this.Delete_Movement_Button.TabIndex = 40;
+            this.Delete_Movement_Button.Text = "Sil";
+            this.Delete_Movement_Button.UseVisualStyleBackColor = true;
+            this.Delete_Movement_Button.Click += new System.EventHandler(this.Delete_Movement_Button_Click);
+            // 
             // Manage_Accounts_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1092, 563);
+            this.Controls.Add(this.Delete_Movement_Button);
             this.Controls.Add(this.Accounts_Tab);
             this.Controls.Add(this.Inspect_Button);
             this.Controls.Add(this.tabControl1);
@@ -671,5 +689,6 @@
         private System.Windows.Forms.Label Net_Loan_Label;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button Delete_Movement_Button;
     }
 }

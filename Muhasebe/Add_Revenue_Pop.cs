@@ -32,6 +32,9 @@ namespace Muhasebe
                 m_Income.IncomeTypeID = Convert.ToInt32(this.Revenue_Type_Combo.SelectedValue);
                 m_Income.OwnerID = Program.User.WorksAtID;
 
+                m_Context.Incomes.Add(m_Income);
+                m_Context.SaveChanges();
+
                 if (this.Account_Box.SelectedValue != null)
                 {
                     int m_AccountID = Convert.ToInt32(this.Account_Box.SelectedValue);
@@ -48,10 +51,9 @@ namespace Muhasebe
                     m_Movement.Value = m_Income.Amount.Value;
 
                     m_Context.AccountMovements.Add(m_Movement);
+                    m_Context.SaveChanges();
                 }
 
-                m_Context.Incomes.Add(m_Income);
-                m_Context.SaveChanges();
 
                 InvokeRevenueAdded(m_Income);
             }
