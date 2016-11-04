@@ -42,6 +42,8 @@ namespace Muhasebe
                         int m_AccountID = Convert.ToInt32(this.Account_Box.SelectedValue);
                         m_Actual.AccountID = m_AccountID;
                     }
+                    else
+                        m_Actual.AccountID = null;
 
                     m_Actual.OwnerID = Program.User.WorksAtID;
                     m_Actual.Description = this.Description_Box.Text;
@@ -62,28 +64,33 @@ namespace Muhasebe
 
         private void Edit_Revenue_Pop_Load(object sender, EventArgs e)
         {
-            MuhasebeEntities m_Context = new MuhasebeEntities();
-            var m_RevenueTypes = m_Context.IncomeTypes.Where(q => q.OwnerID == null || q.OwnerID == Program.User.WorksAtID).ToList();
-
-            this.Revenue_Type_Combo.DataSource = m_RevenueTypes;
-            this.Revenue_Type_Combo.ValueMember = "ID";
-            this.Revenue_Type_Combo.DisplayMember = "Name";
-
-            this.Account_Box.SelectedValue = this.Income.AccountID;
-
-            var m_Users = m_Context.Users.Where(q => q.WorksAtID == Program.User.WorksAtID).ToList();
-
-            this.Responsible_Combo.DataSource = m_Users;
-            this.Responsible_Combo.ValueMember = "ID";
-            this.Responsible_Combo.DisplayMember = "FullName";
-
-            if (this.Income != null)
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
-                this.Revenue_Amount_Num.Value = this.Income.Amount.Value;
-                this.Revenue_Date_Picker.Value = this.Income.CreatedAt.Value;
-                this.Revenue_Type_Combo.SelectedValue = this.Income.IncomeTypeID;
-                this.Responsible_Combo.SelectedValue = this.Income.AuthorID;
-                this.Description_Box.Text = this.Income.Description;
+                var m_RevenueTypes = m_Context.IncomeTypes.Where(q => q.OwnerID == null || q.OwnerID == Program.User.WorksAtID).ToList();
+
+                this.Revenue_Type_Combo.DataSource = m_RevenueTypes;
+                this.Revenue_Type_Combo.ValueMember = "ID";
+                this.Revenue_Type_Combo.DisplayMember = "Name";
+
+                if (this.Income.AccountID != null)
+                {
+                    this.Account_Box.SelectedText = this.Income.Account.Name;
+                }
+
+                var m_Users = m_Context.Users.Where(q => q.WorksAtID == Program.User.WorksAtID).ToList();
+
+                this.Responsible_Combo.DataSource = m_Users;
+                this.Responsible_Combo.ValueMember = "ID";
+                this.Responsible_Combo.DisplayMember = "FullName";
+
+                if (this.Income != null)
+                {
+                    this.Revenue_Amount_Num.Value = this.Income.Amount.Value;
+                    this.Revenue_Date_Picker.Value = this.Income.CreatedAt.Value;
+                    this.Revenue_Type_Combo.SelectedValue = this.Income.IncomeTypeID;
+                    this.Responsible_Combo.SelectedValue = this.Income.AuthorID;
+                    this.Description_Box.Text = this.Income.Description;
+                }
             }
         }
 

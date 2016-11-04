@@ -248,6 +248,9 @@ namespace Muhasebe
 
                     this.Invoice.State = "Complete";
 
+                    m_Context.Invoices.Add(this.Invoice);
+                    m_Context.SaveChanges();
+
                     decimal m_Total = 0;
                     decimal m_Tax = 0;
 
@@ -268,6 +271,8 @@ namespace Muhasebe
                         return true;
                     });
 
+
+
                     if (this.Invoice.PaymentTypeID != 3) //Vadeli bir satış değilse gelir olarak geçmişe ekleyelim
                     {
                         Income m_Income = new Income();
@@ -276,8 +281,8 @@ namespace Muhasebe
                         m_Income.CreatedAt = DateTime.Now;
                         m_Income.Description = "Ticari mal satışı yapıldı.";
                         m_Income.CreatedAt = DateTime.Now;
-                        m_Income.IncomeTypeID = 1; // Gayrisafi
-                        m_Income.Invoice = this.Invoice;
+                        m_Income.IncomeTypeID = 1; // Genel
+                        m_Income.InvoiceID = this.Invoice.ID;
                         m_Income.OwnerID = Program.User.WorksAtID;
 
                         if (this.Account_Box.SelectedValue != null)
@@ -289,6 +294,11 @@ namespace Muhasebe
                         m_Context.Incomes.Add(m_Income);
                     }
 
+                    m_Context.SaveChanges();
+
+                    string toWho = "bilinmeyen bir müşteriye";
+                    string paymentText = "peşin";
+
                     if (this.Account_Box.SelectedValue != null)
                     {
                         int m_AccountID = Convert.ToInt32(this.Account_Box.SelectedValue);
@@ -297,11 +307,13 @@ namespace Muhasebe
 
                         if (m_Account != null)
                         {
+                            toWho = string.Format("{0} adlı hesaba", m_Account.Name);
+
                             AccountMovement m_Movement = new AccountMovement();
                             m_Movement.AccountID = m_Account.ID;
                             m_Movement.AuthorID = Program.User.ID;
                             m_Movement.MovementTypeID = 1; // Kasadan satış
-                            m_Movement.ContractID = 0; // m_Income.ID;
+                            m_Movement.ContractID = this.Invoice.ID;
                             m_Movement.CreatedAt = DateTime.Now;
                             m_Movement.OwnerID = Program.User.WorksAtID.Value;
                             m_Movement.PaymentTypeID = this.Invoice.PaymentTypeID.Value;
@@ -310,6 +322,18 @@ namespace Muhasebe
                             m_Context.AccountMovements.Add(m_Movement);
                         }
                     }
+
+                    if (this.Invoice.PaymentTypeID == 3)
+                        paymentText = "vadeli";
+
+                    Event m_Event = new Event();
+                    m_Event.AuthorID = Program.User.ID;
+                    m_Event.CategoryID = 4; // Satış
+                    m_Event.CreatedAt = DateTime.Now;
+                    m_Event.Description = string.Format("Kullanıcı {0} {1} TL değerinde {2} satış yaptı.", toWho, m_Total, paymentText);
+                    m_Event.OwnerID = Program.User.WorksAtID;
+
+                    m_Context.Events.Add(m_Event);
 
                     m_Context.SaveChanges();
 
