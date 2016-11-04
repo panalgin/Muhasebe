@@ -130,6 +130,7 @@
           <Property Name="CreatedAt" Type="smalldatetime" />
           <Property Name="Description" Type="nvarchar" MaxLength="1000" />
           <Property Name="CategoryID" Type="int" />
+          <Property Name="OwnerID" Type="int" />
         </EntityType>
         <EntityType Name="Expenditures">
           <Key>
@@ -598,6 +599,10 @@
           <AssociationSet Name="IncomeAccount" Association="MuhasebeModel.IncomeAccount">
             <End Role="Income" EntitySet="Incomes" />
             <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="EventCompany" Association="MuhasebeModel.EventCompany">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="Company" EntitySet="Companies" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Product">
@@ -1124,6 +1129,8 @@
           <NavigationProperty Name="Author" Relationship="MuhasebeModel.EventUser" FromRole="Event" ToRole="User" />
           <Property Type="Int32" Name="CategoryID" />
           <NavigationProperty Name="Category" Relationship="MuhasebeModel.EventEventCategory" FromRole="Event" ToRole="EventCategory" />
+          <Property Name="OwnerID" Type="Int32" />
+          <NavigationProperty Name="Owner" Relationship="MuhasebeModel.EventCompany" FromRole="Event" ToRole="Company" />
         </EntityType>
         <Association Name="EventUser">
           <End Type="MuhasebeModel.Event" Role="Event" Multiplicity="*" />
@@ -1584,6 +1591,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="EventCompany">
+          <End Type="MuhasebeModel.Event" Role="Event" Multiplicity="*" />
+          <End Type="MuhasebeModel.Company" Role="Company" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1735,6 +1754,7 @@
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.Event)">
               <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />

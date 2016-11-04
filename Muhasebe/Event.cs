@@ -19,8 +19,10 @@ namespace Muhasebe
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public string Description { get; set; }
         public Nullable<int> CategoryID { get; set; }
+        public Nullable<int> OwnerID { get; set; }
     
         public virtual User Author { get; set; }
         public virtual EventCategory Category { get; set; }
+        public virtual Company Owner { get; set; }
     }
 }

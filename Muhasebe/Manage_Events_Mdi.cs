@@ -118,7 +118,7 @@ namespace Muhasebe
                         }
                 }
 
-                List<Event> m_Events = null;
+                List<Faker> m_Events = null;
 
                 if (this.Sort_Combo.SelectedItem.ToString() == "Belirli Tarih Aralığı")
                 {
@@ -127,20 +127,83 @@ namespace Muhasebe
                 }
 
                 if (m_Category != null && m_Category.Name != "Hepsi")
-                    m_Events = m_Context.Events.Where(q => q.Author.WorksAtID == Program.User.WorksAtID && (q.CreatedAt >= m_Begin && q.CreatedAt <= m_End) && q.CategoryID == m_CategoryID).OrderByDescending(q => q.CreatedAt).ToList();
-                else
-                    m_Events = m_Context.Events.Where(q => q.Author.WorksAtID == Program.User.WorksAtID && (q.CreatedAt >= m_Begin && q.CreatedAt <= m_End)).OrderByDescending(q => q.CreatedAt).ToList();
+                {
+                    var result = from ev in m_Context.Events
+                                 join author in (from at in m_Context.Users
+                                                 select new
+                                                 {
+                                                     at.ID,
+                                                     at.Name,
+                                                     at.Surname
+                                                 }) on ev.AuthorID equals author.ID
+                                 join category in (from cat in m_Context.EventCategories
+                                                   select new
+                                                   {
+                                                       cat.ID,
+                                                       cat.Name
+                                                   }) on ev.CategoryID equals category.ID
 
-                m_Events.All(delegate(Event m_Event)
+                                 where ev.OwnerID == Program.User.WorksAtID && ev.CategoryID == m_CategoryID && (ev.CreatedAt >= m_Begin && ev.CreatedAt <= m_End)
+                                 orderby ev.CreatedAt descending
+
+                                 select new Faker
+                                 {
+                                     ID = ev.ID,
+                                     Name = author.Name,
+                                     Surname = author.Surname,
+                                     Category = category.Name,
+                                     Description = ev.Description,
+                                     CreatedAt = ev.CreatedAt.Value
+
+                                 };
+
+                    m_Events = result.ToList();
+
+                }
+                else
+                {
+                    var result = from ev in m_Context.Events
+                                 join author in (from at in m_Context.Users
+                                                 select new
+                                                 {
+                                                     at.ID,
+                                                     at.Name,
+                                                     at.Surname
+                                                 }) on ev.AuthorID equals author.ID
+                                 join category in (from cat in m_Context.EventCategories
+                                                   select new
+                                                   {
+                                                       cat.ID,
+                                                       cat.Name
+                                                   }) on ev.CategoryID equals category.ID
+
+                                 where ev.OwnerID == Program.User.WorksAtID && (ev.CreatedAt >= m_Begin && ev.CreatedAt <= m_End)
+                                 orderby ev.CreatedAt descending
+
+                                 select new Faker
+                                 {
+                                     ID = ev.ID,
+                                     Name = author.Name,
+                                     Surname = author.Surname,
+                                     Category = category.Name,
+                                     Description = ev.Description,
+                                     CreatedAt = ev.CreatedAt.Value
+
+                                 };
+
+                    m_Events = result.ToList();
+                }
+
+                m_Events.All(delegate(Faker m_Event)
                 {
                     ListViewItem m_Item = new ListViewItem();
                     m_Item.Tag = m_Event.ID;
-                    m_Item.Text = string.Format("{0} {1}", m_Event.Author.Name, m_Event.Author.Surname);
+                    m_Item.Text = string.Format("{0} {1}", m_Event.Name, m_Event.Surname);
                     m_Item.SubItems.Add(m_Event.CreatedAt.ToString());
                     m_Item.SubItems.Add(m_Event.Description);
 
                     if (m_Event.Category != null)
-                        m_Item.SubItems.Add(m_Event.Category.Name);
+                        m_Item.SubItems.Add(m_Event.Category);
                     else
                         m_Item.SubItems.Add("-");
 
@@ -164,6 +227,16 @@ namespace Muhasebe
         private void Categories_Combo_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.PopulateListView();
+        }
+
+        private class Faker
+        {
+            public int ID { get; set; }
+            public string Name { get; set; }
+            public string Surname { get; set; }
+            public DateTime CreatedAt { get; set; }
+            public string Category { get; set; }
+            public string Description { get; set; }
         }
     }
 }
