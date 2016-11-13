@@ -30,12 +30,20 @@
         {
             this.Options_Control = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ShowStats_Check = new System.Windows.Forms.CheckBox();
             this.Startup_Check = new System.Windows.Forms.CheckBox();
             this.Save_Button = new System.Windows.Forms.Button();
             this.Cancel_Button = new System.Windows.Forms.Button();
-            this.ShowStats_Check = new System.Windows.Forms.CheckBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.LowAmountTheresold_Num = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.AlertForAmount_Check = new System.Windows.Forms.CheckBox();
             this.Options_Control.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LowAmountTheresold_Num)).BeginInit();
             this.SuspendLayout();
             // 
             // Options_Control
@@ -44,6 +52,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Options_Control.Controls.Add(this.tabPage1);
+            this.Options_Control.Controls.Add(this.tabPage2);
             this.Options_Control.Location = new System.Drawing.Point(12, 12);
             this.Options_Control.Name = "Options_Control";
             this.Options_Control.SelectedIndex = 0;
@@ -61,6 +70,17 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Genel";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // ShowStats_Check
+            // 
+            this.ShowStats_Check.AutoSize = true;
+            this.ShowStats_Check.Location = new System.Drawing.Point(6, 29);
+            this.ShowStats_Check.Name = "ShowStats_Check";
+            this.ShowStats_Check.Size = new System.Drawing.Size(167, 17);
+            this.ShowStats_Check.TabIndex = 1;
+            this.ShowStats_Check.Text = "Anasayfada istatistikleri göster";
+            this.ShowStats_Check.UseVisualStyleBackColor = true;
+            this.ShowStats_Check.Visible = false;
             // 
             // Startup_Check
             // 
@@ -94,16 +114,55 @@
             this.Cancel_Button.UseVisualStyleBackColor = true;
             this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
-            // ShowStats_Check
+            // tabPage2
             // 
-            this.ShowStats_Check.AutoSize = true;
-            this.ShowStats_Check.Location = new System.Drawing.Point(6, 29);
-            this.ShowStats_Check.Name = "ShowStats_Check";
-            this.ShowStats_Check.Size = new System.Drawing.Size(167, 17);
-            this.ShowStats_Check.TabIndex = 1;
-            this.ShowStats_Check.Text = "Anasayfada istatistikleri göster";
-            this.ShowStats_Check.UseVisualStyleBackColor = true;
-            this.ShowStats_Check.Visible = false;
+            this.tabPage2.Controls.Add(this.AlertForAmount_Check);
+            this.tabPage2.Controls.Add(this.groupBox1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(620, 406);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Envanter";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.LowAmountTheresold_Num);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(6, 19);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(240, 50);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            // 
+            // LowAmountTheresold_Num
+            // 
+            this.LowAmountTheresold_Num.Location = new System.Drawing.Point(142, 19);
+            this.LowAmountTheresold_Num.Name = "LowAmountTheresold_Num";
+            this.LowAmountTheresold_Num.Size = new System.Drawing.Size(92, 20);
+            this.LowAmountTheresold_Num.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(14, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(122, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Şu Miktarın Ve Altındaki:";
+            // 
+            // AlertForAmount_Check
+            // 
+            this.AlertForAmount_Check.AutoSize = true;
+            this.AlertForAmount_Check.BackColor = System.Drawing.Color.Transparent;
+            this.AlertForAmount_Check.Location = new System.Drawing.Point(6, 6);
+            this.AlertForAmount_Check.Name = "AlertForAmount_Check";
+            this.AlertForAmount_Check.Size = new System.Drawing.Size(194, 17);
+            this.AlertForAmount_Check.TabIndex = 6;
+            this.AlertForAmount_Check.Text = "Az olan ürünleri kırmızı renkte göster";
+            this.AlertForAmount_Check.UseVisualStyleBackColor = false;
+            this.AlertForAmount_Check.CheckedChanged += new System.EventHandler(this.AlertForAmount_Check_CheckedChanged);
             // 
             // Options_Mdi
             // 
@@ -123,6 +182,11 @@
             this.Options_Control.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LowAmountTheresold_Num)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -135,5 +199,10 @@
         private System.Windows.Forms.Button Save_Button;
         private System.Windows.Forms.Button Cancel_Button;
         private System.Windows.Forms.CheckBox ShowStats_Check;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.CheckBox AlertForAmount_Check;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.NumericUpDown LowAmountTheresold_Num;
+        private System.Windows.Forms.Label label1;
     }
 }

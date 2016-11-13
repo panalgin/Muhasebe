@@ -35,6 +35,10 @@ namespace Muhasebe
             else
                 GuiManipulator.CanShowStatistics = false;
 
+            Properties.Settings.Default.AlertForLowAmountItems = this.AlertForAmount_Check.Checked;
+            Properties.Settings.Default.LowAmountTheresold = Convert.ToInt32(this.LowAmountTheresold_Num.Value);
+            Properties.Settings.Default.Save();
+
             this.Close();
         }
 
@@ -45,11 +49,19 @@ namespace Muhasebe
 
         private void Options_Mdi_Load(object sender, EventArgs e)
         {
+            Properties.Settings.Default.Reload();
+
             if (AutoStarter.IsAutoStartEnabled)
                 this.Startup_Check.Checked = true;
 
             if (GuiManipulator.CanShowStatistics)
                 this.ShowStats_Check.Checked = true;
+
+            if (Properties.Settings.Default.AlertForLowAmountItems)
+                this.AlertForAmount_Check.Checked = true;
+
+            this.LowAmountTheresold_Num.Value = Properties.Settings.Default.LowAmountTheresold;
+            this.groupBox1.Enabled = this.AlertForAmount_Check.Checked;
 
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
@@ -59,6 +71,11 @@ namespace Muhasebe
                 else
                     this.ShowStats_Check.Visible = false;
             }
+        }
+
+        private void AlertForAmount_Check_CheckedChanged(object sender, EventArgs e)
+        {
+            this.groupBox1.Enabled = this.AlertForAmount_Check.Checked;
         }
     }
 }

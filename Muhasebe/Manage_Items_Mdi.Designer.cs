@@ -75,6 +75,7 @@
             this.Items_List.FullRowSelect = true;
             this.Items_List.GridLines = true;
             this.Items_List.Location = new System.Drawing.Point(167, 12);
+            this.Items_List.MultiSelect = false;
             this.Items_List.Name = "Items_List";
             this.Items_List.Size = new System.Drawing.Size(775, 568);
             this.Items_List.TabIndex = 0;

@@ -19,6 +19,8 @@ namespace Muhasebe
 
         private void Manage_Items_Mdi_Load(object sender, EventArgs e)
         {
+            Properties.Settings.Default.Reload();
+
             using(MuhasebeEntities m_Context = new MuhasebeEntities())
             {
                 var m_Groups = m_Context.ItemGroups.OrderBy(q => q.Name).ToList();
@@ -271,6 +273,13 @@ namespace Muhasebe
                 if (i++ % 2 == 1)
                 {
                     m_ViewItem.BackColor = m_Shaded;
+                    m_ViewItem.UseItemStyleForSubItems = true;
+                }
+
+                if (Properties.Settings.Default.AlertForLowAmountItems && m_Field.Amount <= Properties.Settings.Default.LowAmountTheresold)
+                {
+                    Color m_Red = Color.Red;
+                    m_ViewItem.BackColor = m_Red;
                     m_ViewItem.UseItemStyleForSubItems = true;
                 }
 

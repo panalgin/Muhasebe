@@ -127,6 +127,7 @@ namespace Muhasebe
                     m_Event.CategoryID = 6; // oturum
                     m_Event.CreatedAt = DateTime.Now;
                     m_Event.Description = "Kullanıcı oturum açtı.";
+                    m_Event.OwnerID = Program.User.WorksAtID;
 
                     m_Context.Events.Add(m_Event);
                     m_Context.SaveChanges();

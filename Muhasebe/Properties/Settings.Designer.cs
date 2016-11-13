@@ -118,5 +118,29 @@ namespace Muhasebe.Properties {
                 this["CanShowStatistics"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AlertForLowAmountItems {
+            get {
+                return ((bool)(this["AlertForLowAmountItems"]));
+            }
+            set {
+                this["AlertForLowAmountItems"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int LowAmountTheresold {
+            get {
+                return ((int)(this["LowAmountTheresold"]));
+            }
+            set {
+                this["LowAmountTheresold"] = value;
+            }
+        }
     }
 }
