@@ -26,6 +26,7 @@ namespace Muhasebe
                     m_Event.CreatedAt = DateTime.Now;
                     m_Event.Description = string.Format("{0} - {1}", ex.Message, ex.StackTrace);
                     m_Event.CategoryID = 3; //Hata
+                    m_Event.OwnerID = Program.User.WorksAtID;
                     m_Context.Events.Add(m_Event);
                     m_Context.SaveChanges();
                 }

@@ -94,6 +94,7 @@ namespace Muhasebe
                 m_Event.CategoryID = 6; // oturum
                 m_Event.CreatedAt = DateTime.Now;
                 m_Event.Description = "Kullanıcı oturumu sonlandırdı.";
+                m_Event.OwnerID = Program.User.WorksAtID;
 
                 MuhasebeEntities m_Context = new MuhasebeEntities();
                 m_Context.Events.Add(m_Event);
