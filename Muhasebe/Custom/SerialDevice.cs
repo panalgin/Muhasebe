@@ -23,7 +23,7 @@ namespace Muhasebe.Custom
 
         public SerialDevice()
         {
-            GC.KeepAlive(this);
+
         }
 
         public void Connect()
@@ -52,7 +52,6 @@ namespace Muhasebe.Custom
                 m_Connection.DataReceived -= Connection_DataReceived;
                 m_Connection.Dispose();
             }
-
         }
 
         private void Connection_DataReceived(object sender, SerialDataReceivedEventArgs e)

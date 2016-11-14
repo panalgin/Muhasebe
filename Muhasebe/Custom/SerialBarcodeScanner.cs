@@ -13,7 +13,6 @@ namespace Muhasebe.Custom
         public SerialBarcodeScanner()
         {
             this.DataReceived += SerialBarcodeScanner_DataReceived;
-            GC.KeepAlive(this);
         }
 
         private void SerialBarcodeScanner_DataReceived(string data)

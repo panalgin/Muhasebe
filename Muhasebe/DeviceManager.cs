@@ -81,13 +81,19 @@ namespace Muhasebe
 
         public static void Disconnect(int deviceid)
         {
-            MuhasebeEntities m_Context = new MuhasebeEntities();
-            Device m_Device = m_Context.Devices.Where(q => q.ID == deviceid).FirstOrDefault();
-
-            if (m_Device != null && m_Device.Type != null && m_Device.ConnectionTypeID == 2) // if serial device
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
-                SerialDevice m_SerialDevice = m_Device as SerialDevice;
-                m_SerialDevice.Disconnect();
+                Device m_Device = m_Context.Devices.Where(q => q.ID == deviceid).FirstOrDefault();
+
+                if (m_Device != null && m_Device.Type != null && m_Device.ConnectionTypeID == 2) // if serial device
+                {
+                    SerialDevice m_Item = World.SerialDevices.Where(q => q.ID == m_Device.ID).FirstOrDefault();
+
+                    if (m_Item != null)
+                        m_Item.Disconnect();
+
+                    World.SerialDevices.Remove(m_Item);
+                }
             }
         }
 
@@ -108,6 +114,8 @@ namespace Muhasebe
                                 var mapper = config.CreateMapper();
 
                                 m_Scanner = mapper.Map<SerialBarcodeScanner>(m_Device);
+                                World.SerialDevices.Add(m_Scanner);
+
                                 m_Scanner.Connect();
 
                                 break;

@@ -544,6 +544,7 @@
     <Compile Include="User.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>
+    <Compile Include="World.cs" />
     <EmbeddedResource Include="About_Mdi.resx">
       <DependentUpon>About_Mdi.cs</DependentUpon>
     </EmbeddedResource>
