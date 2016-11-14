@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Storge_Name_Box = new System.Windows.Forms.TextBox();
-            this.Storge_Adress_Box = new System.Windows.Forms.TextBox();
-            this.Storge_Description_Box = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Storge_Description_Box = new System.Windows.Forms.TextBox();
+            this.Storge_Adress_Box = new System.Windows.Forms.TextBox();
+            this.Storge_Name_Box = new System.Windows.Forms.TextBox();
             this.Save_Button = new System.Windows.Forms.Button();
             this.Cancel_Button = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -55,36 +55,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Depo Bilgileri";
             // 
-            // Storge_Name_Box
+            // label3
             // 
-            this.Storge_Name_Box.Location = new System.Drawing.Point(150, 19);
-            this.Storge_Name_Box.Name = "Storge_Name_Box";
-            this.Storge_Name_Box.Size = new System.Drawing.Size(175, 20);
-            this.Storge_Name_Box.TabIndex = 0;
-            // 
-            // Storge_Adress_Box
-            // 
-            this.Storge_Adress_Box.Location = new System.Drawing.Point(150, 47);
-            this.Storge_Adress_Box.Name = "Storge_Adress_Box";
-            this.Storge_Adress_Box.Size = new System.Drawing.Size(175, 20);
-            this.Storge_Adress_Box.TabIndex = 1;
-            // 
-            // Storge_Description_Box
-            // 
-            this.Storge_Description_Box.Location = new System.Drawing.Point(150, 73);
-            this.Storge_Description_Box.Multiline = true;
-            this.Storge_Description_Box.Name = "Storge_Description_Box";
-            this.Storge_Description_Box.Size = new System.Drawing.Size(175, 69);
-            this.Storge_Description_Box.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Depo Adı :";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 76);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(50, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Açıklama";
             // 
             // label2
             // 
@@ -95,14 +73,36 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Depo Adresi :";
             // 
-            // label3
+            // label1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 76);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Açıklama";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Depo Adı :";
+            // 
+            // Storge_Description_Box
+            // 
+            this.Storge_Description_Box.Location = new System.Drawing.Point(150, 71);
+            this.Storge_Description_Box.Multiline = true;
+            this.Storge_Description_Box.Name = "Storge_Description_Box";
+            this.Storge_Description_Box.Size = new System.Drawing.Size(175, 71);
+            this.Storge_Description_Box.TabIndex = 2;
+            // 
+            // Storge_Adress_Box
+            // 
+            this.Storge_Adress_Box.Location = new System.Drawing.Point(150, 45);
+            this.Storge_Adress_Box.Name = "Storge_Adress_Box";
+            this.Storge_Adress_Box.Size = new System.Drawing.Size(175, 20);
+            this.Storge_Adress_Box.TabIndex = 1;
+            // 
+            // Storge_Name_Box
+            // 
+            this.Storge_Name_Box.Location = new System.Drawing.Point(150, 19);
+            this.Storge_Name_Box.Name = "Storge_Name_Box";
+            this.Storge_Name_Box.Size = new System.Drawing.Size(175, 20);
+            this.Storge_Name_Box.TabIndex = 0;
             // 
             // Save_Button
             // 

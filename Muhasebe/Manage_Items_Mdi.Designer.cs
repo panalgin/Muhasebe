@@ -52,6 +52,8 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.All_Radio = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.Buy_Items_Button = new System.Windows.Forms.Button();
+            this.Increase_Prices_Button = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -286,11 +288,34 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "İsim İle Ürün Arayın:";
             // 
+            // Buy_Items_Button
+            // 
+            this.Buy_Items_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Buy_Items_Button.Location = new System.Drawing.Point(948, 528);
+            this.Buy_Items_Button.Name = "Buy_Items_Button";
+            this.Buy_Items_Button.Size = new System.Drawing.Size(75, 23);
+            this.Buy_Items_Button.TabIndex = 10;
+            this.Buy_Items_Button.Text = "Mal Alım";
+            this.Buy_Items_Button.UseVisualStyleBackColor = true;
+            this.Buy_Items_Button.Click += new System.EventHandler(this.Buy_Items_Button_Click);
+            // 
+            // Increase_Prices_Button
+            // 
+            this.Increase_Prices_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Increase_Prices_Button.Location = new System.Drawing.Point(948, 557);
+            this.Increase_Prices_Button.Name = "Increase_Prices_Button";
+            this.Increase_Prices_Button.Size = new System.Drawing.Size(75, 23);
+            this.Increase_Prices_Button.TabIndex = 11;
+            this.Increase_Prices_Button.Text = "Zam Yap";
+            this.Increase_Prices_Button.UseVisualStyleBackColor = true;
+            // 
             // Manage_Items_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1035, 605);
+            this.Controls.Add(this.Increase_Prices_Button);
+            this.Controls.Add(this.Buy_Items_Button);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.Delete_Button);
@@ -337,5 +362,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.RadioButton All_Radio;
+        private System.Windows.Forms.Button Buy_Items_Button;
+        private System.Windows.Forms.Button Increase_Prices_Button;
     }
 }

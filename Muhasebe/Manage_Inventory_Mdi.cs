@@ -104,15 +104,20 @@ namespace Muhasebe
 
                 if (m_Item.Tag != null)
                 {
-                    MuhasebeEntities m_Context = new MuhasebeEntities();
-                    int m_ItemID = Convert.ToInt32(m_Item.Tag);
-                    Inventory m_Inventory = m_Context.Inventories.Where(q => q.ID == m_ItemID).FirstOrDefault();
+                    if (MessageBox.Show("Bu depo silinecek, ürünlerin depo bilgisi -yok- olarak gözükecektir. Emin misinz?", "Bilgi", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                        {
+                            int m_ItemID = Convert.ToInt32(m_Item.Tag);
+                            Inventory m_Inventory = m_Context.Inventories.Where(q => q.ID == m_ItemID).FirstOrDefault();
 
-                    m_Context.Inventories.Remove(m_Inventory);
-                    m_Context.SaveChanges();
-                    m_Item.Remove();
+                            m_Context.Inventories.Remove(m_Inventory);
+                            m_Context.SaveChanges();
+                            m_Item.Remove();
+                        }
 
-                    this.PopulateList();
+                        this.PopulateList();
+                    }
                 }
                 else
                     MessageBox.Show("Silme işlemi başarısız, bir hata oluştu.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
