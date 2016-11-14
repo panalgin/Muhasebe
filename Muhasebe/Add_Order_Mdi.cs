@@ -162,8 +162,6 @@ namespace Muhasebe
             {
                 using(MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
-                    this.Order.Nodes.All(delegate (OrderNode node) { m_Context.OrderNodes.Add(node); return true; });
-
                     this.Order.AuthorID = Program.User.ID;
                     this.Order.CreatedAt = DateTime.Now;
                     this.Order.OwnerID = Program.User.WorksAtID.Value;
@@ -176,7 +174,16 @@ namespace Muhasebe
                         this.Order.AccountID = m_AccountID;
                     }
 
-                    m_Context.Orders.Add(this.Order);
+                    m_Context.Orders.Attach(this.Order);
+                    m_Context.Entry(this.Order).State = System.Data.Entity.EntityState.Added;
+
+                    this.Order.Nodes.All(delegate (OrderNode node)
+                        {
+                            m_Context.OrderNodes.Attach(node);
+                            m_Context.Entry(node).State = System.Data.Entity.EntityState.Added;
+                            return true;
+                        });
+
                     m_Context.SaveChanges();
 
                     this.Close();

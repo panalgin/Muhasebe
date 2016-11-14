@@ -41,8 +41,33 @@ namespace Muhasebe
                         }
                     }
 
+                    Application.EnterThreadModal += Application_EnterThreadModal;
+                    Application.LeaveThreadModal += Application_LeaveThreadModal;
+
                     Application.Run(new MainForm());
                 }
+            }
+        }
+
+        private static void Application_LeaveThreadModal(object sender, EventArgs e)
+        {
+            MainForm m_Form = Application.OpenForms[0] as MainForm;
+
+            if (m_Form != null)
+            {
+                m_Form.Controls["BarcodeScannerMode_Combo"].Enabled = true;
+                m_Form.Controls["BarcodeScannerMode_Label"].Enabled = true;
+            }
+        }
+
+        private static void Application_EnterThreadModal(object sender, EventArgs e)
+        {
+            MainForm m_Form = Application.OpenForms[0] as MainForm;
+
+            if (m_Form != null)
+            {
+                m_Form.Controls["BarcodeScannerMode_Combo"].Enabled = false;
+                m_Form.Controls["BarcodeScannerMode_Label"].Enabled = false;
             }
         }
     }

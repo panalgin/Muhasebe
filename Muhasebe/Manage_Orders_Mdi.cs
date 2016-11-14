@@ -37,7 +37,7 @@ namespace Muhasebe
 
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
-                var m_Orders = Program.User.WorksAt.Orders;
+                var m_Orders = m_Context.Orders.Where(q => q.OwnerID == Program.User.WorksAtID).ToList();
 
                 m_Orders.All(delegate (Order order)
                 {
@@ -90,7 +90,7 @@ namespace Muhasebe
 
                     if (m_Order != null)
                     {
-                        if (MessageBox.Show(string.Format("{0} adlı sipariş silinecek, emin misiniz?", m_Order.Name), "Bilgi", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.OK)
+                        if (MessageBox.Show(string.Format("{0} adlı sipariş silinecek, emin misiniz?", m_Order.Name), "Bilgi", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             m_Context.Orders.Remove(m_Order);
                             m_Context.SaveChanges();

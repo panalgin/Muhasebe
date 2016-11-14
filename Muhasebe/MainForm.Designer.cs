@@ -92,12 +92,12 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.Grid_Panel = new System.Windows.Forms.Panel();
-            this.Image_List = new System.Windows.Forms.ImageList(this.components);
-            this.BarcodeScannerMode_Combo = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.Downward_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Image_List = new System.Windows.Forms.ImageList(this.components);
+            this.BarcodeScannerMode_Combo = new System.Windows.Forms.ComboBox();
+            this.BarcodeScannerMode_Label = new System.Windows.Forms.Label();
             this.Navigation_Strip = new Muhasebe.Custom.ToolStripEx();
             this.Home_Button = new System.Windows.Forms.ToolStripButton();
             this.Accounts_Button = new System.Windows.Forms.ToolStripButton();
@@ -712,39 +712,6 @@
             this.Grid_Panel.Visible = false;
             this.Grid_Panel.VisibleChanged += new System.EventHandler(this.Grid_Panel_VisibleChanged);
             // 
-            // Image_List
-            // 
-            this.Image_List.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Image_List.ImageStream")));
-            this.Image_List.TransparentColor = System.Drawing.Color.Transparent;
-            this.Image_List.Images.SetKeyName(0, "package.png");
-            // 
-            // BarcodeScannerMode_Combo
-            // 
-            this.BarcodeScannerMode_Combo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BarcodeScannerMode_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.BarcodeScannerMode_Combo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BarcodeScannerMode_Combo.FormattingEnabled = true;
-            this.BarcodeScannerMode_Combo.Items.AddRange(new object[] {
-            "Satış",
-            "Ürün Düzenleme",
-            "Mal Alımı"});
-            this.BarcodeScannerMode_Combo.Location = new System.Drawing.Point(1103, 705);
-            this.BarcodeScannerMode_Combo.Name = "BarcodeScannerMode_Combo";
-            this.BarcodeScannerMode_Combo.Size = new System.Drawing.Size(109, 21);
-            this.BarcodeScannerMode_Combo.TabIndex = 12;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Image = global::Muhasebe.Properties.Resources._195_barcode_icon;
-            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(957, 705);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(140, 21);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Barkod Okuyucu Modu:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // Downward_List
             // 
             this.Downward_List.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -770,6 +737,39 @@
             // 
             this.columnHeader1.Text = "Azalan Ürünler";
             this.columnHeader1.Width = 254;
+            // 
+            // Image_List
+            // 
+            this.Image_List.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Image_List.ImageStream")));
+            this.Image_List.TransparentColor = System.Drawing.Color.Transparent;
+            this.Image_List.Images.SetKeyName(0, "package.png");
+            // 
+            // BarcodeScannerMode_Combo
+            // 
+            this.BarcodeScannerMode_Combo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BarcodeScannerMode_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BarcodeScannerMode_Combo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BarcodeScannerMode_Combo.FormattingEnabled = true;
+            this.BarcodeScannerMode_Combo.Items.AddRange(new object[] {
+            "Satış",
+            "Ürün Düzenleme",
+            "Mal Alımı"});
+            this.BarcodeScannerMode_Combo.Location = new System.Drawing.Point(1103, 705);
+            this.BarcodeScannerMode_Combo.Name = "BarcodeScannerMode_Combo";
+            this.BarcodeScannerMode_Combo.Size = new System.Drawing.Size(109, 21);
+            this.BarcodeScannerMode_Combo.TabIndex = 12;
+            // 
+            // BarcodeScannerMode_Label
+            // 
+            this.BarcodeScannerMode_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BarcodeScannerMode_Label.Image = global::Muhasebe.Properties.Resources._195_barcode_icon;
+            this.BarcodeScannerMode_Label.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BarcodeScannerMode_Label.Location = new System.Drawing.Point(957, 705);
+            this.BarcodeScannerMode_Label.Name = "BarcodeScannerMode_Label";
+            this.BarcodeScannerMode_Label.Size = new System.Drawing.Size(140, 21);
+            this.BarcodeScannerMode_Label.TabIndex = 14;
+            this.BarcodeScannerMode_Label.Text = "Barkod Okuyucu Modu:";
+            this.BarcodeScannerMode_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Navigation_Strip
             // 
@@ -923,7 +923,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1254, 726);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.BarcodeScannerMode_Label);
             this.Controls.Add(this.BarcodeScannerMode_Combo);
             this.Controls.Add(this.Grid_Panel);
             this.Controls.Add(this.Navigation_Strip);
@@ -1040,7 +1040,7 @@
         private System.Windows.Forms.ToolStripMenuItem ürünGruplarıYönetimiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem siparişYönetimiToolStripMenuItem;
         private System.Windows.Forms.ComboBox BarcodeScannerMode_Combo;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label BarcodeScannerMode_Label;
     }
 }
 
