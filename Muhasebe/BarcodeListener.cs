@@ -52,30 +52,6 @@ namespace Muhasebe
             }
         }
 
-
-        private static readonly IDictionary<int, int> NumericKeys = new Dictionary<int, int> {
-                                                                            { (int)Keys.D0, 0 },
-                                                                            { (int)Keys.D1, 1 },
-                                                                            { (int)Keys.D2, 2 },
-                                                                            { (int)Keys.D3, 3 },
-                                                                            { (int)Keys.D4, 4 },
-                                                                            { (int)Keys.D5, 5 },
-                                                                            { (int)Keys.D6, 6 },
-                                                                            { (int)Keys.D7, 7 },
-                                                                            { (int)Keys.D8, 8 },
-                                                                            { (int)Keys.D9, 9 },
-                                                                            { (int)Keys.NumPad0, 0 },
-                                                                            { (int)Keys.NumPad1, 1 },
-                                                                            { (int)Keys.NumPad2, 2 },
-                                                                            { (int)Keys.NumPad3, 3 },
-                                                                            { (int)Keys.NumPad4, 4 },
-                                                                            { (int)Keys.NumPad5, 5 },
-                                                                            { (int)Keys.NumPad6, 6 },
-                                                                            { (int)Keys.NumPad7, 7 },
-                                                                            { (int)Keys.NumPad8, 8 },
-                                                                            { (int)Keys.NumPad9, 9 }
-                                                                       };
-
         private static char GetKeyNumericValue(int e)
         {
             return (char)e;

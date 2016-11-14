@@ -92,10 +92,12 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.Grid_Panel = new System.Windows.Forms.Panel();
+            this.Image_List = new System.Windows.Forms.ImageList(this.components);
+            this.BarcodeScannerMode_Combo = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.Downward_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Image_List = new System.Windows.Forms.ImageList(this.components);
             this.Navigation_Strip = new Muhasebe.Custom.ToolStripEx();
             this.Home_Button = new System.Windows.Forms.ToolStripButton();
             this.Accounts_Button = new System.Windows.Forms.ToolStripButton();
@@ -321,7 +323,7 @@
             this.Company_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Company_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.Company_Label.ForeColor = System.Drawing.Color.White;
-            this.Company_Label.Location = new System.Drawing.Point(939, 8);
+            this.Company_Label.Location = new System.Drawing.Point(938, 8);
             this.Company_Label.Name = "Company_Label";
             this.Company_Label.Size = new System.Drawing.Size(291, 13);
             this.Company_Label.TabIndex = 14;
@@ -528,7 +530,7 @@
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Location = new System.Drawing.Point(267, 45);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(977, 586);
+            this.panel4.Size = new System.Drawing.Size(976, 586);
             this.panel4.TabIndex = 15;
             // 
             // tableLayoutPanel1
@@ -547,7 +549,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(969, 550);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(968, 550);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // chart2
@@ -567,7 +569,7 @@
             this.chart2.Legends.Add(legend1);
             this.chart2.Location = new System.Drawing.Point(3, 360);
             this.chart2.Name = "chart2";
-            this.chart2.Size = new System.Drawing.Size(556, 187);
+            this.chart2.Size = new System.Drawing.Size(555, 187);
             this.chart2.TabIndex = 2;
             title1.Alignment = System.Drawing.ContentAlignment.TopLeft;
             title1.DockedToChartArea = "ChartArea1";
@@ -611,7 +613,7 @@
             this.chart1.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0))))),
         System.Drawing.Color.Red};
-            this.chart1.Size = new System.Drawing.Size(963, 351);
+            this.chart1.Size = new System.Drawing.Size(962, 351);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
             title2.Alignment = System.Drawing.ContentAlignment.TopRight;
@@ -634,7 +636,7 @@
             chartArea3.BackColor = System.Drawing.SystemColors.Control;
             chartArea3.Name = "ChartArea1";
             this.chart3.ChartAreas.Add(chartArea3);
-            this.chart3.Location = new System.Drawing.Point(565, 360);
+            this.chart3.Location = new System.Drawing.Point(564, 360);
             this.chart3.Name = "chart3";
             this.chart3.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.chart3.PaletteCustomColors = new System.Drawing.Color[] {
@@ -660,7 +662,7 @@
             this.panel5.Controls.Add(this.label4);
             this.panel5.Location = new System.Drawing.Point(-1, -1);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(977, 26);
+            this.panel5.Size = new System.Drawing.Size(976, 26);
             this.panel5.TabIndex = 0;
             // 
             // label4
@@ -710,6 +712,39 @@
             this.Grid_Panel.Visible = false;
             this.Grid_Panel.VisibleChanged += new System.EventHandler(this.Grid_Panel_VisibleChanged);
             // 
+            // Image_List
+            // 
+            this.Image_List.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Image_List.ImageStream")));
+            this.Image_List.TransparentColor = System.Drawing.Color.Transparent;
+            this.Image_List.Images.SetKeyName(0, "package.png");
+            // 
+            // BarcodeScannerMode_Combo
+            // 
+            this.BarcodeScannerMode_Combo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BarcodeScannerMode_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BarcodeScannerMode_Combo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BarcodeScannerMode_Combo.FormattingEnabled = true;
+            this.BarcodeScannerMode_Combo.Items.AddRange(new object[] {
+            "Satış",
+            "Ürün Düzenleme",
+            "Mal Alımı"});
+            this.BarcodeScannerMode_Combo.Location = new System.Drawing.Point(1103, 705);
+            this.BarcodeScannerMode_Combo.Name = "BarcodeScannerMode_Combo";
+            this.BarcodeScannerMode_Combo.Size = new System.Drawing.Size(109, 21);
+            this.BarcodeScannerMode_Combo.TabIndex = 12;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Image = global::Muhasebe.Properties.Resources._195_barcode_icon;
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Location = new System.Drawing.Point(957, 705);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(140, 21);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Barkod Okuyucu Modu:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // Downward_List
             // 
             this.Downward_List.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -735,12 +770,6 @@
             // 
             this.columnHeader1.Text = "Azalan Ürünler";
             this.columnHeader1.Width = 254;
-            // 
-            // Image_List
-            // 
-            this.Image_List.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Image_List.ImageStream")));
-            this.Image_List.TransparentColor = System.Drawing.Color.Transparent;
-            this.Image_List.Images.SetKeyName(0, "package.png");
             // 
             // Navigation_Strip
             // 
@@ -894,6 +923,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1254, 726);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.BarcodeScannerMode_Combo);
             this.Controls.Add(this.Grid_Panel);
             this.Controls.Add(this.Navigation_Strip);
             this.Controls.Add(this.Status_Strip);
@@ -1008,6 +1039,8 @@
         private System.Windows.Forms.ToolStripMenuItem ürünGruplarıYönetimiToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ürünGruplarıYönetimiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem siparişYönetimiToolStripMenuItem;
+        private System.Windows.Forms.ComboBox BarcodeScannerMode_Combo;
+        private System.Windows.Forms.Label label1;
     }
 }
 

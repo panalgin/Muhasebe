@@ -55,6 +55,10 @@
     <ApplicationIcon>daflanicon2.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DirectShowLib">
       <HintPath>..\..\..\..\..\Downloads\DirectShowSamples-2010-February (1)\Samples\Capture\DxSnap\bin\Debug\DirectShowLib.dll</HintPath>
     </Reference>
@@ -173,7 +177,9 @@
     <Compile Include="Custom\SearchBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Custom\SerialBarcodeScanner.cs" />
     <Compile Include="Custom\SerialConnectionParameters.cs" />
+    <Compile Include="Custom\SerialDevice.cs" />
     <Compile Include="Custom\UsbConnectionParameters.cs" />
     <Compile Include="Device.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>

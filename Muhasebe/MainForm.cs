@@ -66,6 +66,8 @@ namespace Muhasebe
             EventSink.UserLogon += EventSink_UserLogon;
             Application.ApplicationExit += Application_ApplicationExit;
 
+            this.BarcodeScannerMode_Combo.SelectedIndex = 0;
+
             Login_Mdi m_Mdi = new Login_Mdi();
             m_Mdi.MdiParent = this;
             m_Mdi.Show();
@@ -155,52 +157,84 @@ namespace Muhasebe
                     string m_Barcode = args.Barcode;
 
                     var m_Item = m_Context.Items.Where(q => q.Inventory.OwnerID == Program.User.WorksAtID && q.Product.Barcode == m_Barcode).FirstOrDefault();
+                    string m_Mode = this.BarcodeScannerMode_Combo.SelectedItem.ToString();
 
-                    if (m_Item == null)
+                    switch (m_Mode)
                     {
-                        this.Invoke((MethodInvoker)delegate ()
-                        {
-                            Add_Item_Pop m_Pop = new Add_Item_Pop(m_Barcode);
-                            m_Pop.ShowDialog();
-                        });
-                    }
-                    else
-                    {
-                        if (!this.MdiChildren.Any(q => q is Manage_Sales_Mdi))
-                        {
-                            this.BeginInvoke((MethodInvoker)(delegate ()
+                        case "Satış":
                             {
-                                Manage_Sales_Mdi m_Mdi = new Manage_Sales_Mdi();
-                                m_Mdi.MdiParent = this;
-                                m_Mdi.WindowState = FormWindowState.Maximized;
-                                m_Mdi.Show();
-
-                                m_Mdi.Shown += (s, a) =>
+                                if (m_Item == null)
                                 {
-                                    InvoiceNode m_Node = new InvoiceNode(m_Item);
-                                    m_Node.Amount = 1;
-                                    m_Node.FinalPrice = m_Node.BasePrice * m_Node.Amount;
-                                    m_Mdi.Append(m_Node);
-                                };
-
-                            }));
-                        }
-                        else
-                        {
-                            Form m_Existing = this.MdiChildren.Where(q => q is Manage_Sales_Mdi).FirstOrDefault();
-
-                            if (m_Existing != null)
-                            {
-                                Manage_Sales_Mdi m_Mdi = m_Existing as Manage_Sales_Mdi;
-                                m_Mdi.BeginInvoke((MethodInvoker)delegate ()
+                                    this.Invoke((MethodInvoker)delegate ()
+                                    {
+                                        Add_Item_Pop m_Pop = new Add_Item_Pop(m_Barcode);
+                                        m_Pop.ShowDialog();
+                                    });
+                                }
+                                else
                                 {
-                                    InvoiceNode m_Node = new InvoiceNode(m_Item);
-                                    m_Node.Amount = 1;
-                                    m_Node.FinalPrice = m_Node.BasePrice * m_Node.Amount;
-                                    m_Mdi.Append(m_Node);
-                                });
+                                    if (!this.MdiChildren.Any(q => q is Manage_Sales_Mdi))
+                                    {
+                                        this.BeginInvoke((MethodInvoker)(delegate ()
+                                        {
+                                            Manage_Sales_Mdi m_Mdi = new Manage_Sales_Mdi();
+                                            m_Mdi.MdiParent = this;
+                                            m_Mdi.WindowState = FormWindowState.Maximized;
+                                            m_Mdi.Show();
+
+                                            m_Mdi.Shown += (s, a) =>
+                                            {
+                                                InvoiceNode m_Node = new InvoiceNode(m_Item);
+                                                m_Node.Amount = 1;
+                                                m_Node.FinalPrice = m_Node.BasePrice * m_Node.Amount;
+                                                m_Mdi.Append(m_Node);
+                                            };
+
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        Form m_Existing = this.MdiChildren.Where(q => q is Manage_Sales_Mdi).FirstOrDefault();
+
+                                        if (m_Existing != null)
+                                        {
+                                            Manage_Sales_Mdi m_Mdi = m_Existing as Manage_Sales_Mdi;
+                                            m_Mdi.BeginInvoke((MethodInvoker)delegate ()
+                                            {
+                                                InvoiceNode m_Node = new InvoiceNode(m_Item);
+                                                m_Node.Amount = 1;
+                                                m_Node.FinalPrice = m_Node.BasePrice * m_Node.Amount;
+                                                m_Mdi.Append(m_Node);
+                                            });
+                                        }
+                                    }
+                                }
+
+                                break;
                             }
-                        }
+                        case "Ürün Düzenleme":
+                            {
+                                if (m_Item == null)
+                                {
+                                    this.Invoke((MethodInvoker)delegate ()
+                                    {
+                                        Add_Item_Pop m_Pop = new Add_Item_Pop(m_Barcode);
+                                        m_Pop.ShowDialog();
+                                    });
+                                }
+                                else
+                                {
+                                    this.Invoke((MethodInvoker)delegate ()
+                                    {
+                                        Edit_Item_Pop m_Pop = new Edit_Item_Pop();
+                                        m_Pop.Item = m_Item;
+
+                                        m_Pop.ShowDialog();
+                                    });
+                                }
+
+                                break;
+                            }
                     }
                 }
             }
