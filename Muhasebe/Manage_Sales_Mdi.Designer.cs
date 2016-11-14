@@ -56,10 +56,11 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.UseTermedPrice_Check = new System.Windows.Forms.CheckBox();
+            this.Account_Box = new Muhasebe.Custom.SearchBox();
             this.label6 = new System.Windows.Forms.Label();
             this.Sale_Button = new System.Windows.Forms.Button();
             this.Cancel_Button = new System.Windows.Forms.Button();
-            this.Account_Box = new Muhasebe.Custom.SearchBox();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.Context_Menu.SuspendLayout();
@@ -322,6 +323,7 @@
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.UseTermedPrice_Check);
             this.panel4.Controls.Add(this.Account_Box);
             this.panel4.Controls.Add(this.label6);
             this.panel4.Controls.Add(this.label4);
@@ -330,6 +332,31 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(254, 102);
             this.panel4.TabIndex = 22;
+            // 
+            // UseTermedPrice_Check
+            // 
+            this.UseTermedPrice_Check.AutoSize = true;
+            this.UseTermedPrice_Check.Checked = true;
+            this.UseTermedPrice_Check.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.UseTermedPrice_Check.Enabled = false;
+            this.UseTermedPrice_Check.Location = new System.Drawing.Point(82, 61);
+            this.UseTermedPrice_Check.Name = "UseTermedPrice_Check";
+            this.UseTermedPrice_Check.Size = new System.Drawing.Size(113, 17);
+            this.UseTermedPrice_Check.TabIndex = 23;
+            this.UseTermedPrice_Check.Text = "Vade Farkı Uygula";
+            this.UseTermedPrice_Check.UseVisualStyleBackColor = true;
+            this.UseTermedPrice_Check.CheckedChanged += new System.EventHandler(this.UseTermedPrice_Check_CheckedChanged);
+            // 
+            // Account_Box
+            // 
+            this.Account_Box.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.Account_Box.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.Account_Box.FillType = Muhasebe.Custom.SearchBox.Fillable.Account;
+            this.Account_Box.FormattingEnabled = true;
+            this.Account_Box.Location = new System.Drawing.Point(82, 34);
+            this.Account_Box.Name = "Account_Box";
+            this.Account_Box.Size = new System.Drawing.Size(165, 21);
+            this.Account_Box.TabIndex = 22;
             // 
             // label6
             // 
@@ -368,17 +395,6 @@
             this.Cancel_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Cancel_Button.UseVisualStyleBackColor = true;
             this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
-            // 
-            // Account_Box
-            // 
-            this.Account_Box.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.Account_Box.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.Account_Box.FillType = Muhasebe.Custom.SearchBox.Fillable.Account;
-            this.Account_Box.FormattingEnabled = true;
-            this.Account_Box.Location = new System.Drawing.Point(82, 34);
-            this.Account_Box.Name = "Account_Box";
-            this.Account_Box.Size = new System.Drawing.Size(165, 21);
-            this.Account_Box.TabIndex = 22;
             // 
             // Manage_Sales_Mdi
             // 
@@ -446,5 +462,6 @@
         private System.Windows.Forms.ToolStripMenuItem manuelSatışToolStripMenuItem;
         private System.Windows.Forms.Label label6;
         private Custom.SearchBox Account_Box;
+        private System.Windows.Forms.CheckBox UseTermedPrice_Check;
     }
 }

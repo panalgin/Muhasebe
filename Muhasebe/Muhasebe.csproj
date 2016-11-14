@@ -160,11 +160,11 @@
     <Compile Include="BarcodeTemplate.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>
-    <Compile Include="Buy_Item_Pop.cs">
+    <Compile Include="Buy_Items_Pop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Buy_Item_Pop.Designer.cs">
-      <DependentUpon>Buy_Item_Pop.cs</DependentUpon>
+    <Compile Include="Buy_Items_Pop.Designer.cs">
+      <DependentUpon>Buy_Items_Pop.cs</DependentUpon>
     </Compile>
     <Compile Include="City.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
@@ -572,8 +572,8 @@
     <EmbeddedResource Include="Add_Order_Mdi.resx">
       <DependentUpon>Add_Order_Mdi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Buy_Item_Pop.resx">
-      <DependentUpon>Buy_Item_Pop.cs</DependentUpon>
+    <EmbeddedResource Include="Buy_Items_Pop.resx">
+      <DependentUpon>Buy_Items_Pop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Edit_Account_Mdi.resx">
       <DependentUpon>Edit_Account_Mdi.cs</DependentUpon>

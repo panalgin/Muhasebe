@@ -67,6 +67,17 @@ namespace Muhasebe
             if (this.Payment_Combo.SelectedValue != null)
             {
                 this.Invoice.PaymentTypeID = Convert.ToInt32(this.Payment_Combo.SelectedValue);
+
+                int m_PaymentTypeID = Convert.ToInt32(this.Payment_Combo.SelectedValue);
+
+                if (m_PaymentTypeID == 3)
+                { //Vadeli
+
+                    this.UseTermedPrice_Check.Enabled = true;
+                }
+                else
+                    this.UseTermedPrice_Check.Enabled = false;
+
                 this.PopulateListView();
             }
         }
@@ -106,7 +117,7 @@ namespace Muhasebe
 
 
 
-                        if (this.Invoice.PaymentTypeID.HasValue && this.Invoice.PaymentTypeID == 3 && m_Node.Item.TermedPrice.HasValue && m_Node.Item.TermedPrice.Value > m_Node.Item.FinalPrice && m_Node.UseCustomPricing == false)
+                        if (this.Invoice.PaymentTypeID.HasValue && this.Invoice.PaymentTypeID == 3 && m_Node.Item.TermedPrice.HasValue && m_Node.Item.TermedPrice.Value > m_Node.Item.FinalPrice && m_Node.UseCustomPricing == false && this.UseTermedPrice_Check.Checked)
                         {
                             basePrice = m_Node.Item.TermedPrice.Value;
                             finalPrice = basePrice * m_Node.Amount.Value;
@@ -364,6 +375,11 @@ namespace Muhasebe
                 this.Subtotal_Label.ForeColor = SystemColors.ControlText;
             else
                 this.Subtotal_Label.ForeColor = SystemColors.Control;
+        }
+
+        private void UseTermedPrice_Check_CheckedChanged(object sender, EventArgs e)
+        {
+            this.PopulateListView();
         }
     }
 }

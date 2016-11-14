@@ -425,7 +425,7 @@ namespace Muhasebe
 
         private void Buy_Items_Button_Click(object sender, EventArgs e)
         {
-            Buy_Item_Pop m_Pop = new Buy_Item_Pop();
+            Buy_Items_Pop m_Pop = new Buy_Items_Pop();
             m_Pop.ShowDialog();
         }
     }

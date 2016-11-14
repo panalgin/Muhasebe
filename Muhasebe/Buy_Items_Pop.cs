@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Muhasebe
 {
-    public partial class Buy_Item_Pop : Form
+    public partial class Buy_Items_Pop : Form
     {
-        public Buy_Item_Pop()
+        public Buy_Items_Pop()
         {
             InitializeComponent();
         }

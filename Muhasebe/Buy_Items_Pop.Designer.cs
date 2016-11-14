@@ -1,6 +1,6 @@
 ﻿namespace Muhasebe
 {
-    partial class Buy_Item_Pop
+    partial class Buy_Items_Pop
     {
         /// <summary>
         /// Required designer variable.
