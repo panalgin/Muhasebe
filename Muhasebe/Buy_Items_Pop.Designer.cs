@@ -47,7 +47,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.PaymentType_Combo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +59,7 @@
             this.Account_Box.FormattingEnabled = true;
             this.Account_Box.Location = new System.Drawing.Point(71, 12);
             this.Account_Box.Name = "Account_Box";
-            this.Account_Box.Size = new System.Drawing.Size(190, 21);
+            this.Account_Box.Size = new System.Drawing.Size(179, 21);
             this.Account_Box.TabIndex = 26;
             // 
             // Delete_Button
@@ -180,7 +180,7 @@
             // 
             this.columnHeader6.Text = "Tahmini Tutar";
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader6.Width = 120;
+            this.columnHeader6.Width = 138;
             // 
             // label1
             // 
@@ -237,21 +237,22 @@
             this.label6.TabIndex = 32;
             this.label6.Text = "Ödeme Türü:";
             // 
-            // comboBox1
+            // PaymentType_Combo
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(360, 438);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(132, 21);
-            this.comboBox1.TabIndex = 33;
+            this.PaymentType_Combo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.PaymentType_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PaymentType_Combo.FormattingEnabled = true;
+            this.PaymentType_Combo.Location = new System.Drawing.Point(360, 438);
+            this.PaymentType_Combo.Name = "PaymentType_Combo";
+            this.PaymentType_Combo.Size = new System.Drawing.Size(132, 21);
+            this.PaymentType_Combo.TabIndex = 33;
             // 
-            // Buy_Item_Pop
+            // Buy_Items_Pop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(752, 469);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.PaymentType_Combo);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
@@ -267,9 +268,10 @@
             this.Controls.Add(this.label3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Buy_Item_Pop";
+            this.Name = "Buy_Items_Pop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Mal Alımı";
+            this.Load += new System.EventHandler(this.Buy_Items_Pop_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -297,6 +299,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox PaymentType_Combo;
     }
 }
