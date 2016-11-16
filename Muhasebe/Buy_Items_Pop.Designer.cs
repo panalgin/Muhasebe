@@ -35,9 +35,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.Summary_Num = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.Expected_BasePrice_Label = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.PaymentType_Combo = new System.Windows.Forms.ComboBox();
             this.Buy_Items_List = new Muhasebe.Custom.ListViewEx();
@@ -46,8 +46,10 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Account_Box = new Muhasebe.Custom.SearchBox();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.Increase_Stock_Check = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.Summary_Num)).BeginInit();
             this.SuspendLayout();
             // 
             // Delete_Button
@@ -83,6 +85,7 @@
             this.Cancel_Button.TabIndex = 23;
             this.Cancel_Button.Text = "İptal";
             this.Cancel_Button.UseVisualStyleBackColor = true;
+            this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
             // Save_Button
             // 
@@ -95,6 +98,7 @@
             this.Save_Button.TabIndex = 21;
             this.Save_Button.Text = "Kaydet";
             this.Save_Button.UseVisualStyleBackColor = true;
+            this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
             // 
             // label4
             // 
@@ -124,19 +128,19 @@
             this.label1.TabIndex = 28;
             this.label1.Text = "Toplam Ödenecek:";
             // 
-            // numericUpDown1
+            // Summary_Num
             // 
-            this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.numericUpDown1.DecimalPlaces = 2;
-            this.numericUpDown1.Location = new System.Drawing.Point(360, 412);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.Summary_Num.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Summary_Num.DecimalPlaces = 2;
+            this.Summary_Num.Location = new System.Drawing.Point(360, 412);
+            this.Summary_Num.Maximum = new decimal(new int[] {
             1000000000,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(132, 20);
-            this.numericUpDown1.TabIndex = 29;
+            this.Summary_Num.Name = "Summary_Num";
+            this.Summary_Num.Size = new System.Drawing.Size(132, 20);
+            this.Summary_Num.TabIndex = 29;
             // 
             // label2
             // 
@@ -148,16 +152,15 @@
             this.label2.TabIndex = 30;
             this.label2.Text = "Tahmini Alış Tutarı:";
             // 
-            // label5
+            // Expected_BasePrice_Label
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label5.Location = new System.Drawing.Point(114, 412);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(106, 20);
-            this.label5.TabIndex = 31;
-            this.label5.Text = "label5";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Expected_BasePrice_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Expected_BasePrice_Label.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Expected_BasePrice_Label.Location = new System.Drawing.Point(114, 412);
+            this.Expected_BasePrice_Label.Name = "Expected_BasePrice_Label";
+            this.Expected_BasePrice_Label.Size = new System.Drawing.Size(106, 20);
+            this.Expected_BasePrice_Label.TabIndex = 31;
+            this.Expected_BasePrice_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label6
             // 
@@ -189,7 +192,8 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader6});
+            this.columnHeader6,
+            this.columnHeader5});
             this.Buy_Items_List.FullRowSelect = true;
             this.Buy_Items_List.GridLines = true;
             this.Buy_Items_List.Location = new System.Drawing.Point(12, 60);
@@ -224,9 +228,15 @@
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "Tahmini Tutar";
+            this.columnHeader6.Text = "Birim Alış";
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader6.Width = 138;
+            this.columnHeader6.Width = 100;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Tahmini Toplam";
+            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader5.Width = 143;
             // 
             // Account_Box
             // 
@@ -239,16 +249,29 @@
             this.Account_Box.Size = new System.Drawing.Size(179, 21);
             this.Account_Box.TabIndex = 26;
             // 
+            // Increase_Stock_Check
+            // 
+            this.Increase_Stock_Check.AutoSize = true;
+            this.Increase_Stock_Check.Checked = true;
+            this.Increase_Stock_Check.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Increase_Stock_Check.Location = new System.Drawing.Point(17, 438);
+            this.Increase_Stock_Check.Name = "Increase_Stock_Check";
+            this.Increase_Stock_Check.Size = new System.Drawing.Size(117, 17);
+            this.Increase_Stock_Check.TabIndex = 34;
+            this.Increase_Stock_Check.Text = "Ürünleri Stoğa Ekle";
+            this.Increase_Stock_Check.UseVisualStyleBackColor = true;
+            // 
             // Buy_Items_Pop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(752, 469);
+            this.Controls.Add(this.Increase_Stock_Check);
             this.Controls.Add(this.PaymentType_Combo);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.Expected_BasePrice_Label);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.Summary_Num);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Buy_Items_List);
             this.Controls.Add(this.Account_Box);
@@ -258,13 +281,15 @@
             this.Controls.Add(this.Save_Button);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Buy_Items_Pop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Mal Alımı";
             this.Load += new System.EventHandler(this.Buy_Items_Pop_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Buy_Items_Pop_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.Summary_Num)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -286,10 +311,12 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown Summary_Num;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label Expected_BasePrice_Label;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox PaymentType_Combo;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.CheckBox Increase_Stock_Check;
     }
 }

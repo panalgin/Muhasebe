@@ -25,6 +25,8 @@ namespace Muhasebe
         public System.DateTime CreatedAt { get; set; }
         public int AccountID { get; set; }
         public int OwnerID { get; set; }
+        public int PaymentTypeID { get; set; }
+        public decimal Summary { get; set; }
     
         public virtual Company Owner { get; set; }
         public virtual User Author { get; set; }

@@ -325,6 +325,8 @@
           <Property Name="CreatedAt" Type="datetime" Nullable="false" />
           <Property Name="AccountID" Type="int" Nullable="false" />
           <Property Name="OwnerID" Type="int" Nullable="false" />
+          <Property Name="PaymentTypeID" Type="int" Nullable="false" />
+          <Property Name="Summary" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="UnitTypes">
           <Key>
@@ -1670,6 +1672,8 @@
           <NavigationProperty Name="Author" Relationship="MuhasebeModel.StockMovementUser" FromRole="StockMovement" ToRole="User" />
           <NavigationProperty Name="Account" Relationship="MuhasebeModel.StockMovementAccount" FromRole="StockMovement" ToRole="Account" />
           <NavigationProperty Name="Nodes" Relationship="MuhasebeModel.StockMovementNodeStockMovement" FromRole="StockMovement" ToRole="StockMovementNode" />
+          <Property Name="PaymentTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Summary" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="StockMovementCompany">
           <End Type="MuhasebeModel.StockMovement" Role="StockMovement" Multiplicity="*" />
@@ -2111,6 +2115,8 @@
           <EntitySetMapping Name="StockMovements">
             <EntityTypeMapping TypeName="MuhasebeModel.StockMovement">
               <MappingFragment StoreEntitySet="StockMovements">
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentTypeID" />
                 <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
                 <ScalarProperty Name="AccountID" ColumnName="AccountID" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />

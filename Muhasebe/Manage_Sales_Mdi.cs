@@ -175,15 +175,15 @@ namespace Muhasebe
                 {
                     InvoiceNode m_Node = this.Invoice.Nodes.LastOrDefault();
 
-                    Item_Set_Amount_Gumpling m_Gumpling = new Item_Set_Amount_Gumpling();
+                    Node_Set_Amount_Gumpling m_Gumpling = new Node_Set_Amount_Gumpling();
                     m_Gumpling.Node = m_Node;
-                    m_Gumpling.ItemAmountChanged += m_Gumpling_ItemAmountChanged;
+                    m_Gumpling.NodeAmountChanged += NodeAmountChanged;
                     m_Gumpling.ShowDialog();
                 }
             }
         }
 
-        void m_Gumpling_ItemAmountChanged(InvoiceNode node)
+        void NodeAmountChanged(dynamic node)
         {
             InvoiceNode m_Actual = this.Invoice.Nodes.Where(q => q.ItemID == node.ItemID).FirstOrDefault();
 
@@ -218,9 +218,9 @@ namespace Muhasebe
 
                 if (m_Node != null)
                 {
-                    Item_Set_Amount_Gumpling m_Gumpling = new Item_Set_Amount_Gumpling();
+                    Node_Set_Amount_Gumpling m_Gumpling = new Node_Set_Amount_Gumpling();
                     m_Gumpling.Node = m_Node;
-                    m_Gumpling.ItemAmountChanged += m_Gumpling_ItemAmountChanged;
+                    m_Gumpling.NodeAmountChanged += NodeAmountChanged;
                     m_Gumpling.ShowDialog();
                 }
             }

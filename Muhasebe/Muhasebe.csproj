@@ -396,11 +396,11 @@
     <Compile Include="Manage_Expenditure_Mdi.Designer.cs">
       <DependentUpon>Manage_Expenditure_Mdi.cs</DependentUpon>
     </Compile>
-    <Compile Include="Gumplings\Item_Set_Amount_Gumpling.cs">
+    <Compile Include="Gumplings\Node_Set_Amount_Gumpling.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Gumplings\Item_Set_Amount_Gumpling.Designer.cs">
-      <DependentUpon>Item_Set_Amount_Gumpling.cs</DependentUpon>
+    <Compile Include="Gumplings\Node_Set_Amount_Gumpling.Designer.cs">
+      <DependentUpon>Node_Set_Amount_Gumpling.cs</DependentUpon>
     </Compile>
     <Compile Include="Logger.cs" />
     <Compile Include="Login_Mdi.cs">
@@ -657,8 +657,8 @@
     <EmbeddedResource Include="Manage_Expenditure_Mdi.resx">
       <DependentUpon>Manage_Expenditure_Mdi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gumplings\Item_Set_Amount_Gumpling.resx">
-      <DependentUpon>Item_Set_Amount_Gumpling.cs</DependentUpon>
+    <EmbeddedResource Include="Gumplings\Node_Set_Amount_Gumpling.resx">
+      <DependentUpon>Node_Set_Amount_Gumpling.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login_Mdi.resx">
       <DependentUpon>Login_Mdi.cs</DependentUpon>
