@@ -307,6 +307,25 @@
           <Property Name="CityID" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="32" />
         </EntityType>
+        <EntityType Name="StockMovementNodes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockMovementID" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StockMovements">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuthorID" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="OwnerID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="UnitTypes">
           <Key>
             <PropertyRef Name="ID" />
@@ -365,6 +384,8 @@
           <EntitySet Name="PropertyReminders" EntityType="Self.PropertyReminders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropertyRemindingMethods" EntityType="Self.PropertyRemindingMethods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provinces" EntityType="Self.Provinces" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockMovementNodes" EntityType="Self.StockMovementNodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockMovements" EntityType="Self.StockMovements" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnitTypes" EntityType="Self.UnitTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -603,6 +624,28 @@
           <AssociationSet Name="EventCompany" Association="MuhasebeModel.EventCompany">
             <End Role="Event" EntitySet="Events" />
             <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <EntitySet Name="StockMovementNodes" EntityType="MuhasebeModel.StockMovementNode" />
+          <EntitySet Name="StockMovements" EntityType="MuhasebeModel.StockMovement" />
+          <AssociationSet Name="StockMovementCompany" Association="MuhasebeModel.StockMovementCompany">
+            <End Role="StockMovement" EntitySet="StockMovements" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="StockMovementUser" Association="MuhasebeModel.StockMovementUser">
+            <End Role="StockMovement" EntitySet="StockMovements" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="StockMovementAccount" Association="MuhasebeModel.StockMovementAccount">
+            <End Role="StockMovement" EntitySet="StockMovements" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="StockMovementNodeStockMovement" Association="MuhasebeModel.StockMovementNodeStockMovement">
+            <End Role="StockMovementNode" EntitySet="StockMovementNodes" />
+            <End Role="StockMovement" EntitySet="StockMovements" />
+          </AssociationSet>
+          <AssociationSet Name="StockMovementNodeItem" Association="MuhasebeModel.StockMovementNodeItem">
+            <End Role="StockMovementNode" EntitySet="StockMovementNodes" />
+            <End Role="Item" EntitySet="Items" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Product">
@@ -1603,6 +1646,91 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="StockMovementNode">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockMovementID" Type="Int32" Nullable="false" />
+          <Property Name="ItemID" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <NavigationProperty Name="Parent" Relationship="MuhasebeModel.StockMovementNodeStockMovement" FromRole="StockMovementNode" ToRole="StockMovement" />
+          <NavigationProperty Name="Item" Relationship="MuhasebeModel.StockMovementNodeItem" FromRole="StockMovementNode" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="StockMovement">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuthorID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="OwnerID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Owner" Relationship="MuhasebeModel.StockMovementCompany" FromRole="StockMovement" ToRole="Company" />
+          <NavigationProperty Name="Author" Relationship="MuhasebeModel.StockMovementUser" FromRole="StockMovement" ToRole="User" />
+          <NavigationProperty Name="Account" Relationship="MuhasebeModel.StockMovementAccount" FromRole="StockMovement" ToRole="Account" />
+          <NavigationProperty Name="Nodes" Relationship="MuhasebeModel.StockMovementNodeStockMovement" FromRole="StockMovement" ToRole="StockMovementNode" />
+        </EntityType>
+        <Association Name="StockMovementCompany">
+          <End Type="MuhasebeModel.StockMovement" Role="StockMovement" Multiplicity="*" />
+          <End Type="MuhasebeModel.Company" Role="Company" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StockMovement">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StockMovementUser">
+          <End Type="MuhasebeModel.StockMovement" Role="StockMovement" Multiplicity="*" />
+          <End Type="MuhasebeModel.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StockMovement">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StockMovementAccount">
+          <End Type="MuhasebeModel.StockMovement" Role="StockMovement" Multiplicity="*" />
+          <End Type="MuhasebeModel.Account" Role="Account" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StockMovement">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StockMovementNodeStockMovement">
+          <End Type="MuhasebeModel.StockMovementNode" Role="StockMovementNode" Multiplicity="*" />
+          <End Type="MuhasebeModel.StockMovement" Role="StockMovement" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="StockMovement">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StockMovementNode">
+              <PropertyRef Name="StockMovementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StockMovementNodeItem">
+          <End Type="MuhasebeModel.StockMovementNode" Role="StockMovementNode" Multiplicity="*" />
+          <End Type="MuhasebeModel.Item" Role="Item" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StockMovementNode">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1966,6 +2094,27 @@
             <EntityTypeMapping TypeName="MuhasebeModel.AccountMovementType">
               <MappingFragment StoreEntitySet="AccountMovementTypes">
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockMovementNodes">
+            <EntityTypeMapping TypeName="MuhasebeModel.StockMovementNode">
+              <MappingFragment StoreEntitySet="StockMovementNodes">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="StockMovementID" ColumnName="StockMovementID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockMovements">
+            <EntityTypeMapping TypeName="MuhasebeModel.StockMovement">
+              <MappingFragment StoreEntitySet="StockMovements">
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

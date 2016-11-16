@@ -179,6 +179,7 @@
     <Compile Include="Custom\Company.partial.cs" />
     <Compile Include="Custom\Device.partial.cs" />
     <Compile Include="Custom\InvoiceNode.cs" />
+    <Compile Include="Custom\ItemHelper.cs" />
     <Compile Include="Custom\NetworkConnectionParameters.cs" />
     <Compile Include="Custom\SearchBox.cs">
       <SubType>Component</SubType>
@@ -544,6 +545,12 @@
     </Compile>
     <Compile Include="Scripts\AutoStarter.cs" />
     <Compile Include="Scripts\GuiManipulator.cs" />
+    <Compile Include="StockMovement.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StockMovementNode.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
     <Compile Include="UnitType.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>

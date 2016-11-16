@@ -28,39 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Account_Box = new Muhasebe.Custom.SearchBox();
             this.Delete_Button = new System.Windows.Forms.Button();
             this.Edit_Button = new System.Windows.Forms.Button();
             this.Cancel_Button = new System.Windows.Forms.Button();
             this.Save_Button = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.ItemGroups_List = new Muhasebe.Custom.ListViewEx();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.PaymentType_Combo = new System.Windows.Forms.ComboBox();
+            this.Buy_Items_List = new Muhasebe.Custom.ListViewEx();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Account_Box = new Muhasebe.Custom.SearchBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Account_Box
-            // 
-            this.Account_Box.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.Account_Box.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.Account_Box.FillType = Muhasebe.Custom.SearchBox.Fillable.Account;
-            this.Account_Box.FormattingEnabled = true;
-            this.Account_Box.Location = new System.Drawing.Point(71, 12);
-            this.Account_Box.Name = "Account_Box";
-            this.Account_Box.Size = new System.Drawing.Size(179, 21);
-            this.Account_Box.TabIndex = 26;
             // 
             // Delete_Button
             // 
@@ -125,62 +113,6 @@
             this.label3.Size = new System.Drawing.Size(52, 13);
             this.label3.TabIndex = 17;
             this.label3.Text = "Toptancı:";
-            // 
-            // ItemGroups_List
-            // 
-            this.ItemGroups_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ItemGroups_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6});
-            this.ItemGroups_List.FullRowSelect = true;
-            this.ItemGroups_List.GridLines = true;
-            this.ItemGroups_List.Location = new System.Drawing.Point(12, 60);
-            this.ItemGroups_List.MultiSelect = false;
-            this.ItemGroups_List.Name = "ItemGroups_List";
-            this.ItemGroups_List.Size = new System.Drawing.Size(647, 337);
-            this.ItemGroups_List.TabIndex = 27;
-            this.ItemGroups_List.UseCompatibleStateImageBehavior = false;
-            this.ItemGroups_List.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Barkod";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Sipariş Kodu";
-            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader2.Width = 78;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Ürün Adı";
-            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader3.Width = 115;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Alınan Miktar";
-            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader4.Width = 90;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Birim";
-            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader5.Width = 59;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Tahmini Tutar";
-            this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader6.Width = 138;
             // 
             // label1
             // 
@@ -247,6 +179,66 @@
             this.PaymentType_Combo.Size = new System.Drawing.Size(132, 21);
             this.PaymentType_Combo.TabIndex = 33;
             // 
+            // Buy_Items_List
+            // 
+            this.Buy_Items_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Buy_Items_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader6});
+            this.Buy_Items_List.FullRowSelect = true;
+            this.Buy_Items_List.GridLines = true;
+            this.Buy_Items_List.Location = new System.Drawing.Point(12, 60);
+            this.Buy_Items_List.MultiSelect = false;
+            this.Buy_Items_List.Name = "Buy_Items_List";
+            this.Buy_Items_List.Size = new System.Drawing.Size(647, 337);
+            this.Buy_Items_List.TabIndex = 27;
+            this.Buy_Items_List.UseCompatibleStateImageBehavior = false;
+            this.Buy_Items_List.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Barkod";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Sipariş Kodu";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader2.Width = 78;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Ürün Adı";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader3.Width = 115;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Alınan Miktar";
+            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader4.Width = 90;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Tahmini Tutar";
+            this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader6.Width = 138;
+            // 
+            // Account_Box
+            // 
+            this.Account_Box.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.Account_Box.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.Account_Box.FillType = Muhasebe.Custom.SearchBox.Fillable.Account;
+            this.Account_Box.FormattingEnabled = true;
+            this.Account_Box.Location = new System.Drawing.Point(71, 12);
+            this.Account_Box.Name = "Account_Box";
+            this.Account_Box.Size = new System.Drawing.Size(179, 21);
+            this.Account_Box.TabIndex = 26;
+            // 
             // Buy_Items_Pop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -258,7 +250,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.ItemGroups_List);
+            this.Controls.Add(this.Buy_Items_List);
             this.Controls.Add(this.Account_Box);
             this.Controls.Add(this.Delete_Button);
             this.Controls.Add(this.Edit_Button);
@@ -287,12 +279,11 @@
         private System.Windows.Forms.Button Save_Button;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private Custom.ListViewEx ItemGroups_List;
+        private Custom.ListViewEx Buy_Items_List;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;

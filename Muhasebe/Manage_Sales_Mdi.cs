@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Muhasebe.Custom;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -136,8 +137,8 @@ namespace Muhasebe
                             }
                         }
 
-                        m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", basePrice));
-                        m_ViewItem.SubItems.Add(string.Format("{0:0.00} TL", finalPrice)); // format shit
+                        m_ViewItem.SubItems.Add(ItemHelper.GetFormattedPrice(basePrice));
+                        m_ViewItem.SubItems.Add(ItemHelper.GetFormattedPrice(finalPrice)); // format shit
 
 
                         if (i++ % 2 == 1)

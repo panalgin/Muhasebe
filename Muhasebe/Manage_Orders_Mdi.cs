@@ -1,4 +1,5 @@
-﻿using OpenHtmlToPdf;
+﻿using Muhasebe.Custom;
+using OpenHtmlToPdf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -188,7 +189,7 @@ namespace Muhasebe
 
                             string m_ProImgPath = Path.Combine(m_LocalPath, node.Item.LocalImagePath);
 
-                            m_Data += string.Format(m_Template, File.Exists(m_ProImgPath) ? m_ProImgPath : "", string.IsNullOrEmpty(node.Item.OrderCode) ? "Yok" : node.Item.OrderCode, node.Item.Product.Name, GetFormattedAmount(node.Amount, node.Item.UnitType.DecimalPlaces, node.Item.UnitType.Name), node.Description);
+                            m_Data += string.Format(m_Template, File.Exists(m_ProImgPath) ? m_ProImgPath : "", string.IsNullOrEmpty(node.Item.OrderCode) ? "Yok" : node.Item.OrderCode, node.Item.Product.Name, ItemHelper.GetFormattedAmount(node.Amount, node.Item.UnitType.DecimalPlaces, node.Item.UnitType.Name), node.Description);
 
                             return true;
                         });
@@ -229,34 +230,6 @@ namespace Muhasebe
             });
 
             this.Export_Pdf_Button.Enabled = true;
-        }
-
-        private string GetFormattedAmount(decimal amount, int decimalPlaces, string abbreviation)
-        {
-            string m_Amount = "";
-
-            try
-            {
-                if (decimalPlaces == 0)
-                {
-                    if (amount == 0.0000M)
-                        m_Amount = string.Format("0 {0}", abbreviation);
-                    else
-                        m_Amount = string.Format("{0} {1}", amount.ToString("#"), abbreviation);
-                }
-
-                else
-                {
-                    string m_Format = "#." + "".PadRight(decimalPlaces, '#');
-                    m_Amount = amount.ToString(m_Format) + " " + abbreviation;
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Enqueue(ex);
-            }
-
-            return m_Amount;
         }
     }
 }
