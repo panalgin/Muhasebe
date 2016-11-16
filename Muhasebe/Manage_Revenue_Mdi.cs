@@ -119,15 +119,15 @@ namespace Muhasebe
                     m_Item.SubItems.Add(m_Income.IncomeType.Name);
                     m_Item.SubItems.Add(m_Income.Amount.Value.ToString());
 
-                    if (m_Income.Account != null)
-                        m_Item.SubItems.Add(m_Income.Account.Name);
-                    else
-                        m_Item.SubItems.Add("Yok");
-
                     if (m_Income.Author != null)
                         m_Item.SubItems.Add(string.Format("{0} {1}", m_Income.Author.Name, m_Income.Author.Surname));
                     else
                         m_Item.SubItems.Add("Bilinmeyen");
+
+                    if (m_Income.Account != null)
+                        m_Item.SubItems.Add(m_Income.Account.Name);
+                    else
+                        m_Item.SubItems.Add("-");
 
                     m_Item.SubItems.Add(m_Income.Description);
 

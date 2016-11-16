@@ -48,7 +48,8 @@ namespace Muhasebe.Custom
 
             this.BaseColumnWidths.All(delegate (KeyValuePair<int, int> m_Pair)
             {
-                this.Columns[m_Pair.Key].Width = m_Pair.Value;
+                if (this.Columns[m_Pair.Key] != null)
+                    this.Columns[m_Pair.Key].Width = m_Pair.Value;
 
                 return true;
             });

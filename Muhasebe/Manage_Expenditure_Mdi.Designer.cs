@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -42,6 +41,7 @@
             this.Sort_Combo = new System.Windows.Forms.ComboBox();
             this.Edit_Button = new System.Windows.Forms.Button();
             this.Expenditure_List = new Muhasebe.Custom.ListViewEx();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Stats_Label = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Delete_Button = new System.Windows.Forms.Button();
@@ -54,12 +54,6 @@
             this.columnHeader6.Text = "Açıklama";
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader6.Width = 100;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Ödeme Yöntemi";
-            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader4.Width = 95;
             // 
             // columnHeader2
             // 
@@ -173,8 +167,8 @@
             this.columnHeader1,
             this.columnHeader3,
             this.columnHeader2,
-            this.columnHeader4,
             this.columnHeader5,
+            this.columnHeader4,
             this.columnHeader6});
             this.Expenditure_List.FullRowSelect = true;
             this.Expenditure_List.GridLines = true;
@@ -185,6 +179,12 @@
             this.Expenditure_List.UseCompatibleStateImageBehavior = false;
             this.Expenditure_List.View = System.Windows.Forms.View.Details;
             this.Expenditure_List.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "İlgili Hesap";
+            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader4.Width = 87;
             // 
             // Stats_Label
             // 
@@ -264,7 +264,6 @@
         #endregion
 
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -281,5 +280,6 @@
         private Custom.ListViewEx Expenditure_List;
         private System.Windows.Forms.Label Stats_Label;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }

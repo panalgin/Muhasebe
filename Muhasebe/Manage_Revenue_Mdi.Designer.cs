@@ -174,8 +174,8 @@
             this.columnHeader1,
             this.columnHeader3,
             this.columnHeader2,
-            this.columnHeader4,
             this.columnHeader5,
+            this.columnHeader4,
             this.columnHeader6});
             this.Revenue_List.FullRowSelect = true;
             this.Revenue_List.GridLines = true;

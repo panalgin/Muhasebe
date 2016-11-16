@@ -90,6 +90,13 @@ namespace Muhasebe
                     this.Revenue_Type_Combo.SelectedValue = this.Income.IncomeTypeID;
                     this.Responsible_Combo.SelectedValue = this.Income.AuthorID;
                     this.Description_Box.Text = this.Income.Description;
+
+                    this.Account_Box.Enabled = false;
+
+                    if (this.Income.Account != null)
+                    {
+                        this.Revenue_Amount_Num.Enabled = false;
+                    }
                 }
             }
         }

@@ -49,6 +49,8 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Account_Box = new Muhasebe.Custom.SearchBox();
             this.Increase_Stock_Check = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.CreatedAt_Picker = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.Summary_Num)).BeginInit();
             this.SuspendLayout();
             // 
@@ -261,11 +263,29 @@
             this.Increase_Stock_Check.Text = "Ürünleri Stoğa Ekle";
             this.Increase_Stock_Check.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(319, 15);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(63, 13);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "İşlem Tarihi:";
+            // 
+            // CreatedAt_Picker
+            // 
+            this.CreatedAt_Picker.Location = new System.Drawing.Point(388, 13);
+            this.CreatedAt_Picker.Name = "CreatedAt_Picker";
+            this.CreatedAt_Picker.Size = new System.Drawing.Size(200, 20);
+            this.CreatedAt_Picker.TabIndex = 36;
+            // 
             // Buy_Items_Pop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(752, 469);
+            this.Controls.Add(this.CreatedAt_Picker);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.Increase_Stock_Check);
             this.Controls.Add(this.PaymentType_Combo);
             this.Controls.Add(this.label6);
@@ -318,5 +338,7 @@
         private System.Windows.Forms.ComboBox PaymentType_Combo;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.CheckBox Increase_Stock_Check;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker CreatedAt_Picker;
     }
 }

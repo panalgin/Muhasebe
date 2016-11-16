@@ -44,7 +44,6 @@
         <AssociationConnector Association="MuhasebeModel.InvoiceCompany" />
         <AssociationConnector Association="MuhasebeModel.InvoicePaymentType" />
         <AssociationConnector Association="MuhasebeModel.PaymentTypeCompany" />
-        <AssociationConnector Association="MuhasebeModel.ExpenditurePaymentType" />
         <AssociationConnector Association="MuhasebeModel.IncomeCompany" />
         <AssociationConnector Association="MuhasebeModel.IncomeIncomeType" />
         <AssociationConnector Association="MuhasebeModel.ExpenditureTypeCompany" />
@@ -91,6 +90,7 @@
         <AssociationConnector Association="MuhasebeModel.StockMovementAccount" />
         <AssociationConnector Association="MuhasebeModel.StockMovementNodeStockMovement" />
         <AssociationConnector Association="MuhasebeModel.StockMovementNodeItem" />
+        <AssociationConnector Association="MuhasebeModel.ExpenditureAccount" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

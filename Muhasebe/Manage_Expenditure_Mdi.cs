@@ -120,12 +120,16 @@ namespace Muhasebe
                     m_Item.Text = m_Expenditure.CreatedAt.Value.ToString();
                     m_Item.SubItems.Add(m_Expenditure.ExpenditureType.Name);
                     m_Item.SubItems.Add(m_Expenditure.Amount.Value.ToString());
-                    m_Item.SubItems.Add(m_Expenditure.PaymentType.Name);
 
                     if (m_Expenditure.Author != null)
                         m_Item.SubItems.Add(string.Format("{0} {1}", m_Expenditure.Author.Name, m_Expenditure.Author.Surname));
                     else
                         m_Item.SubItems.Add("Bilinmeyen");
+
+                    if (m_Expenditure.Account != null)
+                        m_Item.SubItems.Add(m_Expenditure.Account.Name);
+                    else
+                        m_Item.SubItems.Add("-");
 
                     m_Item.SubItems.Add(m_Expenditure.Description);
 

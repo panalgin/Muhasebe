@@ -41,7 +41,7 @@ namespace Muhasebe
                     m_Income.AccountID = m_AccountID;
 
                     AccountMovement m_Movement = new AccountMovement();
-                    m_Movement.CreatedAt = DateTime.Now;
+                    m_Movement.CreatedAt = this.Revenue_Date_Picker.Value;
                     m_Movement.AccountID = m_AccountID;
                     m_Movement.AuthorID = Program.User.ID;
                     m_Movement.ContractID = m_Income.ID;

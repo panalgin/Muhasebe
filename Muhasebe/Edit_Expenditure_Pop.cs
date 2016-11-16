@@ -33,12 +33,6 @@ namespace Muhasebe
             this.Expenditure_Type_Combo.ValueMember = "ID";
             this.Expenditure_Type_Combo.DisplayMember = "Name";
 
-            var m_PaymentTypes = m_Context.PaymentTypes.Where(q => q.OwnerID == null || q.OwnerID == Program.User.WorksAtID).ToList();
-
-            this.PaymentType_Combo.DataSource = m_PaymentTypes;
-            this.PaymentType_Combo.ValueMember = "ID";
-            this.PaymentType_Combo.DisplayMember = "Name";
-
             var m_Users = m_Context.Users.Where(q => q.WorksAtID == Program.User.WorksAtID).ToList();
 
             this.Responsible_Combo.DataSource = m_Users;
@@ -48,9 +42,16 @@ namespace Muhasebe
             this.CreatedAt_Picker.Value = this.Expenditure.CreatedAt.Value;
             this.Expenditure_Type_Combo.SelectedValue = this.Expenditure.ExpenditureTypeID;
             this.Expenditure_Amount_Num.Value = this.Expenditure.Amount.Value;
-            this.PaymentType_Combo.SelectedValue = this.Expenditure.PaymentTypeID;
             this.Responsible_Combo.SelectedValue = this.Expenditure.AuthorID;
             this.ExpenditureDesc_Text.Text = this.Expenditure.Description;
+
+            this.Account_Box.Enabled = false;
+
+            if (this.Expenditure.Account != null)
+            {
+                this.Expenditure_Amount_Num.Enabled = false;
+                this.Account_Box.SelectedText = this.Expenditure.Account.Name;
+            }
         }
 
         private void Save_Btn_Click(object sender, EventArgs e)
@@ -66,7 +67,6 @@ namespace Muhasebe
                     m_Actual.CreatedAt = this.CreatedAt_Picker.Value;
                     m_Actual.Amount = this.Expenditure_Amount_Num.Value;
                     m_Actual.ExpenditureTypeID = Convert.ToInt32(this.Expenditure_Type_Combo.SelectedValue);
-                    m_Actual.PaymentTypeID = Convert.ToInt32(this.PaymentType_Combo.SelectedValue);
                     m_Actual.AuthorID = Convert.ToInt32(this.Responsible_Combo.SelectedValue);
                     m_Actual.OwnerID = Program.User.WorksAtID;
                     m_Actual.Description = this.ExpenditureDesc_Text.Text;

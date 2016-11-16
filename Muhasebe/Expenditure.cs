@@ -21,11 +21,11 @@ namespace Muhasebe
         public Nullable<decimal> Amount { get; set; }
         public string Description { get; set; }
         public Nullable<int> ExpenditureTypeID { get; set; }
-        public Nullable<int> PaymentTypeID { get; set; }
+        public Nullable<int> AccountID { get; set; }
     
         public virtual User Author { get; set; }
         public virtual Company Owner { get; set; }
         public virtual ExpenditureType ExpenditureType { get; set; }
-        public virtual PaymentType PaymentType { get; set; }
+        public virtual Account Account { get; set; }
     }
 }

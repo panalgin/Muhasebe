@@ -143,7 +143,7 @@
           <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Description" Type="nvarchar" MaxLength="1000" />
           <Property Name="ExpenditureTypeID" Type="int" />
-          <Property Name="PaymentTypeID" Type="int" />
+          <Property Name="AccountID" Type="int" />
         </EntityType>
         <EntityType Name="ExpenditureTypes">
           <Key>
@@ -499,10 +499,6 @@
             <End Role="Expenditure" EntitySet="Expenditures" />
             <End Role="ExpenditureType" EntitySet="ExpenditureTypes" />
           </AssociationSet>
-          <AssociationSet Name="ExpenditurePaymentType" Association="MuhasebeModel.ExpenditurePaymentType">
-            <End Role="Expenditure" EntitySet="Expenditures" />
-            <End Role="PaymentType" EntitySet="PaymentTypes" />
-          </AssociationSet>
           <EntitySet Name="JobPositions" EntityType="MuhasebeModel.JobPosition" />
           <AssociationSet Name="UserJobPosition" Association="MuhasebeModel.UserJobPosition">
             <End Role="User" EntitySet="Users" />
@@ -648,6 +644,10 @@
           <AssociationSet Name="StockMovementNodeItem" Association="MuhasebeModel.StockMovementNodeItem">
             <End Role="StockMovementNode" EntitySet="StockMovementNodes" />
             <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="ExpenditureAccount" Association="MuhasebeModel.ExpenditureAccount">
+            <End Role="Expenditure" EntitySet="Expenditures" />
+            <End Role="Account" EntitySet="Accounts" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Product">
@@ -1069,11 +1069,11 @@
           <Property Type="Decimal" Name="Amount" />
           <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="ExpenditureTypeID" />
-          <Property Type="Int32" Name="PaymentTypeID" />
           <NavigationProperty Name="Author" Relationship="MuhasebeModel.ExpenditureUser" FromRole="Expenditure" ToRole="User" />
           <NavigationProperty Name="Owner" Relationship="MuhasebeModel.ExpenditureCompany" FromRole="Expenditure" ToRole="Company" />
           <NavigationProperty Name="ExpenditureType" Relationship="MuhasebeModel.ExpenditureExpenditureType" FromRole="Expenditure" ToRole="ExpenditureType" />
-          <NavigationProperty Name="PaymentType" Relationship="MuhasebeModel.ExpenditurePaymentType" FromRole="Expenditure" ToRole="PaymentType" />
+          <Property Name="AccountID" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="MuhasebeModel.ExpenditureAccount" FromRole="Expenditure" ToRole="Account" />
         </EntityType>
         <EntityType Name="ExpenditureType">
           <Key>
@@ -1129,18 +1129,6 @@
             </Principal>
             <Dependent Role="Expenditure">
               <PropertyRef Name="ExpenditureTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ExpenditurePaymentType">
-          <End Type="MuhasebeModel.Expenditure" Role="Expenditure" Multiplicity="*" />
-          <End Type="MuhasebeModel.PaymentType" Role="PaymentType" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="PaymentType">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Expenditure">
-              <PropertyRef Name="PaymentTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1735,6 +1723,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="ExpenditureAccount">
+          <End Type="MuhasebeModel.Expenditure" Role="Expenditure" Multiplicity="*" />
+          <End Type="MuhasebeModel.Account" Role="Account" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Expenditure">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1854,7 +1854,7 @@
           <EntitySetMapping Name="Expenditures">
             <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.Expenditure)">
               <MappingFragment StoreEntitySet="Expenditures">
-                <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentTypeID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
                 <ScalarProperty Name="ExpenditureTypeID" ColumnName="ExpenditureTypeID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
