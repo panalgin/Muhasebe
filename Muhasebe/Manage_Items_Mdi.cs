@@ -278,8 +278,15 @@ namespace Muhasebe
 
                 if (Properties.Settings.Default.AlertForLowAmountItems && m_Field.Amount <= Properties.Settings.Default.LowAmountTheresold)
                 {
-                    Color m_Red = Color.Red;
-                    m_ViewItem.BackColor = m_Red;
+                    Color m_AlertColor = Properties.Settings.Default.LowAmountAlertColor;
+                    m_ViewItem.BackColor = m_AlertColor;
+                    m_ViewItem.UseItemStyleForSubItems = true;
+                }
+
+                if (Properties.Settings.Default.AlertForUnpricedItems && (m_Field.BasePrice == 0 || m_Field.FinalPrice == 0))
+                {
+                    Color m_AlertColor = Properties.Settings.Default.UnpricedAlertColor;
+                    m_ViewItem.BackColor = m_AlertColor;
                     m_ViewItem.UseItemStyleForSubItems = true;
                 }
 

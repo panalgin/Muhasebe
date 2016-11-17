@@ -142,5 +142,41 @@ namespace Muhasebe.Properties {
                 this["LowAmountTheresold"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Red")]
+        public global::System.Drawing.Color LowAmountAlertColor {
+            get {
+                return ((global::System.Drawing.Color)(this["LowAmountAlertColor"]));
+            }
+            set {
+                this["LowAmountAlertColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AlertForUnpricedItems {
+            get {
+                return ((bool)(this["AlertForUnpricedItems"]));
+            }
+            set {
+                this["AlertForUnpricedItems"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Red")]
+        public global::System.Drawing.Color UnpricedAlertColor {
+            get {
+                return ((global::System.Drawing.Color)(this["UnpricedAlertColor"]));
+            }
+            set {
+                this["UnpricedAlertColor"] = value;
+            }
+        }
     }
 }

@@ -32,16 +32,26 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.ShowStats_Check = new System.Windows.Forms.CheckBox();
             this.Startup_Check = new System.Windows.Forms.CheckBox();
-            this.Save_Button = new System.Windows.Forms.Button();
-            this.Cancel_Button = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Choose_UnpricedColor_Button = new System.Windows.Forms.Button();
+            this.Unpriced_Color_Preview_Label = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.AlertForUnpriced_Check = new System.Windows.Forms.CheckBox();
+            this.AlertForAmount_Check = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Choose_LowAmountColor_Button = new System.Windows.Forms.Button();
+            this.LowAmountColor_Preview_Label = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.LowAmountTheresold_Num = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.AlertForAmount_Check = new System.Windows.Forms.CheckBox();
+            this.Save_Button = new System.Windows.Forms.Button();
+            this.Cancel_Button = new System.Windows.Forms.Button();
+            this.Color_Dialog = new System.Windows.Forms.ColorDialog();
             this.Options_Control.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LowAmountTheresold_Num)).BeginInit();
             this.SuspendLayout();
@@ -92,6 +102,141 @@
             this.Startup_Check.Text = "Sistem başlangıcında otomatik başlat";
             this.Startup_Check.UseVisualStyleBackColor = true;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.groupBox2);
+            this.tabPage2.Controls.Add(this.AlertForUnpriced_Check);
+            this.tabPage2.Controls.Add(this.AlertForAmount_Check);
+            this.tabPage2.Controls.Add(this.groupBox1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(620, 406);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Envanter";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.Choose_UnpricedColor_Button);
+            this.groupBox2.Controls.Add(this.Unpriced_Color_Preview_Label);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Location = new System.Drawing.Point(6, 133);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(269, 53);
+            this.groupBox2.TabIndex = 9;
+            this.groupBox2.TabStop = false;
+            // 
+            // Choose_UnpricedColor_Button
+            // 
+            this.Choose_UnpricedColor_Button.Image = global::Muhasebe.Properties.Resources.magnifier;
+            this.Choose_UnpricedColor_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Choose_UnpricedColor_Button.Location = new System.Drawing.Point(182, 17);
+            this.Choose_UnpricedColor_Button.Name = "Choose_UnpricedColor_Button";
+            this.Choose_UnpricedColor_Button.Size = new System.Drawing.Size(81, 23);
+            this.Choose_UnpricedColor_Button.TabIndex = 11;
+            this.Choose_UnpricedColor_Button.Text = "Seç";
+            this.Choose_UnpricedColor_Button.UseVisualStyleBackColor = true;
+            this.Choose_UnpricedColor_Button.Click += new System.EventHandler(this.Choose_UnpricedColor_Button_Click);
+            // 
+            // Unpriced_Color_Preview_Label
+            // 
+            this.Unpriced_Color_Preview_Label.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Unpriced_Color_Preview_Label.Location = new System.Drawing.Point(142, 18);
+            this.Unpriced_Color_Preview_Label.Name = "Unpriced_Color_Preview_Label";
+            this.Unpriced_Color_Preview_Label.Size = new System.Drawing.Size(34, 22);
+            this.Unpriced_Color_Preview_Label.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(71, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Uyarı Rengi:";
+            // 
+            // AlertForUnpriced_Check
+            // 
+            this.AlertForUnpriced_Check.AutoSize = true;
+            this.AlertForUnpriced_Check.Location = new System.Drawing.Point(6, 116);
+            this.AlertForUnpriced_Check.Name = "AlertForUnpriced_Check";
+            this.AlertForUnpriced_Check.Size = new System.Drawing.Size(157, 17);
+            this.AlertForUnpriced_Check.TabIndex = 8;
+            this.AlertForUnpriced_Check.Text = "Fiyat girilmemiş ürünleri belirt";
+            this.AlertForUnpriced_Check.UseVisualStyleBackColor = true;
+            this.AlertForUnpriced_Check.CheckedChanged += new System.EventHandler(this.AlertForUnpriced_Check_CheckedChanged);
+            // 
+            // AlertForAmount_Check
+            // 
+            this.AlertForAmount_Check.AutoSize = true;
+            this.AlertForAmount_Check.BackColor = System.Drawing.Color.Transparent;
+            this.AlertForAmount_Check.Location = new System.Drawing.Point(6, 6);
+            this.AlertForAmount_Check.Name = "AlertForAmount_Check";
+            this.AlertForAmount_Check.Size = new System.Drawing.Size(194, 17);
+            this.AlertForAmount_Check.TabIndex = 6;
+            this.AlertForAmount_Check.Text = "Az olan ürünleri kırmızı renkte göster";
+            this.AlertForAmount_Check.UseVisualStyleBackColor = false;
+            this.AlertForAmount_Check.CheckedChanged += new System.EventHandler(this.AlertForAmount_Check_CheckedChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.Choose_LowAmountColor_Button);
+            this.groupBox1.Controls.Add(this.LowAmountColor_Preview_Label);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.LowAmountTheresold_Num);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(6, 19);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(269, 80);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            // 
+            // Choose_LowAmountColor_Button
+            // 
+            this.Choose_LowAmountColor_Button.Image = global::Muhasebe.Properties.Resources.magnifier;
+            this.Choose_LowAmountColor_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Choose_LowAmountColor_Button.Location = new System.Drawing.Point(182, 45);
+            this.Choose_LowAmountColor_Button.Name = "Choose_LowAmountColor_Button";
+            this.Choose_LowAmountColor_Button.Size = new System.Drawing.Size(81, 23);
+            this.Choose_LowAmountColor_Button.TabIndex = 7;
+            this.Choose_LowAmountColor_Button.Text = "Seç";
+            this.Choose_LowAmountColor_Button.UseVisualStyleBackColor = true;
+            this.Choose_LowAmountColor_Button.Click += new System.EventHandler(this.Choose_LowAmountColor_Button_Click);
+            // 
+            // LowAmountColor_Preview_Label
+            // 
+            this.LowAmountColor_Preview_Label.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LowAmountColor_Preview_Label.Location = new System.Drawing.Point(142, 45);
+            this.LowAmountColor_Preview_Label.Name = "LowAmountColor_Preview_Label";
+            this.LowAmountColor_Preview_Label.Size = new System.Drawing.Size(34, 23);
+            this.LowAmountColor_Preview_Label.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(71, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Uyarı Rengi:";
+            // 
+            // LowAmountTheresold_Num
+            // 
+            this.LowAmountTheresold_Num.Location = new System.Drawing.Point(142, 19);
+            this.LowAmountTheresold_Num.Name = "LowAmountTheresold_Num";
+            this.LowAmountTheresold_Num.Size = new System.Drawing.Size(121, 20);
+            this.LowAmountTheresold_Num.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(22, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(114, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Şu Miktar Ve Altındaki:";
+            // 
             // Save_Button
             // 
             this.Save_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -114,56 +259,6 @@
             this.Cancel_Button.UseVisualStyleBackColor = true;
             this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.AlertForAmount_Check);
-            this.tabPage2.Controls.Add(this.groupBox1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(620, 406);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Envanter";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.LowAmountTheresold_Num);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(6, 19);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(240, 50);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            // 
-            // LowAmountTheresold_Num
-            // 
-            this.LowAmountTheresold_Num.Location = new System.Drawing.Point(142, 19);
-            this.LowAmountTheresold_Num.Name = "LowAmountTheresold_Num";
-            this.LowAmountTheresold_Num.Size = new System.Drawing.Size(92, 20);
-            this.LowAmountTheresold_Num.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Şu Miktarın Ve Altındaki:";
-            // 
-            // AlertForAmount_Check
-            // 
-            this.AlertForAmount_Check.AutoSize = true;
-            this.AlertForAmount_Check.BackColor = System.Drawing.Color.Transparent;
-            this.AlertForAmount_Check.Location = new System.Drawing.Point(6, 6);
-            this.AlertForAmount_Check.Name = "AlertForAmount_Check";
-            this.AlertForAmount_Check.Size = new System.Drawing.Size(194, 17);
-            this.AlertForAmount_Check.TabIndex = 6;
-            this.AlertForAmount_Check.Text = "Az olan ürünleri kırmızı renkte göster";
-            this.AlertForAmount_Check.UseVisualStyleBackColor = false;
-            this.AlertForAmount_Check.CheckedChanged += new System.EventHandler(this.AlertForAmount_Check_CheckedChanged);
-            // 
             // Options_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -184,6 +279,8 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LowAmountTheresold_Num)).EndInit();
@@ -204,5 +301,14 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.NumericUpDown LowAmountTheresold_Num;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button Choose_LowAmountColor_Button;
+        private System.Windows.Forms.Label LowAmountColor_Preview_Label;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ColorDialog Color_Dialog;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button Choose_UnpricedColor_Button;
+        private System.Windows.Forms.Label Unpriced_Color_Preview_Label;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox AlertForUnpriced_Check;
     }
 }
