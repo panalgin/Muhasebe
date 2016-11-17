@@ -144,6 +144,7 @@
           <Property Name="Description" Type="nvarchar" MaxLength="1000" />
           <Property Name="ExpenditureTypeID" Type="int" />
           <Property Name="AccountID" Type="int" />
+          <Property Name="MovementID" Type="int" />
         </EntityType>
         <EntityType Name="ExpenditureTypes">
           <Key>
@@ -1074,6 +1075,7 @@
           <NavigationProperty Name="ExpenditureType" Relationship="MuhasebeModel.ExpenditureExpenditureType" FromRole="Expenditure" ToRole="ExpenditureType" />
           <Property Name="AccountID" Type="Int32" />
           <NavigationProperty Name="Account" Relationship="MuhasebeModel.ExpenditureAccount" FromRole="Expenditure" ToRole="Account" />
+          <Property Name="MovementID" Type="Int32" />
         </EntityType>
         <EntityType Name="ExpenditureType">
           <Key>
@@ -1854,6 +1856,7 @@
           <EntitySetMapping Name="Expenditures">
             <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.Expenditure)">
               <MappingFragment StoreEntitySet="Expenditures">
+                <ScalarProperty Name="MovementID" ColumnName="MovementID" />
                 <ScalarProperty Name="AccountID" ColumnName="AccountID" />
                 <ScalarProperty Name="ExpenditureTypeID" ColumnName="ExpenditureTypeID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

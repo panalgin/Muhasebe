@@ -54,7 +54,6 @@ namespace Muhasebe
                     m_Context.SaveChanges();
                 }
 
-
                 InvokeRevenueAdded(m_Income);
             }
 

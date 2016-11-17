@@ -218,20 +218,31 @@ namespace Muhasebe
 
                 if (m_Selected.Tag != null)
                 {
-                    MuhasebeEntities m_Context = new MuhasebeEntities();
-                    int m_ItemID = Convert.ToInt32(m_Selected.Tag);
-                    Expenditure m_Expenditure = m_Context.Expenditures.Where(q => q.ID == m_ItemID).FirstOrDefault();
-
-                    if (m_Expenditure.OwnerID != null && m_Expenditure.OwnerID == Program.User.WorksAtID)
+                    using (MuhasebeEntities m_Context = new MuhasebeEntities())
                     {
-                        m_Context.Expenditures.Remove(m_Expenditure);
-                        m_Context.SaveChanges();
-                        m_Selected.Remove();
+                        int m_ItemID = Convert.ToInt32(m_Selected.Tag);
 
-                        PopulateListView();
+                        Expenditure m_Expenditure = m_Context.Expenditures.Where(q => q.ID == m_ItemID).FirstOrDefault();
+
+                        if (m_Expenditure.OwnerID != null && m_Expenditure.OwnerID == Program.User.WorksAtID)
+                        {
+                            if (m_Expenditure.MovementID.HasValue)
+                            {
+                                AccountMovement m_Movement = m_Context.AccountMovements.Where(q => q.ID == m_Expenditure.MovementID).FirstOrDefault();
+
+                                if (m_Movement != null)
+                                    m_Context.AccountMovements.Remove(m_Movement);
+                            }
+
+                            m_Context.Expenditures.Remove(m_Expenditure);
+                            m_Context.SaveChanges();
+                            m_Selected.Remove();
+
+                            PopulateListView();
+                        }
+                        else
+                            MessageBox.Show("Bu nesneyi silmek için yetkiniz bulunmamaktadır", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    else
-                        MessageBox.Show("Bu nesneyi silmek için yetkiniz bulunmamaktadır", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                     MessageBox.Show("Silme işlemi sırasında bir hata oluştu", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);

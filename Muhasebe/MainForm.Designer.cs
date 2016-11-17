@@ -752,8 +752,7 @@
             this.BarcodeScannerMode_Combo.FormattingEnabled = true;
             this.BarcodeScannerMode_Combo.Items.AddRange(new object[] {
             "Satış",
-            "Ürün Düzenleme",
-            "Mal Alımı"});
+            "Ürün Düzenleme"});
             this.BarcodeScannerMode_Combo.Location = new System.Drawing.Point(1103, 705);
             this.BarcodeScannerMode_Combo.Name = "BarcodeScannerMode_Combo";
             this.BarcodeScannerMode_Combo.Size = new System.Drawing.Size(109, 21);

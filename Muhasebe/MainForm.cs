@@ -212,6 +212,7 @@ namespace Muhasebe
 
                                 break;
                             }
+
                         case "Ürün Düzenleme":
                             {
                                 if (m_Item == null)

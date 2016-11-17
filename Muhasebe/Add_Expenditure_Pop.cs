@@ -48,6 +48,9 @@ namespace Muhasebe
                 m_Expenditure.OwnerID = Program.User.WorksAtID;
                 m_Expenditure.Description = this.ExpenditureDesc_Text.Text;
 
+                m_Context.Expenditures.Add(m_Expenditure);
+                m_Context.SaveChanges();
+
                 if (this.Account_Box.SelectedValue != null)
                 {
                     int m_AccountID = Convert.ToInt32(this.Account_Box.SelectedValue);
@@ -66,12 +69,12 @@ namespace Muhasebe
                         m_Movement.Value = m_Expenditure.Amount.Value;
                         m_Movement.ContractID = m_Expenditure.ID;
                         m_Movement.CreatedAt = this.CreatedAt_Picker.Value;
-                        
+
                         m_Context.AccountMovements.Add(m_Movement);
+                        m_Expenditure.MovementID = m_Movement.ID;
                     }
                 }
 
-                m_Context.Expenditures.Add(m_Expenditure);
                 m_Context.SaveChanges();
 
                 InvokeExpenditureAdded(m_Expenditure);

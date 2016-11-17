@@ -162,6 +162,8 @@ namespace Muhasebe
                         return true;
                     });
 
+                    m_Context.SaveChanges();
+
                     AccountMovement m_Movement = new AccountMovement();
                     m_Movement.AccountID = m_Account.ID;
                     m_Movement.AuthorID = Program.User.ID;
@@ -173,6 +175,7 @@ namespace Muhasebe
                     m_Movement.Value = this.StockMovement.Summary;
 
                     m_Context.AccountMovements.Add(m_Movement);
+                    m_Context.SaveChanges();
 
                     if (this.StockMovement.PaymentTypeID != 3) //Vadeli değil
                     {
@@ -184,6 +187,7 @@ namespace Muhasebe
                         m_Expenditure.OwnerID = Program.User.WorksAtID;
                         m_Expenditure.AccountID = this.StockMovement.AccountID;
                         m_Expenditure.Description = "Yapılan ürün/hizmet alımı karşılığı peşin ödendi.";
+                        m_Expenditure.MovementID = m_Movement.ID;
 
                         m_Context.Expenditures.Add(m_Expenditure);
                     }
@@ -199,6 +203,8 @@ namespace Muhasebe
                     }
 
                     m_Context.SaveChanges();
+
+                    this.Close();
                 }
                 else
                 {

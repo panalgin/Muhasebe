@@ -22,6 +22,7 @@ namespace Muhasebe
         public string Description { get; set; }
         public Nullable<int> ExpenditureTypeID { get; set; }
         public Nullable<int> AccountID { get; set; }
+        public Nullable<int> MovementID { get; set; }
     
         public virtual User Author { get; set; }
         public virtual Company Owner { get; set; }

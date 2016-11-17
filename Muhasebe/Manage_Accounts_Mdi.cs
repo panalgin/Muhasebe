@@ -480,6 +480,60 @@ namespace Muhasebe
 
                                     break;
                                 }
+
+                            case 3: //Ürün Tedariği Yapıldı
+                                {
+                                    string message = "Yaptığınız {0} kalemlik mal tahsilatı iptal edilecek, \nBu işlem ile stoğunuza eklenmiş olan ürünler silinecektir. \nBu işlemden oluşan giderler silinecektir. \n\nOnaylıyor musunuz?";
+
+                                    StockMovement m_StockMov = m_Context.StockMovements.Where(q => q.ID == m_Movement.ContractID && q.OwnerID == Program.User.WorksAtID).FirstOrDefault();
+
+                                    if (m_StockMov != null)
+                                    {
+                                        message = string.Format(message, m_StockMov.Nodes.Count);
+
+                                        if (MessageBox.Show(message, "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                        {
+                                            m_StockMov.Nodes.All(delegate (StockMovementNode m_Node)
+                                            {
+                                                m_Node.Item.Amount -= m_Node.Amount;
+
+                                                return true;
+                                            });
+
+                                            Expenditure m_Expenditure = m_Context.Expenditures.Where(q => q.MovementID == m_Movement.ID).FirstOrDefault();
+
+                                            if (m_Expenditure != null)
+                                                m_Context.Expenditures.Remove(m_Expenditure);
+
+                                            m_Context.AccountMovements.Remove(m_Movement);
+                                            m_Context.SaveChanges();
+                                        }
+                                    }
+
+                                    break;
+                                }
+
+                            case 4: // Borç ödemesi yapıldı.
+                                {
+                                    string message = "Yaptığınız {0} TL tutarındaki borç ödemesi silinecektir. \nBu işleme ait, gider yönetiminde gözüken gideriniz de silinecektir. \n\nOnaylıyor musunuz?";
+
+                                    Expenditure m_Expenditure = m_Context.Expenditures.Where(q => q.ID == m_Movement.ContractID && q.OwnerID == Program.User.WorksAtID).FirstOrDefault();
+
+                                    if (m_Expenditure != null)
+                                    {
+                                        message = string.Format(message, m_Expenditure.Amount.Value);
+
+                                        if (MessageBox.Show(message, "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                        {
+                                            m_Context.AccountMovements.Remove(m_Movement);
+                                            m_Context.Expenditures.Remove(m_Expenditure);
+
+                                            m_Context.SaveChanges();
+                                        }
+                                    }
+
+                                    break;
+                                }
                         }
 
                         PopulateAccountHistory(m_Account);
