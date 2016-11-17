@@ -40,6 +40,9 @@
             this.Expected_BasePrice_Label = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.PaymentType_Combo = new System.Windows.Forms.ComboBox();
+            this.Increase_Stock_Check = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.CreatedAt_Picker = new System.Windows.Forms.DateTimePicker();
             this.Buy_Items_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -48,9 +51,6 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Account_Box = new Muhasebe.Custom.SearchBox();
-            this.Increase_Stock_Check = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.CreatedAt_Picker = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.Summary_Num)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,6 +64,7 @@
             this.Delete_Button.TabIndex = 20;
             this.Delete_Button.Text = "Sil";
             this.Delete_Button.UseVisualStyleBackColor = true;
+            this.Delete_Button.Click += new System.EventHandler(this.Delete_Button_Click);
             // 
             // Edit_Button
             // 
@@ -75,6 +76,7 @@
             this.Edit_Button.TabIndex = 19;
             this.Edit_Button.Text = "Düzenle";
             this.Edit_Button.UseVisualStyleBackColor = true;
+            this.Edit_Button.Click += new System.EventHandler(this.Edit_Button_Click);
             // 
             // Cancel_Button
             // 
@@ -184,6 +186,35 @@
             this.PaymentType_Combo.Size = new System.Drawing.Size(132, 21);
             this.PaymentType_Combo.TabIndex = 33;
             // 
+            // Increase_Stock_Check
+            // 
+            this.Increase_Stock_Check.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Increase_Stock_Check.AutoSize = true;
+            this.Increase_Stock_Check.Checked = true;
+            this.Increase_Stock_Check.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Increase_Stock_Check.Location = new System.Drawing.Point(17, 438);
+            this.Increase_Stock_Check.Name = "Increase_Stock_Check";
+            this.Increase_Stock_Check.Size = new System.Drawing.Size(117, 17);
+            this.Increase_Stock_Check.TabIndex = 34;
+            this.Increase_Stock_Check.Text = "Ürünleri Stoğa Ekle";
+            this.Increase_Stock_Check.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(319, 15);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(63, 13);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "İşlem Tarihi:";
+            // 
+            // CreatedAt_Picker
+            // 
+            this.CreatedAt_Picker.Location = new System.Drawing.Point(388, 13);
+            this.CreatedAt_Picker.Name = "CreatedAt_Picker";
+            this.CreatedAt_Picker.Size = new System.Drawing.Size(200, 20);
+            this.CreatedAt_Picker.TabIndex = 36;
+            // 
             // Buy_Items_List
             // 
             this.Buy_Items_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -205,6 +236,7 @@
             this.Buy_Items_List.TabIndex = 27;
             this.Buy_Items_List.UseCompatibleStateImageBehavior = false;
             this.Buy_Items_List.View = System.Windows.Forms.View.Details;
+            this.Buy_Items_List.SelectedIndexChanged += new System.EventHandler(this.Buy_Items_List_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -250,34 +282,6 @@
             this.Account_Box.Name = "Account_Box";
             this.Account_Box.Size = new System.Drawing.Size(179, 21);
             this.Account_Box.TabIndex = 26;
-            // 
-            // Increase_Stock_Check
-            // 
-            this.Increase_Stock_Check.AutoSize = true;
-            this.Increase_Stock_Check.Checked = true;
-            this.Increase_Stock_Check.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.Increase_Stock_Check.Location = new System.Drawing.Point(17, 438);
-            this.Increase_Stock_Check.Name = "Increase_Stock_Check";
-            this.Increase_Stock_Check.Size = new System.Drawing.Size(117, 17);
-            this.Increase_Stock_Check.TabIndex = 34;
-            this.Increase_Stock_Check.Text = "Ürünleri Stoğa Ekle";
-            this.Increase_Stock_Check.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(319, 15);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 13);
-            this.label5.TabIndex = 35;
-            this.label5.Text = "İşlem Tarihi:";
-            // 
-            // CreatedAt_Picker
-            // 
-            this.CreatedAt_Picker.Location = new System.Drawing.Point(388, 13);
-            this.CreatedAt_Picker.Name = "CreatedAt_Picker";
-            this.CreatedAt_Picker.Size = new System.Drawing.Size(200, 20);
-            this.CreatedAt_Picker.TabIndex = 36;
             // 
             // Buy_Items_Pop
             // 

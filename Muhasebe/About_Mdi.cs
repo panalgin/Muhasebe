@@ -24,7 +24,8 @@ namespace Muhasebe
 
         private void About_Mdi_Load(object sender, EventArgs e)
         {
-
+            string m_Version = Application.ProductVersion;
+            this.Product_Label.Text += string.Format("Version: {0}", m_Version);
         }
     }
 }

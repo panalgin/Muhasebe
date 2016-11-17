@@ -135,6 +135,12 @@ namespace Muhasebe
 
         private void Save_Button_Click(object sender, EventArgs e)
         {
+            if (this.StockMovement.Nodes == null || this.StockMovement.Nodes.Count <= 0)
+            {
+                MessageBox.Show("Ürün alımı için en az bir adet ürünü listeye eklemelisiniz.", "Hata");
+                return;
+            }
+
             int m_AccountID = Convert.ToInt32(this.Account_Box.SelectedValue);
 
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
@@ -210,6 +216,51 @@ namespace Muhasebe
                 {
                     MessageBox.Show("Bu mal alımı için bir cari hesap belirtmelisiniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void Buy_Items_List_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.Buy_Items_List.SelectedItems.Count > 0)
+            {
+                this.Edit_Button.Enabled = true;
+                this.Delete_Button.Enabled = true;
+            }
+            else
+            {
+                this.Edit_Button.Enabled = false;
+                this.Delete_Button.Enabled = false;
+            }
+        }
+
+        private void Delete_Button_Click(object sender, EventArgs e)
+        {
+            if (this.Buy_Items_List.SelectedItems.Count > 0)
+            {
+                int m_NodeID = Convert.ToInt32(this.Buy_Items_List.SelectedItems[0].Tag);
+
+                StockMovementNode m_Node = this.StockMovement.Nodes.Where(q => q.ID == m_NodeID).FirstOrDefault();
+
+                if (m_Node != null)
+                {
+                    this.StockMovement.Nodes.Remove(m_Node);
+                    PopulateListView();
+                }
+            }
+        }
+
+        private void Edit_Button_Click(object sender, EventArgs e)
+        {
+            if (this.Buy_Items_List.SelectedItems.Count > 0)
+            {
+                int m_NodeID = Convert.ToInt32(this.Buy_Items_List.SelectedItems[0].Tag);
+
+                StockMovementNode m_Node = this.StockMovement.Nodes.Where(q => q.ID == m_NodeID).FirstOrDefault();
+
+                Node_Set_Amount_Gumpling m_Gumpling = new Node_Set_Amount_Gumpling();
+                m_Gumpling.Node = m_Node;
+                m_Gumpling.NodeAmountChanged += NodeAmountChanged;
+                m_Gumpling.ShowDialog();
             }
         }
     }

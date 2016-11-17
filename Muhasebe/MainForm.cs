@@ -18,6 +18,7 @@ using RawInputInterface;
 using Muhasebe.Scripts;
 using IO = System.IO;
 using OpenHtmlToPdf;
+using System.Reflection;
 
 namespace Muhasebe
 {
@@ -52,6 +53,9 @@ namespace Muhasebe
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            string m_Version = Application.ProductVersion;
+            this.Text += string.Format(" - Version: {0}", m_Version);
+
             this.Grid_Panel.Hide();
 
             SetLastFormState();

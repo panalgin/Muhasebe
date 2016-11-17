@@ -39,7 +39,7 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Close_Button = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
+            this.Product_Label = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -142,7 +142,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.panel1.Controls.Add(this.Close_Button);
-            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.Product_Label);
             this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -166,16 +166,16 @@
             this.Close_Button.UseVisualStyleBackColor = false;
             this.Close_Button.Click += new System.EventHandler(this.Close_Button_Click);
             // 
-            // label7
+            // Product_Label
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label7.Location = new System.Drawing.Point(282, 28);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(251, 13);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Daflan Mikro Kaynak Yönetimi version 0.3.8";
+            this.Product_Label.AutoSize = true;
+            this.Product_Label.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Product_Label.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Product_Label.Location = new System.Drawing.Point(282, 28);
+            this.Product_Label.Name = "Product_Label";
+            this.Product_Label.Size = new System.Drawing.Size(176, 13);
+            this.Product_Label.TabIndex = 1;
+            this.Product_Label.Text = "Daflan Mikro Kaynak Yönetimi";
             // 
             // pictureBox4
             // 
@@ -301,7 +301,7 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label Product_Label;
         private System.Windows.Forms.Button Close_Button;
         private System.Windows.Forms.Panel panel2;
     }
