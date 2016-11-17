@@ -189,14 +189,16 @@
             // Total_Cost_Label
             // 
             this.Total_Cost_Label.Name = "Total_Cost_Label";
-            this.Total_Cost_Label.Size = new System.Drawing.Size(121, 17);
-            this.Total_Cost_Label.Text = "Toplam Maliyet: 0.00 TL";
+            this.Total_Cost_Label.Size = new System.Drawing.Size(90, 17);
+            this.Total_Cost_Label.Text = "Toplam Maliyet: ?";
+            this.Total_Cost_Label.Click += new System.EventHandler(this.Total_Cost_Label_Click);
             // 
             // Potential_Final_Label
             // 
             this.Potential_Final_Label.Name = "Potential_Final_Label";
-            this.Potential_Final_Label.Size = new System.Drawing.Size(159, 17);
-            this.Potential_Final_Label.Text = "Potansiyel Satış Değeri: 0.00 TL";
+            this.Potential_Final_Label.Size = new System.Drawing.Size(128, 17);
+            this.Potential_Final_Label.Text = "Potansiyel Satış Değeri: ?";
+            this.Potential_Final_Label.Click += new System.EventHandler(this.Potential_Final_Label_Click);
             // 
             // Search_Button
             // 

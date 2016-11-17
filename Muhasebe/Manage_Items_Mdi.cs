@@ -296,8 +296,8 @@ namespace Muhasebe
             });
 
             this.Total_Distinct_Item_Label.Text = string.Format("Toplam: {0} kalem ürün", m_Distinct);
-            this.Total_Cost_Label.Text = string.Format("Toplam Maliyet: {0:0.00} TL", m_Cost);
-            this.Potential_Final_Label.Text = string.Format("Potansiyel Satış Değeri: {0:0.00} TL", m_Final);
+            this.Total_Cost_Label.Tag = string.Format("Toplam Maliyet: {0:0.00} TL", m_Cost);
+            this.Potential_Final_Label.Tag = string.Format("Potansiyel Satış Değeri: {0:0.00} TL", m_Final);
 
             this.Items_List.EndUpdate();
         }
@@ -434,6 +434,22 @@ namespace Muhasebe
         {
             Buy_Items_Pop m_Pop = new Buy_Items_Pop();
             m_Pop.ShowDialog();
+        }
+
+        private void Total_Cost_Label_Click(object sender, EventArgs e)
+        {
+            if (this.Total_Cost_Label.Text == "Toplam Maliyet: ?")
+                this.Total_Cost_Label.Text = Convert.ToString(this.Total_Cost_Label.Tag);
+            else
+                this.Total_Cost_Label.Text = "Toplam Maliyet: ?";
+        }
+
+        private void Potential_Final_Label_Click(object sender, EventArgs e)
+        {
+            if (this.Potential_Final_Label.Text == "Potansiyel Satış Değeri: ?")
+                this.Potential_Final_Label.Text = Convert.ToString(this.Potential_Final_Label.Tag);
+            else
+                this.Potential_Final_Label.Text = "Potansiyel Satış Değeri: ?";
         }
     }
 }
