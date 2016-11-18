@@ -174,16 +174,13 @@ namespace Muhasebe
                         this.Order.AccountID = m_AccountID;
                     }
 
-                    m_Context.Orders.Attach(this.Order);
-                    m_Context.Entry(this.Order).State = System.Data.Entity.EntityState.Added;
-
                     this.Order.Nodes.All(delegate (OrderNode node)
                         {
-                            m_Context.OrderNodes.Attach(node);
-                            m_Context.Entry(node).State = System.Data.Entity.EntityState.Added;
+                            node.Item = null;
                             return true;
                         });
 
+                    m_Context.Orders.Add(this.Order);
                     m_Context.SaveChanges();
 
                     this.Close();

@@ -159,7 +159,7 @@ namespace Muhasebe
                     this.StockMovement.Nodes.All(delegate (StockMovementNode m_Node)
                     {
                         m_Node.Parent = this.StockMovement;
-                        m_Context.Entry(m_Node.Item).State = System.Data.Entity.EntityState.Modified;
+                        m_Node.Item = null;
 
                         return true;
                     });

@@ -27,6 +27,7 @@ namespace Muhasebe
         public Nullable<int> TargetID { get; set; }
         public Nullable<int> PaymentTypeID { get; set; }
         public string State { get; set; }
+        public Nullable<decimal> Discount { get; set; }
     
         public virtual Company Owner { get; set; }
         public virtual User Author { get; set; }

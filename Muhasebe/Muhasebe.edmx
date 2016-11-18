@@ -209,6 +209,7 @@
           <Property Name="TargetID" Type="int" />
           <Property Name="PaymentTypeID" Type="int" />
           <Property Name="State" Type="nvarchar" MaxLength="45" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="ItemGroups">
           <Key>
@@ -902,6 +903,7 @@
           <NavigationProperty Name="Nodes" Relationship="MuhasebeModel.InvoiceNodeInvoice" FromRole="Invoice" ToRole="InvoiceNode" />
           <Property Type="String" Name="State" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PaymentType" Relationship="MuhasebeModel.InvoicePaymentType" FromRole="Invoice" ToRole="PaymentType" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="InvoiceCompany">
           <End Type="MuhasebeModel.Invoice" Role="Invoice" Multiplicity="*" />
@@ -1746,6 +1748,7 @@
           <EntitySetMapping Name="Invoices">
             <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.Invoice)">
               <MappingFragment StoreEntitySet="Invoices">
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentTypeID" />
                 <ScalarProperty Name="TargetID" ColumnName="TargetID" />

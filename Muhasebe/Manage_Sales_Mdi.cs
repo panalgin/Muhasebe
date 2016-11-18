@@ -161,6 +161,18 @@ namespace Muhasebe
                     return true;
                 });
 
+                if (this.Invoice.Discount.HasValue)
+                {
+                    if (m_Total > this.Invoice.Discount.Value)
+                        m_Total = m_Total - this.Invoice.Discount.Value;
+                    else
+                    {
+                        this.Invoice.Discount = 0;
+                        this.Discount_Num.Value = 0;
+                        this.Discount_Label.Text = ItemHelper.GetFormattedPrice(this.Invoice.Discount.Value);
+                    }
+                }
+
                 this.Subtotal_Label.Text = string.Format("{0:0.00} TL", m_Subtotal);
                 this.Tax_Label.Text = string.Format("{0:0.00} TL", m_Tax);
                 this.Total_Label.Text = string.Format("{0:0.00} TL", m_Total);
@@ -271,10 +283,15 @@ namespace Muhasebe
                         m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount -= m_Node.Amount.Value;
 
                         m_Node.Invoice = this.Invoice;
-                        m_Context.Entry(m_Node.Item).State = System.Data.Entity.EntityState.Modified;
+                        m_Node.Item = null;
 
                         return true;
                     });
+
+                    if (this.Invoice.Discount.HasValue)
+                    {
+                        m_Total = m_Total - this.Invoice.Discount.Value;
+                    }
 
                     m_Context.Invoices.Add(this.Invoice);
                     m_Context.SaveChanges();
@@ -376,6 +393,14 @@ namespace Muhasebe
 
         private void UseTermedPrice_Check_CheckedChanged(object sender, EventArgs e)
         {
+            this.PopulateListView();
+        }
+
+        private void Discount_Num_ValueChanged(object sender, EventArgs e)
+        {
+            this.Discount_Label.Text = ItemHelper.GetFormattedPrice(this.Discount_Num.Value);
+            this.Invoice.Discount = this.Discount_Num.Value;
+
             this.PopulateListView();
         }
     }
