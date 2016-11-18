@@ -156,18 +156,15 @@ namespace Muhasebe
                     this.StockMovement.PaymentTypeID = Convert.ToInt32(this.PaymentType_Combo.SelectedValue);
                     this.StockMovement.Summary = this.Summary_Num.Value;
 
-                    m_Context.StockMovements.Attach(this.StockMovement);
-                    m_Context.Entry(this.StockMovement).State = System.Data.Entity.EntityState.Added;
-
                     this.StockMovement.Nodes.All(delegate (StockMovementNode m_Node)
                     {
-                        m_Node.StockMovementID = this.StockMovement.ID;
-                        m_Context.StockMovementNodes.Attach(m_Node);
-                        m_Context.Entry(m_Node).State = System.Data.Entity.EntityState.Added;
+                        m_Node.Parent = this.StockMovement;
+                        m_Context.Entry(m_Node.Item).State = System.Data.Entity.EntityState.Modified;
 
                         return true;
                     });
 
+                    m_Context.StockMovements.Add(this.StockMovement);
                     m_Context.SaveChanges();
 
                     AccountMovement m_Movement = new AccountMovement();

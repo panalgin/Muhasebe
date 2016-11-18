@@ -260,9 +260,6 @@ namespace Muhasebe
 
                     this.Invoice.State = "Complete";
 
-                    m_Context.Invoices.Attach(this.Invoice);
-                    m_Context.Entry(this.Invoice).State = System.Data.Entity.EntityState.Added;
-
                     decimal m_Total = 0;
                     decimal m_Tax = 0;
 
@@ -271,18 +268,17 @@ namespace Muhasebe
                         m_Total += m_Node.FinalPrice.Value;
                         m_Tax += m_Node.FinalPrice.Value * ((decimal)(m_Node.Tax.Value / 100));
 
-                        Item m_ToUpdate = m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault();
+                        m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount -= m_Node.Amount.Value;
 
-                        if (m_ToUpdate != null)
-                            m_ToUpdate.Amount -= m_Node.Amount.Value;
-
-                        m_Node.InvoiceID = this.Invoice.ID;
-
-                        m_Context.InvoiceNodes.Attach(m_Node);
-                        m_Context.Entry(m_Node).State = System.Data.Entity.EntityState.Added;
+                        m_Node.Invoice = this.Invoice;
+                        m_Context.Entry(m_Node.Item).State = System.Data.Entity.EntityState.Modified;
 
                         return true;
                     });
+
+                    m_Context.Invoices.Add(this.Invoice);
+                    m_Context.SaveChanges();
+
 
                     if (this.Invoice.PaymentTypeID != 3) //Vadeli bir satış değilse gelir olarak geçmişe ekleyelim
                     {
