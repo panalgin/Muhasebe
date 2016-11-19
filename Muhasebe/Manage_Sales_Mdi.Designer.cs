@@ -37,6 +37,8 @@
             this.Total_Label = new System.Windows.Forms.Label();
             this.Author_Label = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Discount_Label = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.SaleScreen_List = new Muhasebe.Custom.ListViewEx();
@@ -68,8 +70,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.Discount_Label = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.Context_Menu.SuspendLayout();
@@ -172,6 +172,27 @@
             this.panel1.Size = new System.Drawing.Size(254, 102);
             this.panel1.TabIndex = 17;
             // 
+            // Discount_Label
+            // 
+            this.Discount_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Discount_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.Discount_Label.ForeColor = System.Drawing.Color.Red;
+            this.Discount_Label.Location = new System.Drawing.Point(131, 52);
+            this.Discount_Label.Name = "Discount_Label";
+            this.Discount_Label.Size = new System.Drawing.Size(102, 16);
+            this.Discount_Label.TabIndex = 16;
+            this.Discount_Label.Text = "0 TL";
+            this.Discount_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(46, 54);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(40, 13);
+            this.label10.TabIndex = 15;
+            this.label10.Text = "İndirim:";
+            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -267,19 +288,20 @@
             this.düzenleToolStripMenuItem,
             this.silToolStripMenuItem});
             this.Context_Menu.Name = "Context_Menu";
-            this.Context_Menu.Size = new System.Drawing.Size(144, 92);
+            this.Context_Menu.Size = new System.Drawing.Size(153, 114);
             this.Context_Menu.Opening += new System.ComponentModel.CancelEventHandler(this.Context_Menu_Opening);
             // 
             // kayıtDışıSatışToolStripMenuItem
             // 
             this.kayıtDışıSatışToolStripMenuItem.Name = "kayıtDışıSatışToolStripMenuItem";
-            this.kayıtDışıSatışToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.kayıtDışıSatışToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.kayıtDışıSatışToolStripMenuItem.Text = "Kayıt Dışı Satış";
+            this.kayıtDışıSatışToolStripMenuItem.Click += new System.EventHandler(this.kayıtDışıSatışToolStripMenuItem_Click);
             // 
             // manuelSatışToolStripMenuItem
             // 
             this.manuelSatışToolStripMenuItem.Name = "manuelSatışToolStripMenuItem";
-            this.manuelSatışToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.manuelSatışToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.manuelSatışToolStripMenuItem.Text = "Manuel Satış";
             this.manuelSatışToolStripMenuItem.Click += new System.EventHandler(this.manuelSatışToolStripMenuItem_Click);
             // 
@@ -287,7 +309,7 @@
             // 
             this.düzenleToolStripMenuItem.Enabled = false;
             this.düzenleToolStripMenuItem.Name = "düzenleToolStripMenuItem";
-            this.düzenleToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.düzenleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.düzenleToolStripMenuItem.Text = "Düzenle";
             this.düzenleToolStripMenuItem.Click += new System.EventHandler(this.düzenleToolStripMenuItem_Click);
             // 
@@ -295,7 +317,7 @@
             // 
             this.silToolStripMenuItem.Enabled = false;
             this.silToolStripMenuItem.Name = "silToolStripMenuItem";
-            this.silToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.silToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.silToolStripMenuItem.Text = "Sil";
             this.silToolStripMenuItem.Click += new System.EventHandler(this.silToolStripMenuItem_Click);
             // 
@@ -491,27 +513,6 @@
             this.label7.Size = new System.Drawing.Size(89, 13);
             this.label7.TabIndex = 0;
             this.label7.Text = "Diğer Seçenekler";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(46, 54);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(40, 13);
-            this.label10.TabIndex = 15;
-            this.label10.Text = "İndirim:";
-            // 
-            // Discount_Label
-            // 
-            this.Discount_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.Discount_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.Discount_Label.ForeColor = System.Drawing.Color.Red;
-            this.Discount_Label.Location = new System.Drawing.Point(131, 52);
-            this.Discount_Label.Name = "Discount_Label";
-            this.Discount_Label.Size = new System.Drawing.Size(102, 16);
-            this.Discount_Label.TabIndex = 16;
-            this.Discount_Label.Text = "0 TL";
-            this.Discount_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Manage_Sales_Mdi
             // 

@@ -21,6 +21,7 @@ namespace Muhasebe
         public Nullable<decimal> BasePrice { get; set; }
         public Nullable<decimal> FinalPrice { get; set; }
         public Nullable<int> Tax { get; set; }
+        public string Description { get; set; }
     
         public virtual Invoice Invoice { get; set; }
         public virtual Item Item { get; set; }

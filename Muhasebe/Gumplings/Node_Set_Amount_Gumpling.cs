@@ -29,7 +29,12 @@ namespace Muhasebe
             if (this.Node is InvoiceNode)
             {
                 InvoiceNode m_Temp = this.Node as InvoiceNode;
-                this.Name_Label.Text = m_Temp.Item.Product.Name;
+
+                if (m_Temp.Item != null)
+                    this.Name_Label.Text = m_Temp.Item.Product.Name;
+                else
+                    this.Name_Label.Text = m_Temp.Description;
+
                 this.Amount_Num.Value = m_Temp.Amount.Value;
             }
             else if (this.Node is StockMovementNode)

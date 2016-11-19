@@ -1,4 +1,5 @@
 ﻿using Muhasebe.Custom;
+using Muhasebe.Gumplings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,12 +23,12 @@ namespace Muhasebe
 
         public void Append(InvoiceNode node)
         {
-            if (this.Invoice.Nodes.Any(q => q.ItemID == node.ItemID) == false)
+            if (node.ItemID < 0 || this.Invoice.Nodes.Any(q => q.ItemID == node.ItemID) == false)
             {
                 node.InvoiceID = this.Invoice.ID;
                 this.Invoice.Nodes.Add(node);
             }
-            else
+            else if (node.ItemID > 0)
             {
                 this.Invoice.Nodes.Where(q => q.ItemID == node.ItemID).FirstOrDefault().Amount += node.Amount;
             }
@@ -73,7 +74,6 @@ namespace Muhasebe
 
                 if (m_PaymentTypeID == 3)
                 { //Vadeli
-
                     this.UseTermedPrice_Check.Enabled = true;
                 }
                 else
@@ -100,32 +100,44 @@ namespace Muhasebe
                 {
                     m_Node.Invoice = this.Invoice;
                     m_Node.InvoiceID = this.Invoice.ID;
-                    m_Node.Item = m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault();
 
-                    if (m_Node.Item != null)
+                    if (m_Node.ItemID > 0)
+                        m_Node.Item = m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault();
+
+                    if (m_Node.Item != null || m_Node.ItemID < 0)
                     {
                         ListViewItem m_ViewItem = new ListViewItem();
                         m_ViewItem.Tag = m_Node.ItemID;
-                        m_ViewItem.Text = m_Node.Item.Product.Barcode;
-                        m_ViewItem.SubItems.Add(m_Node.Item.Product.Name);
-                        m_ViewItem.SubItems.Add(m_Node.Amount.Value.ToString()); // format
-                        m_ViewItem.SubItems.Add(m_Node.Item.UnitType.Name);
-                        m_ViewItem.SubItems.Add(string.Format("%{0}", m_Node.Item.Tax.Value.ToString()));
 
+                        m_ViewItem.Text = m_Node.Item != null ? m_Node.Item.Product.Barcode : "-";
+
+                        if (m_Node.Item == null && m_Node.Description.Length > 0)
+                            m_ViewItem.SubItems.Add(m_Node.Description);
+                        else
+                            m_ViewItem.SubItems.Add(m_Node.Item.Product.Name);
+
+                        m_ViewItem.SubItems.Add(m_Node.Amount.Value.ToString()); // format
+                        m_ViewItem.SubItems.Add(m_Node.Item != null ? m_Node.Item.UnitType.Name : "-");
+                        m_ViewItem.SubItems.Add(string.Format("%{0}", m_Node.Item != null ? m_Node.Item.Tax.Value.ToString() : m_Node.Tax.Value.ToString()));
 
                         decimal basePrice = 0.00m;
                         decimal finalPrice = 0.00m;
 
-
-
-                        if (this.Invoice.PaymentTypeID.HasValue && this.Invoice.PaymentTypeID == 3 && m_Node.Item.TermedPrice.HasValue && m_Node.Item.TermedPrice.Value > m_Node.Item.FinalPrice && m_Node.UseCustomPricing == false && this.UseTermedPrice_Check.Checked)
+                        if (m_Node.Item != null &&
+                            this.Invoice.PaymentTypeID.HasValue && 
+                            this.Invoice.PaymentTypeID == 3 && 
+                            m_Node.Item.TermedPrice.HasValue && 
+                            m_Node.Item.TermedPrice.Value > m_Node.Item.FinalPrice && 
+                            m_Node.UseCustomPricing == false && 
+                            this.UseTermedPrice_Check.Checked
+                            )
                         {
                             basePrice = m_Node.Item.TermedPrice.Value;
                             finalPrice = basePrice * m_Node.Amount.Value;
                         }
                         else
                         {
-                            if (m_Node.UseCustomPricing == false)
+                            if (m_Node.UseCustomPricing == false && m_Node.Item != null)
                             {
                                 basePrice = m_Node.Item.FinalPrice.Value;
                                 finalPrice = basePrice * m_Node.Amount.Value;
@@ -147,7 +159,7 @@ namespace Muhasebe
                             m_ViewItem.UseItemStyleForSubItems = true;
                         }                            
 
-                        m_Subtotal += m_Node.Item.BasePrice.Value * m_Node.Amount.Value;
+                        m_Subtotal += m_Node.Item != null ? m_Node.Item.BasePrice.Value * m_Node.Amount.Value : m_Node.BasePrice.Value * m_Node.Amount.Value;
                         m_Tax += (finalPrice * ((decimal)m_Node.Tax.Value / 100));
 
                         m_Total += finalPrice;
@@ -195,7 +207,7 @@ namespace Muhasebe
             }
         }
 
-        void NodeAmountChanged(dynamic node)
+        private void NodeAmountChanged(dynamic node)
         {
             InvoiceNode m_Actual = this.Invoice.Nodes.Where(q => q.ItemID == node.ItemID).FirstOrDefault();
 
@@ -261,6 +273,14 @@ namespace Muhasebe
 
         private void Sale_Button_Click(object sender, EventArgs e)
         {
+            int m_PaymentTypeID = Convert.ToInt32(this.Payment_Combo.SelectedValue);
+            
+            if (m_PaymentTypeID == 3 && this.Account_Box.SelectedValue == null)
+            {
+                MessageBox.Show("Vadeli satışı ancak bir cari hesaba yapabilirsiniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }   
+
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
                 if (this.Invoice != null && this.Invoice.Nodes.Count > 0)
@@ -280,7 +300,7 @@ namespace Muhasebe
                         m_Total += m_Node.FinalPrice.Value;
                         m_Tax += m_Node.FinalPrice.Value * ((decimal)(m_Node.Tax.Value / 100));
 
-                        if (this.Decrease_Stock_Check.Checked)
+                        if (this.Decrease_Stock_Check.Checked && m_Node.Item != null)
                             m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount -= m_Node.Amount.Value;
 
                         m_Node.Invoice = this.Invoice;
@@ -403,6 +423,21 @@ namespace Muhasebe
             this.Invoice.Discount = this.Discount_Num.Value;
 
             this.PopulateListView();
+        }
+
+        private void kayıtDışıSatışToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int m_LowestID = -1;
+
+            var m_UntracedNodes = this.Invoice.Nodes.Where(q => q.ItemID < 0).Select(q => q.ItemID);
+
+            if (m_UntracedNodes.Count() > 0)
+                m_LowestID = m_UntracedNodes.Min() - 1;
+
+            Sell_Untraced_Gumpling m_Gump = new Sell_Untraced_Gumpling();
+            m_Gump.SalesForm = this;
+            m_Gump.NextID = m_LowestID;
+            m_Gump.ShowDialog(); 
         }
     }
 }

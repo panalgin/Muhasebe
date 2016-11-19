@@ -51,6 +51,7 @@
             this.Description_Box.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Description_Box.Location = new System.Drawing.Point(104, 12);
+            this.Description_Box.MaxLength = 1000;
             this.Description_Box.Multiline = true;
             this.Description_Box.Name = "Description_Box";
             this.Description_Box.Size = new System.Drawing.Size(289, 86);
