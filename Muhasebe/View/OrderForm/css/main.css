@@ -44,7 +44,7 @@ div {
     margin-top: 5px;
     margin-right: 5px;
     float: left;
-    min-height: 95px;
+    min-height: 104px;
 }
     .author .header, .attn .header {
         background-color: #DDD;
@@ -88,28 +88,28 @@ div {
 }
 
     .column-names .img-col {
-        width: 180px;
+        width: 139px;
         float: left;
         border-right: 1px solid #BBB;
         box-sizing: border-box;
     }
 
     .column-names .code-col {
-        width: 135px;
+        width: 139px;
         float: left;
         border-right: 1px solid #BBB;
         box-sizing: border-box;
     }
 
     .column-names .name-col {
-        width: 270px;
+        width: 306px;
         float: left;
         border-right: 1px solid #BBB;
         box-sizing: border-box;
     }
 
     .column-names .quantity-col {
-        width: 117px;
+        width: 111px;
         float: left;
         border-right: 1px solid #BBB;
         box-sizing: border-box;
@@ -145,13 +145,15 @@ tbody {
 }
 
     .item .pro-img {
-        width: 20%;
+        width: 15%;
         border-left: 1px solid #bbb;
         border-bottom: 1px solid #bbb;
+        text-align: center;
     }
 
         .item .pro-img img {
             max-width: 100%;
+            max-height: 50px;
             margin: 0px;
             padding: 0px;
             vertical-align: middle;
@@ -165,14 +167,14 @@ tbody {
     }
 
     .item .pro-name {
-        width: 30%;
+        width: 33%;
         border-left: 1px solid #bbb;
         border-bottom: 1px solid #bbb;
         text-indent: 5px;
     }
 
     .item .pro-quantity {
-        width: 13%;
+        width: 12%;
         border-left: 1px solid #bbb;
         border-bottom: 1px solid #bbb;
         text-align: center;
@@ -218,6 +220,6 @@ tbody {
 }
 
 .footer .logo { height: 35px; position: absolute; left: 5px; top: 2px; }
-.footer .desc { position: absolute; left: 150px; top: 5px; }
-.footer .link { position: absolute; left: 150px; bottom: 5px; }
-.footer .copyright { position: absolute; right: 5px; bottom: 5px;}
+.footer .desc { position: absolute; left: 150px; top: 4px; }
+.footer .link { position: absolute; left: 150px; bottom: 4px; }
+.footer .copyright { position: absolute; right: 5px; bottom: 10px;}
