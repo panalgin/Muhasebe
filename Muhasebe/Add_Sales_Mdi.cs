@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Muhasebe.Events;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,12 +23,21 @@ namespace Muhasebe
 
         private void Add_Sales_Mdi_Load(object sender, EventArgs e)
         {
-
+            EventSink.BarcodeScanned += EventSink_BarcodeScanned;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void EventSink_BarcodeScanned(object sender, BarcodeScannedEventArgs args)
         {
-            this.Close();
+            if (args.Barcode != null)
+            {
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    Item m_Item = m_Context.Items.Where(q => q.Product.Barcode == args.Barcode).FirstOrDefault();
+
+                    if (m_Item != null)
+                        this.Barcode_Box.Text = args.Barcode;
+                }
+            }
         }
 
         private void Sale_Button_Click(object sender, EventArgs e)
@@ -99,6 +109,11 @@ namespace Muhasebe
                 this.Barcode_Box.ReadOnly = true;
                 this.Name_Box.ReadOnly = true;
             }
+        }
+
+        private void Cancel_Button_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

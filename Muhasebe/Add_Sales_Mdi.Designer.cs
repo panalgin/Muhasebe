@@ -42,7 +42,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.Amount_Num = new System.Windows.Forms.NumericUpDown();
-            this.Cancel_button = new System.Windows.Forms.Button();
+            this.Cancel_Button = new System.Windows.Forms.Button();
             this.Sale_Button = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TotalPrice_Num)).BeginInit();
@@ -209,18 +209,18 @@
             this.Amount_Num.TabIndex = 2;
             this.Amount_Num.ValueChanged += new System.EventHandler(this.Amount_Num_ValueChanged);
             // 
-            // Cancel_button
+            // Cancel_Button
             // 
-            this.Cancel_button.Image = global::Muhasebe.Properties.Resources.cancel;
-            this.Cancel_button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Cancel_button.Location = new System.Drawing.Point(192, 211);
-            this.Cancel_button.Name = "Cancel_button";
-            this.Cancel_button.Size = new System.Drawing.Size(82, 23);
-            this.Cancel_button.TabIndex = 2;
-            this.Cancel_button.Text = "Vazgeç";
-            this.Cancel_button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Cancel_button.UseVisualStyleBackColor = true;
-            this.Cancel_button.Click += new System.EventHandler(this.button1_Click);
+            this.Cancel_Button.Image = global::Muhasebe.Properties.Resources.cancel;
+            this.Cancel_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Cancel_Button.Location = new System.Drawing.Point(192, 211);
+            this.Cancel_Button.Name = "Cancel_Button";
+            this.Cancel_Button.Size = new System.Drawing.Size(82, 23);
+            this.Cancel_Button.TabIndex = 2;
+            this.Cancel_Button.Text = "Vazgeç";
+            this.Cancel_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Cancel_Button.UseVisualStyleBackColor = true;
+            this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
             // Sale_Button
             // 
@@ -240,7 +240,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(286, 246);
             this.Controls.Add(this.Sale_Button);
-            this.Controls.Add(this.Cancel_button);
+            this.Controls.Add(this.Cancel_Button);
             this.Controls.Add(this.groupBox2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -273,7 +273,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown Amount_Num;
-        private System.Windows.Forms.Button Cancel_button;
+        private System.Windows.Forms.Button Cancel_Button;
         private System.Windows.Forms.Button Sale_Button;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox UseCustumPricing_Check;
