@@ -354,6 +354,12 @@
     <Compile Include="Gumplings\OrderNode_Edit_Gumpling.Designer.cs">
       <DependentUpon>OrderNode_Edit_Gumpling.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gumplings\Sell_Untraced_Gumpling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gumplings\Sell_Untraced_Gumpling.Designer.cs">
+      <DependentUpon>Sell_Untraced_Gumpling.cs</DependentUpon>
+    </Compile>
     <Compile Include="Income.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>
@@ -647,6 +653,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gumplings\OrderNode_Edit_Gumpling.resx">
       <DependentUpon>OrderNode_Edit_Gumpling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gumplings\Sell_Untraced_Gumpling.resx">
+      <DependentUpon>Sell_Untraced_Gumpling.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Manage_Accounts_Mdi.resx">
       <DependentUpon>Manage_Accounts_Mdi.cs</DependentUpon>

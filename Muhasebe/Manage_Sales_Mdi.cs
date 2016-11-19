@@ -280,7 +280,8 @@ namespace Muhasebe
                         m_Total += m_Node.FinalPrice.Value;
                         m_Tax += m_Node.FinalPrice.Value * ((decimal)(m_Node.Tax.Value / 100));
 
-                        m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount -= m_Node.Amount.Value;
+                        if (this.Decrease_Stock_Check.Checked)
+                            m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount -= m_Node.Amount.Value;
 
                         m_Node.Invoice = this.Invoice;
                         m_Node.Item = null;
