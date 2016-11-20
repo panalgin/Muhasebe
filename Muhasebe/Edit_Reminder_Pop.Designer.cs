@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Max_UnitType_Label = new System.Windows.Forms.Label();
+            this.Min_UnitType_Label = new System.Windows.Forms.Label();
             this.ReminderWidth_Combo = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.ProductBarcode_Box = new System.Windows.Forms.TextBox();
@@ -43,8 +45,6 @@
             this.Responsible_Combo = new System.Windows.Forms.ComboBox();
             this.Cancel_Btn = new System.Windows.Forms.Button();
             this.Save_Btn = new System.Windows.Forms.Button();
-            this.Max_UnitType_Label = new System.Windows.Forms.Label();
-            this.Min_UnitType_Label = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Max_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Min_Num)).BeginInit();
@@ -69,17 +69,40 @@
             this.groupBox1.Location = new System.Drawing.Point(11, 9);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(383, 192);
-            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hartılatma";
             // 
+            // Max_UnitType_Label
+            // 
+            this.Max_UnitType_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Max_UnitType_Label.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Max_UnitType_Label.Location = new System.Drawing.Point(322, 103);
+            this.Max_UnitType_Label.Name = "Max_UnitType_Label";
+            this.Max_UnitType_Label.Size = new System.Drawing.Size(35, 13);
+            this.Max_UnitType_Label.TabIndex = 26;
+            this.Max_UnitType_Label.Text = "birim";
+            this.Max_UnitType_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // Min_UnitType_Label
+            // 
+            this.Min_UnitType_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Min_UnitType_Label.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Min_UnitType_Label.Location = new System.Drawing.Point(311, 76);
+            this.Min_UnitType_Label.Name = "Min_UnitType_Label";
+            this.Min_UnitType_Label.Size = new System.Drawing.Size(46, 15);
+            this.Min_UnitType_Label.TabIndex = 27;
+            this.Min_UnitType_Label.Text = "birim";
+            this.Min_UnitType_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // ReminderWidth_Combo
             // 
+            this.ReminderWidth_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ReminderWidth_Combo.FormattingEnabled = true;
             this.ReminderWidth_Combo.Location = new System.Drawing.Point(185, 153);
             this.ReminderWidth_Combo.Name = "ReminderWidth_Combo";
             this.ReminderWidth_Combo.Size = new System.Drawing.Size(192, 21);
-            this.ReminderWidth_Combo.TabIndex = 24;
+            this.ReminderWidth_Combo.TabIndex = 4;
             // 
             // label6
             // 
@@ -95,14 +118,16 @@
             this.ProductBarcode_Box.Location = new System.Drawing.Point(185, 48);
             this.ProductBarcode_Box.Name = "ProductBarcode_Box";
             this.ProductBarcode_Box.Size = new System.Drawing.Size(192, 20);
-            this.ProductBarcode_Box.TabIndex = 22;
+            this.ProductBarcode_Box.TabIndex = 6;
+            this.ProductBarcode_Box.TabStop = false;
             // 
             // ProductName_Box
             // 
             this.ProductName_Box.Location = new System.Drawing.Point(185, 22);
             this.ProductName_Box.Name = "ProductName_Box";
             this.ProductName_Box.Size = new System.Drawing.Size(192, 20);
-            this.ProductName_Box.TabIndex = 22;
+            this.ProductName_Box.TabIndex = 5;
+            this.ProductName_Box.TabStop = false;
             // 
             // label1
             // 
@@ -137,7 +162,7 @@
             0});
             this.Min_Num.Name = "Min_Num";
             this.Min_Num.Size = new System.Drawing.Size(192, 20);
-            this.Min_Num.TabIndex = 2;
+            this.Min_Num.TabIndex = 1;
             // 
             // label2
             // 
@@ -182,7 +207,7 @@
             this.Responsible_Combo.Location = new System.Drawing.Point(185, 126);
             this.Responsible_Combo.Name = "Responsible_Combo";
             this.Responsible_Combo.Size = new System.Drawing.Size(192, 21);
-            this.Responsible_Combo.TabIndex = 4;
+            this.Responsible_Combo.TabIndex = 3;
             // 
             // Cancel_Btn
             // 
@@ -191,7 +216,7 @@
             this.Cancel_Btn.Location = new System.Drawing.Point(298, 207);
             this.Cancel_Btn.Name = "Cancel_Btn";
             this.Cancel_Btn.Size = new System.Drawing.Size(96, 23);
-            this.Cancel_Btn.TabIndex = 8;
+            this.Cancel_Btn.TabIndex = 2;
             this.Cancel_Btn.Text = "İptal";
             this.Cancel_Btn.UseVisualStyleBackColor = true;
             this.Cancel_Btn.Click += new System.EventHandler(this.Cancel_Btn_Click);
@@ -203,32 +228,10 @@
             this.Save_Btn.Location = new System.Drawing.Point(196, 207);
             this.Save_Btn.Name = "Save_Btn";
             this.Save_Btn.Size = new System.Drawing.Size(96, 23);
-            this.Save_Btn.TabIndex = 7;
+            this.Save_Btn.TabIndex = 1;
             this.Save_Btn.Text = "Kaydet";
             this.Save_Btn.UseVisualStyleBackColor = true;
             this.Save_Btn.Click += new System.EventHandler(this.Save_Btn_Click);
-            // 
-            // Max_UnitType_Label
-            // 
-            this.Max_UnitType_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Max_UnitType_Label.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Max_UnitType_Label.Location = new System.Drawing.Point(322, 103);
-            this.Max_UnitType_Label.Name = "Max_UnitType_Label";
-            this.Max_UnitType_Label.Size = new System.Drawing.Size(35, 13);
-            this.Max_UnitType_Label.TabIndex = 26;
-            this.Max_UnitType_Label.Text = "birim";
-            this.Max_UnitType_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // Min_UnitType_Label
-            // 
-            this.Min_UnitType_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Min_UnitType_Label.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Min_UnitType_Label.Location = new System.Drawing.Point(311, 76);
-            this.Min_UnitType_Label.Name = "Min_UnitType_Label";
-            this.Min_UnitType_Label.Size = new System.Drawing.Size(46, 15);
-            this.Min_UnitType_Label.TabIndex = 27;
-            this.Min_UnitType_Label.Text = "birim";
-            this.Min_UnitType_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Edit_Reminder_Pop
             // 

@@ -109,7 +109,7 @@ namespace Muhasebe
                         ListViewItem m_ViewItem = new ListViewItem();
                         m_ViewItem.Tag = m_Node.ItemID;
 
-                        m_ViewItem.Text = m_Node.Item != null ? m_Node.Item.Product.Barcode : "-";
+                        m_ViewItem.Text = m_Node.Item != null ? m_Node.Item.Product.Barcode : "Kayıt Dışı";
 
                         if (m_Node.Item == null && m_Node.Description.Length > 0)
                             m_ViewItem.SubItems.Add(m_Node.Description);

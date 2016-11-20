@@ -166,6 +166,7 @@
             this.Search_Box.Size = new System.Drawing.Size(137, 20);
             this.Search_Box.TabIndex = 4;
             this.Search_Box.TextChanged += new System.EventHandler(this.Search_Box_TextChanged);
+            this.Search_Box.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_Box_KeyDown);
             // 
             // statusStrip1
             // 

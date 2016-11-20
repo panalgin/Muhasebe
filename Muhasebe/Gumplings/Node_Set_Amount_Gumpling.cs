@@ -44,6 +44,18 @@ namespace Muhasebe
                 this.Amount_Num.Value = m_Temp.Amount;
             }
 
+            if (this.Node.Item != null)
+            {
+                this.Amount_Num.DecimalPlaces = this.Node.Item.UnitType.DecimalPlaces;
+
+                if (this.Amount_Num.DecimalPlaces == 0)
+                    this.Amount_Num.Minimum = 1m;
+                else if (this.Amount_Num.DecimalPlaces == 2)
+                    this.Amount_Num.Minimum = 0.01m;
+                else if (this.Amount_Num.DecimalPlaces == 4)
+                    this.Amount_Num.Minimum = 0.0001m;
+            }
+
             this.Amount_Num.Focus();
             this.Amount_Num.Select(0, this.Amount_Num.Value.ToString().Length);
         }

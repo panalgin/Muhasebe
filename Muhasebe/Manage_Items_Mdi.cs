@@ -451,5 +451,17 @@ namespace Muhasebe
             else
                 this.Potential_Final_Label.Text = "Potansiyel Satış Değeri: ?";
         }
+
+        private void Search_Box_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (this.Search_Box.Text.Length > 0)
+                {
+                    string m_Keyword = this.Search_Box.Text.Trim();
+                    this.PopulateListView("Search", m_Keyword);
+                }
+            }
+        }
     }
 }

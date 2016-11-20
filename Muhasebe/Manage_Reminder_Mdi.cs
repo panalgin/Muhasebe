@@ -26,41 +26,53 @@ namespace Muhasebe
         {
             this.Reminding_List.Items.Clear();
 
-            MuhasebeEntities m_Context = new MuhasebeEntities();
-
-            var m_Items = m_Context.PropertyReminders.Where(q => q.Owner.ID == Program.User.WorksAtID).ToList();
-
-            int i = 0;
-            Color m_Shaded = Color.FromArgb(240, 240, 240);
-
-
-            m_Items.All(delegate(PropertyReminder m_Reminder)
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
-                string m_Minimum = "";
-                string m_Maximum = "";
+                var m_Items = m_Context.PropertyReminders.Where(q => q.Owner.ID == Program.User.WorksAtID).ToList();
 
-                m_Minimum = m_Reminder.Item.GetFormattedAmount(m_Reminder.Minimum.Value);
-                m_Maximum = m_Reminder.Item.GetFormattedAmount(m_Reminder.Maximum.Value);
+                int i = 0;
+                Color m_Shaded = Color.FromArgb(240, 240, 240);
 
-                ListViewItem m_ViewItem = new ListViewItem();
-                m_ViewItem.Text = m_Reminder.Item.Product.Name;
-                m_ViewItem.SubItems.Add(m_Reminder.Item.Product.Barcode);
-                m_ViewItem.SubItems.Add(m_Minimum);
-                m_ViewItem.SubItems.Add(m_Maximum);
-                m_ViewItem.SubItems.Add(m_Reminder.Responsible.FullName);
-                m_ViewItem.SubItems.Add(m_Reminder.Item.UnitType.Name);
-                m_ViewItem.SubItems.Add(m_Reminder.PropertyRemindingMethod.Name);
-                m_ViewItem.Tag = m_Reminder.ID;
 
-                if (i++ % 2 == 1)
+                m_Items.All(delegate (PropertyReminder m_Reminder)
                 {
-                    m_ViewItem.BackColor = m_Shaded;
-                    m_ViewItem.UseItemStyleForSubItems = true;
-                }
+                    if (m_Reminder.Item == null)
+                    {
+                        m_Context.PropertyReminders.Remove(m_Reminder);
+                        m_Context.SaveChanges();
 
-                this.Reminding_List.Items.Add(m_ViewItem);
-                return true;
-            });
+                        return true;
+                    }
+                    else
+                    {
+                        string m_Minimum = "";
+                        string m_Maximum = "";
+
+                        m_Minimum = m_Reminder.Item.GetFormattedAmount(m_Reminder.Minimum.Value);
+                        m_Maximum = m_Reminder.Item.GetFormattedAmount(m_Reminder.Maximum.Value);
+
+                        ListViewItem m_ViewItem = new ListViewItem();
+                        m_ViewItem.Text = m_Reminder.Item.Product.Name;
+                        m_ViewItem.SubItems.Add(m_Reminder.Item.Product.Barcode);
+                        m_ViewItem.SubItems.Add(m_Minimum);
+                        m_ViewItem.SubItems.Add(m_Maximum);
+                        m_ViewItem.SubItems.Add(m_Reminder.Responsible.FullName);
+                        m_ViewItem.SubItems.Add(m_Reminder.Item.UnitType.Name);
+                        m_ViewItem.SubItems.Add(m_Reminder.PropertyRemindingMethod.Name);
+                        m_ViewItem.Tag = m_Reminder.ID;
+
+                        if (i++ % 2 == 1)
+                        {
+                            m_ViewItem.BackColor = m_Shaded;
+                            m_ViewItem.UseItemStyleForSubItems = true;
+                        }
+
+                        this.Reminding_List.Items.Add(m_ViewItem);
+
+                        return true;
+                    }
+                });
+            }
         }
 
         private void Edit_Button_Click(object sender, EventArgs e)
