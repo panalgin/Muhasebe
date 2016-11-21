@@ -268,7 +268,7 @@
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Tahmini Toplam";
+            this.columnHeader5.Text = "Toplam";
             this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader5.Width = 143;
             // 
