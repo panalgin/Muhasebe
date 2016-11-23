@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Muhasebe.Gumplings;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -419,13 +420,12 @@ namespace Muhasebe
                 if (m_ID > 0)
                 {
                     this.PopulateListView("GroupID", m_ID);
+                    this.Increase_Prices_Button.Enabled = true;
                 }
                 else
                 {
-                    using (MuhasebeEntities m_Context = new MuhasebeEntities())
-                    {
-                        this.PopulateListView();
-                    }
+                    this.Increase_Prices_Button.Enabled = false; // only in groups, can increase prices
+                    this.PopulateListView();
                 }
             }
         }
@@ -467,6 +467,12 @@ namespace Muhasebe
         private void Items_List_DoubleClick(object sender, EventArgs e)
         {
             this.Edit_Button_Click(sender, e);
+        }
+
+        private void Increase_Prices_Button_Click(object sender, EventArgs e)
+        {
+            Change_Prices_Gumpling m_Gumpling = new Change_Prices_Gumpling();
+            m_Gumpling.ShowDialog();
         }
     }
 }

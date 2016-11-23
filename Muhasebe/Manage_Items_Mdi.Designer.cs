@@ -312,6 +312,7 @@
             this.Increase_Prices_Button.TabIndex = 11;
             this.Increase_Prices_Button.Text = "Zam Yap";
             this.Increase_Prices_Button.UseVisualStyleBackColor = true;
+            this.Increase_Prices_Button.Click += new System.EventHandler(this.Increase_Prices_Button_Click);
             // 
             // Manage_Items_Mdi
             // 
