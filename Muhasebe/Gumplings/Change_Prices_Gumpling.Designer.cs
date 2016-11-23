@@ -172,7 +172,7 @@
             // 
             this.Change_Num.Location = new System.Drawing.Point(109, 95);
             this.Change_Num.Minimum = new decimal(new int[] {
-            100,
+            99,
             0,
             0,
             -2147483648});
@@ -293,7 +293,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(20, 92);
+            this.label10.Location = new System.Drawing.Point(20, 94);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(83, 13);
             this.label10.TabIndex = 15;

@@ -83,11 +83,16 @@ namespace Muhasebe.Gumplings
                 this.Sample_Name_Label.Text = this.Example.Product.Name;
                 this.Ex_BasePrice_Label.Text = ItemHelper.GetFormattedPrice(this.Example.BasePrice.Value);
                 this.Ex_FinalPrice_Label.Text = ItemHelper.GetFormattedPrice(this.Example.FinalPrice.Value);
+                this.New_BasePrice_Label.Text = ItemHelper.GetFormattedPrice(this.Example.BasePrice.Value);
+                this.New_FinalPrice_Label.Text = ItemHelper.GetFormattedPrice(this.Example.FinalPrice.Value); ;
 
                 if (this.Change_Num.Value != 0)
                 {
-                    this.New_BasePrice_Label.Text = ItemHelper.GetFormattedPrice(this.Example.BasePrice.Value * (1 + (this.Change_Num.Value / 100.00m)));
-                    this.New_FinalPrice_Label.Text = ItemHelper.GetFormattedPrice(this.Example.FinalPrice.Value * (1 + (this.Change_Num.Value / 100.00m)));
+                    if (this.AffectState != "Final")
+                        this.New_BasePrice_Label.Text = ItemHelper.GetFormattedPrice(this.Example.BasePrice.Value * (1 + (this.Change_Num.Value / 100.00m)));
+
+                    if (this.AffectState != "Base")
+                        this.New_FinalPrice_Label.Text = ItemHelper.GetFormattedPrice(this.Example.FinalPrice.Value * (1 + (this.Change_Num.Value / 100.00m)));
                 }
                 else
                 {
@@ -128,12 +133,44 @@ namespace Muhasebe.Gumplings
             if (m_Button.Checked)
             {
                 this.AffectState = Convert.ToString(m_Button.Tag);
+                UpdateExample();
             }
         }
 
         private void Save_Button_Click(object sender, EventArgs e)
         {
+            if (this.Change_Num.Value != 0 && this.Example != null)
+            {
+                using(MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    int m_GroupID = Convert.ToInt32(this.Group_Combo.Tag);
 
+                    ItemGroup m_Group = m_Context.ItemGroups.Where(q => q.ID == m_GroupID).FirstOrDefault();
+
+                    if (m_Group != null)
+                    {
+                        if (this.AffectState != "Final")
+                            m_Context.Items.Where(q => q.GroupID == m_GroupID).All(delegate (Item item)
+                            {
+                                item.BasePrice = item.BasePrice * (1 + (this.Change_Num.Value / 100.00m));
+
+                                return true;
+                            });
+
+                        if (this.AffectState != "Base")
+                            m_Context.Items.Where(q => q.GroupID == m_GroupID).All(delegate (Item item)
+                            {
+                                item.FinalPrice = item.FinalPrice * (1 + (this.Change_Num.Value / 100.00m));
+
+                                return true;
+                            });
+
+                        m_Context.SaveChanges();
+                    }
+                }
+            }
+
+            this.Close();
         }
     }
 }
