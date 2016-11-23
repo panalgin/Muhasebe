@@ -239,6 +239,7 @@
             this.SaleScreen_List.TabIndex = 18;
             this.SaleScreen_List.UseCompatibleStateImageBehavior = false;
             this.SaleScreen_List.View = System.Windows.Forms.View.Details;
+            this.SaleScreen_List.DoubleClick += new System.EventHandler(this.SaleScreen_List_DoubleClick);
             // 
             // columnHeader1
             // 
@@ -288,20 +289,20 @@
             this.düzenleToolStripMenuItem,
             this.silToolStripMenuItem});
             this.Context_Menu.Name = "Context_Menu";
-            this.Context_Menu.Size = new System.Drawing.Size(153, 114);
+            this.Context_Menu.Size = new System.Drawing.Size(144, 92);
             this.Context_Menu.Opening += new System.ComponentModel.CancelEventHandler(this.Context_Menu_Opening);
             // 
             // kayıtDışıSatışToolStripMenuItem
             // 
             this.kayıtDışıSatışToolStripMenuItem.Name = "kayıtDışıSatışToolStripMenuItem";
-            this.kayıtDışıSatışToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.kayıtDışıSatışToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.kayıtDışıSatışToolStripMenuItem.Text = "Kayıt Dışı Satış";
             this.kayıtDışıSatışToolStripMenuItem.Click += new System.EventHandler(this.kayıtDışıSatışToolStripMenuItem_Click);
             // 
             // manuelSatışToolStripMenuItem
             // 
             this.manuelSatışToolStripMenuItem.Name = "manuelSatışToolStripMenuItem";
-            this.manuelSatışToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.manuelSatışToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.manuelSatışToolStripMenuItem.Text = "Manuel Satış";
             this.manuelSatışToolStripMenuItem.Click += new System.EventHandler(this.manuelSatışToolStripMenuItem_Click);
             // 
@@ -309,7 +310,7 @@
             // 
             this.düzenleToolStripMenuItem.Enabled = false;
             this.düzenleToolStripMenuItem.Name = "düzenleToolStripMenuItem";
-            this.düzenleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.düzenleToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.düzenleToolStripMenuItem.Text = "Düzenle";
             this.düzenleToolStripMenuItem.Click += new System.EventHandler(this.düzenleToolStripMenuItem_Click);
             // 
@@ -317,7 +318,7 @@
             // 
             this.silToolStripMenuItem.Enabled = false;
             this.silToolStripMenuItem.Name = "silToolStripMenuItem";
-            this.silToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.silToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.silToolStripMenuItem.Text = "Sil";
             this.silToolStripMenuItem.Click += new System.EventHandler(this.silToolStripMenuItem_Click);
             // 

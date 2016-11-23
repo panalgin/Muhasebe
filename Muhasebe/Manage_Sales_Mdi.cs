@@ -439,5 +439,10 @@ namespace Muhasebe
             m_Gump.NextID = m_LowestID;
             m_Gump.ShowDialog(); 
         }
+
+        private void SaleScreen_List_DoubleClick(object sender, EventArgs e)
+        {
+            this.düzenleToolStripMenuItem_Click(sender, e);
+        }
     }
 }

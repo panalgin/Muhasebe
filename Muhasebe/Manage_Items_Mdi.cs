@@ -463,5 +463,10 @@ namespace Muhasebe
                 }
             }
         }
+
+        private void Items_List_DoubleClick(object sender, EventArgs e)
+        {
+            this.Edit_Button_Click(sender, e);
+        }
     }
 }

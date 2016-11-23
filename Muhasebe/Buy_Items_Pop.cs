@@ -288,5 +288,13 @@ namespace Muhasebe
             this.StockMovement.Discount = this.Discount_Num.Value;
             this.PopulateListView();
         }
+
+        private void Buy_Items_List_DoubleClick(object sender, EventArgs e)
+        {
+            if (this.Buy_Items_List.SelectedItems.Count > 0)
+            {
+                Edit_Button_Click(sender, e);
+            }
+        }
     }
 }

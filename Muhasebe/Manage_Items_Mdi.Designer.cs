@@ -84,6 +84,7 @@
             this.Items_List.UseCompatibleStateImageBehavior = false;
             this.Items_List.View = System.Windows.Forms.View.Details;
             this.Items_List.SelectedIndexChanged += new System.EventHandler(this.Listview_SelectedIndexChanged);
+            this.Items_List.DoubleClick += new System.EventHandler(this.Items_List_DoubleClick);
             // 
             // columnHeader1
             // 
