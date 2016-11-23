@@ -22,7 +22,7 @@ namespace Muhasebe
         {
             Properties.Settings.Default.Reload();
 
-            using(MuhasebeEntities m_Context = new MuhasebeEntities())
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
                 var m_Groups = m_Context.ItemGroups.OrderBy(q => q.Name).ToList();
 
@@ -107,7 +107,7 @@ namespace Muhasebe
 
         private void PopulateListView(string condition, object data)
         {
-            switch(condition)
+            switch (condition)
             {
                 case "GroupID":
                     {
@@ -115,7 +115,8 @@ namespace Muhasebe
                         {
                             int m_GroupID = Convert.ToInt32(data);
 
-                            var result = from item in m_Context.Items where item.GroupID == m_GroupID
+                            var result = from item in m_Context.Items
+                                         where item.GroupID == m_GroupID
                                          join product in (from pr in m_Context.Products
                                                           select new
                                                           {
@@ -471,8 +472,24 @@ namespace Muhasebe
 
         private void Increase_Prices_Button_Click(object sender, EventArgs e)
         {
+            int preferredGroupID = 0;
+
+            foreach (Control control in this.flowLayoutPanel1.Controls)
+            {
+                if (control is RadioButton)
+                {
+                    RadioButton m_Button = control as RadioButton;
+
+                    if (m_Button.Checked)
+                        preferredGroupID = Convert.ToInt32(m_Button.Tag);
+                }
+            }
+
             Change_Prices_Gumpling m_Gumpling = new Change_Prices_Gumpling();
+            m_Gumpling.PreferredGroupID = preferredGroupID;
             m_Gumpling.ShowDialog();
+
+            this.PopulateListView();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Muhasebe.Custom;
+﻿using EntityFramework.Extensions;
+using Muhasebe.Custom;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,8 +14,10 @@ namespace Muhasebe.Gumplings
 {
     public partial class Change_Prices_Gumpling : Form
     {
-        private string AffectState = "Both";
+        public int PreferredGroupID { get; set; }
         private Item Example { get; set; }
+
+        private string AffectState = "Both";
 
         public Change_Prices_Gumpling()
         {
@@ -36,6 +39,10 @@ namespace Muhasebe.Gumplings
 
             this.Group_Combo.SelectedIndexChanged += Group_Combo_SelectedIndexChanged;
             this.Group_Combo_SelectedIndexChanged(sender, e);
+
+            if (this.PreferredGroupID > 0)
+                this.Group_Combo.SelectedValue = this.PreferredGroupID;
+
             this.radioButton3.Checked = true;
         }
 
@@ -143,27 +150,22 @@ namespace Muhasebe.Gumplings
             {
                 using(MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
-                    int m_GroupID = Convert.ToInt32(this.Group_Combo.Tag);
+                    int m_GroupID = Convert.ToInt32(this.Group_Combo.SelectedValue);
 
                     ItemGroup m_Group = m_Context.ItemGroups.Where(q => q.ID == m_GroupID).FirstOrDefault();
 
                     if (m_Group != null)
                     {
-                        if (this.AffectState != "Final")
-                            m_Context.Items.Where(q => q.GroupID == m_GroupID).All(delegate (Item item)
-                            {
-                                item.BasePrice = item.BasePrice * (1 + (this.Change_Num.Value / 100.00m));
+                        decimal change = 1 + (this.Change_Num.Value / 100.00m);
 
-                                return true;
-                            });
+                        if (this.AffectState != "Final")
+                        {
+
+                            m_Context.Items.Where(q => q.GroupID == m_GroupID).Update(q => new Item() { BasePrice = q.BasePrice * change });
+                        }
 
                         if (this.AffectState != "Base")
-                            m_Context.Items.Where(q => q.GroupID == m_GroupID).All(delegate (Item item)
-                            {
-                                item.FinalPrice = item.FinalPrice * (1 + (this.Change_Num.Value / 100.00m));
-
-                                return true;
-                            });
+                            m_Context.Items.Where(q => q.GroupID == m_GroupID).Update(q => new Item() { FinalPrice = q.FinalPrice * change, TermedPrice = q.TermedPrice * change });
 
                         m_Context.SaveChanges();
                     }

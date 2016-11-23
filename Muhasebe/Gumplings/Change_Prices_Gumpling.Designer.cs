@@ -170,6 +170,7 @@
             // 
             // Change_Num
             // 
+            this.Change_Num.DecimalPlaces = 2;
             this.Change_Num.Location = new System.Drawing.Point(109, 95);
             this.Change_Num.Minimum = new decimal(new int[] {
             99,
@@ -237,7 +238,7 @@
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Location = new System.Drawing.Point(12, 240);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(290, 147);
+            this.groupBox3.Size = new System.Drawing.Size(290, 157);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Örnek";
