@@ -53,6 +53,7 @@ namespace Muhasebe
                         m_Node.ItemID = m_Item.ID;
                         m_Node.StockMovementID = this.StockMovement.ID;
                         m_Node.Amount = 1.00M;
+                        m_Node.BasePrice = m_Item.BasePrice;
 
                         if (this.StockMovement.Nodes.Any(q => q.ItemID == m_Node.ItemID))
                             this.StockMovement.Nodes.Where(q => q.ItemID == m_Node.ItemID).FirstOrDefault().Amount += 1.00M;
@@ -86,17 +87,31 @@ namespace Muhasebe
                     m_ViewItem.SubItems.Add(m_Node.Item.OrderCode);
                     m_ViewItem.SubItems.Add(m_Node.Item.Product.Name);
                     m_ViewItem.SubItems.Add(ItemHelper.GetFormattedAmount(m_Node.Amount, m_Node.Item.UnitType.DecimalPlaces, m_Node.Item.UnitType.Abbreviation));
-                    m_ViewItem.SubItems.Add(ItemHelper.GetFormattedPrice(m_Node.Item.BasePrice.Value));
-                    m_ViewItem.SubItems.Add(ItemHelper.GetFormattedPrice(m_Node.Amount * m_Node.Item.BasePrice.Value));
+                    m_ViewItem.SubItems.Add(ItemHelper.GetFormattedPrice(m_Node.BasePrice.Value));
+                    m_ViewItem.SubItems.Add(ItemHelper.GetFormattedPrice(m_Node.BasePrice.Value * m_Node.Amount));
 
                     this.Buy_Items_List.Items.Add(m_ViewItem);
 
                     return true;
                 });
 
-                decimal expectedSummary = this.StockMovement.Nodes.Sum(q => q.Item.BasePrice.Value * q.Amount);
-                this.Expected_BasePrice_Label.Text = ItemHelper.GetFormattedPrice(expectedSummary);
-                this.Summary_Num.Value = expectedSummary;
+                decimal expectedSummary = this.StockMovement.Nodes.Sum(q => q.BasePrice.Value * q.Amount);
+                this.SubTotal_Label.Text = ItemHelper.GetFormattedPrice(expectedSummary);
+
+                decimal totalSummary = expectedSummary;
+
+                if (this.StockMovement.Discount.HasValue)
+                {
+                    if (totalSummary > this.StockMovement.Discount.Value)
+                        totalSummary -= this.StockMovement.Discount.Value;
+                    else
+                    {
+                        this.StockMovement.Discount = 0;
+                        this.Discount_Num.Value = 0;
+                    }
+                }
+
+                this.Total_Label.Text = ItemHelper.GetFormattedPrice(totalSummary);
             }
 
             this.Buy_Items_List.EndUpdate();
@@ -123,7 +138,10 @@ namespace Muhasebe
             StockMovementNode m_Actual = this.StockMovement.Nodes.Where(q => q.ItemID == node.ItemID).FirstOrDefault();
 
             if (m_Actual != null)
+            {
                 m_Actual.Amount = node.Amount;
+                m_Actual.BasePrice = node.BasePrice;
+            }
 
             this.PopulateListView();
         }
@@ -149,20 +167,24 @@ namespace Muhasebe
 
                 if (m_Account != null)
                 {
+                    this.StockMovement.Nodes.All(delegate (StockMovementNode m_Node)
+                    {
+                        m_Node.Parent = this.StockMovement;
+                        m_Node.Item = null;
+                        m_Node.FinalPrice = m_Node.BasePrice * m_Node.Amount;
+
+                        return true;
+                    });
+
                     this.StockMovement.AccountID = m_Account.ID;
                     this.StockMovement.CreatedAt = CreatedAt_Picker.Value;
                     this.StockMovement.AuthorID = Program.User.ID;
                     this.StockMovement.OwnerID = Program.User.WorksAtID.Value;
                     this.StockMovement.PaymentTypeID = Convert.ToInt32(this.PaymentType_Combo.SelectedValue);
-                    this.StockMovement.Summary = this.Summary_Num.Value;
+                    this.StockMovement.Summary = this.StockMovement.Nodes.Sum(q => q.FinalPrice.Value);
 
-                    this.StockMovement.Nodes.All(delegate (StockMovementNode m_Node)
-                    {
-                        m_Node.Parent = this.StockMovement;
-                        m_Node.Item = null;
-
-                        return true;
-                    });
+                    if (this.StockMovement.Discount.HasValue)
+                        this.StockMovement.Summary -= this.StockMovement.Discount.Value;
 
                     m_Context.StockMovements.Add(this.StockMovement);
                     m_Context.SaveChanges();
@@ -259,6 +281,12 @@ namespace Muhasebe
                 m_Gumpling.NodeAmountChanged += NodeAmountChanged;
                 m_Gumpling.ShowDialog();
             }
+        }
+
+        private void Discount_Num_ValueChanged(object sender, EventArgs e)
+        {
+            this.StockMovement.Discount = this.Discount_Num.Value;
+            this.PopulateListView();
         }
     }
 }

@@ -36,12 +36,14 @@ namespace Muhasebe
                     this.Name_Label.Text = m_Temp.Description;
 
                 this.Amount_Num.Value = m_Temp.Amount.Value;
+                this.UnitPrice_Num.Value = m_Temp.BasePrice.Value;
             }
             else if (this.Node is StockMovementNode)
             {
                 StockMovementNode m_Temp = this.Node as StockMovementNode;
                 this.Name_Label.Text = m_Temp.Item.Product.Name;
                 this.Amount_Num.Value = m_Temp.Amount;
+                this.UnitPrice_Num.Value = m_Temp.BasePrice.Value;
             }
 
             if (this.Node.Item != null)
@@ -63,6 +65,18 @@ namespace Muhasebe
         private void Save_Button_Click(object sender, EventArgs e)
         {
             this.Node.Amount = this.Amount_Num.Value;
+
+            if (this.UnitPrice_Num.Value != this.Node.BasePrice)
+            {
+                this.Node.BasePrice = this.UnitPrice_Num.Value;
+
+                if (this.Node is InvoiceNode)
+                {
+                    this.Node.FinalPrice = this.Node.BasePrice * this.Node.Amount;
+                    this.Node.UseCustomPricing = true;
+                }
+            }
+
             NodeAmountChanged?.Invoke(this.Node);
 
             this.Close();

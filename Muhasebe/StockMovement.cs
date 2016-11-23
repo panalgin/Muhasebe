@@ -27,6 +27,7 @@ namespace Muhasebe
         public int OwnerID { get; set; }
         public int PaymentTypeID { get; set; }
         public decimal Summary { get; set; }
+        public Nullable<decimal> Discount { get; set; }
     
         public virtual Company Owner { get; set; }
         public virtual User Author { get; set; }

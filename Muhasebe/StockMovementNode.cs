@@ -18,6 +18,8 @@ namespace Muhasebe
         public int StockMovementID { get; set; }
         public int ItemID { get; set; }
         public decimal Amount { get; set; }
+        public Nullable<decimal> BasePrice { get; set; }
+        public Nullable<decimal> FinalPrice { get; set; }
     
         public virtual StockMovement Parent { get; set; }
         public virtual Item Item { get; set; }

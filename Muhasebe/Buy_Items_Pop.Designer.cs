@@ -35,14 +35,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.Summary_Num = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
-            this.Expected_BasePrice_Label = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.PaymentType_Combo = new System.Windows.Forms.ComboBox();
             this.Increase_Stock_Check = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.CreatedAt_Picker = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
+            this.Discount_Num = new System.Windows.Forms.NumericUpDown();
+            this.Total_Label = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.SubTotal_Label = new System.Windows.Forms.Label();
             this.Buy_Items_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -51,14 +53,14 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Account_Box = new Muhasebe.Custom.SearchBox();
-            ((System.ComponentModel.ISupportInitialize)(this.Summary_Num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Discount_Num)).BeginInit();
             this.SuspendLayout();
             // 
             // Delete_Button
             // 
             this.Delete_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Delete_Button.Enabled = false;
-            this.Delete_Button.Location = new System.Drawing.Point(665, 89);
+            this.Delete_Button.Location = new System.Drawing.Point(744, 54);
             this.Delete_Button.Name = "Delete_Button";
             this.Delete_Button.Size = new System.Drawing.Size(75, 23);
             this.Delete_Button.TabIndex = 20;
@@ -70,7 +72,7 @@
             // 
             this.Edit_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Edit_Button.Enabled = false;
-            this.Edit_Button.Location = new System.Drawing.Point(665, 60);
+            this.Edit_Button.Location = new System.Drawing.Point(744, 25);
             this.Edit_Button.Name = "Edit_Button";
             this.Edit_Button.Size = new System.Drawing.Size(75, 23);
             this.Edit_Button.TabIndex = 19;
@@ -83,7 +85,7 @@
             this.Cancel_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Cancel_Button.Image = global::Muhasebe.Properties.Resources.cancel;
             this.Cancel_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Cancel_Button.Location = new System.Drawing.Point(665, 434);
+            this.Cancel_Button.Location = new System.Drawing.Point(744, 505);
             this.Cancel_Button.Name = "Cancel_Button";
             this.Cancel_Button.Size = new System.Drawing.Size(75, 23);
             this.Cancel_Button.TabIndex = 23;
@@ -96,7 +98,7 @@
             this.Save_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Save_Button.Image = global::Muhasebe.Properties.Resources.tick;
             this.Save_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Save_Button.Location = new System.Drawing.Point(570, 434);
+            this.Save_Button.Location = new System.Drawing.Point(649, 505);
             this.Save_Button.Name = "Save_Button";
             this.Save_Button.Size = new System.Drawing.Size(89, 23);
             this.Save_Button.TabIndex = 21;
@@ -107,7 +109,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 44);
+            this.label4.Location = new System.Drawing.Point(13, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 13);
             this.label4.TabIndex = 22;
@@ -116,7 +118,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 15);
+            this.label3.Location = new System.Drawing.Point(31, 436);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 13);
             this.label3.TabIndex = 17;
@@ -126,51 +128,17 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(257, 415);
+            this.label1.Location = new System.Drawing.Point(253, 512);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 13);
             this.label1.TabIndex = 28;
             this.label1.Text = "Toplam Ödenecek:";
             // 
-            // Summary_Num
-            // 
-            this.Summary_Num.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.Summary_Num.DecimalPlaces = 2;
-            this.Summary_Num.Location = new System.Drawing.Point(360, 412);
-            this.Summary_Num.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
-            this.Summary_Num.Name = "Summary_Num";
-            this.Summary_Num.Size = new System.Drawing.Size(132, 20);
-            this.Summary_Num.TabIndex = 29;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 414);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(96, 13);
-            this.label2.TabIndex = 30;
-            this.label2.Text = "Tahmini Alış Tutarı:";
-            // 
-            // Expected_BasePrice_Label
-            // 
-            this.Expected_BasePrice_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.Expected_BasePrice_Label.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Expected_BasePrice_Label.Location = new System.Drawing.Point(114, 412);
-            this.Expected_BasePrice_Label.Name = "Expected_BasePrice_Label";
-            this.Expected_BasePrice_Label.Size = new System.Drawing.Size(106, 20);
-            this.Expected_BasePrice_Label.TabIndex = 31;
-            this.Expected_BasePrice_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(285, 441);
+            this.label6.Location = new System.Drawing.Point(13, 458);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(69, 13);
             this.label6.TabIndex = 32;
@@ -181,9 +149,9 @@
             this.PaymentType_Combo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.PaymentType_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.PaymentType_Combo.FormattingEnabled = true;
-            this.PaymentType_Combo.Location = new System.Drawing.Point(360, 438);
+            this.PaymentType_Combo.Location = new System.Drawing.Point(87, 455);
             this.PaymentType_Combo.Name = "PaymentType_Combo";
-            this.PaymentType_Combo.Size = new System.Drawing.Size(132, 21);
+            this.PaymentType_Combo.Size = new System.Drawing.Size(128, 21);
             this.PaymentType_Combo.TabIndex = 33;
             // 
             // Increase_Stock_Check
@@ -192,7 +160,7 @@
             this.Increase_Stock_Check.AutoSize = true;
             this.Increase_Stock_Check.Checked = true;
             this.Increase_Stock_Check.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.Increase_Stock_Check.Location = new System.Drawing.Point(17, 438);
+            this.Increase_Stock_Check.Location = new System.Drawing.Point(13, 508);
             this.Increase_Stock_Check.Name = "Increase_Stock_Check";
             this.Increase_Stock_Check.Size = new System.Drawing.Size(117, 17);
             this.Increase_Stock_Check.TabIndex = 34;
@@ -201,8 +169,9 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(319, 15);
+            this.label5.Location = new System.Drawing.Point(289, 432);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 13);
             this.label5.TabIndex = 35;
@@ -210,10 +179,70 @@
             // 
             // CreatedAt_Picker
             // 
-            this.CreatedAt_Picker.Location = new System.Drawing.Point(388, 13);
+            this.CreatedAt_Picker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.CreatedAt_Picker.Location = new System.Drawing.Point(357, 430);
             this.CreatedAt_Picker.Name = "CreatedAt_Picker";
-            this.CreatedAt_Picker.Size = new System.Drawing.Size(200, 20);
+            this.CreatedAt_Picker.Size = new System.Drawing.Size(178, 20);
             this.CreatedAt_Picker.TabIndex = 36;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(311, 484);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(40, 13);
+            this.label7.TabIndex = 37;
+            this.label7.Text = "İndirim:";
+            // 
+            // Discount_Num
+            // 
+            this.Discount_Num.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Discount_Num.DecimalPlaces = 2;
+            this.Discount_Num.Location = new System.Drawing.Point(357, 482);
+            this.Discount_Num.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+            this.Discount_Num.Name = "Discount_Num";
+            this.Discount_Num.Size = new System.Drawing.Size(132, 20);
+            this.Discount_Num.TabIndex = 38;
+            this.Discount_Num.ValueChanged += new System.EventHandler(this.Discount_Num_ValueChanged);
+            // 
+            // Total_Label
+            // 
+            this.Total_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Total_Label.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Total_Label.Location = new System.Drawing.Point(357, 508);
+            this.Total_Label.Margin = new System.Windows.Forms.Padding(3);
+            this.Total_Label.Name = "Total_Label";
+            this.Total_Label.Size = new System.Drawing.Size(132, 20);
+            this.Total_Label.TabIndex = 39;
+            this.Total_Label.Text = "0.00 TL";
+            this.Total_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(288, 460);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(64, 13);
+            this.label8.TabIndex = 40;
+            this.label8.Text = "Ara Toplam:";
+            // 
+            // SubTotal_Label
+            // 
+            this.SubTotal_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SubTotal_Label.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.SubTotal_Label.Location = new System.Drawing.Point(357, 456);
+            this.SubTotal_Label.Margin = new System.Windows.Forms.Padding(3);
+            this.SubTotal_Label.Name = "SubTotal_Label";
+            this.SubTotal_Label.Size = new System.Drawing.Size(132, 20);
+            this.SubTotal_Label.TabIndex = 41;
+            this.SubTotal_Label.Text = "0.00 TL";
+            this.SubTotal_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Buy_Items_List
             // 
@@ -229,10 +258,10 @@
             this.columnHeader5});
             this.Buy_Items_List.FullRowSelect = true;
             this.Buy_Items_List.GridLines = true;
-            this.Buy_Items_List.Location = new System.Drawing.Point(12, 60);
+            this.Buy_Items_List.Location = new System.Drawing.Point(12, 25);
             this.Buy_Items_List.MultiSelect = false;
             this.Buy_Items_List.Name = "Buy_Items_List";
-            this.Buy_Items_List.Size = new System.Drawing.Size(647, 337);
+            this.Buy_Items_List.Size = new System.Drawing.Size(726, 398);
             this.Buy_Items_List.TabIndex = 27;
             this.Buy_Items_List.UseCompatibleStateImageBehavior = false;
             this.Buy_Items_List.View = System.Windows.Forms.View.Details;
@@ -274,28 +303,31 @@
             // 
             // Account_Box
             // 
+            this.Account_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Account_Box.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.Account_Box.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.Account_Box.FillType = Muhasebe.Custom.SearchBox.Fillable.Account;
             this.Account_Box.FormattingEnabled = true;
-            this.Account_Box.Location = new System.Drawing.Point(71, 12);
+            this.Account_Box.Location = new System.Drawing.Point(87, 429);
             this.Account_Box.Name = "Account_Box";
-            this.Account_Box.Size = new System.Drawing.Size(179, 21);
+            this.Account_Box.Size = new System.Drawing.Size(128, 21);
             this.Account_Box.TabIndex = 26;
             // 
             // Buy_Items_Pop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(752, 469);
+            this.ClientSize = new System.Drawing.Size(831, 540);
+            this.Controls.Add(this.SubTotal_Label);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.Total_Label);
+            this.Controls.Add(this.Discount_Num);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.CreatedAt_Picker);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.Increase_Stock_Check);
             this.Controls.Add(this.PaymentType_Combo);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.Expected_BasePrice_Label);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.Summary_Num);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Buy_Items_List);
             this.Controls.Add(this.Account_Box);
@@ -313,7 +345,7 @@
             this.Text = "Mal Alımı";
             this.Load += new System.EventHandler(this.Buy_Items_Pop_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Buy_Items_Pop_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.Summary_Num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Discount_Num)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -335,14 +367,16 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown Summary_Num;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label Expected_BasePrice_Label;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox PaymentType_Combo;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.CheckBox Increase_Stock_Check;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker CreatedAt_Picker;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown Discount_Num;
+        private System.Windows.Forms.Label Total_Label;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label SubTotal_Label;
     }
 }

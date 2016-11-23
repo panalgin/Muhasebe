@@ -83,7 +83,7 @@
         <AssociationConnector Association="MuhasebeModel.AccountMovementAccountMovementType" />
         <AssociationConnector Association="MuhasebeModel.IncomeAccount" />
         <AssociationConnector Association="MuhasebeModel.EventCompany" />
-        <EntityTypeShape EntityType="MuhasebeModel.StockMovementNode" Width="1.5" PointX="1.5" PointY="24.75" />
+        <EntityTypeShape EntityType="MuhasebeModel.StockMovementNode" Width="1.5" PointX="0.75" PointY="24.75" />
         <EntityTypeShape EntityType="MuhasebeModel.StockMovement" Width="1.5" PointX="3.75" PointY="24.375" />
         <AssociationConnector Association="MuhasebeModel.StockMovementCompany" />
         <AssociationConnector Association="MuhasebeModel.StockMovementUser" />
