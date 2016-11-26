@@ -306,6 +306,7 @@
             // Increase_Prices_Button
             // 
             this.Increase_Prices_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Increase_Prices_Button.Enabled = false;
             this.Increase_Prices_Button.Location = new System.Drawing.Point(948, 557);
             this.Increase_Prices_Button.Name = "Increase_Prices_Button";
             this.Increase_Prices_Button.Size = new System.Drawing.Size(75, 23);

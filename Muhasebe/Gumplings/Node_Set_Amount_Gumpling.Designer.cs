@@ -131,19 +131,9 @@
             0,
             0,
             0});
-            this.UnitPrice_Num.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
             this.UnitPrice_Num.Name = "UnitPrice_Num";
             this.UnitPrice_Num.Size = new System.Drawing.Size(150, 20);
             this.UnitPrice_Num.TabIndex = 1;
-            this.UnitPrice_Num.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
             // 
             // Node_Set_Amount_Gumpling
             // 

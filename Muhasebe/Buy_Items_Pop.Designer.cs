@@ -53,6 +53,7 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Account_Box = new Muhasebe.Custom.SearchBox();
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.Discount_Num)).BeginInit();
             this.SuspendLayout();
             // 
@@ -117,8 +118,9 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(31, 436);
+            this.label3.Location = new System.Drawing.Point(29, 436);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 13);
             this.label3.TabIndex = 17;
@@ -253,6 +255,7 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
+            this.columnHeader7,
             this.columnHeader4,
             this.columnHeader6,
             this.columnHeader5});
@@ -313,6 +316,12 @@
             this.Account_Box.Name = "Account_Box";
             this.Account_Box.Size = new System.Drawing.Size(128, 21);
             this.Account_Box.TabIndex = 26;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Mevcut Stok";
+            this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader7.Width = 96;
             // 
             // Buy_Items_Pop
             // 
@@ -379,5 +388,6 @@
         private System.Windows.Forms.Label Total_Label;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label SubTotal_Label;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
     }
 }

@@ -517,6 +517,7 @@ namespace Muhasebe
                                 {
                                     string message = "Yaptığınız {0} TL tutarındaki borç ödemesi silinecektir. \nBu işleme ait, gider yönetiminde gözüken gideriniz de silinecektir. \n\nOnaylıyor musunuz?";
 
+                                    
                                     Expenditure m_Expenditure = m_Context.Expenditures.Where(q => q.ID == m_Movement.ContractID && q.OwnerID == Program.User.WorksAtID).FirstOrDefault();
 
                                     if (m_Expenditure != null)
@@ -525,12 +526,13 @@ namespace Muhasebe
 
                                         if (MessageBox.Show(message, "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                         {
-                                            m_Context.AccountMovements.Remove(m_Movement);
                                             m_Context.Expenditures.Remove(m_Expenditure);
-
-                                            m_Context.SaveChanges();
                                         }
                                     }
+
+                                    m_Context.AccountMovements.Remove(m_Movement);
+                                    m_Context.SaveChanges();
+
 
                                     break;
                                 }

@@ -56,6 +56,8 @@ namespace Muhasebe
                     this.Amount_Num.Minimum = 0.01m;
                 else if (this.Amount_Num.DecimalPlaces == 4)
                     this.Amount_Num.Minimum = 0.0001m;
+
+                this.UnitPrice_Num.Minimum = 0.01m;
             }
 
             this.Amount_Num.Focus();

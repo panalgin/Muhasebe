@@ -63,7 +63,10 @@ namespace Muhasebe
                         this.Buy_Items_List.Focus();
                     }
                     else
-                        MessageBox.Show("Okuttuğunuz bu barkoda ait bir ürün bulunamadı.", "Hata", MessageBoxButtons.OK);
+                    {
+                        Add_Item_Pop m_Pop = new Add_Item_Pop(args.Barcode);
+                        m_Pop.ShowDialog();
+                    }
                 }
 
                 PopulateListView();
@@ -82,10 +85,11 @@ namespace Muhasebe
                     m_Node.Item = m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault();
 
                     ListViewItem m_ViewItem = new ListViewItem();
-                    m_ViewItem.Tag = m_Node.ID;
+                    m_ViewItem.Tag = m_Node.ItemID;
                     m_ViewItem.Text = m_Node.Item.Product.Barcode;
                     m_ViewItem.SubItems.Add(m_Node.Item.OrderCode);
                     m_ViewItem.SubItems.Add(m_Node.Item.Product.Name);
+                    m_ViewItem.SubItems.Add(ItemHelper.GetFormattedAmount(m_Node.Item.Amount, m_Node.Item.UnitType.DecimalPlaces, m_Node.Item.UnitType.Abbreviation));
                     m_ViewItem.SubItems.Add(ItemHelper.GetFormattedAmount(m_Node.Amount, m_Node.Item.UnitType.DecimalPlaces, m_Node.Item.UnitType.Abbreviation));
                     m_ViewItem.SubItems.Add(ItemHelper.GetFormattedPrice(m_Node.BasePrice.Value));
                     m_ViewItem.SubItems.Add(ItemHelper.GetFormattedPrice(m_Node.BasePrice.Value * m_Node.Amount));
@@ -256,9 +260,9 @@ namespace Muhasebe
         {
             if (this.Buy_Items_List.SelectedItems.Count > 0)
             {
-                int m_NodeID = Convert.ToInt32(this.Buy_Items_List.SelectedItems[0].Tag);
+                int m_ItemID = Convert.ToInt32(this.Buy_Items_List.SelectedItems[0].Tag);
 
-                StockMovementNode m_Node = this.StockMovement.Nodes.Where(q => q.ID == m_NodeID).FirstOrDefault();
+                StockMovementNode m_Node = this.StockMovement.Nodes.Where(q => q.ItemID == m_ItemID).FirstOrDefault();
 
                 if (m_Node != null)
                 {
@@ -272,9 +276,9 @@ namespace Muhasebe
         {
             if (this.Buy_Items_List.SelectedItems.Count > 0)
             {
-                int m_NodeID = Convert.ToInt32(this.Buy_Items_List.SelectedItems[0].Tag);
+                int m_ItemID = Convert.ToInt32(this.Buy_Items_List.SelectedItems[0].Tag);
 
-                StockMovementNode m_Node = this.StockMovement.Nodes.Where(q => q.ID == m_NodeID).FirstOrDefault();
+                StockMovementNode m_Node = this.StockMovement.Nodes.Where(q => q.ItemID == m_ItemID).FirstOrDefault();
 
                 Node_Set_Amount_Gumpling m_Gumpling = new Node_Set_Amount_Gumpling();
                 m_Gumpling.Node = m_Node;
