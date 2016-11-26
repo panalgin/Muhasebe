@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Delete_Button = new System.Windows.Forms.Button();
             this.Edit_Button = new System.Windows.Forms.Button();
             this.Add_Button = new System.Windows.Forms.Button();
@@ -58,6 +59,10 @@
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.seçiliİşlemleriPDFyeAktarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.silToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Inspect_Button = new System.Windows.Forms.Button();
             this.Accounts_Tab = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -83,6 +88,7 @@
             this.Delete_Movement_Button = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.Accounts_Tab.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -129,7 +135,8 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(12, 260);
@@ -170,6 +177,7 @@
             // 
             // Net_Debt_Label
             // 
+            this.Net_Debt_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Net_Debt_Label.AutoSize = true;
             this.Net_Debt_Label.Location = new System.Drawing.Point(672, 236);
             this.Net_Debt_Label.Name = "Net_Debt_Label";
@@ -179,6 +187,7 @@
             // 
             // Net_Loan_Label
             // 
+            this.Net_Loan_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Net_Loan_Label.AutoSize = true;
             this.Net_Loan_Label.Location = new System.Drawing.Point(672, 214);
             this.Net_Loan_Label.Name = "Net_Loan_Label";
@@ -369,10 +378,10 @@
             this.columnHeader11,
             this.columnHeader12,
             this.columnHeader21});
+            this.Account_History_View.ContextMenuStrip = this.contextMenuStrip1;
             this.Account_History_View.FullRowSelect = true;
             this.Account_History_View.GridLines = true;
             this.Account_History_View.Location = new System.Drawing.Point(3, 3);
-            this.Account_History_View.MultiSelect = false;
             this.Account_History_View.Name = "Account_History_View";
             this.Account_History_View.Size = new System.Drawing.Size(973, 199);
             this.Account_History_View.TabIndex = 0;
@@ -409,9 +418,40 @@
             this.columnHeader21.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader21.Width = 115;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.seçiliİşlemleriPDFyeAktarToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.silToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(205, 76);
+            // 
+            // seçiliİşlemleriPDFyeAktarToolStripMenuItem
+            // 
+            this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Enabled = false;
+            this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Image = global::Muhasebe.Properties.Resources.script_export;
+            this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Name = "seçiliİşlemleriPDFyeAktarToolStripMenuItem";
+            this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Text = "Seçili İşlemleri PDF\'ye Aktar";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(201, 6);
+            // 
+            // silToolStripMenuItem
+            // 
+            this.silToolStripMenuItem.Enabled = false;
+            this.silToolStripMenuItem.Image = global::Muhasebe.Properties.Resources.delete;
+            this.silToolStripMenuItem.Name = "silToolStripMenuItem";
+            this.silToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.silToolStripMenuItem.Text = "Sil";
+            this.silToolStripMenuItem.Click += new System.EventHandler(this.silToolStripMenuItem_Click);
+            // 
             // Inspect_Button
             // 
-            this.Inspect_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Inspect_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Inspect_Button.Enabled = false;
             this.Inspect_Button.Image = global::Muhasebe.Properties.Resources.magnifier;
             this.Inspect_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -425,8 +465,7 @@
             // 
             // Accounts_Tab
             // 
-            this.Accounts_Tab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.Accounts_Tab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Accounts_Tab.Controls.Add(this.tabPage2);
             this.Accounts_Tab.Controls.Add(this.tabPage3);
@@ -598,7 +637,7 @@
             // 
             // Delete_Movement_Button
             // 
-            this.Delete_Movement_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Delete_Movement_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Delete_Movement_Button.Enabled = false;
             this.Delete_Movement_Button.Image = global::Muhasebe.Properties.Resources.delete;
             this.Delete_Movement_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -628,6 +667,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.Accounts_Tab.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
@@ -690,5 +730,9 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button Delete_Movement_Button;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem seçiliİşlemleriPDFyeAktarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem silToolStripMenuItem;
     }
 }

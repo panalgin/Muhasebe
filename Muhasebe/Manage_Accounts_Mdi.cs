@@ -500,10 +500,13 @@ namespace Muhasebe
                                                 return true;
                                             });
 
-                                            Expenditure m_Expenditure = m_Context.Expenditures.Where(q => q.MovementID == m_Movement.ID).FirstOrDefault();
+                                            if (m_StockMov.PaymentTypeID != 3)
+                                            {
+                                                Expenditure m_Expenditure = m_Context.Expenditures.Where(q => q.MovementID == m_Movement.ID).FirstOrDefault();
 
-                                            if (m_Expenditure != null)
-                                                m_Context.Expenditures.Remove(m_Expenditure);
+                                                if (m_Expenditure != null)
+                                                    m_Context.Expenditures.Remove(m_Expenditure);
+                                            }
 
                                             m_Context.AccountMovements.Remove(m_Movement);
                                             m_Context.SaveChanges();
@@ -549,11 +552,29 @@ namespace Muhasebe
             if (this.Account_History_View.SelectedItems.Count > 0)
             {
                 this.Delete_Movement_Button.Enabled = true;
+                this.silToolStripMenuItem.Enabled = true;
+                this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Enabled = true;
+
+                if (this.Account_History_View.SelectedItems.Count > 1)
+                {
+                    this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Text = "Seçili İşlemleri PDF Dosyasına Aktar";
+                    this.Delete_Movement_Button.Enabled = false;
+                    this.silToolStripMenuItem.Enabled = false;
+                }
+                else
+                    this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Text = "PDF'ye Aktar";
             }
             else
             {
+                this.silToolStripMenuItem.Enabled = false;
+                this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Enabled = false;
                 this.Delete_Movement_Button.Enabled = false;
             }
+        }
+
+        private void silToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Delete_Movement_Button_Click(sender, e);
         }
     }
 }
