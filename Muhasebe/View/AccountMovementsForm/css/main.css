@@ -120,6 +120,7 @@ div {
 
 .movement-info {
     min-height: 100px;
+    height: auto !important;
 }
 
 .columns {
@@ -163,18 +164,86 @@ div {
     }
 
     .columns .payment {
-        width: 150px;
+        width: 100px;
     }
 
     .columns .price {
-        width: 80px;
+        width: 100px;
     }
 
     .columns .desc {
-        width: 218px;
+        width: 248px;
     }
 
 
+.movement-info table {
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 47px;
+
+    width: 100%;
+    box-sizing: border-box;
+    border-spacing: 0px 0px;
+
+    clear: both;
+}
+
+.movement-info table tr:first-child td  {
+        border-top: 0px !important;
+}
+
+.movement-info table td {
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 20px;
+    border-right: 1px solid #bbb;
+    border-top: 1px solid #bbb;
+    padding: 0px;
+}
+
+
+.movement-info table tr td:last-of-type { border-right: 0px; }
+.movement .id {
+    width: 50px;
+}
+
+.movement .mtype {
+    width: 150px;
+}
+
+.movement .date {
+    width: 100px;
+}
+
+.movement .author {
+    width: 150px;
+}
+
+.movement .payment {
+    width: 100px;
+}
+.movement .price {
+    width: 100px;
+}
+.movement .desc {
+    width: 248px; 
+}
+
+.sale {
+    position: static;
+    top: 0px;
+    margin-left: 50px;
+    width: auto;
+    border: none;
+    float: left;
+    clear: both;
+}
+.sale .col:last-of-type { border-right: 1px solid red !important; }
+.sale .order-code { width: 150px; }
+.sale .name { width: 250px; }
+.sale .amount { width: 100px; }
+.sale .base-price { width: 100px; }
+.sale .total-price { width: 100px; }
 
 .footer {
     box-sizing: border-box;
