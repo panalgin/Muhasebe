@@ -609,30 +609,9 @@ namespace Muhasebe
                                                  "<td class=\"date\">{2}</td>" +
                                                  "<td class=\"author\">{3}</td>" +
                                                  "<td class=\"payment\">{4}</td>" +
-                                                 "<td class=\"desc\"></td> " +
-                                                 "<td class=\"price\">{5}</td>" +
+                                                 "<td class=\"desc\">{5}</td> " +
+                                                 "<td class=\"price\">{6}</td>" +
                                              "</tr>";
-
-                    string m_ExTemplate =   "<tr>" +
-                                                "<td colspan=\"7\">" +
-                                                    "<div class=\"columns sale\">" +
-                                                        "<div class=\"order-code col\">Sipariş Kodu</div>" +
-                                                        "<div class=\"name col\">Ürün Adı</div>" +
-                                                        "<div class=\"amount col\">Satılan</div>" +
-                                                        "<div class=\"base-price col\">Birim</div>" +
-                                                        "<div class=\"total-price col\">Toplam</div>" +
-                                                    "</div>" +
-                                                    "{0}" +
-                                                "</td>" +
-                                            "</tr>";
-
-                    string m_ExItemTemplate =   "<div class=\"item\">" +
-                                                    "<div class=\"order-code col\">123235</div>" + 
-                                                    "<div class=\"name col\">AgroParts Hız Sensörü</div>" +
-                                                    "<div class=\"amount col\">25 Adet</div>" + 
-                                                    "<div class=\"base-price col\">24.00 TL</div>" +
-                                                    "<div class=\"total-price col\">254.00 TL</div>" +
-                                                "</div>";
 
                     m_List.All(delegate (AccountMovement movement)
                     {
@@ -663,14 +642,83 @@ namespace Muhasebe
                             }
                         }
 
-                        string m_Formatted = string.Format(m_BaseTemplate, movement.ID, movement.MovementType.Name, movement.CreatedAt.ToString(),
+                        string m_Formatted = string.Format(m_BaseTemplate, movement.ID, movement.MovementType.Name, movement.CreatedAt.ToString("dd/MM/yyyy"),
                             movement.Author.FullName, movement.PaymentType.Name, m_Description, ItemHelper.GetFormattedPrice(movement.Value));
 
                         m_Data += m_Formatted;
 
                         if (movement.MovementTypeID == 1 || movement.MovementTypeID == 3) // satılan malları veya alınanları listeleyelim
                         {
+                            string m_ExTemplate =   "<tr>" +
+                                                        "<td colspan=\"7\">" +
+                                                            "<div class=\"columns sale\">" +
+                                                                "<div class=\"order-code col\">Sipariş Kodu</div>" +
+                                                                "<div class=\"name col\">Ürün Adı</div>" +
+                                                                "<div class=\"amount col\">Satılan</div>" +
+                                                                "<div class=\"base-price col\">Birim</div>" +
+                                                                "<div class=\"total-price col\">Toplam</div>" +
+                                                            "</div>" +
+                                                            "{0}" +
+                                                        "</td>" +
+                                                    "</tr>";
 
+                            string m_ExItemTemplate =   "<div class=\"item\">" +
+                                                            "<div class=\"order-code col\">{0}</div>" +
+                                                            "<div class=\"name col\">{1}</div>" +
+                                                            "<div class=\"amount col\">{2}</div>" +
+                                                            "<div class=\"base-price col\">{3}</div>" +
+                                                            "<div class=\"total-price col\">{4}</div>" +
+                                                        "</div>";
+
+                            if (movement.MovementTypeID == 1) //Mal satışı
+                            {
+                                Invoice m_Invoice = m_Context.Invoices.Where(q => q.ID == movement.ContractID).FirstOrDefault();
+
+                                if (m_Invoice != null)
+                                {
+                                    string m_ExItemInfo = "";
+
+                                    m_Invoice.Nodes.All(delegate (InvoiceNode node)
+                                    {
+                                        string m_OrderCode = node.Item != null ? node.Item.OrderCode : "-";
+                                        string m_Name = node.Item != null ? node.Item.Product.Name : node.Description;
+                                        string m_Amount = node.Item != null ? ItemHelper.GetFormattedAmount(node.Amount.Value, node.Item.UnitType.DecimalPlaces, node.Item.UnitType.Abbreviation)
+                                                                            : ItemHelper.GetFormattedAmount(node.Amount.Value, 0, "Adet");
+                                        string m_Base = ItemHelper.GetFormattedPrice(node.BasePrice.Value);
+                                        string m_Final = ItemHelper.GetFormattedPrice(node.FinalPrice.Value);
+
+                                        m_ExItemInfo += string.Format(m_ExItemTemplate, m_OrderCode, m_Name, m_Amount, m_Base, m_Final);
+                                        return true;
+                                    });
+
+                                    m_ExItemInfo = string.Format(m_ExTemplate, m_ExItemInfo);
+                                    m_Data += m_ExItemInfo;
+                                }
+                            }
+                            else if (movement.MovementTypeID == 3) //Mal alımı
+                            {
+                                StockMovement m_Stock = m_Context.StockMovements.Where(q => q.ID == movement.ContractID).FirstOrDefault();
+
+                                if (m_Stock != null)
+                                {
+                                    string m_ExItemInfo = "";
+
+                                    m_Stock.Nodes.All(delegate (StockMovementNode node)
+                                    {
+                                        string m_OrderCode = node.Item.OrderCode;
+                                        string m_Name = node.Item.Product.Name;
+                                        string m_Amount = ItemHelper.GetFormattedAmount(node.Amount, node.Item.UnitType.DecimalPlaces, node.Item.UnitType.Abbreviation);
+                                        string m_Base = ItemHelper.GetFormattedPrice(node.BasePrice.Value);
+                                        string m_Final = ItemHelper.GetFormattedPrice(node.FinalPrice.Value);
+
+                                        m_ExItemInfo += string.Format(m_ExItemTemplate, m_OrderCode, m_Name, m_Amount, m_Base, m_Final);
+                                        return true;
+                                    });
+
+                                    m_ExItemInfo = string.Format(m_ExTemplate, m_ExItemInfo);
+                                    m_Data += m_ExItemInfo;
+                                }
+                            }
                         }
 
                         return true;
@@ -678,15 +726,13 @@ namespace Muhasebe
 
                     this.Save_Dialog.FileName = string.Format("{0} - İşlem Geçmişi.pdf", m_Account.Name);
 
-                    if (m_Order != null && this.Save_Dialog.ShowDialog() == DialogResult.OK)
+                    if (this.Save_Dialog.ShowDialog() == DialogResult.OK)
                     {
                         string m_SavePath = this.Save_Dialog.FileName;
                         string html = "";
                         string m_LocalPath = Application.StartupPath;
-                        string m_IndexPath = Path.Combine(m_LocalPath, "View\\OrderForm\\index.html");
-                        string m_AbsPath = Path.Combine(m_LocalPath, "View\\OrderForm\\");
-
- 
+                        string m_IndexPath = Path.Combine(m_LocalPath, "View\\AccountMovementsForm\\index.html");
+                        string m_AbsPath = Path.Combine(m_LocalPath, "View\\AccountMovementsForm\\");
 
                         using (StreamReader m_Reader = new StreamReader(m_IndexPath, Encoding.UTF8, true))
                         {
@@ -703,35 +749,6 @@ namespace Muhasebe
                         html = html.Replace("{PROVINCE}", Program.User.WorksAt.Province);
                         html = html.Replace("{TELEPHONE}", Program.User.WorksAt.Phone);
                         html = html.Replace("{EMAIL}", Program.User.WorksAt.Email);
-                        html = html.Replace("{ATTN-NAME}", m_Order.Account != null ? m_Order.Account.Name : "Yetkili");
-                        html = html.Replace("{AUTHOR-NAME}", Program.User.FullName);
-                        html = html.Replace("{AUTHOR-POSITION}", Program.User.Position.Name);
-                        html = html.Replace("{AUTHOR-EMAIL}", Program.User.Email);
-                        html = html.Replace("{AUTHOR-GSM}", Program.User.WorksAt.Gsm);
-                        html = html.Replace("{ORDER-ID}", m_Order.ID.ToString());
-                        html = html.Replace("{ATTN-NOTE}", m_Order.Note);
-
-                        string m_Template = "<tr class=\"item\">" +
-                                    "<td class=\"pro-img\"><img src=\"{0}\" /></td>" +
-                                    "<td class=\"pro-code\">{1}</td>" +
-                                    "<td class=\"pro-name\">{2}</td>" +
-                                    "<td class=\"pro-quantity\">{3}</td>" +
-                                    "<td class=\"pro-desc\">{4}</td>" +
-                                "</tr>";
-
-                        string m_Data = "";
-
-                        m_Order.Nodes.All(delegate (OrderNode node)
-                        {
-                            if (node.Item == null)
-                                return true;
-
-                            string m_ProImgPath = Path.Combine(m_LocalPath, node.Item.LocalImagePath);
-
-                            m_Data += string.Format(m_Template, File.Exists(m_ProImgPath) ? m_ProImgPath : "", string.IsNullOrEmpty(node.Item.OrderCode) ? "Yok" : node.Item.OrderCode, node.Item.Product.Name, ItemHelper.GetFormattedAmount(node.Amount, node.Item.UnitType.DecimalPlaces, node.Item.UnitType.Name), node.Description);
-
-                            return true;
-                        });
 
                         html = html.Replace("{DATA}", m_Data);
 

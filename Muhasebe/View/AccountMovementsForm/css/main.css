@@ -191,6 +191,7 @@ div {
     width: 100%;
     box-sizing: border-box;
     border-spacing: 0px 0px;
+    border-bottom: 1px solid #bbb;
 
     clear: both;
 }
@@ -259,7 +260,6 @@ div {
     font-size: 13px;
 }
 
-td .item:last-of-type { border-bottom: 1px solid #bbb; }
 
 .item .col {
     float: left; 
