@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Muhasebe.Custom;
+using OpenHtmlToPdf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -575,6 +578,197 @@ namespace Muhasebe
         private void silToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Delete_Movement_Button_Click(sender, e);
+        }
+
+        private void seçiliİşlemleriPDFyeAktarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Enabled = false;
+
+            this.BeginInvoke((MethodInvoker)delegate ()
+            {
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    List<AccountMovement> m_List = new List<AccountMovement>();
+
+                    foreach(ListViewItem m_Item in this.Account_History_View.SelectedItems)
+                    {
+                        int m_MovementID = Convert.ToInt32(m_Item.Tag);
+
+                        AccountMovement m_Movement = m_Context.AccountMovements.Where(q => q.ID == m_MovementID).FirstOrDefault();
+                        m_List.Add(m_Movement);
+                    }
+
+                    m_List = m_List.OrderBy(q => q.CreatedAt).ToList();
+                    Account m_Account = m_List.FirstOrDefault().Account;
+
+                    string m_Data = "";
+
+                    string m_BaseTemplate = "<tr class=\"movement\">" +
+                                                 "<td class=\"id\">{0}</td>" +
+                                                 "<td class=\"mtype\">{1}</td>" +
+                                                 "<td class=\"date\">{2}</td>" +
+                                                 "<td class=\"author\">{3}</td>" +
+                                                 "<td class=\"payment\">{4}</td>" +
+                                                 "<td class=\"desc\"></td> " +
+                                                 "<td class=\"price\">{5}</td>" +
+                                             "</tr>";
+
+                    string m_ExTemplate =   "<tr>" +
+                                                "<td colspan=\"7\">" +
+                                                    "<div class=\"columns sale\">" +
+                                                        "<div class=\"order-code col\">Sipariş Kodu</div>" +
+                                                        "<div class=\"name col\">Ürün Adı</div>" +
+                                                        "<div class=\"amount col\">Satılan</div>" +
+                                                        "<div class=\"base-price col\">Birim</div>" +
+                                                        "<div class=\"total-price col\">Toplam</div>" +
+                                                    "</div>" +
+                                                    "{0}" +
+                                                "</td>" +
+                                            "</tr>";
+
+                    string m_ExItemTemplate =   "<div class=\"item\">" +
+                                                    "<div class=\"order-code col\">123235</div>" + 
+                                                    "<div class=\"name col\">AgroParts Hız Sensörü</div>" +
+                                                    "<div class=\"amount col\">25 Adet</div>" + 
+                                                    "<div class=\"base-price col\">24.00 TL</div>" +
+                                                    "<div class=\"total-price col\">254.00 TL</div>" +
+                                                "</div>";
+
+                    m_List.All(delegate (AccountMovement movement)
+                    {
+                        string m_Description = "";
+
+                        if (movement.MovementTypeID != 3) // ürün tedariğinde yorum yok
+                        {
+                            if (movement.MovementTypeID == 1 && movement.PaymentTypeID != 3) // Vadeli satış değilse
+                            {
+                                Income m_Income = m_Context.Incomes.Where(q => q.InvoiceID == movement.ContractID).FirstOrDefault();
+
+                                if (m_Income != null)
+                                    m_Description = m_Income.Description;
+                            }
+                            else if (movement.MovementTypeID == 2) // Alacak tahsilatı, gelir
+                            {
+                                Income m_Income = m_Context.Incomes.Where(q => q.ID == movement.ContractID).FirstOrDefault();
+
+                                if (m_Income != null)
+                                    m_Description = m_Income.Description;
+                            }
+                            else if (movement.MovementTypeID == 4) // Borç ödemesi, gider
+                            {
+                                Expenditure m_Expenditure = m_Context.Expenditures.Where(q => q.ID == movement.ContractID).FirstOrDefault();
+
+                                if (m_Expenditure != null)
+                                    m_Description = m_Expenditure.Description;
+                            }
+                        }
+
+                        string m_Formatted = string.Format(m_BaseTemplate, movement.ID, movement.MovementType.Name, movement.CreatedAt.ToString(),
+                            movement.Author.FullName, movement.PaymentType.Name, m_Description, ItemHelper.GetFormattedPrice(movement.Value));
+
+                        m_Data += m_Formatted;
+
+                        if (movement.MovementTypeID == 1 || movement.MovementTypeID == 3) // satılan malları veya alınanları listeleyelim
+                        {
+
+                        }
+
+                        return true;
+                    });
+
+                    this.Save_Dialog.FileName = string.Format("{0} - İşlem Geçmişi.pdf", m_Account.Name);
+
+                    if (m_Order != null && this.Save_Dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string m_SavePath = this.Save_Dialog.FileName;
+                        string html = "";
+                        string m_LocalPath = Application.StartupPath;
+                        string m_IndexPath = Path.Combine(m_LocalPath, "View\\OrderForm\\index.html");
+                        string m_AbsPath = Path.Combine(m_LocalPath, "View\\OrderForm\\");
+
+ 
+
+                        using (StreamReader m_Reader = new StreamReader(m_IndexPath, Encoding.UTF8, true))
+                        {
+                            html = m_Reader.ReadToEnd();
+                        }
+
+                        html = html.Replace("{PATH}", m_AbsPath);
+                        html = html.Replace("{BASEPATH}", m_LocalPath);
+                        html = html.Replace("{COMPANY-NAME}", Program.User.WorksAt.Name);
+                        html = html.Replace("{TAXID}", Program.User.WorksAt.TaxID);
+                        html = html.Replace("{TAXPLACE}", Program.User.WorksAt.TaxDepartment);
+                        html = html.Replace("{ADDRESS}", Program.User.WorksAt.Address);
+                        html = html.Replace("{DISTRICT}", Program.User.WorksAt.District);
+                        html = html.Replace("{PROVINCE}", Program.User.WorksAt.Province);
+                        html = html.Replace("{TELEPHONE}", Program.User.WorksAt.Phone);
+                        html = html.Replace("{EMAIL}", Program.User.WorksAt.Email);
+                        html = html.Replace("{ATTN-NAME}", m_Order.Account != null ? m_Order.Account.Name : "Yetkili");
+                        html = html.Replace("{AUTHOR-NAME}", Program.User.FullName);
+                        html = html.Replace("{AUTHOR-POSITION}", Program.User.Position.Name);
+                        html = html.Replace("{AUTHOR-EMAIL}", Program.User.Email);
+                        html = html.Replace("{AUTHOR-GSM}", Program.User.WorksAt.Gsm);
+                        html = html.Replace("{ORDER-ID}", m_Order.ID.ToString());
+                        html = html.Replace("{ATTN-NOTE}", m_Order.Note);
+
+                        string m_Template = "<tr class=\"item\">" +
+                                    "<td class=\"pro-img\"><img src=\"{0}\" /></td>" +
+                                    "<td class=\"pro-code\">{1}</td>" +
+                                    "<td class=\"pro-name\">{2}</td>" +
+                                    "<td class=\"pro-quantity\">{3}</td>" +
+                                    "<td class=\"pro-desc\">{4}</td>" +
+                                "</tr>";
+
+                        string m_Data = "";
+
+                        m_Order.Nodes.All(delegate (OrderNode node)
+                        {
+                            if (node.Item == null)
+                                return true;
+
+                            string m_ProImgPath = Path.Combine(m_LocalPath, node.Item.LocalImagePath);
+
+                            m_Data += string.Format(m_Template, File.Exists(m_ProImgPath) ? m_ProImgPath : "", string.IsNullOrEmpty(node.Item.OrderCode) ? "Yok" : node.Item.OrderCode, node.Item.Product.Name, ItemHelper.GetFormattedAmount(node.Amount, node.Item.UnitType.DecimalPlaces, node.Item.UnitType.Name), node.Description);
+
+                            return true;
+                        });
+
+                        html = html.Replace("{DATA}", m_Data);
+
+                        try
+                        {
+                            var pdf = Pdf
+                                .From(html)
+                                .OfSize(PaperSize.A4)
+                                .WithTitle("Title")
+                                .WithMargins(0.8.Centimeters())
+                                .WithoutOutline()
+                                .Portrait()
+                                .Comressed()
+                                .Content();
+
+
+                            FileStream m_Stream = new FileStream(m_SavePath, FileMode.Create);
+
+                            using (BinaryWriter m_Writer = new BinaryWriter(m_Stream))
+                            {
+                                m_Writer.Write(pdf, 0, pdf.Length);
+                            }
+
+                            m_Stream.Close();
+                            m_Stream.Dispose();
+                            MessageBox.Show("Pdf dosyası oluşturuldu.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Enqueue(ex);
+                            MessageBox.Show("Oluşan bir hata nedeniyle pdf dosyası yazılamadı. Lütfen tekrar deneyin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            });
+
+            this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Enabled = true;
         }
     }
 }

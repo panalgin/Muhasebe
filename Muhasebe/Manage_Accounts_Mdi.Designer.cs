@@ -86,6 +86,7 @@
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Delete_Movement_Button = new System.Windows.Forms.Button();
+            this.Save_Dialog = new System.Windows.Forms.SaveFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -425,7 +426,7 @@
             this.toolStripSeparator1,
             this.silToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(205, 76);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(205, 54);
             // 
             // seçiliİşlemleriPDFyeAktarToolStripMenuItem
             // 
@@ -434,6 +435,7 @@
             this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Name = "seçiliİşlemleriPDFyeAktarToolStripMenuItem";
             this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Text = "Seçili İşlemleri PDF\'ye Aktar";
+            this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Click += new System.EventHandler(this.seçiliİşlemleriPDFyeAktarToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -734,5 +736,6 @@
         private System.Windows.Forms.ToolStripMenuItem seçiliİşlemleriPDFyeAktarToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem silToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog Save_Dialog;
     }
 }
