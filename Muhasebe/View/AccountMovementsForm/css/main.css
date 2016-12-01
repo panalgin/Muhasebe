@@ -70,6 +70,10 @@ div {
         border-bottom: 1px solid #bbb;
     }
 
+.movement-header {
+    box-sizing: border-box;
+    border: 1px solid #bbb;
+}
 .account-info #name {
     position: absolute;
     top: 30px;
@@ -121,20 +125,21 @@ div {
 .movement-info {
     min-height: 100px;
     height: auto !important;
+    border: 1px solid transparent !important;
 }
 
 .columns {
-    width: 100%;
     clear: both;
     background-color: #ddd;
     overflow: hidden;
     line-height: 20px;
     font-weight: bold;
     text-align: center;
-    border-bottom: 1px solid #bbb;
+    border: 1px solid #bbb;
+    border-top: none;
     box-sizing: border-box;
     position: absolute;
-    top: 26px;
+    top: 25px;
     font-size: 14px;
     font-weight: normal;
 }
@@ -172,14 +177,14 @@ div {
     }
 
     .columns .desc {
-        width: 248px;
+        width: 246px;
     }
 
 
 .movement-info table {
     font-size: 14px;
     font-weight: normal;
-    margin-top: 47px;
+    margin-top: 46px;
 
     width: 100%;
     box-sizing: border-box;
@@ -232,18 +237,45 @@ div {
 .sale {
     position: static;
     top: 0px;
-    margin-left: 50px;
+    margin-left: 49px;
     width: auto;
     border: none;
     float: left;
     clear: both;
+    font-size: 13px;
 }
-.sale .col:last-of-type { border-right: 1px solid red !important; }
-.sale .order-code { width: 150px; }
+
+.item { 
+    clear: both;
+    margin-left: 49px;
+    width: auto;
+    float: left;
+    font-size: 13px;
+}
+
+.item .col {
+    float: left; 
+    border-left: 1px solid #bbb;
+    border-top: 1px solid #bbb;
+    box-sizing: border-box;
+}
+    .item .col:last-of-type {
+        border-right: 1px solid #bbb;
+    }
+
+.sale .col:first-of-type { border-left: 1px solid #bbb; }
+.sale .col:last-of-type { border-right: 1px solid #bbb !important; }
+.sale .order-code { width: 151px; }
 .sale .name { width: 250px; }
 .sale .amount { width: 100px; }
-.sale .base-price { width: 100px; }
-.sale .total-price { width: 100px; }
+.sale .base-price { width: 124px; }
+.sale .total-price { width: 124px; }
+
+.item .order-code { width: 150px; }
+.item .name { width: 250px; }
+.item .amount { width: 100px; }
+.item .base-price { width: 124px; }
+.item .total-price { width: 125px; }
 
 .footer {
     box-sizing: border-box;
