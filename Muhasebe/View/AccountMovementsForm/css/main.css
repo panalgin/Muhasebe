@@ -73,6 +73,8 @@ div {
 .movement-header {
     box-sizing: border-box;
     border: 1px solid #bbb;
+    height: 32px !important;
+    line-height: 32px !important;
 }
 .account-info #name {
     position: absolute;
@@ -132,14 +134,14 @@ div {
     clear: both;
     background-color: #ddd;
     overflow: hidden;
-    line-height: 20px;
+    line-height: 30px;
     font-weight: bold;
     text-align: center;
     border: 1px solid #bbb;
     border-top: none;
     box-sizing: border-box;
     position: absolute;
-    top: 25px;
+    top: 32px;
     font-size: 14px;
     font-weight: normal;
 }
@@ -153,7 +155,7 @@ div {
     .columns .col:last-of-type { border-right: 0px; }
 
     .columns .id {
-        width: 50px;
+        width: 49px;
     }
 
     .columns .movetype {
@@ -173,18 +175,18 @@ div {
     }
 
     .columns .price {
-        width: 100px;
+        width: 99px;
     }
 
     .columns .desc {
-        width: 246px;
+        width: 248px;
     }
 
 
 .movement-info table {
     font-size: 14px;
     font-weight: normal;
-    margin-top: 46px;
+    margin-top: 63px;
 
     width: 100%;
     box-sizing: border-box;
@@ -206,10 +208,11 @@ div {
     padding: 0px;
 }
 
-
 .movement-info table tr td:last-of-type { border-right: 0px; }
+
 .movement .id {
     width: 50px;
+    border-left: 1px solid #bbb;
 }
 
 .movement .mtype {
@@ -227,11 +230,12 @@ div {
 .movement .payment {
     width: 100px;
 }
-.movement .price {
-    width: 100px;
-}
 .movement .desc {
     width: 248px; 
+}
+.movement .price {
+    width: 100px;
+    border-right: 1px solid #bbb !important;
 }
 
 .sale {
@@ -243,6 +247,8 @@ div {
     float: left;
     clear: both;
     font-size: 13px;
+    line-height: 20px;
+    height: 20px;
 }
 
 .item { 
@@ -253,11 +259,15 @@ div {
     font-size: 13px;
 }
 
+td .item:last-of-type { border-bottom: 1px solid #bbb; }
+
 .item .col {
     float: left; 
     border-left: 1px solid #bbb;
     border-top: 1px solid #bbb;
     box-sizing: border-box;
+    height: 20px;
+    overflow: hidden;
 }
     .item .col:last-of-type {
         border-right: 1px solid #bbb;
@@ -311,3 +321,31 @@ div {
         right: 5px;
         bottom: 10px;
     }
+
+.summary {
+    margin-top: 5px;
+    border: 1px solid #bbb;
+    background-color: #f1f1f1;
+}
+
+.summary .header {
+    border: none;
+    float: left;
+    width: 100%;
+    clear: both;
+    line-height: 30px;
+    height: 30px;
+    border-bottom: 1px solid #bbb;
+    background-color: #f1f1f1;
+    text-align: left;
+    text-indent: 5px;
+    margin-top: 0px;
+}
+
+.summary .content {
+    width: 100%;
+    background-color: #fff;
+    font-weight: normal;
+    font-size: 14px;
+    margin-top: 31px;
+}
