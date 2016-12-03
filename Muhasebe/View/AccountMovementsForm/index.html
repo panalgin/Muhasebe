@@ -25,14 +25,14 @@
             </div>
             <div class="account-info">
                 <div class="account-header">Hesap Bilgileri</div>
-                <span id="name">Hesap Adı: <strong>Firma İsmi</strong></span>
-                <span id="tax-office">Vergi Dairesi: <strong>Malkara V.D</strong></span>
-                <span id="tax-no">Vergi No: <strong>123253245</strong></span>
-                <span id="address">Adres: <strong>Adres</strong></span>
-                <span id="location">İl/İlçe: <strong>Tekirdağ/Malkara</strong></span>
-                <span id="phone">Telefon: <strong>0282 244 23 32</strong></span>
-                <span id="gsm">Gsm: <strong>0545 000 25 20</strong></span>
-                <span id="email">Email: <strong>info@daflan.com</strong></span>
+                <span id="name">Hesap Adı: <strong>{ACCOUNT-NAME}</strong></span>
+                <span id="tax-office">Vergi Dairesi: <strong>{ACCOUNT-TAXOFFICE}</strong></span>
+                <span id="tax-no">Vergi No: <strong>{ACCOUNT-TAXID}</strong></span>
+                <span id="address">Adres: <strong>{ACCOUNT-ADDRESS}</strong></span>
+                <span id="location">İl/İlçe: <strong>{ACCOUNT-CITY}/{ACCOUNT-PROVINCE}</strong></span>
+                <span id="phone">Telefon: <strong>{ACCOUNT-PHONE}</strong></span>
+                <span id="gsm">Gsm: <strong>{ACCOUNT-GSM}</strong></span>
+                <span id="email">Email: <strong>{ACCOUNT-EMAIL}</strong></span>
             </div>
             <div class="movement-info">
                 <div class="movement-header">İşlemler</div>
@@ -99,7 +99,7 @@
                 <div class="summary">
                     <div class="header">Özet</div>
                     <div class="content">
-                        <span>Yukarıdaki işlemler sonucunda firmamız <strong>size 165.24 TL borçludur.</strong></span>
+                        <span>{SUMMARY}</span>
                     </div>
                 </div>
 

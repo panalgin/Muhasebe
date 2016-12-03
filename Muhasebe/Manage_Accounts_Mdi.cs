@@ -335,51 +335,25 @@ namespace Muhasebe
         {
             this.BeginInvoke((MethodInvoker)delegate ()
             {
-                decimal buyVolume = 0.00m;
-                decimal sellVolume = 0.00m;
+                AccountSummary m_Summary = this.CalculateNet(m_Movements);
 
-                decimal totalLoan = 0.00m;
-                decimal totalCharged = 0.00m;
+                this.Buy_Volume_Label.Text = string.Format("{0} TL", m_Summary.BuyVolume.ToString());
+                this.Sell_Volume_Label.Text = string.Format("{0} TL", m_Summary.SellVoluma.ToString());
 
-                decimal totalDebt = 0.00m;
-                decimal totalPaid = 0.00m;
+                this.Loan_Label.Text = string.Format("{0} TL", m_Summary.LoanTotal.ToString());
+                this.Debt_Label.Text = string.Format("{0} TL", m_Summary.DebtTotal.ToString());
 
-                decimal netLoan = 0.00m;
-                decimal netDebt = 0.00m;
+                this.Charged_Label.Text = string.Format("{0} TL", m_Summary.Charged.ToString());
+                this.Paid_Label.Text = string.Format("{0} TL", m_Summary.Paid.ToString());
 
-                decimal netValue = 0.00m;
+                this.Net_Loan_Label.Text = string.Format("{0} TL", m_Summary.LoanNet.ToString());
+                this.Net_Debt_Label.Text = string.Format("{0} TL", m_Summary.DebtNet.ToString());
 
-                buyVolume = m_Movements.Where(q => q.MovementTypeID == 3).Sum(q => q.Value);
-                sellVolume = m_Movements.Where(q => q.MovementTypeID == 1).Sum(q => q.Value);
+                this.Net_Value_Label.Text = string.Format("{0} TL", Math.Abs(m_Summary.Net));
 
-                totalLoan = m_Movements.Where(q => q.MovementTypeID == 1 && q.PaymentTypeID == 3).Sum(q => q.Value); // Yapılan vadeli satışlardan alacak geçmişimiz
-                totalCharged = m_Movements.Where(q => q.MovementTypeID == 2).Sum(q => q.Value); // Yapılan vade tahsilatları
-
-                totalDebt = m_Movements.Where(q => q.MovementTypeID == 3 && q.PaymentTypeID == 3).Sum(q => q.Value); // Yapılan vadeli ürün alımlarımıza ait borcumuz
-                totalPaid = m_Movements.Where(q => q.MovementTypeID == 4).Sum(q => q.Value); // Yaptığımız borç ödemeleri
-
-                netLoan = totalLoan - totalCharged;
-                netDebt = totalDebt - totalPaid;
-
-                this.Buy_Volume_Label.Text = string.Format("{0} TL", buyVolume.ToString());
-                this.Sell_Volume_Label.Text = string.Format("{0} TL", sellVolume.ToString());
-
-                this.Loan_Label.Text = string.Format("{0} TL", totalLoan.ToString());
-                this.Debt_Label.Text = string.Format("{0} TL", totalDebt.ToString());
-
-                this.Charged_Label.Text = string.Format("{0} TL", totalCharged.ToString());
-                this.Paid_Label.Text = string.Format("{0} TL", totalPaid.ToString());
-
-                this.Net_Loan_Label.Text = string.Format("{0} TL", netLoan.ToString());
-                this.Net_Debt_Label.Text = string.Format("{0} TL", netDebt.ToString());
-
-                netValue = netDebt - netLoan;
-
-                this.Net_Value_Label.Text = string.Format("{0} TL", Math.Abs(netValue));
-
-                if (netValue < 0)
+                if (m_Summary.Net < 0)
                     this.Net_State_Label.Text = "Alacağınız var.";
-                else if (netValue > 0)
+                else if (m_Summary.Net > 0)
                     this.Net_State_Label.Text = "Borcunuz var.";
                 else
                     this.Net_State_Label.Text = "Nötr";
@@ -600,9 +574,10 @@ namespace Muhasebe
 
                     m_List = m_List.OrderBy(q => q.CreatedAt).ToList();
                     Account m_Account = m_List.FirstOrDefault().Account;
+                    AccountSummary m_Summary = this.CalculateNet(m_List);
 
                     string m_Data = "";
-
+                    string m_SummaryTemplate = "Yukarıdaki işlemler sonucunda firmamız <strong>{0}</strong>";
                     string m_BaseTemplate = "<tr class=\"movement\">" +
                                                  "<td class=\"id\">{0}</td>" +
                                                  "<td class=\"mtype\">{1}</td>" +
@@ -724,6 +699,13 @@ namespace Muhasebe
                         return true;
                     });
 
+                    if (m_Summary.Net < 0)
+                        m_SummaryTemplate = string.Format(m_SummaryTemplate, string.Format("sizden {0} alacaklıdır.", ItemHelper.GetFormattedPrice(Math.Abs(m_Summary.Net))));
+                    else if (m_Summary.Net > 0)
+                        m_SummaryTemplate = string.Format(m_SummaryTemplate, string.Format("size {0} borçludur.", ItemHelper.GetFormattedPrice(Math.Abs(m_Summary.Net))));
+                    else
+                        this.Net_State_Label.Text = "Herhangi bir alacak/borç bulunmamaktadır.";
+
                     this.Save_Dialog.FileName = string.Format("{0} - İşlem Geçmişi.pdf", m_Account.Name);
 
                     if (this.Save_Dialog.ShowDialog() == DialogResult.OK)
@@ -751,6 +733,7 @@ namespace Muhasebe
                         html = html.Replace("{EMAIL}", Program.User.WorksAt.Email);
 
                         html = html.Replace("{DATA}", m_Data);
+                        html = html.Replace("{SUMMARY}", m_SummaryTemplate);
 
                         try
                         {
@@ -786,6 +769,37 @@ namespace Muhasebe
             });
 
             this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Enabled = true;
+        }
+
+        private AccountSummary CalculateNet(List<AccountMovement> m_Movements)
+        {
+            AccountSummary m_Summary = new AccountSummary();
+
+            m_Summary.BuyVolume = m_Movements.Where(q => q.MovementTypeID == 3).Sum(q => q.Value);
+            m_Summary.SellVoluma = m_Movements.Where(q => q.MovementTypeID == 1).Sum(q => q.Value);
+
+            m_Summary.LoanTotal = m_Movements.Where(q => q.MovementTypeID == 1 && q.PaymentTypeID == 3).Sum(q => q.Value); // Yapılan vadeli satışlardan alacak geçmişimiz
+            m_Summary.Charged = m_Movements.Where(q => q.MovementTypeID == 2).Sum(q => q.Value); // Yapılan vade tahsilatları
+
+            m_Summary.DebtTotal = m_Movements.Where(q => q.MovementTypeID == 3 && q.PaymentTypeID == 3).Sum(q => q.Value); // Yapılan vadeli ürün alımlarımıza ait borcumuz
+            m_Summary.Paid = m_Movements.Where(q => q.MovementTypeID == 4).Sum(q => q.Value); // Yaptığımız borç ödemeleri
+
+            return m_Summary;
+        }
+
+        private class AccountSummary
+        {
+            public decimal BuyVolume { get; set; }
+            public decimal SellVoluma { get; set; }
+            public decimal LoanTotal { get; set; }
+            public decimal DebtTotal { get; set; }
+
+            public decimal Charged { get; set; }
+            public decimal Paid { get; set; }
+
+            public decimal LoanNet { get { return LoanTotal - Charged; } }
+            public decimal DebtNet { get { return DebtTotal - Paid; } }
+            public decimal Net { get { return DebtNet - LoanNet; } }
         }
     }
 }
