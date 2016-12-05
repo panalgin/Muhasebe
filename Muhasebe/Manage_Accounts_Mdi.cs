@@ -735,6 +735,16 @@ namespace Muhasebe
                         html = html.Replace("{DATA}", m_Data);
                         html = html.Replace("{SUMMARY}", m_SummaryTemplate);
 
+                        html = html.Replace("{ACCOUNT-NAME}", m_Account.Name);
+                        html = html.Replace("{ACCOUNT-TAXOFFICE", m_Account.TaxDepartment);
+                        html = html.Replace("{ACCOUNT-TAXID}", m_Account.TaxID);
+                        html = html.Replace("{ACCOUNT-ADDRESS}", m_Account.Address);
+                        html = html.Replace("{ACCOUNT-CITY}", m_Account.City.Name);
+                        html = html.Replace("{ACCOUNT-PROVINCE}", m_Account.Province.Name);
+                        html = html.Replace("{ACCOUNT-PHONE}", m_Account.Phone);
+                        html = html.Replace("{ACCOUNT-GSM}", m_Account.Gsm);
+                        html = html.Replace("{ACCOUNT-EMAIL}", m_Account.Email);
+
                         try
                         {
                             var pdf = Pdf
@@ -746,7 +756,6 @@ namespace Muhasebe
                                 .Portrait()
                                 .Comressed()
                                 .Content();
-
 
                             FileStream m_Stream = new FileStream(m_SavePath, FileMode.Create);
 

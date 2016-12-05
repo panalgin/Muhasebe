@@ -92,6 +92,8 @@ namespace Muhasebe
                     m_Account.Gsm = this.Gsm_Box.Text;
                     m_Account.Email = this.Email_Box.Text;
                     m_Account.OwnerID = Program.User.WorksAtID.Value;
+                    m_Account.TaxDepartment = this.TaxDepartment_Box.Text;
+                    m_Account.TaxID = this.TaxID_Box.Text;
 
                     m_Context.Accounts.Add(m_Account);
                     m_Context.SaveChanges();

@@ -24,6 +24,8 @@ namespace Muhasebe
         public string Gsm { get; set; }
         public string Email { get; set; }
         public int OwnerID { get; set; }
+        public string TaxDepartment { get; set; }
+        public string TaxID { get; set; }
     
         public virtual Province Province { get; set; }
         public virtual City City { get; set; }

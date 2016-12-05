@@ -50,6 +50,10 @@
             this.Error_Provider = new System.Windows.Forms.ErrorProvider(this.components);
             this.Cancel_Button = new System.Windows.Forms.Button();
             this.Save_Button = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.TaxDepartment_Box = new System.Windows.Forms.TextBox();
+            this.TaxID_Box = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Error_Provider)).BeginInit();
@@ -57,6 +61,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.TaxID_Box);
+            this.groupBox1.Controls.Add(this.TaxDepartment_Box);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.AccountName_Box);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.AccountType_Combo);
@@ -255,6 +263,38 @@
             this.Save_Button.UseVisualStyleBackColor = true;
             this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(44, 76);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(69, 13);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Vergi Dairesi:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(62, 101);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(51, 13);
+            this.label10.TabIndex = 4;
+            this.label10.Text = "Vergi No:";
+            // 
+            // TaxDepartment_Box
+            // 
+            this.TaxDepartment_Box.Location = new System.Drawing.Point(119, 72);
+            this.TaxDepartment_Box.Name = "TaxDepartment_Box";
+            this.TaxDepartment_Box.Size = new System.Drawing.Size(159, 20);
+            this.TaxDepartment_Box.TabIndex = 2;
+            // 
+            // TaxID_Box
+            // 
+            this.TaxID_Box.Location = new System.Drawing.Point(119, 98);
+            this.TaxID_Box.Name = "TaxID_Box";
+            this.TaxID_Box.Size = new System.Drawing.Size(159, 20);
+            this.TaxID_Box.TabIndex = 3;
+            // 
             // Add_Account_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,5 +343,9 @@
         private System.Windows.Forms.TextBox Email_Box;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ErrorProvider Error_Provider;
+        private System.Windows.Forms.TextBox TaxID_Box;
+        private System.Windows.Forms.TextBox TaxDepartment_Box;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
     }
 }

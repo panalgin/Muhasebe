@@ -40,6 +40,8 @@
           <Property Name="Gsm" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="250" />
           <Property Name="OwnerID" Type="int" Nullable="false" />
+          <Property Name="TaxDepartment" Type="nvarchar" MaxLength="50" />
+          <Property Name="TaxID" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="AccountTypes">
           <Key>
@@ -1361,6 +1363,8 @@
           <NavigationProperty Name="AccountType" Relationship="MuhasebeModel.AccountTypeAccount" FromRole="Account" ToRole="AccountType" />
           <Property Name="OwnerID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Owner" Relationship="MuhasebeModel.AccountCompany" FromRole="Account" ToRole="Company" />
+          <Property Name="TaxDepartment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TaxID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -2032,6 +2036,8 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="MuhasebeModel.Account">
               <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="TaxID" ColumnName="TaxID" />
+                <ScalarProperty Name="TaxDepartment" ColumnName="TaxDepartment" />
                 <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Gsm" ColumnName="Gsm" />

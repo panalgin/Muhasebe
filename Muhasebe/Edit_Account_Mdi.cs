@@ -50,6 +50,8 @@ namespace Muhasebe
             this.Phone_Box.Text = this.Account.Phone;
             this.Gsm_Box.Text = this.Account.Gsm;
             this.Email_Box.Text = this.Account.Email;
+            this.TaxDepartment_Box.Text = this.Account.TaxDepartment;
+            this.TaxID_Box.Text = this.Account.TaxID;
         }
 
         private void City_Combo_SelectedIndexChanged(object sender, EventArgs e)
@@ -95,6 +97,8 @@ namespace Muhasebe
                         m_Existing.Phone = this.Phone_Box.Text;
                         m_Existing.Gsm = this.Gsm_Box.Text;
                         m_Existing.Email = this.Email_Box.Text;
+                        m_Existing.TaxDepartment = this.TaxDepartment_Box.Text;
+                        m_Existing.TaxID = this.TaxID_Box.Text; 
 
                         m_Context.SaveChanges();
                     }
