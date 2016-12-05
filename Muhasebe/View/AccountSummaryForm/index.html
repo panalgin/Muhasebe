@@ -47,7 +47,7 @@
                 </div>
                 <table>
                     <tbody>
-                        <!--<tr class="movement">
+                        <tr class="movement">
                             <td class="id">1</td>
                             <td class="mtype">Alacak Tahsilatı</td>
                             <td class="date">22.07.2016</td>
@@ -65,41 +65,25 @@
                             <td class="desc">Elden ödeme alındı Elden ödeme alındı Elden ödeme alındı Elden ödeme alındı Elden ödeme alındı</td>
                             <td class="price">256.45 TL</td>
                         </tr>
-                        <tr>
-                            <td colspan="7">
-                                <div class="columns sale">
-                                    <div class="order-code col">
-                                        Sipariş Kodu
-                                    </div>
-                                    <div class="name col">Ürün Adı</div>
-                                    <div class="amount col">Satılan</div>
-                                    <div class="base-price col">Birim</div>
-                                    <div class="total-price col">Toplam</div>
-                                </div>
-                                <div class="item">
-                                    <div class="order-code col">123235</div>
-                                    <div class="name col">AgroParts Hız Sensörü AgroParts Hız Sensörü AgroParts Hız Sensörü AgroParts Hız Sensörü</div>
-                                    <div class="amount col">25 Adet</div>
-                                    <div class="base-price col">24.00 TL</div>
-                                    <div class="total-price col">254.00 TL</div>
-                                </div>
-                                <div class="item">
-                                    <div class="order-code col">123235</div>
-                                    <div class="name col">AgroParts Hız Sensörü</div>
-                                    <div class="amount col">25 Adet</div>
-                                    <div class="base-price col">24.00 TL</div>
-                                    <div class="total-price col">254.00 TL</div>
-                                </div>
-                            </td>
-                        </tr>-->
-                        {DATA}
                     </tbody>
                 </table>
 
                 <div class="summary">
-                    <div class="header">Özet</div>
+                    <div class="header">Özet - Tüm Zamanlar</div>
                     <div class="content">
-                        <span>{SUMMARY}</span>
+                        <span class="volume-sold">Toplam Satış Hacmi: 1982,00 TL</span>
+                        <span class="volume-bought">Toplam Alış Hacmi: 2565,25 TL</span>
+
+                        <span class="history-loan">Alacak Geçmişimiz: 250,52 TL</span>
+                        <span class="history-debt">Borç Geçmişimiz: 345,45 TL</span>
+
+                        <span class="charged">Aldığımız Tutar: 115,00 TL</span>
+                        <span class="paid">Ödediğimiz Tutar: 85,00 TL</span>
+
+                        <span class="net-loan">Net Alacağımız: 952,00 TL</span>
+                        <span class="net-debt">Net Borcumuz: 977,26 TL</span>
+
+                        <span class="net-summary">{SUMMARY}</span>
                     </div>
                 </div>
 

@@ -346,6 +346,64 @@ div {
     width: 100%;
     background-color: #fff;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 12px;
     margin-top: 31px;
+    position: relative;
+    min-height: 100px;
+}
+
+.content .volume-sold {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.content .volume-bought {
+    position: absolute;
+    top: 25px;
+    left: 15px;
+}
+
+.content .history-loan {
+    top: 5px;
+    left: 225px;
+    position: absolute;
+}
+
+.content .history-debt {
+    position: absolute;
+    top: 25px;
+    left: 235px;
+}
+
+.content .charged {
+    position: absolute;
+    top: 5px;
+    left: 425px;
+}
+
+.content .paid {
+    position: absolute;
+    top: 25px;
+    left: 425px;
+}
+
+.content .net-loan {
+    position: absolute;
+    top: 5px;
+    left: 650px;
+}
+.content .net-debt {
+    position: absolute;
+    top: 25px;
+    left: 650px;
+}
+
+.content .net-summary {
+    position: absolute;
+    top: 60px;
+    display: block;
+    width: 100%;
+    line-height: 20px;
+    text-align: center;
 }
