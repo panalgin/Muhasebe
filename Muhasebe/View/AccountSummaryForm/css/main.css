@@ -1,0 +1,351 @@
+﻿body {
+    font-family: Tahoma;
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+
+div {
+    display: block;
+}
+
+.wrapper {
+    width: 900px;
+    text-align: left;
+    margin: 0px auto;
+}
+
+.top {
+    height: 100px;
+    border: 1px solid #DDD;
+}
+
+    .top .logo {
+        height: 90px;
+        margin: 5px 10px;
+    }
+
+    .top .company-tag {
+        float: right;
+        overflow: hidden;
+        padding-top: 7px;
+        padding-right: 5px;
+    }
+
+        .top .company-tag span {
+            clear: both;
+            display: block;
+        }
+
+.main .header, .main .account-info, .main .movement-info {
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+    border: 1px solid #bbb;
+    margin-top: 5px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.main .account-info, .movement-info {
+    font-size: 14px;
+    height: 95px;
+    line-height: normal;
+    font-weight: normal;
+    position: relative;
+}
+
+    .account-info .account-header, .movement-info .movement-header {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        text-align: left;
+        text-indent: 5px;
+        height: 25px;
+        line-height: 25px;
+        background-color: #f1f1f1;
+        font-weight: bold;
+        border-bottom: 1px solid #bbb;
+    }
+
+.movement-header {
+    box-sizing: border-box;
+    border: 1px solid #bbb;
+    height: 32px !important;
+    line-height: 32px !important;
+}
+.account-info #name {
+    position: absolute;
+    top: 30px;
+    left: 35px;
+}
+
+.account-info #tax-office {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+}
+
+.account-info #tax-no {
+    position: absolute;
+    top: 70px;
+    left: 42px;
+}
+
+.account-info #address {
+    position: absolute;
+    top: 30px;
+    left: 310px;
+}
+
+.account-info #location {
+    position: absolute;
+    top: 50px;
+    left: 313px;
+}
+
+.account-info #phone {
+    position: absolute;
+    top: 70px;
+    left: 300px;
+}
+
+.account-info #gsm {
+    position: absolute;
+    top: 50px;
+    left: 654px;
+}
+
+.account-info #email {
+    position: absolute;
+    top: 70px;
+    left: 650px;
+}
+
+.movement-info {
+    min-height: 100px;
+    height: auto !important;
+    border: 1px solid transparent !important;
+}
+
+.columns {
+    clear: both;
+    background-color: #ddd;
+    overflow: hidden;
+    line-height: 30px;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #bbb;
+    border-top: none;
+    box-sizing: border-box;
+    position: absolute;
+    top: 32px;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+    .columns .col {
+        float: left;
+        border-right: 1px solid #bbb;
+        box-sizing: border-box;
+    }
+
+    .columns .col:last-of-type { border-right: 0px; }
+
+    .columns .id {
+        width: 49px;
+    }
+
+    .columns .movetype {
+        width: 150px;
+    }
+
+    .columns .date {
+        width: 100px;
+    }
+
+    .columns .author {
+        width: 150px;
+    }
+
+    .columns .payment {
+        width: 100px;
+    }
+
+    .columns .price {
+        width: 99px;
+    }
+
+    .columns .desc {
+        width: 248px;
+    }
+
+
+.movement-info table {
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 63px;
+
+    width: 100%;
+    box-sizing: border-box;
+    border-spacing: 0px 0px;
+    border-bottom: 1px solid #bbb;
+
+    clear: both;
+}
+
+.movement-info table tr:first-child td  {
+        border-top: 0px !important;
+}
+
+.movement-info table td {
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 20px;
+    border-right: 1px solid #bbb;
+    border-top: 1px solid #bbb;
+    padding: 0px;
+}
+
+.movement-info table tr td:last-of-type { border-right: 0px; }
+
+.movement .id {
+    width: 50px;
+    border-left: 1px solid #bbb;
+}
+
+.movement .mtype {
+    width: 150px;
+}
+
+.movement .date {
+    width: 100px;
+}
+
+.movement .author {
+    width: 150px;
+}
+
+.movement .payment {
+    width: 100px;
+}
+.movement .desc {
+    width: 248px; 
+}
+.movement .price {
+    width: 100px;
+    border-right: 1px solid #bbb !important;
+}
+
+.sale {
+    position: static;
+    top: 0px;
+    margin-left: 49px;
+    width: auto;
+    border: none;
+    float: left;
+    clear: both;
+    font-size: 13px;
+    line-height: 20px;
+    height: 20px;
+}
+
+.item { 
+    clear: both;
+    margin-left: 49px;
+    width: auto;
+    float: left;
+    font-size: 13px;
+}
+
+
+.item .col {
+    float: left; 
+    border-left: 1px solid #bbb;
+    border-top: 1px solid #bbb;
+    box-sizing: border-box;
+    height: 20px;
+    overflow: hidden;
+}
+    .item .col:last-of-type {
+        border-right: 1px solid #bbb;
+    }
+
+.sale .col:first-of-type { border-left: 1px solid #bbb; }
+.sale .col:last-of-type { border-right: 1px solid #bbb !important; }
+.sale .order-code { width: 151px; }
+.sale .name { width: 250px; }
+.sale .amount { width: 100px; }
+.sale .base-price { width: 124px; }
+.sale .total-price { width: 124px; }
+
+.item .order-code { width: 150px; }
+.item .name { width: 250px; }
+.item .amount { width: 100px; }
+.item .base-price { width: 124px; }
+.item .total-price { width: 125px; }
+
+.footer {
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #bbb;
+    background-color: #f1f1f1;
+    position: relative;
+    margin-top: 5px;
+}
+
+    .footer .logo {
+        height: 35px;
+        position: absolute;
+        left: 5px;
+        top: 2px;
+    }
+
+    .footer .desc {
+        position: absolute;
+        left: 150px;
+        top: 4px;
+    }
+
+    .footer .link {
+        position: absolute;
+        left: 150px;
+        bottom: 4px;
+    }
+
+    .footer .copyright {
+        position: absolute;
+        right: 5px;
+        bottom: 10px;
+    }
+
+.summary {
+    margin-top: 5px;
+    border: 1px solid #bbb;
+    background-color: #f1f1f1;
+}
+
+.summary .header {
+    border: none;
+    float: left;
+    width: 100%;
+    clear: both;
+    line-height: 30px;
+    height: 30px;
+    border-bottom: 1px solid #bbb;
+    background-color: #f1f1f1;
+    text-align: left;
+    text-indent: 5px;
+    margin-top: 0px;
+}
+
+.summary .content {
+    width: 100%;
+    background-color: #fff;
+    font-weight: normal;
+    font-size: 14px;
+    margin-top: 31px;
+}

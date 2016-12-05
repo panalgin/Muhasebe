@@ -629,7 +629,7 @@ namespace Muhasebe
                                                             "<div class=\"columns sale\">" +
                                                                 "<div class=\"order-code col\">Sipariş Kodu</div>" +
                                                                 "<div class=\"name col\">Ürün Adı</div>" +
-                                                                "<div class=\"amount col\">Satılan</div>" +
+                                                                "<div class=\"amount col\">Miktar</div>" +
                                                                 "<div class=\"base-price col\">Birim</div>" +
                                                                 "<div class=\"total-price col\">Toplam</div>" +
                                                             "</div>" +

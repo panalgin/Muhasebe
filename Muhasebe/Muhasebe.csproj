@@ -956,6 +956,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\script_export.png" />
+    <Content Include="View\AccountSummaryForm\css\main.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="View\AccountSummaryForm\img\celik.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="View\AccountSummaryForm\img\logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="View\AccountSummaryForm\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="View\AccountMovementsForm\css\main.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

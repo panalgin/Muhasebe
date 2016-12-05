@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>{COMPANY-NAME} - Sipariş Formu</title>
+    <link href="{PATH}\css\main.css" type="text/css" rel="stylesheet" />
+    <link href="css/main.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="top">
+            <img class="logo" src="{PATH}\img\celik.png" />
+            <div class="company-tag">
+                <span>{COMPANY-NAME}</span>
+                <span>Vergi No: {TAXID}, Vergi Dairesi: {TAXPLACE}</span>
+                <span>Adres: {ADDRESS} {DISTRICT}/{PROVINCE}</span>
+                <span>Tel: {TELEPHONE}</span>
+                <span>Email: {EMAIL}</span>
+            </div>
+        </div>
+        <div class="main">
+            <div class="header">
+                Cari Hesap Özeti
+            </div>
+            <div class="account-info">
+                <div class="account-header">Hesap Bilgileri</div>
+                <span id="name">Hesap Adı: <strong>{ACCOUNT-NAME}</strong></span>
+                <span id="tax-office">Vergi Dairesi: <strong>{ACCOUNT-TAXOFFICE}</strong></span>
+                <span id="tax-no">Vergi No: <strong>{ACCOUNT-TAXID}</strong></span>
+                <span id="address">Adres: <strong>{ACCOUNT-ADDRESS}</strong></span>
+                <span id="location">İl/İlçe: <strong>{ACCOUNT-CITY}/{ACCOUNT-PROVINCE}</strong></span>
+                <span id="phone">Telefon: <strong>{ACCOUNT-PHONE}</strong></span>
+                <span id="gsm">Gsm: <strong>{ACCOUNT-GSM}</strong></span>
+                <span id="email">Email: <strong>{ACCOUNT-EMAIL}</strong></span>
+            </div>
+            <div class="movement-info">
+                <div class="movement-header">İşlemler</div>
+                <div class="columns">
+                    <div class="id col">#</div>
+                    <div class="movetype col">Hareket Türü</div>
+                    <div class="date col">Tarih</div>
+                    <div class="author col">Sorumlu</div>
+                    <div class="payment col">Ödeme Türü</div>
+                    <div class="desc col">Açıklama</div>
+                    <div class="price col">Tutar</div>
+                </div>
+                <table>
+                    <tbody>
+                        <!--<tr class="movement">
+                            <td class="id">1</td>
+                            <td class="mtype">Alacak Tahsilatı</td>
+                            <td class="date">22.07.2016</td>
+                            <td class="author">Mustafa YILDIZ</td>
+                            <td class="payment">Peşin</td>
+                            <td class="desc">Elden ödeme alındı</td>
+                            <td class="price">256.45 TL</td>
+                        </tr>
+                        <tr class="movement">
+                            <td class="id">1</td>
+                            <td class="mtype">Mal/Hizmet Satışı</td>
+                            <td class="date">22.07.2016</td>
+                            <td class="author">Mustafa YILDIZ</td>
+                            <td class="payment">Peşin</td>
+                            <td class="desc">Elden ödeme alındı Elden ödeme alındı Elden ödeme alındı Elden ödeme alındı Elden ödeme alındı</td>
+                            <td class="price">256.45 TL</td>
+                        </tr>
+                        <tr>
+                            <td colspan="7">
+                                <div class="columns sale">
+                                    <div class="order-code col">
+                                        Sipariş Kodu
+                                    </div>
+                                    <div class="name col">Ürün Adı</div>
+                                    <div class="amount col">Satılan</div>
+                                    <div class="base-price col">Birim</div>
+                                    <div class="total-price col">Toplam</div>
+                                </div>
+                                <div class="item">
+                                    <div class="order-code col">123235</div>
+                                    <div class="name col">AgroParts Hız Sensörü AgroParts Hız Sensörü AgroParts Hız Sensörü AgroParts Hız Sensörü</div>
+                                    <div class="amount col">25 Adet</div>
+                                    <div class="base-price col">24.00 TL</div>
+                                    <div class="total-price col">254.00 TL</div>
+                                </div>
+                                <div class="item">
+                                    <div class="order-code col">123235</div>
+                                    <div class="name col">AgroParts Hız Sensörü</div>
+                                    <div class="amount col">25 Adet</div>
+                                    <div class="base-price col">24.00 TL</div>
+                                    <div class="total-price col">254.00 TL</div>
+                                </div>
+                            </td>
+                        </tr>-->
+                        {DATA}
+                    </tbody>
+                </table>
+
+                <div class="summary">
+                    <div class="header">Özet</div>
+                    <div class="content">
+                        <span>{SUMMARY}</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--<div class="bank">
+            <div class="header">Banka Hesap Bilgilerimiz</div>
+            <div class="content">
+                <span>AKBANK - Malkara Şubesi - Şube Kodu: 683 - Hesap No: 234325346 - IBAN: TR000000000000000000000000</span>
+                <span>GARANTİ - Malkara Şubesi - Şube Kodu: 683 - Hesap No: 234325346 - IBAN: TR000000000000000000000000</span>
+                <span>VAKIFBANK - Malkara Şubesi - Şube Kodu: 683 - Hesap No: 234325346 - IBAN: TR000000000000000000000000</span>
+            </div>
+        </div>-->
+        <div class="footer">
+            <img class="logo" src="{PATH}\img/logo.png" alt="Daflan Bilişim" />
+            <span class="desc">Bu form Daflan - Mikro Kaynak Yönetim Version: 0.0.4.5 kullanılarak üretilmiştir.</span>
+            <a class="link" href="http://www.daflan.com">www.daflan.com</a>
+            <span class="copyright">Copyright © Daflan Bilişim 2016</span>
+        </div>
+    </div>
+</body>
+</html>
