@@ -956,6 +956,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\script_export.png" />
+    <None Include="Resources\control_play_blue.png" />
     <Content Include="View\AccountSummaryForm\css\main.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

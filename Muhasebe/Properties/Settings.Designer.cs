@@ -178,5 +178,29 @@ namespace Muhasebe.Properties {
                 this["UnpricedAlertColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PlaySoundOnScanned {
+            get {
+                return ((bool)(this["PlaySoundOnScanned"]));
+            }
+            set {
+                this["PlaySoundOnScanned"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SoundFileLocation {
+            get {
+                return ((string)(this["SoundFileLocation"]));
+            }
+            set {
+                this["SoundFileLocation"] = value;
+            }
+        }
     }
 }
