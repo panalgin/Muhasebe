@@ -359,6 +359,12 @@
     <Compile Include="Gumplings\Change_Prices_Gumpling.Designer.cs">
       <DependentUpon>Change_Prices_Gumpling.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gumplings\Generate_Account_Summary_Gumpling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gumplings\Generate_Account_Summary_Gumpling.Designer.cs">
+      <DependentUpon>Generate_Account_Summary_Gumpling.cs</DependentUpon>
+    </Compile>
     <Compile Include="Gumplings\OrderNode_Edit_Gumpling.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -664,6 +670,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gumplings\Change_Prices_Gumpling.resx">
       <DependentUpon>Change_Prices_Gumpling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gumplings\Generate_Account_Summary_Gumpling.resx">
+      <DependentUpon>Generate_Account_Summary_Gumpling.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gumplings\OrderNode_Edit_Gumpling.resx">
       <DependentUpon>OrderNode_Edit_Gumpling.cs</DependentUpon>

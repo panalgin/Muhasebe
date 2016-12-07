@@ -810,5 +810,10 @@ namespace Muhasebe
             public decimal DebtNet { get { return DebtTotal - Paid; } }
             public decimal Net { get { return DebtNet - LoanNet; } }
         }
+
+        private void hesapÖzetiOluşturToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

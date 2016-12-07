@@ -87,12 +87,15 @@
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Delete_Movement_Button = new System.Windows.Forms.Button();
             this.Save_Dialog = new System.Windows.Forms.SaveFileDialog();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.hesapÖzetiOluşturToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.Accounts_Tab.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // Delete_Button
@@ -501,6 +504,7 @@
             this.columnHeader2,
             this.columnHeader5,
             this.columnHeader6});
+            this.Customers_List.ContextMenuStrip = this.contextMenuStrip2;
             this.Customers_List.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Customers_List.FullRowSelect = true;
             this.Customers_List.GridLines = true;
@@ -651,6 +655,20 @@
             this.Delete_Movement_Button.UseVisualStyleBackColor = true;
             this.Delete_Movement_Button.Click += new System.EventHandler(this.Delete_Movement_Button_Click);
             // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hesapÖzetiOluşturToolStripMenuItem});
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(171, 48);
+            // 
+            // hesapÖzetiOluşturToolStripMenuItem
+            // 
+            this.hesapÖzetiOluşturToolStripMenuItem.Name = "hesapÖzetiOluşturToolStripMenuItem";
+            this.hesapÖzetiOluşturToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.hesapÖzetiOluşturToolStripMenuItem.Text = "Hesap Özeti Oluştur";
+            this.hesapÖzetiOluşturToolStripMenuItem.Click += new System.EventHandler(this.hesapÖzetiOluşturToolStripMenuItem_Click);
+            // 
             // Manage_Accounts_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -673,6 +691,7 @@
             this.Accounts_Tab.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -737,5 +756,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem silToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog Save_Dialog;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem hesapÖzetiOluşturToolStripMenuItem;
     }
 }
