@@ -1,4 +1,5 @@
 ﻿using Muhasebe.Custom;
+using Muhasebe.Gumplings;
 using OpenHtmlToPdf;
 using System;
 using System.Collections.Generic;
@@ -813,7 +814,38 @@ namespace Muhasebe
 
         private void hesapÖzetiOluşturToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Account m_Account = null;
 
+            if (this.tabControl1.SelectedIndex == 0)
+            {
+                if (this.Customers_List.SelectedItems.Count > 0)
+                {
+                    int m_AccountID = Convert.ToInt32(this.Customers_List.SelectedItems[0].Tag);
+
+                    using(MuhasebeEntities m_Context = new MuhasebeEntities())
+                    {
+                        m_Account = m_Context.Accounts.Where(q => q.ID == m_AccountID).FirstOrDefault();
+                    }
+                }
+            }
+            else if (this.tabControl1.SelectedIndex == 1)
+            {
+                if (this.Suppliers_List.SelectedItems.Count > 0)
+                {
+                    int m_AccountID = Convert.ToInt32(this.Suppliers_List.SelectedItems[0].Tag);
+
+                    using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                    {
+                        m_Account = m_Context.Accounts.Where(q => q.ID == m_AccountID).FirstOrDefault();
+                    }
+                }
+            }
+
+            if (m_Account != null) {
+                Generate_Account_Summary_Gumpling m_Gumpling = new Generate_Account_Summary_Gumpling();
+                m_Gumpling.Account = m_Account;
+                m_Gumpling.ShowDialog();
+            }
         }
     }
 }
