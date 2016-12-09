@@ -319,7 +319,8 @@ namespace Muhasebe
                             return true;
                         });
 
-                        CalculateAccountStatistics(m_Movements.ToList());
+                        AccountSummary m_Summary = account.GetSummary(m_Movements.ToList());
+                        CalculateAccountStatistics(m_Summary);
                     }
                 }
             });
@@ -332,29 +333,28 @@ namespace Muhasebe
 
         }
 
-        private void CalculateAccountStatistics(List<AccountMovement> m_Movements)
+        private void CalculateAccountStatistics(AccountSummary summary)
         {
             this.BeginInvoke((MethodInvoker)delegate ()
             {
-                AccountSummary m_Summary = this.CalculateNet(m_Movements);
 
-                this.Buy_Volume_Label.Text = string.Format("{0} TL", m_Summary.BuyVolume.ToString());
-                this.Sell_Volume_Label.Text = string.Format("{0} TL", m_Summary.SellVoluma.ToString());
+                this.Buy_Volume_Label.Text = string.Format("{0} TL", summary.BuyVolume.ToString());
+                this.Sell_Volume_Label.Text = string.Format("{0} TL", summary.SellVoluma.ToString());
 
-                this.Loan_Label.Text = string.Format("{0} TL", m_Summary.LoanTotal.ToString());
-                this.Debt_Label.Text = string.Format("{0} TL", m_Summary.DebtTotal.ToString());
+                this.Loan_Label.Text = string.Format("{0} TL", summary.LoanTotal.ToString());
+                this.Debt_Label.Text = string.Format("{0} TL", summary.DebtTotal.ToString());
 
-                this.Charged_Label.Text = string.Format("{0} TL", m_Summary.Charged.ToString());
-                this.Paid_Label.Text = string.Format("{0} TL", m_Summary.Paid.ToString());
+                this.Charged_Label.Text = string.Format("{0} TL", summary.Charged.ToString());
+                this.Paid_Label.Text = string.Format("{0} TL", summary.Paid.ToString());
 
-                this.Net_Loan_Label.Text = string.Format("{0} TL", m_Summary.LoanNet.ToString());
-                this.Net_Debt_Label.Text = string.Format("{0} TL", m_Summary.DebtNet.ToString());
+                this.Net_Loan_Label.Text = string.Format("{0} TL", summary.LoanNet.ToString());
+                this.Net_Debt_Label.Text = string.Format("{0} TL", summary.DebtNet.ToString());
 
-                this.Net_Value_Label.Text = string.Format("{0} TL", Math.Abs(m_Summary.Net));
+                this.Net_Value_Label.Text = string.Format("{0} TL", Math.Abs(summary.Net));
 
-                if (m_Summary.Net < 0)
+                if (summary.Net < 0)
                     this.Net_State_Label.Text = "Alacağınız var.";
-                else if (m_Summary.Net > 0)
+                else if (summary.Net > 0)
                     this.Net_State_Label.Text = "Borcunuz var.";
                 else
                     this.Net_State_Label.Text = "Nötr";
@@ -575,7 +575,7 @@ namespace Muhasebe
 
                     m_List = m_List.OrderBy(q => q.CreatedAt).ToList();
                     Account m_Account = m_List.FirstOrDefault().Account;
-                    AccountSummary m_Summary = this.CalculateNet(m_List);
+                    AccountSummary m_Summary = m_Account.GetSummary(m_List);
 
                     string m_Data = "";
                     string m_SummaryTemplate = "Yukarıdaki işlemler sonucunda firmamız <strong>{0}</strong>";
@@ -779,37 +779,6 @@ namespace Muhasebe
             });
 
             this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Enabled = true;
-        }
-
-        private AccountSummary CalculateNet(List<AccountMovement> m_Movements)
-        {
-            AccountSummary m_Summary = new AccountSummary();
-
-            m_Summary.BuyVolume = m_Movements.Where(q => q.MovementTypeID == 3).Sum(q => q.Value);
-            m_Summary.SellVoluma = m_Movements.Where(q => q.MovementTypeID == 1).Sum(q => q.Value);
-
-            m_Summary.LoanTotal = m_Movements.Where(q => q.MovementTypeID == 1 && q.PaymentTypeID == 3).Sum(q => q.Value); // Yapılan vadeli satışlardan alacak geçmişimiz
-            m_Summary.Charged = m_Movements.Where(q => q.MovementTypeID == 2).Sum(q => q.Value); // Yapılan vade tahsilatları
-
-            m_Summary.DebtTotal = m_Movements.Where(q => q.MovementTypeID == 3 && q.PaymentTypeID == 3).Sum(q => q.Value); // Yapılan vadeli ürün alımlarımıza ait borcumuz
-            m_Summary.Paid = m_Movements.Where(q => q.MovementTypeID == 4).Sum(q => q.Value); // Yaptığımız borç ödemeleri
-
-            return m_Summary;
-        }
-
-        private class AccountSummary
-        {
-            public decimal BuyVolume { get; set; }
-            public decimal SellVoluma { get; set; }
-            public decimal LoanTotal { get; set; }
-            public decimal DebtTotal { get; set; }
-
-            public decimal Charged { get; set; }
-            public decimal Paid { get; set; }
-
-            public decimal LoanNet { get { return LoanTotal - Charged; } }
-            public decimal DebtNet { get { return DebtTotal - Paid; } }
-            public decimal Net { get { return DebtNet - LoanNet; } }
         }
 
         private void hesapÖzetiOluşturToolStripMenuItem_Click(object sender, EventArgs e)

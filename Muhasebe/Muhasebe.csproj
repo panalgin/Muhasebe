@@ -179,7 +179,9 @@
     <Compile Include="ConnectionType.cs">
       <DependentUpon>Muhasebe.tt</DependentUpon>
     </Compile>
+    <Compile Include="Custom\Account.partial.cs" />
     <Compile Include="Custom\AccountMovement.partial.cs" />
+    <Compile Include="Custom\AccountSummary.cs" />
     <Compile Include="Custom\Company.partial.cs" />
     <Compile Include="Custom\Device.partial.cs" />
     <Compile Include="Custom\InvoiceNode.cs" />

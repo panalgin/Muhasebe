@@ -670,6 +670,11 @@
             this.Delete_Movement_Button.UseVisualStyleBackColor = true;
             this.Delete_Movement_Button.Click += new System.EventHandler(this.Delete_Movement_Button_Click);
             // 
+            // Save_Dialog
+            // 
+            this.Save_Dialog.DefaultExt = "pdf";
+            this.Save_Dialog.Filter = "PDF Dosyası  (*.pdf)|*.pdf\";";
+            // 
             // Manage_Accounts_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

@@ -39,6 +39,7 @@
             this.EndsAt_Picker = new System.Windows.Forms.DateTimePicker();
             this.Save_Button = new System.Windows.Forms.Button();
             this.Cancel_Button = new System.Windows.Forms.Button();
+            this.Save_Dialog = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // label1
@@ -163,6 +164,11 @@
             this.Cancel_Button.UseVisualStyleBackColor = true;
             this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
+            // Save_Dialog
+            // 
+            this.Save_Dialog.DefaultExt = "pdf";
+            this.Save_Dialog.Filter = "PDF Dosyası  (*.pdf)|*.pdf\";";
+            // 
             // Generate_Account_Summary_Gumpling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -204,5 +210,6 @@
         private System.Windows.Forms.DateTimePicker EndsAt_Picker;
         private System.Windows.Forms.Button Save_Button;
         private System.Windows.Forms.Button Cancel_Button;
+        private System.Windows.Forms.SaveFileDialog Save_Dialog;
     }
 }
