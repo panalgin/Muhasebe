@@ -52,10 +52,12 @@ namespace Muhasebe.Gumplings
         {
             this.Save_Button.Enabled = false;
 
-            this.BeginInvoke((MethodInvoker)delegate ()
+            this.Invoke((MethodInvoker)delegate ()
             {
                 using (MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
+                    this.Account = m_Context.Accounts.Where(q => q.ID == this.Account.ID).FirstOrDefault();
+
                     List<AccountMovement> m_List = m_Context.AccountMovements.Where(q => q.AccountID == this.Account.ID).ToList();
 
                     m_List = m_List.OrderBy(q => q.CreatedAt).ToList();
