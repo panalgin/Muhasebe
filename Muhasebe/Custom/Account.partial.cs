@@ -13,7 +13,7 @@ namespace Muhasebe
             AccountSummary m_Summary = new AccountSummary();
 
             m_Summary.BuyVolume = m_Movements.Where(q => q.MovementTypeID == 3).Sum(q => q.Value);
-            m_Summary.SellVoluma = m_Movements.Where(q => q.MovementTypeID == 1).Sum(q => q.Value);
+            m_Summary.SellVolume = m_Movements.Where(q => q.MovementTypeID == 1).Sum(q => q.Value);
 
             m_Summary.LoanTotal = m_Movements.Where(q => q.MovementTypeID == 1 && q.PaymentTypeID == 3).Sum(q => q.Value); // Yapılan vadeli satışlardan alacak geçmişimiz
             m_Summary.Charged = m_Movements.Where(q => q.MovementTypeID == 2).Sum(q => q.Value); // Yapılan vade tahsilatları

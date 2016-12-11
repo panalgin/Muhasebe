@@ -337,9 +337,8 @@ namespace Muhasebe
         {
             this.BeginInvoke((MethodInvoker)delegate ()
             {
-
                 this.Buy_Volume_Label.Text = string.Format("{0} TL", summary.BuyVolume.ToString());
-                this.Sell_Volume_Label.Text = string.Format("{0} TL", summary.SellVoluma.ToString());
+                this.Sell_Volume_Label.Text = string.Format("{0} TL", summary.SellVolume.ToString());
 
                 this.Loan_Label.Text = string.Format("{0} TL", summary.LoanTotal.ToString());
                 this.Debt_Label.Text = string.Format("{0} TL", summary.DebtTotal.ToString());

@@ -9,7 +9,7 @@ namespace Muhasebe.Custom
     public class AccountSummary
     {
         public decimal BuyVolume { get; set; }
-        public decimal SellVoluma { get; set; }
+        public decimal SellVolume { get; set; }
         public decimal LoanTotal { get; set; }
         public decimal DebtTotal { get; set; }
 

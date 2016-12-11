@@ -52,17 +52,44 @@ namespace Muhasebe.Gumplings
         {
             this.Save_Button.Enabled = false;
 
-            this.Invoke((MethodInvoker)delegate ()
+            this.Invoke((MethodInvoker)delegate()
             {
                 using (MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
                     this.Account = m_Context.Accounts.Where(q => q.ID == this.Account.ID).FirstOrDefault();
 
-                    List<AccountMovement> m_List = m_Context.AccountMovements.Where(q => q.AccountID == this.Account.ID).ToList();
+                    DateTime m_BeginsAt = DateTime.MinValue;
+                    DateTime m_EndsAt = DateTime.MaxValue;
 
+                    string m_IntervalExp = "";
+
+                    if (this.Last_Month_Radio.Checked)
+                    {
+                        m_EndsAt = DateTime.Now;
+                        m_BeginsAt = m_EndsAt.Subtract(TimeSpan.FromDays(30));
+                        m_IntervalExp = string.Format("Son 1 Ay: {0} - {1}", m_BeginsAt.ToShortDateString(), m_EndsAt.ToShortDateString());
+                    }
+                    else if (this.Last_6Months_Radio.Checked)
+                    {
+                        m_EndsAt = DateTime.Now;
+                        m_BeginsAt = m_EndsAt.Subtract(TimeSpan.FromDays(180));
+                        m_IntervalExp = string.Format("Son 6 Ay: {0} - {1}", m_BeginsAt.ToShortDateString(), m_EndsAt.ToShortDateString());
+                    }
+                    else if (this.Last_2Years_Radio.Checked)
+                    {
+                        m_EndsAt = DateTime.Now;
+                        m_BeginsAt = m_EndsAt.Subtract(TimeSpan.FromDays(365 * 2));
+                        m_IntervalExp = string.Format("Son 24 Ay: {0} - {1}", m_BeginsAt.ToShortDateString(), m_EndsAt.ToShortDateString());
+                    }
+                    else if (this.Specific_Radio.Checked)
+                    {
+                        m_EndsAt = EndsAt_Picker.Value;
+                        m_BeginsAt = BeginsAt_Picker.Value;
+                        m_IntervalExp = string.Format("Belirli Tarih Aralığı: {0} - {1}", m_BeginsAt.ToString(), m_EndsAt.ToString());
+                    }
+
+                    List<AccountMovement> m_List = m_Context.AccountMovements.Where(q => q.AccountID == this.Account.ID && (q.CreatedAt >= m_BeginsAt && q.CreatedAt <= m_EndsAt)).ToList();
                     m_List = m_List.OrderBy(q => q.CreatedAt).ToList();
-
-                   
 
                     string m_Data = "";
                     string m_SummaryTemplate = "Yukarıdaki işlemler sonucunda firmamız <strong>{0}</strong>";
@@ -152,7 +179,7 @@ namespace Muhasebe.Gumplings
                         html = html.Replace("{SUMMARY}", m_SummaryTemplate);
 
                         html = html.Replace("{ACCOUNT-NAME}", this.Account.Name);
-                        html = html.Replace("{ACCOUNT-TAXOFFICE", this.Account.TaxDepartment);
+                        html = html.Replace("{ACCOUNT-TAXOFFICE}", this.Account.TaxDepartment);
                         html = html.Replace("{ACCOUNT-TAXID}", this.Account.TaxID);
                         html = html.Replace("{ACCOUNT-ADDRESS}", this.Account.Address);
                         html = html.Replace("{ACCOUNT-CITY}", this.Account.City.Name);
@@ -160,6 +187,17 @@ namespace Muhasebe.Gumplings
                         html = html.Replace("{ACCOUNT-PHONE}", this.Account.Phone);
                         html = html.Replace("{ACCOUNT-GSM}", this.Account.Gsm);
                         html = html.Replace("{ACCOUNT-EMAIL}", this.Account.Email);
+
+                        html = html.Replace("{SELL-VOLUME}", ItemHelper.GetFormattedPrice(m_Summary.SellVolume));
+                        html = html.Replace("{BUY-VOLUME}", ItemHelper.GetFormattedPrice(m_Summary.BuyVolume));
+                        html = html.Replace("{TOTAL-LOAN}", ItemHelper.GetFormattedPrice(m_Summary.LoanTotal));
+                        html = html.Replace("{TOTAL-DEBT}", ItemHelper.GetFormattedPrice(m_Summary.DebtTotal));
+                        html = html.Replace("{CHARGED}", ItemHelper.GetFormattedPrice(m_Summary.Charged));
+                        html = html.Replace("{PAID}", ItemHelper.GetFormattedPrice(m_Summary.Paid));
+                        html = html.Replace("{NET-LOAN}", ItemHelper.GetFormattedPrice(m_Summary.LoanNet));
+                        html = html.Replace("{NET-DEBT}", ItemHelper.GetFormattedPrice(m_Summary.DebtNet));
+
+                        html = html.Replace("{TIME-INTERVAL}", m_IntervalExp);
 
                         try
                         {

@@ -35,7 +35,7 @@
                 <span id="email">Email: <strong>{ACCOUNT-EMAIL}</strong></span>
             </div>
             <div class="movement-info">
-                <div class="movement-header">İşlemler {TIME-INTERVAL}</div>
+                <div class="movement-header">İşlemler - {TIME-INTERVAL}</div>
                 <div class="columns">
                     <div class="id col">#</div>
                     <div class="movetype col">Hareket Türü</div>
@@ -47,7 +47,7 @@
                 </div>
                 <table>
                     <tbody>
-                        <tr class="movement">
+                        <!--<tr class="movement">
                             <td class="id">1</td>
                             <td class="mtype">Alacak Tahsilatı</td>
                             <td class="date">22.07.2016</td>
@@ -64,24 +64,25 @@
                             <td class="payment">Peşin</td>
                             <td class="desc">Elden ödeme alındı Elden ödeme alındı Elden ödeme alındı Elden ödeme alındı Elden ödeme alındı</td>
                             <td class="price">256.45 TL</td>
-                        </tr>
+                        </tr>-->
+                        {DATA}
                     </tbody>
                 </table>
 
                 <div class="summary">
                     <div class="header">Özet - Tüm Zamanlar</div>
                     <div class="content">
-                        <span class="volume-sold">Toplam Satış Hacmi: 1982,00 TL</span>
-                        <span class="volume-bought">Toplam Alış Hacmi: 2565,25 TL</span>
+                        <span class="volume-sold">Toplam Satış Hacmi: {SELL-VOLUME}</span>
+                        <span class="volume-bought">Toplam Alış Hacmi: {BUY-VOLUME}</span>
 
-                        <span class="history-loan">Alacak Geçmişimiz: 250,52 TL</span>
-                        <span class="history-debt">Borç Geçmişimiz: 345,45 TL</span>
+                        <span class="history-loan">Alacak Geçmişimiz: {TOTAL-LOAN}</span>
+                        <span class="history-debt">Borç Geçmişimiz: {TOTAL-DEBT}</span>
 
-                        <span class="charged">Aldığımız Tutar: 115,00 TL</span>
-                        <span class="paid">Ödediğimiz Tutar: 85,00 TL</span>
+                        <span class="charged">Aldığımız Tutar: {CHARGED}</span>
+                        <span class="paid">Ödediğimiz Tutar: {PAID}</span>
 
-                        <span class="net-loan">Net Alacağımız: 952,00 TL</span>
-                        <span class="net-debt">Net Borcumuz: 977,26 TL</span>
+                        <span class="net-loan">Net Alacağımız: {NET-LOAN}</span>
+                        <span class="net-debt">Net Borcumuz: {NET-DEBT}</span>
 
                         <span class="net-summary">{SUMMARY}</span>
                     </div>
