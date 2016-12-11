@@ -327,6 +327,12 @@
     <Compile Include="Edit_PaymentType_Pop.Designer.cs">
       <DependentUpon>Edit_PaymentType_Pop.cs</DependentUpon>
     </Compile>
+    <Compile Include="Edit_StockMovement_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit_StockMovement_Mdi.Designer.cs">
+      <DependentUpon>Edit_StockMovement_Mdi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Edit_UnitType_Pop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -663,6 +669,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Edit_PaymentType_Pop.resx">
       <DependentUpon>Edit_PaymentType_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit_StockMovement_Mdi.resx">
+      <DependentUpon>Edit_StockMovement_Mdi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Edit_UnitType_Pop.resx">
       <DependentUpon>Edit_UnitType_Pop.cs</DependentUpon>

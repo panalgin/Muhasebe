@@ -861,6 +861,17 @@ namespace Muhasebe
                     }
                 case 3: //Ürün Tedariği Yapıldı
                     {
+                        using(MuhasebeEntities m_Context = new MuhasebeEntities())
+                        {
+                            StockMovement m_StockMovement = m_Context.StockMovements.Where(q => q.ID == movement.ContractID).FirstOrDefault();
+
+                            if (m_StockMovement != null)
+                            {
+                                Edit_StockMovement_Mdi m_Mdi = new Edit_StockMovement_Mdi();
+                                m_Mdi.StockMovement = m_StockMovement;
+                                m_Mdi.ShowDialog();
+                            }
+                        }
 
                         break;
                     }

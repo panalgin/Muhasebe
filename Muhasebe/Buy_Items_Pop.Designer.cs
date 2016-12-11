@@ -30,8 +30,6 @@
         {
             this.Delete_Button = new System.Windows.Forms.Button();
             this.Edit_Button = new System.Windows.Forms.Button();
-            this.Cancel_Button = new System.Windows.Forms.Button();
-            this.Save_Button = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,11 +47,13 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Account_Box = new Muhasebe.Custom.SearchBox();
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Cancel_Button = new System.Windows.Forms.Button();
+            this.Save_Button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Discount_Num)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,32 +80,6 @@
             this.Edit_Button.Text = "Düzenle";
             this.Edit_Button.UseVisualStyleBackColor = true;
             this.Edit_Button.Click += new System.EventHandler(this.Edit_Button_Click);
-            // 
-            // Cancel_Button
-            // 
-            this.Cancel_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Cancel_Button.Image = global::Muhasebe.Properties.Resources.cancel;
-            this.Cancel_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Cancel_Button.Location = new System.Drawing.Point(744, 505);
-            this.Cancel_Button.Name = "Cancel_Button";
-            this.Cancel_Button.Size = new System.Drawing.Size(75, 23);
-            this.Cancel_Button.TabIndex = 23;
-            this.Cancel_Button.Text = "İptal";
-            this.Cancel_Button.UseVisualStyleBackColor = true;
-            this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
-            // 
-            // Save_Button
-            // 
-            this.Save_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Save_Button.Image = global::Muhasebe.Properties.Resources.tick;
-            this.Save_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Save_Button.Location = new System.Drawing.Point(649, 505);
-            this.Save_Button.Name = "Save_Button";
-            this.Save_Button.Size = new System.Drawing.Size(89, 23);
-            this.Save_Button.TabIndex = 21;
-            this.Save_Button.Text = "Kaydet";
-            this.Save_Button.UseVisualStyleBackColor = true;
-            this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
             // 
             // label4
             // 
@@ -287,6 +261,12 @@
             this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader3.Width = 115;
             // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Mevcut Stok";
+            this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader7.Width = 96;
+            // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Alınan Miktar";
@@ -317,11 +297,31 @@
             this.Account_Box.Size = new System.Drawing.Size(128, 21);
             this.Account_Box.TabIndex = 26;
             // 
-            // columnHeader7
+            // Cancel_Button
             // 
-            this.columnHeader7.Text = "Mevcut Stok";
-            this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader7.Width = 96;
+            this.Cancel_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Cancel_Button.Image = global::Muhasebe.Properties.Resources.cancel;
+            this.Cancel_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Cancel_Button.Location = new System.Drawing.Point(744, 505);
+            this.Cancel_Button.Name = "Cancel_Button";
+            this.Cancel_Button.Size = new System.Drawing.Size(75, 23);
+            this.Cancel_Button.TabIndex = 23;
+            this.Cancel_Button.Text = "İptal";
+            this.Cancel_Button.UseVisualStyleBackColor = true;
+            this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
+            // 
+            // Save_Button
+            // 
+            this.Save_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Save_Button.Image = global::Muhasebe.Properties.Resources.tick;
+            this.Save_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Save_Button.Location = new System.Drawing.Point(649, 505);
+            this.Save_Button.Name = "Save_Button";
+            this.Save_Button.Size = new System.Drawing.Size(89, 23);
+            this.Save_Button.TabIndex = 21;
+            this.Save_Button.Text = "Kaydet";
+            this.Save_Button.UseVisualStyleBackColor = true;
+            this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
             // 
             // Buy_Items_Pop
             // 
