@@ -26,32 +26,34 @@ namespace Muhasebe
         {
             if (this.Income != null)
             {
-                MuhasebeEntities m_Context = new MuhasebeEntities();
-
-                Income m_Actual = m_Context.Incomes.Where(q => q.ID == this.Income.ID).FirstOrDefault();
-
-                if (m_Actual != null)
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
-                    m_Actual.CreatedAt = this.Revenue_Date_Picker.Value;
-                    m_Actual.Amount = this.Revenue_Amount_Num.Value;
-                    m_Actual.IncomeTypeID = Convert.ToInt32(this.Revenue_Type_Combo.SelectedValue);
-                    m_Actual.AuthorID = Convert.ToInt32(this.Responsible_Combo.SelectedValue);
+                    Income m_Actual = m_Context.Incomes.Where(q => q.ID == this.Income.ID).FirstOrDefault();
 
-                    if (this.Account_Box.SelectedValue != null)
+                    if (m_Actual != null)
                     {
-                        int m_AccountID = Convert.ToInt32(this.Account_Box.SelectedValue);
-                        m_Actual.AccountID = m_AccountID;
+                        m_Actual.CreatedAt = this.Revenue_Date_Picker.Value;
+                        m_Actual.Amount = this.Revenue_Amount_Num.Value;
+                        m_Actual.IncomeTypeID = Convert.ToInt32(this.Revenue_Type_Combo.SelectedValue);
+                        m_Actual.AuthorID = Convert.ToInt32(this.Responsible_Combo.SelectedValue);
+                        m_Actual.OwnerID = Program.User.WorksAtID;
+                        m_Actual.Description = this.Description_Box.Text;
+
+                        if (m_Actual.Account != null)
+                        {
+                            AccountMovement m_Movement = m_Context.AccountMovements.Where(q => q.MovementTypeID == 2 && q.ContractID == m_Actual.ID).FirstOrDefault();
+
+                            if (m_Movement != null)
+                            {
+                                m_Movement.Value = m_Actual.Amount.Value;
+                            }
+                        }
+
+                        m_Context.SaveChanges();
+                        InvokeRevenueEdited(m_Actual);
+
+                        this.Close();
                     }
-                    else
-                        m_Actual.AccountID = null;
-
-                    m_Actual.OwnerID = Program.User.WorksAtID;
-                    m_Actual.Description = this.Description_Box.Text;
-
-                    m_Context.SaveChanges();
-                    InvokeRevenueEdited(m_Actual);
-
-                    this.Close();
                 }
             }
         }
@@ -77,6 +79,8 @@ namespace Muhasebe
                     this.Account_Box.SelectedText = this.Income.Account.Name;
                 }
 
+                this.Account_Box.Enabled = false;
+
                 var m_Users = m_Context.Users.Where(q => q.WorksAtID == Program.User.WorksAtID).ToList();
 
                 this.Responsible_Combo.DataSource = m_Users;
@@ -92,11 +96,6 @@ namespace Muhasebe
                     this.Description_Box.Text = this.Income.Description;
 
                     this.Account_Box.Enabled = false;
-
-                    if (this.Income.Account != null)
-                    {
-                        this.Revenue_Amount_Num.Enabled = false;
-                    }
                 }
             }
         }

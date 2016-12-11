@@ -63,7 +63,7 @@
             this.seçiliİşlemleriPDFyeAktarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.silToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Inspect_Button = new System.Windows.Forms.Button();
+            this.Edit_Movement_Button = new System.Windows.Forms.Button();
             this.Accounts_Tab = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.Customers_List = new Muhasebe.Custom.ListViewEx();
@@ -454,19 +454,18 @@
             this.silToolStripMenuItem.Text = "Sil";
             this.silToolStripMenuItem.Click += new System.EventHandler(this.silToolStripMenuItem_Click);
             // 
-            // Inspect_Button
+            // Edit_Movement_Button
             // 
-            this.Inspect_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Inspect_Button.Enabled = false;
-            this.Inspect_Button.Image = global::Muhasebe.Properties.Resources.magnifier;
-            this.Inspect_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Inspect_Button.Location = new System.Drawing.Point(1005, 282);
-            this.Inspect_Button.Name = "Inspect_Button";
-            this.Inspect_Button.Size = new System.Drawing.Size(75, 23);
-            this.Inspect_Button.TabIndex = 38;
-            this.Inspect_Button.Text = "İncele";
-            this.Inspect_Button.UseVisualStyleBackColor = true;
-            this.Inspect_Button.Click += new System.EventHandler(this.Inspect_Button_Click);
+            this.Edit_Movement_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Edit_Movement_Button.Enabled = false;
+            this.Edit_Movement_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Edit_Movement_Button.Location = new System.Drawing.Point(1005, 282);
+            this.Edit_Movement_Button.Name = "Edit_Movement_Button";
+            this.Edit_Movement_Button.Size = new System.Drawing.Size(75, 23);
+            this.Edit_Movement_Button.TabIndex = 38;
+            this.Edit_Movement_Button.Text = "Düzenle";
+            this.Edit_Movement_Button.UseVisualStyleBackColor = true;
+            this.Edit_Movement_Button.Click += new System.EventHandler(this.Edit_Movement_Button_Click);
             // 
             // Accounts_Tab
             // 
@@ -682,7 +681,7 @@
             this.ClientSize = new System.Drawing.Size(1092, 563);
             this.Controls.Add(this.Delete_Movement_Button);
             this.Controls.Add(this.Accounts_Tab);
-            this.Controls.Add(this.Inspect_Button);
+            this.Controls.Add(this.Edit_Movement_Button);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.Delete_Button);
             this.Controls.Add(this.Edit_Button);
@@ -723,7 +722,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
-        private System.Windows.Forms.Button Inspect_Button;
+        private System.Windows.Forms.Button Edit_Movement_Button;
         private System.Windows.Forms.TabControl Accounts_Tab;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;

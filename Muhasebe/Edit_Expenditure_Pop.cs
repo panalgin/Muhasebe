@@ -49,7 +49,6 @@ namespace Muhasebe
 
             if (this.Expenditure.Account != null)
             {
-                this.Expenditure_Amount_Num.Enabled = false;
                 this.Account_Box.SelectedText = this.Expenditure.Account.Name;
             }
         }
@@ -58,23 +57,34 @@ namespace Muhasebe
         {
             if (this.Expenditure != null)
             {
-                MuhasebeEntities m_Context = new MuhasebeEntities();
-
-                Expenditure m_Actual = m_Context.Expenditures.Where(q => q.ID == this.Expenditure.ID).FirstOrDefault();
-
-                if (m_Actual != null)
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
-                    m_Actual.CreatedAt = this.CreatedAt_Picker.Value;
-                    m_Actual.Amount = this.Expenditure_Amount_Num.Value;
-                    m_Actual.ExpenditureTypeID = Convert.ToInt32(this.Expenditure_Type_Combo.SelectedValue);
-                    m_Actual.AuthorID = Convert.ToInt32(this.Responsible_Combo.SelectedValue);
-                    m_Actual.OwnerID = Program.User.WorksAtID;
-                    m_Actual.Description = this.ExpenditureDesc_Text.Text;
+                    Expenditure m_Actual = m_Context.Expenditures.Where(q => q.ID == this.Expenditure.ID).FirstOrDefault();
 
-                    m_Context.SaveChanges();
-                    InvokeExpenditureEdited(m_Actual);
+                    if (m_Actual != null)
+                    {
+                        m_Actual.CreatedAt = this.CreatedAt_Picker.Value;
+                        m_Actual.Amount = this.Expenditure_Amount_Num.Value;
+                        m_Actual.ExpenditureTypeID = Convert.ToInt32(this.Expenditure_Type_Combo.SelectedValue);
+                        m_Actual.AuthorID = Convert.ToInt32(this.Responsible_Combo.SelectedValue);
+                        m_Actual.OwnerID = Program.User.WorksAtID;
+                        m_Actual.Description = this.ExpenditureDesc_Text.Text;
 
-                    this.Close();
+                        if (m_Actual.Account != null)
+                        {
+                            AccountMovement m_Movement = m_Context.AccountMovements.Where(q => q.MovementTypeID == 4 && q.ContractID == m_Actual.ID).FirstOrDefault();
+
+                            if (m_Movement != null)
+                            {
+                                m_Movement.Value = m_Actual.Amount.Value;
+                            }
+                        }
+
+                        m_Context.SaveChanges();
+                        InvokeExpenditureEdited(m_Actual);
+
+                        this.Close();
+                    }
                 }
             }
         }

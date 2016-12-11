@@ -328,11 +328,6 @@ namespace Muhasebe
             this.Account_History_View.EndUpdate();
         }
 
-        private void Inspect_Button_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void CalculateAccountStatistics(AccountSummary summary)
         {
             this.BeginInvoke((MethodInvoker)delegate ()
@@ -528,6 +523,11 @@ namespace Muhasebe
         {
             if (this.Account_History_View.SelectedItems.Count > 0)
             {
+                if (this.Account_History_View.SelectedItems.Count == 1)
+                    this.Edit_Movement_Button.Enabled = true;
+                else
+                    this.Edit_Movement_Button.Enabled = false;
+
                 this.Delete_Movement_Button.Enabled = true;
                 this.silToolStripMenuItem.Enabled = true;
                 this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Enabled = true;
@@ -546,6 +546,7 @@ namespace Muhasebe
                 this.silToolStripMenuItem.Enabled = false;
                 this.seçiliİşlemleriPDFyeAktarToolStripMenuItem.Enabled = false;
                 this.Delete_Movement_Button.Enabled = false;
+                this.Edit_Movement_Button.Enabled = false;
             }
         }
 
@@ -814,6 +815,75 @@ namespace Muhasebe
                 m_Gumpling.Account = m_Account;
                 m_Gumpling.ShowDialog();
             }
+        }
+
+        private void Edit_Movement_Button_Click(object sender, EventArgs e)
+        {
+            if (this.Account_History_View.SelectedItems.Count == 1)
+            {
+                int m_MovementID = Convert.ToInt32(this.Account_History_View.SelectedItems[0].Tag);
+
+                using(MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    AccountMovement m_Movement = m_Context.AccountMovements.Where(q => q.ID == m_MovementID).FirstOrDefault();
+
+                    if (m_Movement != null)
+                    {
+                        EditMovement(m_Movement);
+                    }
+                }
+            }
+        }
+
+        private void EditMovement(AccountMovement movement)
+        {
+            switch(movement.MovementTypeID)
+            {
+                case 1: // Ticari Mat Satışı Yapıldı
+                    {
+                        break;
+                    }
+                case 2: // Alacak tahsilatı yapıldı
+                    {
+                        using(MuhasebeEntities m_Context = new MuhasebeEntities())
+                        {
+                            Income m_Income = m_Context.Incomes.Where(q => q.ID == movement.ContractID).FirstOrDefault();
+
+                            if (m_Income != null)
+                            {
+                                Edit_Revenue_Pop m_Pop = new Edit_Revenue_Pop();
+                                m_Pop.Income = m_Income;
+                                m_Pop.ShowDialog();
+                            }
+                        }
+
+                        break;
+                    }
+                case 3: //Ürün Tedariği Yapıldı
+                    {
+
+                        break;
+                    }
+
+                case 4: //Borç ödemesi yapıldı
+                    {
+                        using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                        {
+                            Expenditure m_Expenditure = m_Context.Expenditures.Where(q => q.ID == movement.ContractID).FirstOrDefault();
+
+                            if (m_Expenditure != null)
+                            {
+                                Edit_Expenditure_Pop m_Pop = new Edit_Expenditure_Pop();
+                                m_Pop.Expenditure = m_Expenditure;
+                                m_Pop.ShowDialog();
+                            }
+                        }
+
+                        break;
+                    }
+            }
+
+            this.PopulateAccountHistory(movement.Account);
         }
     }
 }
