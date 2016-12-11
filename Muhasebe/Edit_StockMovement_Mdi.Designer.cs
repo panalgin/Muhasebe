@@ -54,6 +54,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.Cancel_Button = new System.Windows.Forms.Button();
             this.Save_Button = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.Discount_Num)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,11 +141,11 @@
             this.Increase_Stock_Check.AutoSize = true;
             this.Increase_Stock_Check.Checked = true;
             this.Increase_Stock_Check.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.Increase_Stock_Check.Location = new System.Drawing.Point(13, 506);
+            this.Increase_Stock_Check.Location = new System.Drawing.Point(12, 488);
             this.Increase_Stock_Check.Name = "Increase_Stock_Check";
-            this.Increase_Stock_Check.Size = new System.Drawing.Size(117, 17);
+            this.Increase_Stock_Check.Size = new System.Drawing.Size(177, 17);
             this.Increase_Stock_Check.TabIndex = 53;
-            this.Increase_Stock_Check.Text = "Ürünleri Stoğa Ekle";
+            this.Increase_Stock_Check.Text = "Yeni eklenen ürünleri stoğa ekle";
             this.Increase_Stock_Check.UseVisualStyleBackColor = true;
             // 
             // PaymentType_Combo
@@ -324,11 +325,24 @@
             this.Save_Button.UseVisualStyleBackColor = true;
             this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(12, 509);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(156, 17);
+            this.checkBox1.TabIndex = 61;
+            this.checkBox1.Text = "Sildiğim ürünleri stoktan düş";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // Edit_StockMovement_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(831, 540);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.SubTotal_Label);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.Total_Label);
@@ -388,5 +402,6 @@
         private System.Windows.Forms.Button Save_Button;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

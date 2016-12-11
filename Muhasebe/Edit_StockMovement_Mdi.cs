@@ -1,4 +1,5 @@
-﻿using Muhasebe.Custom;
+﻿using AutoMapper;
+using Muhasebe.Custom;
 using Muhasebe.Events;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EntityFramework.Extensions;
 
 namespace Muhasebe
 {
@@ -27,13 +29,15 @@ namespace Muhasebe
 
             if (this.StockMovement != null)
             {
-                this.CreatedAt_Picker.Value = StockMovement.CreatedAt;
-                this.Account_Box.SelectedText = StockMovement.Account.Name;
-                this.Account_Box.Enabled = false;
-                this.Discount_Num.Value = StockMovement.Discount.Value;
-
                 using (MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
+                    this.StockMovement = m_Context.StockMovements.Where(q => q.ID == this.StockMovement.ID).FirstOrDefault();
+
+                    this.CreatedAt_Picker.Value = StockMovement.CreatedAt;
+                    this.Account_Box.SelectedText = StockMovement.Account.Name;
+                    this.Account_Box.Enabled = false;
+                    this.Discount_Num.Value = StockMovement.Discount.Value;
+
                     var m_PaymentTypes = m_Context.PaymentTypes.Where(q => q.OwnerID == null || q.OwnerID == Program.User.WorksAtID).ToList();
 
                     this.PaymentType_Combo.DataSource = m_PaymentTypes;
@@ -178,10 +182,50 @@ namespace Muhasebe
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
                 Account m_Account = m_Context.Accounts.Where(q => q.ID == m_AccountID).FirstOrDefault();
+                StockMovement m_Actual = m_Context.StockMovements.Where(q => q.ID == this.StockMovement.ID).FirstOrDefault();
 
                 if (m_Account != null)
                 {
-                    this.StockMovement.Nodes.All(delegate (StockMovementNode m_Node)
+                    var m_Added = this.StockMovement.Nodes.Except(m_Actual.Nodes).ToList();
+                    var m_Deleted = m_Actual.Nodes.Except(this.StockMovement.Nodes).ToList();
+                    var m_Changed = this.StockMovement.Nodes.Intersect(this.OldMovement.Nodes).ToList();
+
+                    m_Actual.AccountID = m_Account.ID;
+                    m_Actual.CreatedAt = CreatedAt_Picker.Value;
+                    m_Actual.AuthorID = Program.User.ID;
+                    m_Actual.OwnerID = Program.User.WorksAtID.Value;
+                    m_Actual.PaymentTypeID = Convert.ToInt32(this.PaymentType_Combo.SelectedValue);
+
+                    m_Deleted.All(delegate (StockMovementNode m_Node)
+                    {
+                        m_Actual.Nodes.Remove(m_Actual.Nodes.Where(q => q.ID == m_Node.ID).FirstOrDefault());
+
+                        return true;
+                    });
+
+                    m_Added.All(delegate (StockMovementNode m_Node)
+                    {
+                        m_Actual.Nodes.Add(m_Node);
+
+                        return true;
+                    });
+
+                    m_Changed.All(delegate (StockMovementNode m_Node)
+                    {
+                        //actual node
+                        StockMovementNode m_Anode = m_Actual.Nodes.Where(q => q.ID == m_Node.ID).FirstOrDefault();
+
+                        if (m_Node.Amount > m_Anode.Amount)
+                            m_Context.Items.Where(q => q.ID == m_Anode.ItemID).FirstOrDefault().Amount -= m_Node.Amount - m_Anode.Amount;
+                        else if (m_Node.Amount < m_Anode.Amount)
+                            m_Context.Items.Where(q => q.ID == m_Anode.ItemID).FirstOrDefault().Amount += m_Anode.Amount - m_Node.Amount;
+
+                        m_Anode.Amount = m_Node.Amount;
+                        return true;
+                    });
+                    
+
+                    m_Actual.Nodes.All(delegate (StockMovementNode m_Node)
                     {
                         m_Node.Parent = this.StockMovement;
                         m_Node.Item = null;
@@ -190,18 +234,18 @@ namespace Muhasebe
                         return true;
                     });
 
-                    this.StockMovement.AccountID = m_Account.ID;
-                    this.StockMovement.CreatedAt = CreatedAt_Picker.Value;
-                    this.StockMovement.AuthorID = Program.User.ID;
-                    this.StockMovement.OwnerID = Program.User.WorksAtID.Value;
-                    this.StockMovement.PaymentTypeID = Convert.ToInt32(this.PaymentType_Combo.SelectedValue);
-                    this.StockMovement.Summary = this.StockMovement.Nodes.Sum(q => q.FinalPrice.Value);
+                    m_Actual.Summary = this.StockMovement.Nodes.Sum(q => q.FinalPrice.Value);
 
                     if (this.StockMovement.Discount.HasValue)
-                        this.StockMovement.Summary -= this.StockMovement.Discount.Value;
+                        m_Actual.Summary -= this.StockMovement.Discount.Value;
 
-                    //m_Context.StockMovements.Add(this.StockMovement);
                     m_Context.SaveChanges();
+
+                    //var m_Added = this.StockMovement.Nodes.Except(this.OldMovement.Nodes);
+                    //var m_Deleted = this.OldMovement.Nodes.Except(this.StockMovement.Nodes);
+
+                    
+
 
                     /*AccountMovement m_Movement = new AccountMovement();
                     m_Movement.AccountID = m_Account.ID;

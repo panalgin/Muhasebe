@@ -848,6 +848,7 @@ namespace Muhasebe
                         using(MuhasebeEntities m_Context = new MuhasebeEntities())
                         {
                             Income m_Income = m_Context.Incomes.Where(q => q.ID == movement.ContractID).FirstOrDefault();
+                            m_Context.Entry(m_Income).State = System.Data.Entity.EntityState.Detached;
 
                             if (m_Income != null)
                             {
@@ -864,7 +865,8 @@ namespace Muhasebe
                         using(MuhasebeEntities m_Context = new MuhasebeEntities())
                         {
                             StockMovement m_StockMovement = m_Context.StockMovements.Where(q => q.ID == movement.ContractID).FirstOrDefault();
-
+                            m_Context.Entry(m_StockMovement).State = System.Data.Entity.EntityState.Detached;
+                            
                             if (m_StockMovement != null)
                             {
                                 Edit_StockMovement_Mdi m_Mdi = new Edit_StockMovement_Mdi();
@@ -881,6 +883,7 @@ namespace Muhasebe
                         using (MuhasebeEntities m_Context = new MuhasebeEntities())
                         {
                             Expenditure m_Expenditure = m_Context.Expenditures.Where(q => q.ID == movement.ContractID).FirstOrDefault();
+                            m_Context.Entry(m_Expenditure).State = System.Data.Entity.EntityState.Detached;
 
                             if (m_Expenditure != null)
                             {
