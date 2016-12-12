@@ -75,7 +75,7 @@ namespace Muhasebe
                 if (this.Node is InvoiceNode)
                 {
                     this.Node.FinalPrice = this.Node.BasePrice * this.Node.Amount;
-                    this.Node.UseCustomPricing = true;
+                    this.Node.UseCustomPrice = true;
                 }
             }
 

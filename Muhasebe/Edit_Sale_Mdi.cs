@@ -348,9 +348,20 @@ namespace Muhasebe
                         return true;
                     });
 
-                    //m_Context.Invoices.Add(this.Invoice);
-                    m_Context.SaveChanges();
+                    if (m_Actual.PaymentTypeID != 3) // Vadeli değil
+                    {
+                        Income m_Income = m_Context.Incomes.Where(q => q.InvoiceID == m_Actual.ID).FirstOrDefault();
+                        m_Income.Amount = m_Total;
+                    }
 
+                    AccountMovement m_Movement = m_Context.AccountMovements.Where(q => q.AccountID == m_Actual.TargetID && q.ContractID == m_Actual.ID && q.MovementTypeID == 1).FirstOrDefault();
+
+                    if (m_Movement != null)
+                    {
+                        m_Movement.Value = m_Total;
+                    }
+
+                    m_Context.SaveChanges();
 
                     /*if (this.Invoice.PaymentTypeID != 3) //Vadeli bir satış değilse gelir olarak geçmişe ekleyelim
                     {
@@ -500,6 +511,9 @@ namespace Muhasebe
                     this.Account_Box.SelectedText = m_Context.Accounts.Where(q => q.ID == this.Invoice.TargetID).FirstOrDefault().Name;
                     this.Account_Box.Enabled = false;
                 }
+
+                this.Discount_Num.Value = this.Invoice.Discount.Value;
+                this.Payment_Combo.Enabled = false;
 
                 PopulateListView();
 
