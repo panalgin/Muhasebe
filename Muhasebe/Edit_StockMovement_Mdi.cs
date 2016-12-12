@@ -186,9 +186,9 @@ namespace Muhasebe
 
                 if (m_Account != null)
                 {
-                    var m_Added = this.StockMovement.Nodes.Except(m_Actual.Nodes).ToList();
-                    var m_Deleted = m_Actual.Nodes.Except(this.StockMovement.Nodes).ToList();
-                    var m_Changed = this.StockMovement.Nodes.Intersect(this.OldMovement.Nodes).ToList();
+                    var m_Added = this.StockMovement.Nodes.Except(m_Actual.Nodes, (p, p1) => p.ItemID == p1.ItemID).ToList();
+                    var m_Deleted = m_Actual.Nodes.Except(this.StockMovement.Nodes, (p, p1) => p.ItemID == p1.ItemID).ToList();
+                    var m_Changed = this.StockMovement.Nodes.Intersect(m_Actual.Nodes, (p, p1) => p.ItemID == p1.ItemID && (p.Amount != p1.Amount || p.BasePrice != p1.BasePrice)).ToList();
 
                     m_Actual.AccountID = m_Account.ID;
                     m_Actual.CreatedAt = CreatedAt_Picker.Value;
@@ -198,6 +198,8 @@ namespace Muhasebe
 
                     m_Deleted.All(delegate (StockMovementNode m_Node)
                     {
+                        //if 
+                        m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount += m_Node.Amount;
                         m_Actual.Nodes.Remove(m_Actual.Nodes.Where(q => q.ID == m_Node.ID).FirstOrDefault());
 
                         return true;
@@ -205,6 +207,8 @@ namespace Muhasebe
 
                     m_Added.All(delegate (StockMovementNode m_Node)
                     {
+                        //if 
+                        m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount -= m_Node.Amount;
                         m_Actual.Nodes.Add(m_Node);
 
                         return true;
@@ -221,23 +225,27 @@ namespace Muhasebe
                             m_Context.Items.Where(q => q.ID == m_Anode.ItemID).FirstOrDefault().Amount += m_Anode.Amount - m_Node.Amount;
 
                         m_Anode.Amount = m_Node.Amount;
+                        m_Anode.BasePrice = m_Node.BasePrice;
+
                         return true;
                     });
                     
 
                     m_Actual.Nodes.All(delegate (StockMovementNode m_Node)
                     {
-                        m_Node.Parent = this.StockMovement;
-                        m_Node.Item = null;
+                        m_Node.Parent = m_Actual;
                         m_Node.FinalPrice = m_Node.BasePrice * m_Node.Amount;
 
                         return true;
                     });
 
-                    m_Actual.Summary = this.StockMovement.Nodes.Sum(q => q.FinalPrice.Value);
+                    m_Actual.Summary = m_Actual.Nodes.Sum(q => q.FinalPrice.Value);
 
                     if (this.StockMovement.Discount.HasValue)
-                        m_Actual.Summary -= this.StockMovement.Discount.Value;
+                    {
+                        m_Actual.Discount = this.StockMovement.Discount.Value;
+                        m_Actual.Summary -= m_Actual.Discount.Value;
+                    }
 
                     m_Context.SaveChanges();
 

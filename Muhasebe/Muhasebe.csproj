@@ -186,6 +186,8 @@
     <Compile Include="Custom\Device.partial.cs" />
     <Compile Include="Custom\InvoiceNode.cs" />
     <Compile Include="Custom\ItemHelper.cs" />
+    <Compile Include="Custom\LambdaComparer.cs" />
+    <Compile Include="Custom\LinqExtensions.cs" />
     <Compile Include="Custom\NetworkConnectionParameters.cs" />
     <Compile Include="Custom\SearchBox.cs">
       <SubType>Component</SubType>
