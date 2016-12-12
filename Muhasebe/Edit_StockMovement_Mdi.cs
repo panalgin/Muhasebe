@@ -202,7 +202,9 @@ namespace Muhasebe
                         if (Decrese_Stock_Check.Checked)
                             m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount -= m_Node.Amount;
 
-                        m_Actual.Nodes.Remove(m_Actual.Nodes.Where(q => q.ID == m_Node.ID).FirstOrDefault());
+                        StockMovementNode m_ToDelete = m_Actual.Nodes.Where(q => q.ID == m_Node.ID).FirstOrDefault();
+                        m_Actual.Nodes.Remove(m_ToDelete);
+                        m_Context.Entry(m_ToDelete).State = System.Data.Entity.EntityState.Deleted;
 
                         return true;
                     });
@@ -253,7 +255,6 @@ namespace Muhasebe
 
                     m_Context.SaveChanges();
 
-
                     AccountMovement movement = m_Context.AccountMovements.Where(q => q.MovementTypeID == 3 && q.ContractID == m_Actual.ID).FirstOrDefault();
 
                     if (movement != null)
@@ -268,34 +269,6 @@ namespace Muhasebe
                             m_Expenditure.Amount = m_Actual.Summary;
                         }
                     }
-
-                    /*AccountMovement m_Movement = new AccountMovement();
-                    m_Movement.AccountID = m_Account.ID;
-                    m_Movement.AuthorID = Program.User.ID;
-                    m_Movement.ContractID = this.StockMovement.ID;
-                    m_Movement.CreatedAt = CreatedAt_Picker.Value;
-                    m_Movement.MovementTypeID = 3; // Ürün tedariği yapıldı
-                    m_Movement.OwnerID = Program.User.WorksAtID.Value;
-                    m_Movement.PaymentTypeID = this.StockMovement.PaymentTypeID;
-                    m_Movement.Value = this.StockMovement.Summary;
-
-                    m_Context.AccountMovements.Add(m_Movement);
-                    m_Context.SaveChanges();*/
-
-                    /*if (this.StockMovement.PaymentTypeID != 3) //Vadeli değil
-                    {
-                        Expenditure m_Expenditure = new Expenditure();
-                        m_Expenditure.CreatedAt = CreatedAt_Picker.Value;
-                        m_Expenditure.Amount = this.StockMovement.Summary;
-                        m_Expenditure.AuthorID = Program.User.ID;
-                        m_Expenditure.ExpenditureTypeID = 5; //Ürün alım gideri
-                        m_Expenditure.OwnerID = Program.User.WorksAtID;
-                        m_Expenditure.AccountID = this.StockMovement.AccountID;
-                        m_Expenditure.Description = "Yapılan ürün/hizmet alımı karşılığı peşin ödendi.";
-                        m_Expenditure.MovementID = m_Movement.ID;
-
-                        m_Context.Expenditures.Add(m_Expenditure);
-                    }*/
 
                     m_Context.SaveChanges();
 
