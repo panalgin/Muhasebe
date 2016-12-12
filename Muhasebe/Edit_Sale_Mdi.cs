@@ -84,7 +84,11 @@ namespace Muhasebe
                         else
                             m_ViewItem.SubItems.Add(m_Node.Item.Product.Name);
 
-                        m_ViewItem.SubItems.Add(m_Node.Amount.Value.ToString()); // format
+                        if (m_Node.Item != null)
+                            m_ViewItem.SubItems.Add(ItemHelper.GetFormattedAmount(m_Node.Amount.Value, m_Node.Item.UnitType.DecimalPlaces, null));
+                        else
+                            m_ViewItem.SubItems.Add(m_Node.Amount.Value.ToString());
+
                         m_ViewItem.SubItems.Add(m_Node.Item != null ? m_Node.Item.UnitType.Name : "-");
                         m_ViewItem.SubItems.Add(string.Format("%{0}", m_Node.Item != null ? m_Node.Item.Tax.Value.ToString() : m_Node.Tax.Value.ToString()));
 
@@ -366,71 +370,6 @@ namespace Muhasebe
                     }
 
                     m_Context.SaveChanges();
-
-                    /*if (this.Invoice.PaymentTypeID != 3) //Vadeli bir satış değilse gelir olarak geçmişe ekleyelim
-                    {
-                        Income m_Income = new Income();
-                        m_Income.Amount = m_Total;
-                        m_Income.AuthorID = Program.User.ID;
-                        m_Income.CreatedAt = DateTime.Now;
-                        m_Income.Description = "Ticari mal satışı yapıldı.";
-                        m_Income.IncomeTypeID = 1; // Genel
-                        m_Income.InvoiceID = this.Invoice.ID;
-                        m_Income.OwnerID = Program.User.WorksAtID;
-
-                        if (this.Account_Box.SelectedValue != null)
-                        {
-                            int m_AccountID = Convert.ToInt32(this.Account_Box.SelectedValue);
-                            m_Income.AccountID = m_AccountID;
-                        }
-
-                        m_Context.Incomes.Add(m_Income);
-                    }
-
-                    m_Context.SaveChanges();
-
-                    string toWho = "bilinmeyen bir müşteriye";
-                    string paymentText = "peşin";
-
-                    if (this.Account_Box.SelectedValue != null)
-                    {
-                        int m_AccountID = Convert.ToInt32(this.Account_Box.SelectedValue);
-
-                        Account m_Account = m_Context.Accounts.Where(q => q.ID == m_AccountID).FirstOrDefault();
-
-                        if (m_Account != null)
-                        {
-                            toWho = string.Format("{0} adlı hesaba", m_Account.Name);
-
-                            AccountMovement m_Movement = new AccountMovement();
-                            m_Movement.AccountID = m_Account.ID;
-                            m_Movement.AuthorID = Program.User.ID;
-                            m_Movement.MovementTypeID = 1; // Kasadan satış
-                            m_Movement.ContractID = this.Invoice.ID;
-                            m_Movement.CreatedAt = DateTime.Now;
-                            m_Movement.OwnerID = Program.User.WorksAtID.Value;
-                            m_Movement.PaymentTypeID = this.Invoice.PaymentTypeID.Value;
-                            m_Movement.Value = m_Total; // m_Income.Amount.Value;
-
-                            this.Invoice.TargetID = m_Account.ID;
-
-                            m_Context.AccountMovements.Add(m_Movement);
-                        }
-                    }
-
-                    if (this.Invoice.PaymentTypeID == 3)
-                        paymentText = "vadeli";
-
-                    Event m_Event = new Event();
-                    m_Event.AuthorID = Program.User.ID;
-                    m_Event.CategoryID = 4; // Satış
-                    m_Event.CreatedAt = DateTime.Now;
-                    m_Event.Description = string.Format("Kullanıcı {0} {1} TL değerinde {2} satış yaptı.", toWho, m_Total, paymentText);
-                    m_Event.OwnerID = Program.User.WorksAtID;
-
-                    m_Context.Events.Add(m_Event);
-
-                    m_Context.SaveChanges();*/
 
                     this.Close();
                 }
