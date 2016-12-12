@@ -70,6 +70,7 @@
             this.Tax_Label = new System.Windows.Forms.Label();
             this.Cancel_Btn = new System.Windows.Forms.Button();
             this.Save_Btn = new System.Windows.Forms.Button();
+            this.Increase_Stock_Check = new System.Windows.Forms.CheckBox();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Discount_Num)).BeginInit();
@@ -106,6 +107,7 @@
             // 
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.Increase_Stock_Check);
             this.panel5.Controls.Add(this.Decrease_Stock_Check);
             this.panel5.Controls.Add(this.Discount_Num);
             this.panel5.Controls.Add(this.label8);
@@ -119,11 +121,11 @@
             this.Decrease_Stock_Check.AutoSize = true;
             this.Decrease_Stock_Check.Checked = true;
             this.Decrease_Stock_Check.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.Decrease_Stock_Check.Location = new System.Drawing.Point(7, 61);
+            this.Decrease_Stock_Check.Location = new System.Drawing.Point(7, 53);
             this.Decrease_Stock_Check.Name = "Decrease_Stock_Check";
-            this.Decrease_Stock_Check.Size = new System.Drawing.Size(124, 17);
+            this.Decrease_Stock_Check.Size = new System.Drawing.Size(164, 17);
             this.Decrease_Stock_Check.TabIndex = 2;
-            this.Decrease_Stock_Check.Text = "Ürünleri Stoktan Düş";
+            this.Decrease_Stock_Check.Text = "Yeni Eklenenleri Stoktan Düş";
             this.Decrease_Stock_Check.UseVisualStyleBackColor = true;
             // 
             // Discount_Num
@@ -321,6 +323,7 @@
             this.silToolStripMenuItem});
             this.Context_Menu.Name = "Context_Menu";
             this.Context_Menu.Size = new System.Drawing.Size(144, 92);
+            this.Context_Menu.Opening += new System.ComponentModel.CancelEventHandler(this.Context_Menu_Opening);
             // 
             // kayıtDışıSatışToolStripMenuItem
             // 
@@ -508,6 +511,19 @@
             this.Save_Btn.TabIndex = 37;
             this.Save_Btn.Text = "Kaydet";
             this.Save_Btn.UseVisualStyleBackColor = true;
+            this.Save_Btn.Click += new System.EventHandler(this.Save_Button_Click);
+            // 
+            // Increase_Stock_Check
+            // 
+            this.Increase_Stock_Check.AutoSize = true;
+            this.Increase_Stock_Check.Checked = true;
+            this.Increase_Stock_Check.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Increase_Stock_Check.Location = new System.Drawing.Point(7, 74);
+            this.Increase_Stock_Check.Name = "Increase_Stock_Check";
+            this.Increase_Stock_Check.Size = new System.Drawing.Size(147, 17);
+            this.Increase_Stock_Check.TabIndex = 3;
+            this.Increase_Stock_Check.Text = "Silinenleri Stoğa Geri Ekle";
+            this.Increase_Stock_Check.UseVisualStyleBackColor = true;
             // 
             // Edit_Sale_Mdi
             // 
@@ -592,5 +608,6 @@
         private System.Windows.Forms.ToolStripMenuItem manuelSatışToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem düzenleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem silToolStripMenuItem;
+        private System.Windows.Forms.CheckBox Increase_Stock_Check;
     }
 }

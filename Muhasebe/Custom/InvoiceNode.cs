@@ -8,8 +8,6 @@ namespace Muhasebe
 {
     public partial class InvoiceNode
     {
-        public bool UseCustomPricing { get; set; }
-
         public InvoiceNode()
         {
             //throw new Exception("Ürün nesnesi oluşturulurken hata oluştur.");

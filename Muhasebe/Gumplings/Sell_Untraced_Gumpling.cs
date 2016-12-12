@@ -29,7 +29,7 @@ namespace Muhasebe.Gumplings
             m_Node.BasePrice = this.Price_Num.Value;
             m_Node.FinalPrice = this.Price_Num.Value;
             m_Node.Tax = 18;
-            m_Node.UseCustomPricing = true;
+            m_Node.UseCustomPrice = true;
             m_Node.ItemID = this.NextID;
             m_Node.Description = this.Description_Box.Text;
 

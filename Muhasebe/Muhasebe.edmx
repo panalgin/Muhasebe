@@ -200,6 +200,7 @@
           <Property Name="FinalPrice" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Tax" Type="int" />
           <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="UseCustomPrice" Type="bit" />
         </EntityType>
         <EntityType Name="Invoices">
           <Key>
@@ -894,6 +895,7 @@
           <NavigationProperty Name="Invoice" Relationship="MuhasebeModel.InvoiceNodeInvoice" FromRole="InvoiceNode" ToRole="Invoice" />
           <NavigationProperty Name="Item" Relationship="MuhasebeModel.InvoiceNodeItem" FromRole="InvoiceNode" ToRole="Item" />
           <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="UseCustomPrice" Type="Boolean" />
         </EntityType>
         <EntityType Name="Invoice">
           <Key>
@@ -1858,6 +1860,7 @@
           <EntitySetMapping Name="InvoiceNodes">
             <EntityTypeMapping TypeName="IsTypeOf(MuhasebeModel.InvoiceNode)">
               <MappingFragment StoreEntitySet="InvoiceNodes">
+                <ScalarProperty Name="UseCustomPrice" ColumnName="UseCustomPrice" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Tax" ColumnName="Tax" />
                 <ScalarProperty Name="FinalPrice" ColumnName="FinalPrice" />

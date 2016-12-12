@@ -52,7 +52,7 @@ namespace Muhasebe
                 m_Node.FinalPrice = this.TotalPrice_Num.Value;
 
                 if (this.UseCustumPricing_Check.Checked)
-                    m_Node.UseCustomPricing = true;
+                    m_Node.UseCustomPrice = true;
 
                 InvoiceNodeCreated?.Invoke(m_Node);
             }

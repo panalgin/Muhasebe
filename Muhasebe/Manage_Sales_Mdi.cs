@@ -128,7 +128,7 @@ namespace Muhasebe
                             this.Invoice.PaymentTypeID == 3 && 
                             m_Node.Item.TermedPrice.HasValue && 
                             m_Node.Item.TermedPrice.Value > m_Node.Item.FinalPrice && 
-                            m_Node.UseCustomPricing == false && 
+                            m_Node.UseCustomPrice == false && 
                             this.UseTermedPrice_Check.Checked
                             )
                         {
@@ -137,7 +137,7 @@ namespace Muhasebe
                         }
                         else
                         {
-                            if (m_Node.UseCustomPricing == false && m_Node.Item != null)
+                            if (m_Node.UseCustomPrice == false && m_Node.Item != null)
                             {
                                 basePrice = m_Node.Item.FinalPrice.Value;
                                 finalPrice = basePrice * m_Node.Amount.Value;

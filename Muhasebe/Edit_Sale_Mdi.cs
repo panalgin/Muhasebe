@@ -96,7 +96,7 @@ namespace Muhasebe
                             this.Invoice.PaymentTypeID == 3 &&
                             m_Node.Item.TermedPrice.HasValue &&
                             m_Node.Item.TermedPrice.Value > m_Node.Item.FinalPrice &&
-                            m_Node.UseCustomPricing == false &&
+                            m_Node.UseCustomPrice == false &&
                             this.UseTermedPrice_Check.Checked
                             )
                         {
@@ -105,7 +105,7 @@ namespace Muhasebe
                         }
                         else
                         {
-                            if (m_Node.UseCustomPricing == false && m_Node.Item != null)
+                            if (m_Node.UseCustomPrice == false && m_Node.Item != null)
                             {
                                 basePrice = m_Node.Item.FinalPrice.Value;
                                 finalPrice = basePrice * m_Node.Amount.Value;
@@ -239,7 +239,7 @@ namespace Muhasebe
             }
         }
 
-        private void Sale_Button_Click(object sender, EventArgs e)
+        private void Save_Button_Click(object sender, EventArgs e)
         {
             int m_PaymentTypeID = Convert.ToInt32(this.Payment_Combo.SelectedValue);
 
@@ -255,7 +255,7 @@ namespace Muhasebe
                 {
                     this.Invoice.OwnerID = Program.User.WorksAtID.Value;
                     this.Invoice.PaymentTypeID = Convert.ToInt32(this.Payment_Combo.SelectedValue);
-                    this.Invoice.CreatedAt = DateTime.Now;
+                    //this.Invoice.CreatedAt = DateTime.Now;
                     this.Invoice.AuthorID = Program.User.ID;
 
                     this.Invoice.State = "Complete";
@@ -268,11 +268,11 @@ namespace Muhasebe
                         m_Total += m_Node.FinalPrice.Value;
                         m_Tax += m_Node.FinalPrice.Value * ((decimal)(m_Node.Tax.Value / 100));
 
-                        if (this.Decrease_Stock_Check.Checked && m_Node.Item != null)
+                        /*if (this.Decrease_Stock_Check.Checked && m_Node.Item != null)
                             m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount -= m_Node.Amount.Value;
 
                         m_Node.Invoice = this.Invoice;
-                        m_Node.Item = null;
+                        m_Node.Item = null;*/
 
                         return true;
                     });
@@ -282,11 +282,77 @@ namespace Muhasebe
                         m_Total = m_Total - this.Invoice.Discount.Value;
                     }
 
-                    m_Context.Invoices.Add(this.Invoice);
+                    Invoice m_Actual = m_Context.Invoices.Where(q => q.ID == this.Invoice.ID).FirstOrDefault();
+                    m_Actual.OwnerID = this.Invoice.OwnerID;
+                    m_Actual.AuthorID = this.Invoice.AuthorID;
+                    m_Actual.CreatedAt = this.Invoice.CreatedAt;
+                    m_Actual.Discount = this.Invoice.Discount;
+                    m_Actual.PaymentTypeID = this.Invoice.PaymentTypeID;
+                    m_Actual.State = this.Invoice.State;
+                    m_Actual.TargetID = this.Invoice.TargetID;
+
+                    var m_Added = this.Invoice.Nodes.Except(m_Actual.Nodes, (p, p1) => p.ItemID == p1.ItemID);
+                    var m_Deleted = m_Actual.Nodes.Except(this.Invoice.Nodes, (p, p1) => p.ItemID == p1.ItemID);
+                    var m_Changed = m_Actual.Nodes.Intersect(this.Invoice.Nodes, (p, p1) => p.ItemID == p1.ItemID && (p.Amount != p1.Amount || p.BasePrice != p1.BasePrice));
+
+                    m_Added.All(delegate (InvoiceNode m_Node)
+                    {
+                        if (Decrease_Stock_Check.Checked)
+                            m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount -= m_Node.Amount.Value;
+
+                        m_Actual.Nodes.Add(m_Node);
+
+                        return true;
+                    });
+
+                    m_Deleted.All(delegate (InvoiceNode m_Node)
+                    {
+                        if (Increase_Stock_Check.Checked)
+                            m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount += m_Node.Amount.Value;
+
+                        m_Actual.Nodes.Remove(m_Node);
+
+                        return true;
+                    });
+
+                    m_Changed.All(delegate (InvoiceNode m_Node)
+                    {
+                        InvoiceNode m_Knode = this.Invoice.Nodes.Where(q => q.ItemID == m_Node.ItemID).FirstOrDefault();
+
+                        if (m_Knode != null)
+                        {
+                            if (m_Node.Amount > m_Knode.Amount)
+                            {// Bazıları silinmiş
+
+                                if (m_Node.ItemID > 0 && Increase_Stock_Check.Checked) //Eğer kayıt dışı satış değilse
+                                    m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount += m_Node.Amount.Value - m_Knode.Amount.Value;
+                            }
+                            else if (m_Node.Amount < m_Knode.Amount)
+                            {
+                                if (m_Node.ItemID > 0 && Decrease_Stock_Check.Checked) // Kayıt dışı satış değisle
+                                    m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount -= m_Knode.Amount.Value - m_Node.Amount.Value;
+                            }
+
+                            m_Node.Amount = m_Knode.Amount;
+                            m_Node.BasePrice = m_Knode.BasePrice;
+                            m_Node.FinalPrice = m_Knode.FinalPrice;
+                        }
+
+                        return true;
+                    });
+
+                    m_Actual.Nodes.All(delegate (InvoiceNode m_Node)
+                    {
+                        m_Node.Invoice = m_Actual;
+
+                        return true;
+                    });
+
+                    //m_Context.Invoices.Add(this.Invoice);
                     m_Context.SaveChanges();
 
 
-                    if (this.Invoice.PaymentTypeID != 3) //Vadeli bir satış değilse gelir olarak geçmişe ekleyelim
+                    /*if (this.Invoice.PaymentTypeID != 3) //Vadeli bir satış değilse gelir olarak geçmişe ekleyelim
                     {
                         Income m_Income = new Income();
                         m_Income.Amount = m_Total;
@@ -349,7 +415,7 @@ namespace Muhasebe
 
                     m_Context.Events.Add(m_Event);
 
-                    m_Context.SaveChanges();
+                    m_Context.SaveChanges();*/
 
                     this.Close();
                 }
@@ -427,6 +493,13 @@ namespace Muhasebe
                 this.Payment_Combo.Invalidate();
 
                 this.Payment_Combo.SelectedValueChanged += Payment_Combo_SelectedValueChanged;
+                this.Payment_Combo.SelectedValue = this.Invoice.PaymentTypeID;
+
+                if (this.Invoice.TargetID.HasValue)
+                {
+                    this.Account_Box.SelectedText = m_Context.Accounts.Where(q => q.ID == this.Invoice.TargetID).FirstOrDefault().Name;
+                    this.Account_Box.Enabled = false;
+                }
 
                 PopulateListView();
 
