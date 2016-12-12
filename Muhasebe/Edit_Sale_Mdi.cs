@@ -291,13 +291,13 @@ namespace Muhasebe
                     m_Actual.State = this.Invoice.State;
                     m_Actual.TargetID = this.Invoice.TargetID;
 
-                    var m_Added = this.Invoice.Nodes.Except(m_Actual.Nodes, (p, p1) => p.ItemID == p1.ItemID);
-                    var m_Deleted = m_Actual.Nodes.Except(this.Invoice.Nodes, (p, p1) => p.ItemID == p1.ItemID);
-                    var m_Changed = m_Actual.Nodes.Intersect(this.Invoice.Nodes, (p, p1) => p.ItemID == p1.ItemID && (p.Amount != p1.Amount || p.BasePrice != p1.BasePrice));
+                    var m_Added = this.Invoice.Nodes.Except(m_Actual.Nodes, (p, p1) => p.ItemID == p1.ItemID).ToList();
+                    var m_Deleted = m_Actual.Nodes.Except(this.Invoice.Nodes, (p, p1) => p.ItemID == p1.ItemID).ToList();
+                    var m_Changed = m_Actual.Nodes.Intersect(this.Invoice.Nodes, (p, p1) => p.ItemID == p1.ItemID && (p.Amount != p1.Amount || p.BasePrice != p1.BasePrice)).ToList();
 
                     m_Added.All(delegate (InvoiceNode m_Node)
                     {
-                        if (Decrease_Stock_Check.Checked)
+                        if (Decrease_Stock_Check.Checked && m_Node.ItemID > 0)
                             m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount -= m_Node.Amount.Value;
 
                         m_Actual.Nodes.Add(m_Node);
@@ -307,10 +307,13 @@ namespace Muhasebe
 
                     m_Deleted.All(delegate (InvoiceNode m_Node)
                     {
-                        if (Increase_Stock_Check.Checked)
+                        if (Increase_Stock_Check.Checked && m_Node.ItemID > 0)
                             m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount += m_Node.Amount.Value;
 
-                        m_Actual.Nodes.Remove(m_Node);
+                        InvoiceNode m_ToDelete = m_Actual.Nodes.Where(q => q.ItemID == m_Node.ItemID).FirstOrDefault();
+
+                        m_Actual.Nodes.Remove(m_ToDelete);
+                        m_Context.Entry(m_ToDelete).State = System.Data.Entity.EntityState.Deleted;
 
                         return true;
                     });
@@ -344,6 +347,7 @@ namespace Muhasebe
                     m_Actual.Nodes.All(delegate (InvoiceNode m_Node)
                     {
                         m_Node.Invoice = m_Actual;
+                        m_Node.Item = null;
 
                         return true;
                     });
