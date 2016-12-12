@@ -841,6 +841,20 @@ namespace Muhasebe
             {
                 case 1: // Ticari Mat Satışı Yapıldı
                     {
+                        using(MuhasebeEntities m_Context = new MuhasebeEntities())
+                        {
+                            Invoice m_Invoice = m_Context.Invoices.Where(q => q.ID == movement.ContractID).FirstOrDefault();
+                            m_Context.Entry(m_Invoice).State = System.Data.Entity.EntityState.Detached;
+
+                            if (m_Invoice != null)
+                            {
+                                Edit_Sale_Mdi m_Mdi = new Edit_Sale_Mdi();
+                                m_Mdi.Invoice = m_Invoice;
+                                m_Mdi.ShowDialog();
+                            }
+                            
+                        }
+
                         break;
                     }
                 case 2: // Alacak tahsilatı yapıldı

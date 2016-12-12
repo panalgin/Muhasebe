@@ -55,7 +55,7 @@ namespace Muhasebe
         {
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
-                this.SaleScreen_List.Items.Clear();
+                this.Edit_Sale_List.Items.Clear();
                 var m_Nodes = this.Invoice.Nodes;
 
                 decimal m_Subtotal = 0;
@@ -135,7 +135,7 @@ namespace Muhasebe
                         m_Node.BasePrice = basePrice;
                         m_Node.FinalPrice = finalPrice;
 
-                        this.SaleScreen_List.Items.Add(m_ViewItem);
+                        this.Edit_Sale_List.Items.Add(m_ViewItem);
                     }
 
                     return true;
@@ -187,17 +187,56 @@ namespace Muhasebe
 
         private void Context_Menu_Opening(object sender, CancelEventArgs e)
         {
+            if (this.Edit_Sale_List.SelectedItems.Count == 1)
+                this.düzenleToolStripMenuItem.Enabled = true;
 
+            if (this.Edit_Sale_List.SelectedItems.Count >= 1)
+                this.silToolStripMenuItem.Enabled = true;
+
+            if (this.Edit_Sale_List.SelectedItems.Count == 0)
+            {
+                this.düzenleToolStripMenuItem.Enabled = false;
+                this.silToolStripMenuItem.Enabled = false;
+            }
         }
 
         private void düzenleToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (this.Edit_Sale_List.SelectedItems.Count == 1)
+            {
+                int m_ItemID = Convert.ToInt32(this.Edit_Sale_List.SelectedItems[0].Tag);
 
+                InvoiceNode m_Node = this.Invoice.Nodes.Where(q => q.ItemID == m_ItemID).FirstOrDefault();
+
+                if (m_Node != null)
+                {
+                    Node_Set_Amount_Gumpling m_Gumpling = new Node_Set_Amount_Gumpling();
+                    m_Gumpling.Node = m_Node;
+                    m_Gumpling.NodeAmountChanged += NodeAmountChanged;
+                    m_Gumpling.ShowDialog();
+                }
+            }
         }
 
         private void silToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (this.Edit_Sale_List.SelectedItems.Count > 0)
+            {
+                if (MessageBox.Show(string.Format("Seçili {0} objeyi silmek istediğinizden emin misiniz?", this.Edit_Sale_List.SelectedItems.Count), "Dikkat", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    foreach (ListViewItem m_ViewItem in this.Edit_Sale_List.SelectedItems)
+                    {
+                        int m_ItemID = Convert.ToInt32(m_ViewItem.Tag);
 
+                        InvoiceNode m_Node = this.Invoice.Nodes.Where(q => q.ItemID == m_ItemID).FirstOrDefault();
+
+                        if (m_Node != null)
+                            this.Invoice.Nodes.Remove(m_Node);
+                    }
+
+                    PopulateListView();
+                }
+            }
         }
 
         private void Sale_Button_Click(object sender, EventArgs e)
@@ -374,23 +413,11 @@ namespace Muhasebe
             m_Gump.ShowDialog();
         }
 
-        private void SaleScreen_List_DoubleClick(object sender, EventArgs e)
-        {
-            this.düzenleToolStripMenuItem_Click(sender, e);
-        }
-
         private void Edit_Sale_Mdi_Load(object sender, EventArgs e)
         {
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
-                if (this.Invoice == null)
-                {
-                    this.Invoice = new Invoice();
-                    this.Invoice.AuthorID = Program.User.ID;
-                    this.Invoice.CreatedAt = DateTime.Now;
-                    this.Invoice.OwnerID = Program.User.WorksAtID.Value;
-                    this.Invoice.State = "Incomplete";
-                }
+                this.Invoice = m_Context.Invoices.Where(q => q.ID == this.Invoice.ID).FirstOrDefault();
 
                 var m_PaymentsTypes = m_Context.PaymentTypes.ToList();
 
@@ -405,6 +432,11 @@ namespace Muhasebe
 
                 this.Author_Label.Text = string.Format("Kasiyer: {0} {1}", Program.User.Name, Program.User.Surname);
             }
+        }
+
+        private void Edit_Sale_List_DoubleClick(object sender, EventArgs e)
+        {
+            this.düzenleToolStripMenuItem_Click(sender, e);
         }
     }
 }

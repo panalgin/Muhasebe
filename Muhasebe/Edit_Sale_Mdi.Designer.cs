@@ -43,7 +43,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.Payment_Combo = new System.Windows.Forms.ComboBox();
-            this.SaleScreen_List = new Muhasebe.Custom.ListViewEx();
+            this.Edit_Sale_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -51,6 +51,11 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Context_Menu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.kayıtDışıSatışToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manuelSatışToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.düzenleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.silToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Author_Label = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -65,19 +70,14 @@
             this.Tax_Label = new System.Windows.Forms.Label();
             this.Cancel_Btn = new System.Windows.Forms.Button();
             this.Save_Btn = new System.Windows.Forms.Button();
-            this.Context_Menu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.kayıtDışıSatışToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manuelSatışToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.düzenleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.silToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Discount_Num)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.Context_Menu.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.Context_Menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel6
@@ -143,6 +143,7 @@
             this.Discount_Num.Name = "Discount_Num";
             this.Discount_Num.Size = new System.Drawing.Size(105, 20);
             this.Discount_Num.TabIndex = 1;
+            this.Discount_Num.ValueChanged += new System.EventHandler(this.Discount_Num_ValueChanged);
             // 
             // label8
             // 
@@ -201,6 +202,7 @@
             this.UseTermedPrice_Check.TabIndex = 23;
             this.UseTermedPrice_Check.Text = "Vade Farkı Uygula";
             this.UseTermedPrice_Check.UseVisualStyleBackColor = true;
+            this.UseTermedPrice_Check.Click += new System.EventHandler(this.UseTermedPrice_Check_CheckedChanged);
             // 
             // Account_Box
             // 
@@ -241,16 +243,17 @@
             this.Payment_Combo.Name = "Payment_Combo";
             this.Payment_Combo.Size = new System.Drawing.Size(165, 21);
             this.Payment_Combo.TabIndex = 19;
+            this.Payment_Combo.Click += new System.EventHandler(this.Payment_Combo_SelectedValueChanged);
             // 
-            // SaleScreen_List
+            // Edit_Sale_List
             // 
-            this.SaleScreen_List.AllowColumnReorder = true;
-            this.SaleScreen_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Edit_Sale_List.AllowColumnReorder = true;
+            this.Edit_Sale_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaleScreen_List.AutoArrange = false;
-            this.SaleScreen_List.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SaleScreen_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Edit_Sale_List.AutoArrange = false;
+            this.Edit_Sale_List.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Edit_Sale_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
@@ -258,15 +261,16 @@
             this.columnHeader8,
             this.columnHeader9,
             this.columnHeader10});
-            this.SaleScreen_List.ContextMenuStrip = this.Context_Menu;
-            this.SaleScreen_List.FullRowSelect = true;
-            this.SaleScreen_List.GridLines = true;
-            this.SaleScreen_List.Location = new System.Drawing.Point(12, 25);
-            this.SaleScreen_List.Name = "SaleScreen_List";
-            this.SaleScreen_List.Size = new System.Drawing.Size(952, 467);
-            this.SaleScreen_List.TabIndex = 30;
-            this.SaleScreen_List.UseCompatibleStateImageBehavior = false;
-            this.SaleScreen_List.View = System.Windows.Forms.View.Details;
+            this.Edit_Sale_List.ContextMenuStrip = this.Context_Menu;
+            this.Edit_Sale_List.FullRowSelect = true;
+            this.Edit_Sale_List.GridLines = true;
+            this.Edit_Sale_List.Location = new System.Drawing.Point(12, 25);
+            this.Edit_Sale_List.Name = "Edit_Sale_List";
+            this.Edit_Sale_List.Size = new System.Drawing.Size(952, 467);
+            this.Edit_Sale_List.TabIndex = 30;
+            this.Edit_Sale_List.UseCompatibleStateImageBehavior = false;
+            this.Edit_Sale_List.View = System.Windows.Forms.View.Details;
+            this.Edit_Sale_List.DoubleClick += new System.EventHandler(this.Edit_Sale_List_DoubleClick);
             // 
             // columnHeader1
             // 
@@ -307,6 +311,46 @@
             this.columnHeader10.Text = "Toplam Fiyat";
             this.columnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader10.Width = 113;
+            // 
+            // Context_Menu
+            // 
+            this.Context_Menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.kayıtDışıSatışToolStripMenuItem,
+            this.manuelSatışToolStripMenuItem,
+            this.düzenleToolStripMenuItem,
+            this.silToolStripMenuItem});
+            this.Context_Menu.Name = "Context_Menu";
+            this.Context_Menu.Size = new System.Drawing.Size(144, 92);
+            // 
+            // kayıtDışıSatışToolStripMenuItem
+            // 
+            this.kayıtDışıSatışToolStripMenuItem.Name = "kayıtDışıSatışToolStripMenuItem";
+            this.kayıtDışıSatışToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.kayıtDışıSatışToolStripMenuItem.Text = "Kayıt Dışı Satış";
+            this.kayıtDışıSatışToolStripMenuItem.Click += new System.EventHandler(this.kayıtDışıSatışToolStripMenuItem_Click);
+            // 
+            // manuelSatışToolStripMenuItem
+            // 
+            this.manuelSatışToolStripMenuItem.Name = "manuelSatışToolStripMenuItem";
+            this.manuelSatışToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.manuelSatışToolStripMenuItem.Text = "Manuel Satış";
+            this.manuelSatışToolStripMenuItem.Click += new System.EventHandler(this.manuelSatışToolStripMenuItem_Click);
+            // 
+            // düzenleToolStripMenuItem
+            // 
+            this.düzenleToolStripMenuItem.Enabled = false;
+            this.düzenleToolStripMenuItem.Name = "düzenleToolStripMenuItem";
+            this.düzenleToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.düzenleToolStripMenuItem.Text = "Düzenle";
+            this.düzenleToolStripMenuItem.Click += new System.EventHandler(this.düzenleToolStripMenuItem_Click);
+            // 
+            // silToolStripMenuItem
+            // 
+            this.silToolStripMenuItem.Enabled = false;
+            this.silToolStripMenuItem.Name = "silToolStripMenuItem";
+            this.silToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.silToolStripMenuItem.Text = "Sil";
+            this.silToolStripMenuItem.Click += new System.EventHandler(this.silToolStripMenuItem_Click);
             // 
             // Author_Label
             // 
@@ -418,6 +462,7 @@
             this.Subtotal_Label.TabIndex = 10;
             this.Subtotal_Label.Text = "0 TL";
             this.Subtotal_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Subtotal_Label.Click += new System.EventHandler(this.Subtotal_Label_Click);
             // 
             // Total_Label
             // 
@@ -451,6 +496,7 @@
             this.Cancel_Btn.TabIndex = 38;
             this.Cancel_Btn.Text = "İptal";
             this.Cancel_Btn.UseVisualStyleBackColor = true;
+            this.Cancel_Btn.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
             // Save_Btn
             // 
@@ -463,42 +509,6 @@
             this.Save_Btn.Text = "Kaydet";
             this.Save_Btn.UseVisualStyleBackColor = true;
             // 
-            // Context_Menu
-            // 
-            this.Context_Menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.kayıtDışıSatışToolStripMenuItem,
-            this.manuelSatışToolStripMenuItem,
-            this.düzenleToolStripMenuItem,
-            this.silToolStripMenuItem});
-            this.Context_Menu.Name = "Context_Menu";
-            this.Context_Menu.Size = new System.Drawing.Size(144, 92);
-            // 
-            // kayıtDışıSatışToolStripMenuItem
-            // 
-            this.kayıtDışıSatışToolStripMenuItem.Name = "kayıtDışıSatışToolStripMenuItem";
-            this.kayıtDışıSatışToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.kayıtDışıSatışToolStripMenuItem.Text = "Kayıt Dışı Satış";
-            // 
-            // manuelSatışToolStripMenuItem
-            // 
-            this.manuelSatışToolStripMenuItem.Name = "manuelSatışToolStripMenuItem";
-            this.manuelSatışToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.manuelSatışToolStripMenuItem.Text = "Manuel Satış";
-            // 
-            // düzenleToolStripMenuItem
-            // 
-            this.düzenleToolStripMenuItem.Enabled = false;
-            this.düzenleToolStripMenuItem.Name = "düzenleToolStripMenuItem";
-            this.düzenleToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.düzenleToolStripMenuItem.Text = "Düzenle";
-            // 
-            // silToolStripMenuItem
-            // 
-            this.silToolStripMenuItem.Enabled = false;
-            this.silToolStripMenuItem.Name = "silToolStripMenuItem";
-            this.silToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.silToolStripMenuItem.Text = "Sil";
-            // 
             // Edit_Sale_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -510,7 +520,7 @@
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.SaleScreen_List);
+            this.Controls.Add(this.Edit_Sale_List);
             this.Controls.Add(this.Author_Label);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
@@ -518,6 +528,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Edit_Sale_Mdi";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Satışı Düzenle";
             this.Load += new System.EventHandler(this.Edit_Sale_Mdi_Load);
             this.panel6.ResumeLayout(false);
@@ -529,11 +540,11 @@
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.Context_Menu.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.Context_Menu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -554,7 +565,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox Payment_Combo;
-        private Custom.ListViewEx SaleScreen_List;
+        private Custom.ListViewEx Edit_Sale_List;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
