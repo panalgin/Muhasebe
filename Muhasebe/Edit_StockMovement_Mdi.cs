@@ -47,6 +47,7 @@ namespace Muhasebe
                     this.PaymentType_Combo.Invalidate();
 
                     this.PaymentType_Combo.SelectedValue = StockMovement.PaymentTypeID;
+                    this.PaymentType_Combo.Enabled = false;
                 }
             }
 
@@ -198,8 +199,9 @@ namespace Muhasebe
 
                     m_Deleted.All(delegate (StockMovementNode m_Node)
                     {
-                        //if 
-                        m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount += m_Node.Amount;
+                        if (Decrese_Stock_Check.Checked)
+                            m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount -= m_Node.Amount;
+
                         m_Actual.Nodes.Remove(m_Actual.Nodes.Where(q => q.ID == m_Node.ID).FirstOrDefault());
 
                         return true;
@@ -207,8 +209,9 @@ namespace Muhasebe
 
                     m_Added.All(delegate (StockMovementNode m_Node)
                     {
-                        //if 
-                        m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount -= m_Node.Amount;
+                        if (Increase_Stock_Check.Checked)
+                            m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount += m_Node.Amount;
+
                         m_Actual.Nodes.Add(m_Node);
 
                         return true;
@@ -219,10 +222,11 @@ namespace Muhasebe
                         //actual node
                         StockMovementNode m_Anode = m_Actual.Nodes.Where(q => q.ID == m_Node.ID).FirstOrDefault();
 
-                        if (m_Node.Amount > m_Anode.Amount)
-                            m_Context.Items.Where(q => q.ID == m_Anode.ItemID).FirstOrDefault().Amount -= m_Node.Amount - m_Anode.Amount;
-                        else if (m_Node.Amount < m_Anode.Amount)
-                            m_Context.Items.Where(q => q.ID == m_Anode.ItemID).FirstOrDefault().Amount += m_Anode.Amount - m_Node.Amount;
+                        if (m_Node.Amount > m_Anode.Amount && Increase_Stock_Check.Checked)
+                            m_Context.Items.Where(q => q.ID == m_Anode.ItemID).FirstOrDefault().Amount += m_Node.Amount - m_Anode.Amount;
+
+                        else if (m_Node.Amount < m_Anode.Amount && Decrese_Stock_Check.Checked)
+                            m_Context.Items.Where(q => q.ID == m_Anode.ItemID).FirstOrDefault().Amount -= m_Anode.Amount - m_Node.Amount;
 
                         m_Anode.Amount = m_Node.Amount;
                         m_Anode.BasePrice = m_Node.BasePrice;
@@ -249,11 +253,21 @@ namespace Muhasebe
 
                     m_Context.SaveChanges();
 
-                    //var m_Added = this.StockMovement.Nodes.Except(this.OldMovement.Nodes);
-                    //var m_Deleted = this.OldMovement.Nodes.Except(this.StockMovement.Nodes);
 
-                    
+                    AccountMovement movement = m_Context.AccountMovements.Where(q => q.MovementTypeID == 3 && q.ContractID == m_Actual.ID).FirstOrDefault();
 
+                    if (movement != null)
+                        movement.Value = m_Actual.Summary;
+
+                    if (m_Actual.PaymentTypeID != 3) //Vadeli olmadığında, gideri doğrultalım
+                    {
+                        Expenditure m_Expenditure = m_Context.Expenditures.Where(q => q.AccountID == movement.AccountID && q.MovementID == movement.ID).FirstOrDefault();
+
+                        if (m_Expenditure != null)
+                        {
+                            m_Expenditure.Amount = m_Actual.Summary;
+                        }
+                    }
 
                     /*AccountMovement m_Movement = new AccountMovement();
                     m_Movement.AccountID = m_Account.ID;
@@ -281,16 +295,6 @@ namespace Muhasebe
                         m_Expenditure.MovementID = m_Movement.ID;
 
                         m_Context.Expenditures.Add(m_Expenditure);
-                    }*/
-
-                    /*if (this.Increase_Stock_Check.Checked) // alınan mallar sonucu stoğu artıralım
-                    {
-                        this.StockMovement.Nodes.All(delegate (StockMovementNode m_Node)
-                        {
-                            m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault().Amount += m_Node.Amount;
-
-                            return true;
-                        });
                     }*/
 
                     m_Context.SaveChanges();

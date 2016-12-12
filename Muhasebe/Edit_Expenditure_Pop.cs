@@ -12,8 +12,8 @@ namespace Muhasebe
 {
     public partial class Edit_Expenditure_Pop : Form
     {
-        public delegate void OnxpenditureEdited(Expenditure Expenditure);
-        public event OnxpenditureEdited ExpenditureEdited;
+        public delegate void OnExpenditureEdited(Expenditure Expenditure);
+        public event OnExpenditureEdited ExpenditureEdited;
         public Expenditure Expenditure { get; set; }
 
         public Edit_Expenditure_Pop()
@@ -23,33 +23,36 @@ namespace Muhasebe
 
         private void Edit_Expenditure_Pop_Load(object sender, EventArgs e)
         {
-            MuhasebeEntities m_Context = new MuhasebeEntities();
-
-            var m_ExpenditureType = m_Context.ExpenditureTypes.Where(q => q.OwnerID == null || q.OwnerID == Program.User.WorksAtID).ToList();
-
-            this.CreatedAt_Picker.Value = this.Expenditure.CreatedAt.Value;
-
-            this.Expenditure_Type_Combo.DataSource = m_ExpenditureType;
-            this.Expenditure_Type_Combo.ValueMember = "ID";
-            this.Expenditure_Type_Combo.DisplayMember = "Name";
-
-            var m_Users = m_Context.Users.Where(q => q.WorksAtID == Program.User.WorksAtID).ToList();
-
-            this.Responsible_Combo.DataSource = m_Users;
-            this.Responsible_Combo.ValueMember = "ID";
-            this.Responsible_Combo.DisplayMember = "FullName";
-
-            this.CreatedAt_Picker.Value = this.Expenditure.CreatedAt.Value;
-            this.Expenditure_Type_Combo.SelectedValue = this.Expenditure.ExpenditureTypeID;
-            this.Expenditure_Amount_Num.Value = this.Expenditure.Amount.Value;
-            this.Responsible_Combo.SelectedValue = this.Expenditure.AuthorID;
-            this.ExpenditureDesc_Text.Text = this.Expenditure.Description;
-
-            this.Account_Box.Enabled = false;
-
-            if (this.Expenditure.Account != null)
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
-                this.Account_Box.SelectedText = this.Expenditure.Account.Name;
+                this.Expenditure = m_Context.Expenditures.Where(q => q.ID == this.Expenditure.ID).FirstOrDefault();
+
+                var m_ExpenditureType = m_Context.ExpenditureTypes.Where(q => q.OwnerID == null || q.OwnerID == Program.User.WorksAtID).ToList();
+
+                this.CreatedAt_Picker.Value = this.Expenditure.CreatedAt.Value;
+
+                this.Expenditure_Type_Combo.DataSource = m_ExpenditureType;
+                this.Expenditure_Type_Combo.ValueMember = "ID";
+                this.Expenditure_Type_Combo.DisplayMember = "Name";
+
+                var m_Users = m_Context.Users.Where(q => q.WorksAtID == Program.User.WorksAtID).ToList();
+
+                this.Responsible_Combo.DataSource = m_Users;
+                this.Responsible_Combo.ValueMember = "ID";
+                this.Responsible_Combo.DisplayMember = "FullName";
+
+                this.CreatedAt_Picker.Value = this.Expenditure.CreatedAt.Value;
+                this.Expenditure_Type_Combo.SelectedValue = this.Expenditure.ExpenditureTypeID;
+                this.Expenditure_Amount_Num.Value = this.Expenditure.Amount.Value;
+                this.Responsible_Combo.SelectedValue = this.Expenditure.AuthorID;
+                this.ExpenditureDesc_Text.Text = this.Expenditure.Description;
+
+                this.Account_Box.Enabled = false;
+
+                if (this.Expenditure.Account != null)
+                {
+                    this.Account_Box.SelectedText = this.Expenditure.Account.Name;
+                }
             }
         }
 

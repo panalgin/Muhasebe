@@ -68,6 +68,8 @@ namespace Muhasebe
         {
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
+                this.Income = m_Context.Incomes.Where(q => q.ID == this.Income.ID).FirstOrDefault();
+
                 var m_RevenueTypes = m_Context.IncomeTypes.Where(q => q.OwnerID == null || q.OwnerID == Program.User.WorksAtID).ToList();
 
                 this.Revenue_Type_Combo.DataSource = m_RevenueTypes;
