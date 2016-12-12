@@ -13,7 +13,9 @@ namespace Muhasebe
 {
     public partial class Add_Sales_Mdi : Form
     {
-        public Manage_Sales_Mdi SalesForm { get; set; }
+        public delegate void OnInvoiceNodeCreated(InvoiceNode node);
+        public event OnInvoiceNodeCreated InvoiceNodeCreated;
+
         private Item Item { get; set; }
 
         public Add_Sales_Mdi()
@@ -44,18 +46,15 @@ namespace Muhasebe
         {
             if (this.Item != null)
             {
-                if (this.SalesForm != null)
-                {
-                    InvoiceNode m_Node = new InvoiceNode(this.Item);
-                    m_Node.Amount = this.Amount_Num.Value;
-                    m_Node.BasePrice = this.PerPrice_Num.Value;
-                    m_Node.FinalPrice = this.TotalPrice_Num.Value;
+                InvoiceNode m_Node = new InvoiceNode(this.Item);
+                m_Node.Amount = this.Amount_Num.Value;
+                m_Node.BasePrice = this.PerPrice_Num.Value;
+                m_Node.FinalPrice = this.TotalPrice_Num.Value;
 
-                    if (this.UseCustumPricing_Check.Checked)
-                        m_Node.UseCustomPricing = true;
+                if (this.UseCustumPricing_Check.Checked)
+                    m_Node.UseCustomPricing = true;
 
-                    this.SalesForm.Append(m_Node);
-                }
+                InvoiceNodeCreated?.Invoke(m_Node);
             }
 
             this.Close();
@@ -92,22 +91,24 @@ namespace Muhasebe
 
         private void Barcode_Box_TextChanged(object sender, EventArgs e)
         {
-            MuhasebeEntities m_Context = new MuhasebeEntities();
-            string m_Barcode = this.Barcode_Box.Text;
-            Product m_Product = m_Context.Products.Where(q => q.Barcode == m_Barcode).FirstOrDefault();
-
-            if (m_Product != null)
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
-                this.Item = m_Context.Items.Where(q => q.ProductID == m_Product.ID && q.Inventory.OwnerID == Program.User.WorksAtID).FirstOrDefault();
-                this.Barcode_Box.Text = m_Product.Barcode;
-                this.Name_Box.Text = m_Product.Name;
-                this.Abbreviation_Label.Text = this.Item.UnitType.Name;
-                this.Amount_Num.Value = 1;
-                this.PerPrice_Num.Value = Item.FinalPrice.Value;
+                string m_Barcode = this.Barcode_Box.Text;
+                Product m_Product = m_Context.Products.Where(q => q.Barcode == m_Barcode).FirstOrDefault();
+
+                if (m_Product != null)
+                {
+                    this.Item = m_Context.Items.Where(q => q.ProductID == m_Product.ID && q.Inventory.OwnerID == Program.User.WorksAtID).FirstOrDefault();
+                    this.Barcode_Box.Text = m_Product.Barcode;
+                    this.Name_Box.Text = m_Product.Name;
+                    this.Abbreviation_Label.Text = this.Item.UnitType.Name;
+                    this.Amount_Num.Value = 1;
+                    this.PerPrice_Num.Value = Item.FinalPrice.Value;
 
 
-                this.Barcode_Box.ReadOnly = true;
-                this.Name_Box.ReadOnly = true;
+                    this.Barcode_Box.ReadOnly = true;
+                    this.Name_Box.ReadOnly = true;
+                }
             }
         }
 

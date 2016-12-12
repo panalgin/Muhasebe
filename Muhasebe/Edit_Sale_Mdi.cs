@@ -1,26 +1,22 @@
 ﻿using Muhasebe.Custom;
-using Muhasebe.Gumplings;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Muhasebe.Gumplings;
 
 namespace Muhasebe
 {
-    public partial class Manage_Sales_Mdi : Form
+    public partial class Edit_Sale_Mdi : Form
     {
         public Invoice Invoice { get; set; }
 
-        public Manage_Sales_Mdi()
+        public Edit_Sale_Mdi()
         {
             InitializeComponent();
         }
-
         public void Append(InvoiceNode node)
         {
             if (node.ItemID < 0 || this.Invoice.Nodes.Any(q => q.ItemID == node.ItemID) == false)
@@ -36,36 +32,8 @@ namespace Muhasebe
             PopulateListView();
         }
 
-        private void Manage_Sales_Mdi_Load(object sender, EventArgs e)
-        {
-            using (MuhasebeEntities m_Context = new MuhasebeEntities())
-            {
-                if (this.Invoice == null)
-                {
-                    this.Invoice = new Invoice();
-                    this.Invoice.AuthorID = Program.User.ID;
-                    this.Invoice.CreatedAt = DateTime.Now;
-                    this.Invoice.OwnerID = Program.User.WorksAtID.Value;
-                    this.Invoice.State = "Incomplete";
-                }
-
-                var m_PaymentsTypes = m_Context.PaymentTypes.ToList();
-
-                this.Payment_Combo.DataSource = m_PaymentsTypes;
-                this.Payment_Combo.DisplayMember = "Name";
-                this.Payment_Combo.ValueMember = "ID";
-                this.Payment_Combo.Invalidate();
-
-                this.Payment_Combo.SelectedValueChanged += Payment_Combo_SelectedValueChanged;
-
-                PopulateListView();
-
-                this.Author_Label.Text = string.Format("Kasiyer: {0} {1}", Program.User.Name, Program.User.Surname);
-            }
-        }
-
         private void Payment_Combo_SelectedValueChanged(object sender, EventArgs e)
-        { 
+        {
             if (this.Payment_Combo.SelectedValue != null)
             {
                 this.Invoice.PaymentTypeID = Convert.ToInt32(this.Payment_Combo.SelectedValue);
@@ -96,7 +64,7 @@ namespace Muhasebe
                 int i = 0;
                 Color m_Shaded = Color.FromArgb(240, 240, 240);
 
-                m_Nodes.All(delegate(InvoiceNode m_Node)
+                m_Nodes.All(delegate (InvoiceNode m_Node)
                 {
                     m_Node.Invoice = this.Invoice;
                     m_Node.InvoiceID = this.Invoice.ID;
@@ -124,11 +92,11 @@ namespace Muhasebe
                         decimal finalPrice = 0.00m;
 
                         if (m_Node.Item != null &&
-                            this.Invoice.PaymentTypeID.HasValue && 
-                            this.Invoice.PaymentTypeID == 3 && 
-                            m_Node.Item.TermedPrice.HasValue && 
-                            m_Node.Item.TermedPrice.Value > m_Node.Item.FinalPrice && 
-                            m_Node.UseCustomPricing == false && 
+                            this.Invoice.PaymentTypeID.HasValue &&
+                            this.Invoice.PaymentTypeID == 3 &&
+                            m_Node.Item.TermedPrice.HasValue &&
+                            m_Node.Item.TermedPrice.Value > m_Node.Item.FinalPrice &&
+                            m_Node.UseCustomPricing == false &&
                             this.UseTermedPrice_Check.Checked
                             )
                         {
@@ -157,7 +125,7 @@ namespace Muhasebe
                         {
                             m_ViewItem.BackColor = m_Shaded;
                             m_ViewItem.UseItemStyleForSubItems = true;
-                        }                            
+                        }
 
                         m_Subtotal += m_Node.Item != null ? m_Node.Item.BasePrice.Value * m_Node.Amount.Value : m_Node.BasePrice.Value * m_Node.Amount.Value;
                         m_Tax += (finalPrice * ((decimal)m_Node.Tax.Value / 100));
@@ -219,67 +187,28 @@ namespace Muhasebe
 
         private void Context_Menu_Opening(object sender, CancelEventArgs e)
         {
-            if (this.SaleScreen_List.SelectedItems.Count == 1)
-                this.düzenleToolStripMenuItem.Enabled = true;
 
-            if (this.SaleScreen_List.SelectedItems.Count >= 1)
-                this.silToolStripMenuItem.Enabled = true;
-
-            if (this.SaleScreen_List.SelectedItems.Count == 0)
-            {
-                this.düzenleToolStripMenuItem.Enabled = false;
-                this.silToolStripMenuItem.Enabled = false;
-            }
         }
 
         private void düzenleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.SaleScreen_List.SelectedItems.Count == 1)
-            {
-                int m_ItemID = Convert.ToInt32(this.SaleScreen_List.SelectedItems[0].Tag);
 
-                InvoiceNode m_Node = this.Invoice.Nodes.Where(q => q.ItemID == m_ItemID).FirstOrDefault();
-
-                if (m_Node != null)
-                {
-                    Node_Set_Amount_Gumpling m_Gumpling = new Node_Set_Amount_Gumpling();
-                    m_Gumpling.Node = m_Node;
-                    m_Gumpling.NodeAmountChanged += NodeAmountChanged;
-                    m_Gumpling.ShowDialog();
-                }
-            }
         }
 
         private void silToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.SaleScreen_List.SelectedItems.Count > 0)
-            {
-                if (MessageBox.Show(string.Format("Seçili {0} objeyi silmek istediğinizden emin misiniz?", this.SaleScreen_List.SelectedItems.Count), "Dikkat", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                {
-                    foreach (ListViewItem m_ViewItem in this.SaleScreen_List.SelectedItems)
-                    {
-                        int m_ItemID = Convert.ToInt32(m_ViewItem.Tag);
 
-                        InvoiceNode m_Node = this.Invoice.Nodes.Where(q => q.ItemID == m_ItemID).FirstOrDefault();
-
-                        if (m_Node != null)
-                            this.Invoice.Nodes.Remove(m_Node);
-                    }
-
-                    PopulateListView();
-                }
-            }
         }
 
         private void Sale_Button_Click(object sender, EventArgs e)
         {
             int m_PaymentTypeID = Convert.ToInt32(this.Payment_Combo.SelectedValue);
-            
+
             if (m_PaymentTypeID == 3 && this.Account_Box.SelectedValue == null)
             {
                 MessageBox.Show("Vadeli satışı ancak bir cari hesaba yapabilirsiniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }   
+            }
 
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
@@ -442,12 +371,40 @@ namespace Muhasebe
             Sell_Untraced_Gumpling m_Gump = new Sell_Untraced_Gumpling();
             m_Gump.InvoiceNodeCreated += Pop_InvoiceNodeCreated;
             m_Gump.NextID = m_LowestID;
-            m_Gump.ShowDialog(); 
+            m_Gump.ShowDialog();
         }
 
         private void SaleScreen_List_DoubleClick(object sender, EventArgs e)
         {
             this.düzenleToolStripMenuItem_Click(sender, e);
+        }
+
+        private void Edit_Sale_Mdi_Load(object sender, EventArgs e)
+        {
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
+            {
+                if (this.Invoice == null)
+                {
+                    this.Invoice = new Invoice();
+                    this.Invoice.AuthorID = Program.User.ID;
+                    this.Invoice.CreatedAt = DateTime.Now;
+                    this.Invoice.OwnerID = Program.User.WorksAtID.Value;
+                    this.Invoice.State = "Incomplete";
+                }
+
+                var m_PaymentsTypes = m_Context.PaymentTypes.ToList();
+
+                this.Payment_Combo.DataSource = m_PaymentsTypes;
+                this.Payment_Combo.DisplayMember = "Name";
+                this.Payment_Combo.ValueMember = "ID";
+                this.Payment_Combo.Invalidate();
+
+                this.Payment_Combo.SelectedValueChanged += Payment_Combo_SelectedValueChanged;
+
+                PopulateListView();
+
+                this.Author_Label.Text = string.Format("Kasiyer: {0} {1}", Program.User.Name, Program.User.Surname);
+            }
         }
     }
 }
