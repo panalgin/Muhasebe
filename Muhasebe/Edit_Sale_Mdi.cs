@@ -77,6 +77,9 @@ namespace Muhasebe
                         ListViewItem m_ViewItem = new ListViewItem();
                         m_ViewItem.Tag = m_Node.ItemID;
 
+                        if (m_Node.UseCustomPrice == null)
+                            m_Node.UseCustomPrice = false;
+
                         m_ViewItem.Text = m_Node.Item != null ? m_Node.Item.Product.Barcode : "Kayıt Dışı";
 
                         if (m_Node.Item == null && m_Node.Description.Length > 0)
@@ -297,7 +300,7 @@ namespace Muhasebe
 
                     var m_Added = this.Invoice.Nodes.Except(m_Actual.Nodes, (p, p1) => p.ItemID == p1.ItemID).ToList();
                     var m_Deleted = m_Actual.Nodes.Except(this.Invoice.Nodes, (p, p1) => p.ItemID == p1.ItemID).ToList();
-                    var m_Changed = m_Actual.Nodes.Intersect(this.Invoice.Nodes, (p, p1) => p.ItemID == p1.ItemID && (p.Amount != p1.Amount || p.BasePrice != p1.BasePrice)).ToList();
+                    var m_Changed = m_Actual.Nodes.Intersect(this.Invoice.Nodes, (p, p1) => p.ItemID == p1.ItemID && (p.Amount != p1.Amount || p.BasePrice != p1.BasePrice || p.UseCustomPrice != p1.UseCustomPrice)).ToList();
 
                     m_Added.All(delegate (InvoiceNode m_Node)
                     {
@@ -343,6 +346,10 @@ namespace Muhasebe
                             m_Node.Amount = m_Knode.Amount;
                             m_Node.BasePrice = m_Knode.BasePrice;
                             m_Node.FinalPrice = m_Knode.FinalPrice;
+                            m_Node.UseCustomPrice = m_Knode.UseCustomPrice;
+
+                            if (m_Node.UseCustomPrice == null)
+                                m_Node.UseCustomPrice = false;
                         }
 
                         return true;

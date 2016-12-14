@@ -101,6 +101,9 @@ namespace Muhasebe
                     m_Node.Invoice = this.Invoice;
                     m_Node.InvoiceID = this.Invoice.ID;
 
+                    if (m_Node.UseCustomPrice == null)
+                        m_Node.UseCustomPrice = false;
+
                     if (m_Node.ItemID > 0)
                         m_Node.Item = m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault();
 
