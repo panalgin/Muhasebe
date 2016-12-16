@@ -36,7 +36,11 @@ namespace Muhasebe
                     this.CreatedAt_Picker.Value = StockMovement.CreatedAt;
                     this.Account_Box.SelectedText = StockMovement.Account.Name;
                     this.Account_Box.Enabled = false;
-                    this.Discount_Num.Value = StockMovement.Discount.Value;
+
+                    if (this.StockMovement.Discount.HasValue)
+                        this.Discount_Num.Value = StockMovement.Discount.Value;
+                    else
+                        this.Discount_Num.Value = 0;
 
                     var m_PaymentTypes = m_Context.PaymentTypes.Where(q => q.OwnerID == null || q.OwnerID == Program.User.WorksAtID).ToList();
 
@@ -48,10 +52,27 @@ namespace Muhasebe
 
                     this.PaymentType_Combo.SelectedValue = StockMovement.PaymentTypeID;
                     this.PaymentType_Combo.Enabled = false;
+
+                    PopulateListView();
                 }
             }
 
-            PopulateListView();
+            if (this.StockMovement != null)
+            {
+                try
+                {
+                    var config = new MapperConfiguration(cfg => cfg.CreateMap<StockMovement, StockMovement>());
+                    var mapper = config.CreateMapper();
+
+                    this.StockMovement = mapper.Map<StockMovement>(StockMovement);
+                }
+                catch(Exception ex)
+                {
+
+                }
+            }
+
+           
         }
 
         private void EventSink_BarcodeScanned(object sender, BarcodeScannedEventArgs args)
@@ -85,6 +106,7 @@ namespace Muhasebe
                 }
 
                 PopulateListView();
+
             }
         }
 

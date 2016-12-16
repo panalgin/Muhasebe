@@ -462,7 +462,11 @@ namespace Muhasebe
                     this.Account_Box.Enabled = false;
                 }
 
-                this.Discount_Num.Value = this.Invoice.Discount.Value;
+                if (this.Invoice.Discount.HasValue)
+                    this.Discount_Num.Value = this.Invoice.Discount.Value;
+                else
+                    this.Discount_Num.Value = 0;
+
                 this.Payment_Combo.Enabled = false;
 
                 PopulateListView();
