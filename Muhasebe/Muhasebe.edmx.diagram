@@ -91,6 +91,12 @@
         <AssociationConnector Association="MuhasebeModel.StockMovementNodeStockMovement" />
         <AssociationConnector Association="MuhasebeModel.StockMovementNodeItem" />
         <AssociationConnector Association="MuhasebeModel.ExpenditureAccount" />
+        <EntityTypeShape EntityType="MuhasebeModel.OfferNode" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MuhasebeModel.Offer" Width="1.5" PointX="6.375" PointY="0.75" />
+        <AssociationConnector Association="MuhasebeModel.OfferNodeOffer" />
+        <AssociationConnector Association="MuhasebeModel.OfferNodeItem" />
+        <AssociationConnector Association="MuhasebeModel.OfferAccount" />
+        <AssociationConnector Association="MuhasebeModel.OfferUser" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

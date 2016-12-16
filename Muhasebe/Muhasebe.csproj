@@ -484,6 +484,12 @@
     <Compile Include="Manage_Items_Mdi.Designer.cs">
       <DependentUpon>Manage_Items_Mdi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Manage_Offers_Mdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_Offers_Mdi.Designer.cs">
+      <DependentUpon>Manage_Offers_Mdi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Manage_Orders_Mdi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -735,6 +741,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Manage_Items_Mdi.resx">
       <DependentUpon>Manage_Items_Mdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_Offers_Mdi.resx">
+      <DependentUpon>Manage_Offers_Mdi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Manage_Orders_Mdi.resx">
       <DependentUpon>Manage_Orders_Mdi.cs</DependentUpon>

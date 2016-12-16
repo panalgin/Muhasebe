@@ -247,6 +247,30 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="45" />
         </EntityType>
+        <EntityType Name="OfferNodes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="BasePrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FinalPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="OfferID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Offers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AccountID" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="AuthorID" Type="int" Nullable="false" />
+          <Property Name="OwnerID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="OrderNodes">
           <Key>
             <PropertyRef Name="ID" />
@@ -388,6 +412,8 @@
           <EntitySet Name="ItemGroups" EntityType="Self.ItemGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobPositions" EntityType="Self.JobPositions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OfferNodes" EntityType="Self.OfferNodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Offers" EntityType="Self.Offers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderNodes" EntityType="Self.OrderNodes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentTypes" EntityType="Self.PaymentTypes" Schema="dbo" store:Type="Tables" />
@@ -657,6 +683,24 @@
           <AssociationSet Name="ExpenditureAccount" Association="MuhasebeModel.ExpenditureAccount">
             <End Role="Expenditure" EntitySet="Expenditures" />
             <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <EntitySet Name="OfferNodes" EntityType="MuhasebeModel.OfferNode" />
+          <EntitySet Name="Offers" EntityType="MuhasebeModel.Offer" />
+          <AssociationSet Name="OfferNodeOffer" Association="MuhasebeModel.OfferNodeOffer">
+            <End Role="OfferNode" EntitySet="OfferNodes" />
+            <End Role="Offer" EntitySet="Offers" />
+          </AssociationSet>
+          <AssociationSet Name="OfferNodeItem" Association="MuhasebeModel.OfferNodeItem">
+            <End Role="OfferNode" EntitySet="OfferNodes" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="OfferAccount" Association="MuhasebeModel.OfferAccount">
+            <End Role="Offer" EntitySet="Offers" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="OfferUser" Association="MuhasebeModel.OfferUser">
+            <End Role="Offer" EntitySet="Offers" />
+            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Product">
@@ -1753,6 +1797,83 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="OfferNode">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemID" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="BasePrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="FinalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="OfferID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Offer" Relationship="MuhasebeModel.OfferNodeOffer" FromRole="OfferNode" ToRole="Offer" />
+          <NavigationProperty Name="Item" Relationship="MuhasebeModel.OfferNodeItem" FromRole="OfferNode" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Offer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AccountID" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
+          <Property Name="AuthorID" Type="Int32" Nullable="false" />
+          <Property Name="OwnerID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Nodes" Relationship="MuhasebeModel.OfferNodeOffer" FromRole="Offer" ToRole="OfferNode" />
+          <NavigationProperty Name="Account" Relationship="MuhasebeModel.OfferAccount" FromRole="Offer" ToRole="Account" />
+          <NavigationProperty Name="Author" Relationship="MuhasebeModel.OfferUser" FromRole="Offer" ToRole="User" />
+        </EntityType>
+        <Association Name="OfferNodeOffer">
+          <End Type="MuhasebeModel.OfferNode" Role="OfferNode" Multiplicity="*" />
+          <End Type="MuhasebeModel.Offer" Role="Offer" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Offer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OfferNode">
+              <PropertyRef Name="OfferID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OfferNodeItem">
+          <End Type="MuhasebeModel.OfferNode" Role="OfferNode" Multiplicity="*" />
+          <End Type="MuhasebeModel.Item" Role="Item" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OfferNode">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OfferAccount">
+          <End Type="MuhasebeModel.Offer" Role="Offer" Multiplicity="*" />
+          <End Type="MuhasebeModel.Account" Role="Account" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Offer">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OfferUser">
+          <End Type="MuhasebeModel.Offer" Role="Offer" Multiplicity="*" />
+          <End Type="MuhasebeModel.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Offer">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2148,6 +2269,32 @@
                 <ScalarProperty Name="AccountID" ColumnName="AccountID" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OfferNodes">
+            <EntityTypeMapping TypeName="MuhasebeModel.OfferNode">
+              <MappingFragment StoreEntitySet="OfferNodes">
+                <ScalarProperty Name="OfferID" ColumnName="OfferID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FinalPrice" ColumnName="FinalPrice" />
+                <ScalarProperty Name="BasePrice" ColumnName="BasePrice" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offers">
+            <EntityTypeMapping TypeName="MuhasebeModel.Offer">
+              <MappingFragment StoreEntitySet="Offers">
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

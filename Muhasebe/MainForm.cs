@@ -757,5 +757,15 @@ namespace Muhasebe
                 }
             }
         }
+
+        private void teklifYönetimiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearMdis();
+
+            Manage_Offers_Mdi m_Mdi = new Manage_Offers_Mdi();
+            m_Mdi.MdiParent = this;
+            m_Mdi.WindowState = FormWindowState.Maximized;
+            m_Mdi.Show();
+        }
     }
 }

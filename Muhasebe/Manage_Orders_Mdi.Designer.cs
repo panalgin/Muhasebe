@@ -157,6 +157,7 @@
             this.Controls.Add(this.Add_Button);
             this.Controls.Add(this.Orders_List);
             this.Name = "Manage_Orders_Mdi";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Sipariş Formlarını Yönet";
             this.Load += new System.EventHandler(this.Manage_Orders_Mdi_Load);
             this.ResumeLayout(false);

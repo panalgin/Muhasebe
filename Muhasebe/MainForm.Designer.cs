@@ -112,6 +112,7 @@
             this.giderYönetimiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.istatistiklerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Events_Button = new System.Windows.Forms.ToolStripButton();
+            this.teklifYönetimiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_Strip.SuspendLayout();
             this.Status_Strip.SuspendLayout();
             this.Notify_Menu_Context.SuspendLayout();
@@ -831,7 +832,8 @@
             this.Storage_Button,
             this.Items_Button,
             this.ürünGruplarıYönetimiToolStripMenuItem,
-            this.siparişYönetimiToolStripMenuItem});
+            this.siparişYönetimiToolStripMenuItem,
+            this.teklifYönetimiToolStripMenuItem});
             this.Inventory_Button.Image = global::Muhasebe.Properties.Resources.server_components;
             this.Inventory_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Inventory_Button.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -916,6 +918,13 @@
             this.Events_Button.Size = new System.Drawing.Size(134, 38);
             this.Events_Button.Text = "Hareketler";
             this.Events_Button.Click += new System.EventHandler(this.Events_Button_Click);
+            // 
+            // teklifYönetimiToolStripMenuItem
+            // 
+            this.teklifYönetimiToolStripMenuItem.Name = "teklifYönetimiToolStripMenuItem";
+            this.teklifYönetimiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.teklifYönetimiToolStripMenuItem.Text = "Teklif Yönetimi";
+            this.teklifYönetimiToolStripMenuItem.Click += new System.EventHandler(this.teklifYönetimiToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1040,6 +1049,7 @@
         private System.Windows.Forms.ToolStripMenuItem siparişYönetimiToolStripMenuItem;
         private System.Windows.Forms.ComboBox BarcodeScannerMode_Combo;
         private System.Windows.Forms.Label BarcodeScannerMode_Label;
+        private System.Windows.Forms.ToolStripMenuItem teklifYönetimiToolStripMenuItem;
     }
 }
 

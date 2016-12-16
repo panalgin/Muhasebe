@@ -327,6 +327,7 @@
             // 
             // Decrese_Stock_Check
             // 
+            this.Decrese_Stock_Check.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Decrese_Stock_Check.AutoSize = true;
             this.Decrese_Stock_Check.Checked = true;
             this.Decrese_Stock_Check.CheckState = System.Windows.Forms.CheckState.Checked;
