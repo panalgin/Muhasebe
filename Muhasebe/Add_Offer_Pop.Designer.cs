@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Account_Box = new Muhasebe.Custom.SearchBox();
             this.Attn_Note = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.Delete_Button = new System.Windows.Forms.Button();
@@ -39,26 +38,16 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.Name_Box = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Cancel_Button = new System.Windows.Forms.Button();
             this.Save_Button = new System.Windows.Forms.Button();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Account_Box = new Muhasebe.Custom.SearchBox();
             this.SuspendLayout();
-            // 
-            // Account_Box
-            // 
-            this.Account_Box.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.Account_Box.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.Account_Box.FillType = Muhasebe.Custom.SearchBox.Fillable.Account;
-            this.Account_Box.FormattingEnabled = true;
-            this.Account_Box.Location = new System.Drawing.Point(103, 38);
-            this.Account_Box.Name = "Account_Box";
-            this.Account_Box.Size = new System.Drawing.Size(216, 21);
-            this.Account_Box.TabIndex = 26;
             // 
             // Attn_Note
             // 
@@ -100,6 +89,7 @@
             this.Edit_Button.TabIndex = 19;
             this.Edit_Button.Text = "Düzenle";
             this.Edit_Button.UseVisualStyleBackColor = true;
+            this.Edit_Button.Click += new System.EventHandler(this.Edit_Button_Click);
             // 
             // listView1
             // 
@@ -151,6 +141,18 @@
             this.columnHeader10.Text = "Birim";
             this.columnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader10.Width = 63;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Toplam";
+            this.columnHeader1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader1.Width = 66;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Açıklama";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader2.Width = 203;
             // 
             // label4
             // 
@@ -210,16 +212,16 @@
             this.Save_Button.Text = "Kaydet";
             this.Save_Button.UseVisualStyleBackColor = true;
             // 
-            // columnHeader1
+            // Account_Box
             // 
-            this.columnHeader1.Text = "Toplam";
-            this.columnHeader1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader1.Width = 72;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Açıklama";
-            this.columnHeader2.Width = 217;
+            this.Account_Box.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.Account_Box.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.Account_Box.FillType = Muhasebe.Custom.SearchBox.Fillable.Account;
+            this.Account_Box.FormattingEnabled = true;
+            this.Account_Box.Location = new System.Drawing.Point(103, 38);
+            this.Account_Box.Name = "Account_Box";
+            this.Account_Box.Size = new System.Drawing.Size(216, 21);
+            this.Account_Box.TabIndex = 26;
             // 
             // Add_Offer_Pop
             // 
@@ -244,6 +246,7 @@
             this.Name = "Add_Offer_Pop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Teklif Ekle";
+            this.Load += new System.EventHandler(this.Add_Offer_Pop_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

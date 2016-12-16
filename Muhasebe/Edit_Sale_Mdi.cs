@@ -17,6 +17,7 @@ namespace Muhasebe
         {
             InitializeComponent();
         }
+
         public void Append(InvoiceNode node)
         {
             if (node.ItemID < 0 || this.Invoice.Nodes.Any(q => q.ItemID == node.ItemID) == false)

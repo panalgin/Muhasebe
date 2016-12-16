@@ -54,6 +54,7 @@
             this.Export_Pdf_Button.Text = "Pdf Çıkart   ";
             this.Export_Pdf_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Export_Pdf_Button.UseVisualStyleBackColor = true;
+            this.Export_Pdf_Button.Click += new System.EventHandler(this.Export_Pdf_Button_Click);
             // 
             // Delete_Button
             // 
@@ -65,6 +66,7 @@
             this.Delete_Button.TabIndex = 11;
             this.Delete_Button.Text = "Sil";
             this.Delete_Button.UseVisualStyleBackColor = true;
+            this.Delete_Button.Click += new System.EventHandler(this.Delete_Button_Click);
             // 
             // Edit_Button
             // 
@@ -76,6 +78,7 @@
             this.Edit_Button.TabIndex = 10;
             this.Edit_Button.Text = "Düzenle";
             this.Edit_Button.UseVisualStyleBackColor = true;
+            this.Edit_Button.Click += new System.EventHandler(this.Edit_Button_Click);
             // 
             // Add_Button
             // 
@@ -86,6 +89,7 @@
             this.Add_Button.TabIndex = 9;
             this.Add_Button.Text = "Yeni";
             this.Add_Button.UseVisualStyleBackColor = true;
+            this.Add_Button.Click += new System.EventHandler(this.Add_Button_Click);
             // 
             // Offers_List
             // 

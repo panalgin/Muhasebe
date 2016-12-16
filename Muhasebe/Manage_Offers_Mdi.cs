@@ -27,9 +27,9 @@ namespace Muhasebe
 
         private void Add_Button_Click(object sender, EventArgs e)
         {
-            /*Add_Offer_Mdi m_Mdi = new Add_Offer_Mdi();
-            m_Mdi.ShowDialog();
-            PopulateListView();*/
+            Add_Offer_Pop m_Pop = new Add_Offer_Pop();
+            m_Pop.ShowDialog();
+            PopulateListView();
         }
 
         private void PopulateListView()
@@ -87,17 +87,17 @@ namespace Muhasebe
             if (this.Offers_List.SelectedItems.Count == 1)
             {
                 ListViewItem m_Item = this.Offers_List.SelectedItems[0];
-                int m_OrderID = Convert.ToInt32(m_Item.Tag);
+                int m_OfferID = Convert.ToInt32(m_Item.Tag);
 
                 using (MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
-                    Order m_Order = m_Context.Orders.Where(q => q.ID == m_OrderID).FirstOrDefault();
+                    Offer m_Offer = m_Context.Offers.Where(q => q.ID == m_OfferID).FirstOrDefault();
 
-                    if (m_Order != null)
+                    if (m_Offer != null)
                     {
-                        if (MessageBox.Show(string.Format("{0} adlı sipariş silinecek, emin misiniz?", m_Order.Name), "Bilgi", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (MessageBox.Show(string.Format("{0} adlı teklif silinecek, emin misiniz?", m_Offer.Name), "Bilgi", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            m_Context.Orders.Remove(m_Order);
+                            m_Context.Offers.Remove(m_Offer);
                             m_Context.SaveChanges();
 
                             PopulateListView();
@@ -112,17 +112,17 @@ namespace Muhasebe
             if (this.Offers_List.SelectedItems.Count == 1)
             {
                 ListViewItem m_Item = this.Offers_List.SelectedItems[0];
-                int m_OrderID = Convert.ToInt32(m_Item.Tag);
+                int m_OfferID = Convert.ToInt32(m_Item.Tag);
 
                 using (MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
-                    Order m_Order = m_Context.Orders.Where(q => q.ID == m_OrderID).FirstOrDefault();
+                    Offer m_Offer = m_Context.Offers.Where(q => q.ID == m_OfferID).FirstOrDefault();
 
-                    if (m_Order != null)
+                    if (m_Offer != null)
                     {
-                        Edit_Order_Mdi m_Mdi = new Edit_Order_Mdi();
-                        m_Mdi.Order = m_Order;
-                        m_Mdi.ShowDialog();
+                        Edit_Offer_Pop m_Pop = new Edit_Order_Mdi();
+                        m_Pop.Offer = m_Offer;
+                        m_Pop.ShowDialog();
 
                         PopulateListView();
                     }
@@ -139,13 +139,13 @@ namespace Muhasebe
                 using (MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
                     ListViewItem m_Item = this.Offers_List.SelectedItems[0];
-                    int m_OrderID = Convert.ToInt32(m_Item.Tag);
+                    int m_OfferID = Convert.ToInt32(m_Item.Tag);
 
-                    Order m_Order = m_Context.Orders.Where(q => q.ID == m_OrderID).FirstOrDefault();
+                    Offer m_Offer = m_Context.Offers.Where(q => q.ID == m_OfferID).FirstOrDefault();
 
-                    this.Save_Dialog.FileName = string.Format("Sipariş - {0}.pdf", m_OrderID);
+                    this.Save_Dialog.FileName = string.Format("Teklif - {0}.pdf", m_OfferID);
 
-                    if (m_Order != null && this.Save_Dialog.ShowDialog() == DialogResult.OK)
+                    if (m_Offer != null && this.Save_Dialog.ShowDialog() == DialogResult.OK)
                     {
                         string m_SavePath = this.Save_Dialog.FileName;
                         string html = "";
@@ -168,13 +168,13 @@ namespace Muhasebe
                         html = html.Replace("{PROVINCE}", Program.User.WorksAt.Province);
                         html = html.Replace("{TELEPHONE}", Program.User.WorksAt.Phone);
                         html = html.Replace("{EMAIL}", Program.User.WorksAt.Email);
-                        html = html.Replace("{ATTN-NAME}", m_Order.Account != null ? m_Order.Account.Name : "Yetkili");
+                        html = html.Replace("{ATTN-NAME}", m_Offer.Account != null ? m_Offer.Account.Name : "Yetkili");
                         html = html.Replace("{AUTHOR-NAME}", Program.User.FullName);
                         html = html.Replace("{AUTHOR-POSITION}", Program.User.Position.Name);
                         html = html.Replace("{AUTHOR-EMAIL}", Program.User.Email);
                         html = html.Replace("{AUTHOR-GSM}", Program.User.WorksAt.Gsm);
-                        html = html.Replace("{ORDER-ID}", m_Order.ID.ToString());
-                        html = html.Replace("{ATTN-NOTE}", m_Order.Note);
+                        html = html.Replace("{ORDER-ID}", m_Offer.ID.ToString());
+                        html = html.Replace("{ATTN-NOTE}", m_Offer.Note);
 
                         string m_Template = "<tr class=\"item\">" +
                                     "<td class=\"pro-img\"><img src=\"{0}\" /></td>" +
@@ -186,7 +186,7 @@ namespace Muhasebe
 
                         string m_Data = "";
 
-                        m_Order.Nodes.All(delegate (OrderNode node)
+                        m_Offer.Nodes.All(delegate (OfferNode node)
                         {
                             if (node.Item == null)
                                 return true;
