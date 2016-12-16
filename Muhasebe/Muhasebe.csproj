@@ -155,6 +155,12 @@
     <Compile Include="Add_Inventory_Pop.Designer.cs">
       <DependentUpon>Add_Inventory_Pop.cs</DependentUpon>
     </Compile>
+    <Compile Include="Add_Offer_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_Offer_Pop.Designer.cs">
+      <DependentUpon>Add_Offer_Pop.cs</DependentUpon>
+    </Compile>
     <Compile Include="Add_Order_Mdi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -553,6 +559,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Muhasebe.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Offer.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OfferNode.cs">
+      <DependentUpon>Muhasebe.tt</DependentUpon>
+    </Compile>
     <Compile Include="Options_Mdi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -620,6 +632,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Add_Inventory_Pop.resx">
       <DependentUpon>Add_Inventory_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_Offer_Pop.resx">
+      <DependentUpon>Add_Offer_Pop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Add_Order_Mdi.resx">
       <DependentUpon>Add_Order_Mdi.cs</DependentUpon>

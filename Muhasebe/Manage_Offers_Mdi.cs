@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Muhasebe.Custom;
+using OpenHtmlToPdf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,9 +27,9 @@ namespace Muhasebe
 
         private void Add_Button_Click(object sender, EventArgs e)
         {
-            Add_Offer_Mdi m_Mdi = new Add_Offer_Mdi();
+            /*Add_Offer_Mdi m_Mdi = new Add_Offer_Mdi();
             m_Mdi.ShowDialog();
-            PopulateListView();
+            PopulateListView();*/
         }
 
         private void PopulateListView()
@@ -35,35 +38,37 @@ namespace Muhasebe
 
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
-                var m_Offers = m_Context.Offers.Where(q => q.OfferID == Program.User.WorksAtID).ToList();
+                var m_Offers = m_Context.Offers.Where(q => q.OwnerID == Program.User.WorksAtID).ToList();
 
-                var m_Orders = m_Context.Orders.Where(q => q.OwnerID == Program.User.WorksAtID).ToList();
+                this.Offers_List.BeginUpdate();
 
-                m_Orders.All(delegate (Order order)
+                m_Offers.All(delegate (Offer offer)
                 {
                     ListViewItem m_Item = new ListViewItem();
-                    m_Item.Tag = order.ID;
-                    m_Item.Text = order.ID.ToString();
-                    m_Item.SubItems.Add(order.Name);
-                    m_Item.SubItems.Add(order.CreatedAt.ToString());
+                    m_Item.Tag = offer.ID;
+                    m_Item.Text = offer.ID.ToString();
+                    m_Item.SubItems.Add(offer.Name);
+                    m_Item.SubItems.Add(offer.CreatedAt.ToString());
 
-                    if (order.Account != null)
-                        m_Item.SubItems.Add(order.Account.Name);
+                    if (offer.Account != null)
+                        m_Item.SubItems.Add(offer.Account.Name);
                     else
                         m_Item.SubItems.Add("Yok");
 
-                    m_Item.SubItems.Add(order.Note);
+                    m_Item.SubItems.Add(offer.Note);
 
-                    this.Orders_List.Items.Add(m_Item);
+                    this.Offers_List.Items.Add(m_Item);
 
                     return true;
                 });
+
+                this.Offers_List.EndUpdate();
             }
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void Offer_List_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.Orders_List.SelectedItems.Count > 0)
+            if (this.Offers_List.SelectedItems.Count > 0)
             {
                 this.Edit_Button.Enabled = true;
                 this.Delete_Button.Enabled = true;
@@ -79,9 +84,9 @@ namespace Muhasebe
 
         private void Delete_Button_Click(object sender, EventArgs e)
         {
-            if (this.Orders_List.SelectedItems.Count == 1)
+            if (this.Offers_List.SelectedItems.Count == 1)
             {
-                ListViewItem m_Item = this.Orders_List.SelectedItems[0];
+                ListViewItem m_Item = this.Offers_List.SelectedItems[0];
                 int m_OrderID = Convert.ToInt32(m_Item.Tag);
 
                 using (MuhasebeEntities m_Context = new MuhasebeEntities())
@@ -104,9 +109,9 @@ namespace Muhasebe
 
         private void Edit_Button_Click(object sender, EventArgs e)
         {
-            if (this.Orders_List.SelectedItems.Count == 1)
+            if (this.Offers_List.SelectedItems.Count == 1)
             {
-                ListViewItem m_Item = this.Orders_List.SelectedItems[0];
+                ListViewItem m_Item = this.Offers_List.SelectedItems[0];
                 int m_OrderID = Convert.ToInt32(m_Item.Tag);
 
                 using (MuhasebeEntities m_Context = new MuhasebeEntities())
@@ -133,7 +138,7 @@ namespace Muhasebe
             {
                 using (MuhasebeEntities m_Context = new MuhasebeEntities())
                 {
-                    ListViewItem m_Item = this.Orders_List.SelectedItems[0];
+                    ListViewItem m_Item = this.Offers_List.SelectedItems[0];
                     int m_OrderID = Convert.ToInt32(m_Item.Tag);
 
                     Order m_Order = m_Context.Orders.Where(q => q.ID == m_OrderID).FirstOrDefault();

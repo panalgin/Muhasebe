@@ -38,6 +38,7 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Save_Dialog = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // Export_Pdf_Button
@@ -106,6 +107,7 @@
             this.Offers_List.TabIndex = 8;
             this.Offers_List.UseCompatibleStateImageBehavior = false;
             this.Offers_List.View = System.Windows.Forms.View.Details;
+            this.Offers_List.SelectedIndexChanged += new System.EventHandler(this.Offer_List_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -135,6 +137,10 @@
             this.columnHeader5.Text = "Açıklama";
             this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader5.Width = 153;
+            // 
+            // Save_Dialog
+            // 
+            this.Save_Dialog.Filter = "Adobe Pdf Dosyası|*.pdf";
             // 
             // Manage_Offers_Mdi
             // 
@@ -166,5 +172,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.SaveFileDialog Save_Dialog;
     }
 }
