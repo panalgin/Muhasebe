@@ -284,6 +284,12 @@
     <Compile Include="Edit_Inventory_Pop.Designer.cs">
       <DependentUpon>Edit_Inventory_Pop.cs</DependentUpon>
     </Compile>
+    <Compile Include="Edit_Offer_Pop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit_Offer_Pop.Designer.cs">
+      <DependentUpon>Edit_Offer_Pop.cs</DependentUpon>
+    </Compile>
     <Compile Include="Edit_Order_Mdi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -677,6 +683,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Edit_Inventory_Pop.resx">
       <DependentUpon>Edit_Inventory_Pop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit_Offer_Pop.resx">
+      <DependentUpon>Edit_Offer_Pop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Edit_Order_Mdi.resx">
       <DependentUpon>Edit_Order_Mdi.cs</DependentUpon>

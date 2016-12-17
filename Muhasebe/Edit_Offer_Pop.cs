@@ -12,16 +12,21 @@ using System.Windows.Forms;
 
 namespace Muhasebe
 {
-    public partial class Add_Offer_Pop : Form
+    public partial class Edit_Offer_Pop : Form
     {
         public Offer Offer { get; set; }
 
-        public Add_Offer_Pop()
+        public Edit_Offer_Pop()
         {
             InitializeComponent();
         }
 
-        private void Add_Offer_Pop_Load(object sender, EventArgs e)
+        private void Edit_Button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Edit_Offer_Pop_Load(object sender, EventArgs e)
         {
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
@@ -30,6 +35,19 @@ namespace Muhasebe
             }
 
             EventSink.BarcodeScanned += EventSink_BarcodeScanned;
+
+            this.Name_Box.Text = this.Offer.Name;
+
+            if (this.Offer.Account != null)
+            {
+                this.Account_Box.BeginInvoke((MethodInvoker)delegate ()
+                {
+                    this.Account_Box.SelectedText = this.Offer.Account.Name;
+                });
+            }
+            this.Attn_Note.Text = this.Offer.Note;
+
+            PopulateListView();
         }
 
         private void EventSink_BarcodeScanned(object sender, BarcodeScannedEventArgs args)
@@ -61,26 +79,6 @@ namespace Muhasebe
 
                 PopulateListView();
             }
-        }
-
-        private void Edit_Button_Click(object sender, EventArgs e)
-        {
-            if (this.listView1.SelectedItems.Count > 0)
-            {
-                ListViewItem m_Item = this.listView1.SelectedItems[0];
-                int m_NodeID = Convert.ToInt32(m_Item.Tag);
-
-                OfferNode m_CurrentNode = this.Offer.Nodes.Where(q => q.ID == m_NodeID).FirstOrDefault();
-                Node_Set_Amount_Gumpling m_Gumpling = new Node_Set_Amount_Gumpling();
-                m_Gumpling.Node = m_CurrentNode;
-                m_Gumpling.NodeAmountChanged += Gumpling_NodeAmountChanged;
-                m_Gumpling.ShowDialog();
-            }
-        }
-
-        private void Gumpling_NodeAmountChanged(dynamic node)
-        {
-            this.PopulateListView();
         }
 
         private void PopulateListView()

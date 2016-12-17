@@ -120,7 +120,7 @@ namespace Muhasebe
 
                     if (m_Offer != null)
                     {
-                        Edit_Offer_Pop m_Pop = new Edit_Order_Mdi();
+                        Edit_Offer_Pop m_Pop = new Edit_Offer_Pop();
                         m_Pop.Offer = m_Offer;
                         m_Pop.ShowDialog();
 
@@ -150,8 +150,8 @@ namespace Muhasebe
                         string m_SavePath = this.Save_Dialog.FileName;
                         string html = "";
                         string m_LocalPath = Application.StartupPath;
-                        string m_IndexPath = Path.Combine(m_LocalPath, "View\\OrderForm\\index.html");
-                        string m_AbsPath = Path.Combine(m_LocalPath, "View\\OrderForm\\");
+                        string m_IndexPath = Path.Combine(m_LocalPath, "View\\OfferForm\\index.html");
+                        string m_AbsPath = Path.Combine(m_LocalPath, "View\\OfferForm\\");
 
                         using (StreamReader m_Reader = new StreamReader(m_IndexPath, Encoding.UTF8, true))
                         {
