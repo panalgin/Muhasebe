@@ -1,0 +1,1 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/qgisf9c8o4of1psd?svg=true)](https://ci.appveyor.com/project/panalgin/muhasebe)
