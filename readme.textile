@@ -1,1 +1,1 @@
-readme
+https://ci.appveyor.com/api/projects/status/qgisf9c8o4of1psd/branch/master?svg=true https://ci.appveyor.com/api/projects/status/qgisf9c8o4of1psd?svg=true
