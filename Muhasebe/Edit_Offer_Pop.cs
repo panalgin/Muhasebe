@@ -119,5 +119,10 @@ namespace Muhasebe
                 });
             }
         }
+
+        private void Save_Button_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

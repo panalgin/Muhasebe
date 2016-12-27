@@ -125,6 +125,7 @@
             this.Save_Button.TabIndex = 33;
             this.Save_Button.Text = "Kaydet";
             this.Save_Button.UseVisualStyleBackColor = true;
+            this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
             // 
             // listView1
             // 
