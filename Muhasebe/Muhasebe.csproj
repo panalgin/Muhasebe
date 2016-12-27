@@ -61,7 +61,7 @@
     </Reference>
     <Reference Include="DirectShowLib, Version=2.1.0.26941, Culture=neutral, PublicKeyToken=67e7b740cdfc2d3f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\DirectShowLib.dll</HintPath>
+      <HintPath>Library\DirectShowLib.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -89,7 +89,7 @@
     </Reference>
     <Reference Include="RawInput, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\RawInput.dll</HintPath>
+      <HintPath>Library\RawInput.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -1002,9 +1002,6 @@
     <None Include="Resources\user-pic.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\background1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\daflan-logo8.png" />
   </ItemGroup>
   <ItemGroup>
@@ -1022,6 +1019,8 @@
   <ItemGroup>
     <None Include="Resources\script_export.png" />
     <None Include="Resources\control_play_blue.png" />
+    <None Include="Library\DirectShowLib.dll" />
+    <None Include="Library\RawInput.dll" />
     <Content Include="View\AccountSummaryForm\css\main.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

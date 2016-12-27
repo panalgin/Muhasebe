@@ -92,12 +92,12 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.Grid_Panel = new System.Windows.Forms.Panel();
-            this.Downward_List = new Muhasebe.Custom.ListViewEx();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Image_List = new System.Windows.Forms.ImageList(this.components);
             this.BarcodeScannerMode_Combo = new System.Windows.Forms.ComboBox();
             this.BarcodeScannerMode_Label = new System.Windows.Forms.Label();
+            this.Downward_List = new Muhasebe.Custom.ListViewEx();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Navigation_Strip = new Muhasebe.Custom.ToolStripEx();
             this.Home_Button = new System.Windows.Forms.ToolStripButton();
             this.Accounts_Button = new System.Windows.Forms.ToolStripButton();
@@ -107,12 +107,12 @@
             this.Items_Button = new System.Windows.Forms.ToolStripMenuItem();
             this.ürünGruplarıYönetimiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.siparişYönetimiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.teklifYönetimiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Safe_Button = new System.Windows.Forms.ToolStripDropDownButton();
             this.gelirYönetimiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.giderYönetimiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.istatistiklerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Events_Button = new System.Windows.Forms.ToolStripButton();
-            this.teklifYönetimiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_Strip.SuspendLayout();
             this.Status_Strip.SuspendLayout();
             this.Notify_Menu_Context.SuspendLayout();
@@ -713,32 +713,6 @@
             this.Grid_Panel.Visible = false;
             this.Grid_Panel.VisibleChanged += new System.EventHandler(this.Grid_Panel_VisibleChanged);
             // 
-            // Downward_List
-            // 
-            this.Downward_List.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.Downward_List.BackColor = System.Drawing.SystemColors.Control;
-            this.Downward_List.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Downward_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-            this.Downward_List.FullRowSelect = true;
-            this.Downward_List.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.Downward_List.Location = new System.Drawing.Point(7, 298);
-            this.Downward_List.MultiSelect = false;
-            this.Downward_List.Name = "Downward_List";
-            this.Downward_List.Size = new System.Drawing.Size(254, 333);
-            this.Downward_List.StateImageList = this.Image_List;
-            this.Downward_List.TabIndex = 2;
-            this.Downward_List.TileSize = new System.Drawing.Size(200, 50);
-            this.Downward_List.UseCompatibleStateImageBehavior = false;
-            this.Downward_List.View = System.Windows.Forms.View.Tile;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Azalan Ürünler";
-            this.columnHeader1.Width = 254;
-            // 
             // Image_List
             // 
             this.Image_List.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Image_List.ImageStream")));
@@ -770,6 +744,32 @@
             this.BarcodeScannerMode_Label.TabIndex = 14;
             this.BarcodeScannerMode_Label.Text = "Barkod Okuyucu Modu:";
             this.BarcodeScannerMode_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // Downward_List
+            // 
+            this.Downward_List.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.Downward_List.BackColor = System.Drawing.SystemColors.Control;
+            this.Downward_List.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Downward_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.Downward_List.FullRowSelect = true;
+            this.Downward_List.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.Downward_List.Location = new System.Drawing.Point(7, 298);
+            this.Downward_List.MultiSelect = false;
+            this.Downward_List.Name = "Downward_List";
+            this.Downward_List.Size = new System.Drawing.Size(254, 333);
+            this.Downward_List.StateImageList = this.Image_List;
+            this.Downward_List.TabIndex = 2;
+            this.Downward_List.TileSize = new System.Drawing.Size(200, 50);
+            this.Downward_List.UseCompatibleStateImageBehavior = false;
+            this.Downward_List.View = System.Windows.Forms.View.Tile;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Azalan Ürünler";
+            this.columnHeader1.Width = 254;
             // 
             // Navigation_Strip
             // 
@@ -870,6 +870,13 @@
             this.siparişYönetimiToolStripMenuItem.Text = "Sipariş Yönetimi";
             this.siparişYönetimiToolStripMenuItem.Click += new System.EventHandler(this.siparişYönetimiToolStripMenuItem_Click);
             // 
+            // teklifYönetimiToolStripMenuItem
+            // 
+            this.teklifYönetimiToolStripMenuItem.Name = "teklifYönetimiToolStripMenuItem";
+            this.teklifYönetimiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.teklifYönetimiToolStripMenuItem.Text = "Teklif Yönetimi";
+            this.teklifYönetimiToolStripMenuItem.Click += new System.EventHandler(this.teklifYönetimiToolStripMenuItem_Click);
+            // 
             // Safe_Button
             // 
             this.Safe_Button.AutoSize = false;
@@ -918,13 +925,6 @@
             this.Events_Button.Size = new System.Drawing.Size(134, 38);
             this.Events_Button.Text = "Hareketler";
             this.Events_Button.Click += new System.EventHandler(this.Events_Button_Click);
-            // 
-            // teklifYönetimiToolStripMenuItem
-            // 
-            this.teklifYönetimiToolStripMenuItem.Name = "teklifYönetimiToolStripMenuItem";
-            this.teklifYönetimiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.teklifYönetimiToolStripMenuItem.Text = "Teklif Yönetimi";
-            this.teklifYönetimiToolStripMenuItem.Click += new System.EventHandler(this.teklifYönetimiToolStripMenuItem_Click);
             // 
             // MainForm
             // 
