@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Attn_Note = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.Delete_Button = new System.Windows.Forms.Button();
@@ -47,10 +48,13 @@
             this.Cancel_Button = new System.Windows.Forms.Button();
             this.Save_Button = new System.Windows.Forms.Button();
             this.Account_Box = new Muhasebe.Custom.SearchBox();
+            this.Error_Provider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.Error_Provider)).BeginInit();
             this.SuspendLayout();
             // 
             // Attn_Note
             // 
+            this.Error_Provider.SetIconPadding(this.Attn_Note, -20);
             this.Attn_Note.Location = new System.Drawing.Point(427, 12);
             this.Attn_Note.Multiline = true;
             this.Attn_Note.Name = "Attn_Note";
@@ -178,6 +182,7 @@
             // 
             // Name_Box
             // 
+            this.Error_Provider.SetIconPadding(this.Name_Box, -20);
             this.Name_Box.Location = new System.Drawing.Point(103, 12);
             this.Name_Box.Name = "Name_Box";
             this.Name_Box.Size = new System.Drawing.Size(216, 20);
@@ -203,6 +208,7 @@
             this.Cancel_Button.TabIndex = 23;
             this.Cancel_Button.Text = "İptal";
             this.Cancel_Button.UseVisualStyleBackColor = true;
+            this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
             // Save_Button
             // 
@@ -215,6 +221,7 @@
             this.Save_Button.TabIndex = 21;
             this.Save_Button.Text = "Kaydet";
             this.Save_Button.UseVisualStyleBackColor = true;
+            this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
             // 
             // Account_Box
             // 
@@ -226,6 +233,10 @@
             this.Account_Box.Name = "Account_Box";
             this.Account_Box.Size = new System.Drawing.Size(216, 21);
             this.Account_Box.TabIndex = 26;
+            // 
+            // Error_Provider
+            // 
+            this.Error_Provider.ContainerControl = this;
             // 
             // Add_Offer_Pop
             // 
@@ -250,6 +261,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Teklif Ekle";
             this.Load += new System.EventHandler(this.Add_Offer_Pop_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.Error_Provider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,5 +288,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ErrorProvider Error_Provider;
     }
 }

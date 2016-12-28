@@ -173,5 +173,83 @@ namespace Muhasebe
                 }
             }
         }
+
+        private void Save_Button_Click(object sender, EventArgs e)
+        {
+            if (ValidateAll())
+            {
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    this.Offer.AuthorID = Program.User.ID;
+                    this.Offer.CreatedAt = DateTime.Now;
+                    this.Offer.OwnerID = Program.User.WorksAtID.Value;
+                    this.Offer.Name = this.Name_Box.Text;
+                    this.Offer.Note = this.Attn_Note.Text;
+
+                    if (this.Account_Box.SelectedValue != null)
+                    {
+                        int m_AccountID = Convert.ToInt32(this.Account_Box.SelectedValue);
+                        this.Offer.AccountID = m_AccountID;
+                    }
+
+                    this.Offer.Nodes.All(delegate (OfferNode node)
+                    {
+                        node.Item = null;
+
+                        return true;
+                    });
+
+                    m_Context.Offers.Add(this.Offer);
+                    m_Context.SaveChanges();
+
+                    this.Close();
+                }
+            }
+        }
+
+        private bool ValidateAll()
+        {
+            if (this.Name_Box.Text.Length < 3)
+            {
+                this.Error_Provider.SetError(this.Name_Box, "En 3 karakterden oluşan bir form adı giriniz.");
+                return false;
+            }
+            else
+                this.Error_Provider.SetError(this.Name_Box, "");
+
+            if (this.Attn_Note.Text.Length < 3)
+            {
+                this.Error_Provider.SetError(this.Attn_Note, "En az 3 karakterden oluşan bir uyarı notu giriniz.");
+                return false;
+            }
+            else
+                this.Error_Provider.SetError(this.Attn_Note, "");
+
+            using (MuhasebeEntities m_Context = new MuhasebeEntities())
+            {
+                Offer m_Existing = m_Context.Offers.Where(q => q.Name == this.Name_Box.Text).FirstOrDefault();
+
+                if (m_Existing != null)
+                {
+                    this.Error_Provider.SetError(this.Name_Box, "Daha önce bu isimle bir teklif oluşturmuşsunuz. Başka bir isim deneyin.");
+                    return false;
+                }
+                else
+                    this.Error_Provider.SetError(this.Name_Box, "");
+            }
+
+            if (this.Offer.Nodes.Count == 0)
+            {
+                MessageBox.Show("Teklifi kaydedebilmek için en az bir adet ürünü listeye eklemelisiniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void Cancel_Button_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
