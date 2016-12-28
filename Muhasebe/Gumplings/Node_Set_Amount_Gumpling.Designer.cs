@@ -37,6 +37,8 @@
             this.Name_Label = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.UnitPrice_Num = new System.Windows.Forms.NumericUpDown();
+            this.Description_Label = new System.Windows.Forms.Label();
+            this.Description_Box = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Amount_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UnitPrice_Num)).BeginInit();
             this.SuspendLayout();
@@ -76,7 +78,7 @@
             this.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.Cancel_Button.Image = global::Muhasebe.Properties.Resources.cancel;
             this.Cancel_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Cancel_Button.Location = new System.Drawing.Point(167, 141);
+            this.Cancel_Button.Location = new System.Drawing.Point(167, 175);
             this.Cancel_Button.Name = "Cancel_Button";
             this.Cancel_Button.Size = new System.Drawing.Size(75, 23);
             this.Cancel_Button.TabIndex = 3;
@@ -87,7 +89,7 @@
             // 
             this.Save_Button.Image = global::Muhasebe.Properties.Resources.tick;
             this.Save_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Save_Button.Location = new System.Drawing.Point(71, 141);
+            this.Save_Button.Location = new System.Drawing.Point(71, 175);
             this.Save_Button.Name = "Save_Button";
             this.Save_Button.Size = new System.Drawing.Size(90, 23);
             this.Save_Button.TabIndex = 2;
@@ -135,13 +137,34 @@
             this.UnitPrice_Num.Size = new System.Drawing.Size(150, 20);
             this.UnitPrice_Num.TabIndex = 1;
             // 
+            // Description_Label
+            // 
+            this.Description_Label.AutoSize = true;
+            this.Description_Label.Location = new System.Drawing.Point(33, 120);
+            this.Description_Label.Name = "Description_Label";
+            this.Description_Label.Size = new System.Drawing.Size(53, 13);
+            this.Description_Label.TabIndex = 7;
+            this.Description_Label.Text = "Açıklama:";
+            this.Description_Label.Visible = false;
+            // 
+            // Description_Box
+            // 
+            this.Description_Box.Location = new System.Drawing.Point(92, 115);
+            this.Description_Box.Multiline = true;
+            this.Description_Box.Name = "Description_Box";
+            this.Description_Box.Size = new System.Drawing.Size(150, 43);
+            this.Description_Box.TabIndex = 8;
+            this.Description_Box.Visible = false;
+            // 
             // Node_Set_Amount_Gumpling
             // 
             this.AcceptButton = this.Save_Button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.Cancel_Button;
-            this.ClientSize = new System.Drawing.Size(254, 176);
+            this.ClientSize = new System.Drawing.Size(254, 210);
+            this.Controls.Add(this.Description_Box);
+            this.Controls.Add(this.Description_Label);
             this.Controls.Add(this.UnitPrice_Num);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.Name_Label);
@@ -176,5 +199,7 @@
         private System.Windows.Forms.Label Name_Label;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown UnitPrice_Num;
+        private System.Windows.Forms.Label Description_Label;
+        private System.Windows.Forms.TextBox Description_Box;
     }
 }

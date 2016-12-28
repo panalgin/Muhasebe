@@ -70,9 +70,9 @@ namespace Muhasebe
             if (this.Add_Offer_List.SelectedItems.Count > 0)
             {
                 ListViewItem m_Item = this.Add_Offer_List.SelectedItems[0];
-                int m_NodeID = Convert.ToInt32(m_Item.Tag);
+                int m_ItemID = Convert.ToInt32(m_Item.Tag);
 
-                OfferNode m_CurrentNode = this.Offer.Nodes.Where(q => q.ID == m_NodeID).FirstOrDefault();
+                OfferNode m_CurrentNode = this.Offer.Nodes.Where(q => q.ItemID == m_ItemID).FirstOrDefault();
                 Node_Set_Amount_Gumpling m_Gumpling = new Node_Set_Amount_Gumpling();
                 m_Gumpling.Node = m_CurrentNode;
                 m_Gumpling.NodeAmountChanged += Gumpling_NodeAmountChanged;
@@ -97,7 +97,7 @@ namespace Muhasebe
                     m_Node.FinalPrice = m_Node.BasePrice * m_Node.Amount;
 
                     ListViewItem m_Item = new ListViewItem();
-                    m_Item.Tag = m_Node.ID;
+                    m_Item.Tag = m_Node.ItemID;
 
                     string imageResult = "";
 
@@ -132,6 +132,45 @@ namespace Muhasebe
             {
                 this.Edit_Button.Enabled = false;
                 this.Delete_Button.Enabled = false;
+            }
+        }
+
+        private void Delete_Button_Click(object sender, EventArgs e)
+        {
+            if (this.Add_Offer_List.SelectedItems.Count > 0)
+            {
+                if (MessageBox.Show("Seçtiğiniz teklif nesnesi silinecek, onaylıyor musunuz?", "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    ListViewItem m_Item = this.Add_Offer_List.SelectedItems[0];
+
+                    int m_ItemID = Convert.ToInt32(m_Item.Tag);
+                    OfferNode m_Node = this.Offer.Nodes.Where(q => q.ItemID == m_ItemID).FirstOrDefault();
+
+                    if (m_Node != null)
+                        this.Offer.Nodes.Remove(m_Node);
+
+                    this.PopulateListView();
+                }
+            }
+        }
+
+        private void Add_Offer_List_DoubleClick(object sender, EventArgs e)
+        {
+            if (this.Add_Offer_List.SelectedItems.Count > 0)
+            {
+                ListViewItem m_Item = this.Add_Offer_List.SelectedItems[0];
+
+                int m_ItemID = Convert.ToInt32(m_Item.Tag);
+
+                OfferNode m_Node = this.Offer.Nodes.Where(q => q.ItemID == m_ItemID).FirstOrDefault();
+
+                if (m_Node != null)
+                {
+                    Node_Set_Amount_Gumpling m_Gumpling = new Node_Set_Amount_Gumpling();
+                    m_Gumpling.Node = m_Node;
+                    m_Gumpling.NodeAmountChanged += Gumpling_NodeAmountChanged;
+                    m_Gumpling.ShowDialog();
+                }
             }
         }
     }

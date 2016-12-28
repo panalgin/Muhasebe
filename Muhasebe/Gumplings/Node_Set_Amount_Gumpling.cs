@@ -51,6 +51,10 @@ namespace Muhasebe
                 this.Name_Label.Text = m_Temp.Item.Product.Name;
                 this.Amount_Num.Value = m_Temp.Amount;
                 this.UnitPrice_Num.Value = m_Temp.BasePrice;
+                this.Description_Box.Text = m_Temp.Description;
+
+                this.Description_Label.Visible = true;
+                this.Description_Box.Visible = true;
             }
 
             if (this.Node.Item != null)
@@ -84,11 +88,15 @@ namespace Muhasebe
                     this.Node.FinalPrice = this.Node.BasePrice * this.Node.Amount;
                     this.Node.UseCustomPrice = true;
                 }
-                else if (this.Node is OfferNode)
+
+                if (this.Node is OfferNode)
                 {
                     this.Node.FinalPrice = this.Node.BasePrice * this.Node.Amount;
                 }
             }
+
+            if (this.Node is OfferNode)
+                this.Node.Description = this.Description_Box.Text;
 
             NodeAmountChanged?.Invoke(this.Node);
 

@@ -78,6 +78,7 @@
             this.Delete_Button.TabIndex = 20;
             this.Delete_Button.Text = "Sil";
             this.Delete_Button.UseVisualStyleBackColor = true;
+            this.Delete_Button.Click += new System.EventHandler(this.Delete_Button_Click);
             // 
             // Edit_Button
             // 
@@ -107,12 +108,14 @@
             this.Add_Offer_List.FullRowSelect = true;
             this.Add_Offer_List.GridLines = true;
             this.Add_Offer_List.Location = new System.Drawing.Point(12, 90);
+            this.Add_Offer_List.MultiSelect = false;
             this.Add_Offer_List.Name = "Add_Offer_List";
             this.Add_Offer_List.Size = new System.Drawing.Size(688, 404);
             this.Add_Offer_List.TabIndex = 24;
             this.Add_Offer_List.UseCompatibleStateImageBehavior = false;
             this.Add_Offer_List.View = System.Windows.Forms.View.Details;
             this.Add_Offer_List.SelectedIndexChanged += new System.EventHandler(this.Add_Offer_List_SelectedIndexChanged);
+            this.Add_Offer_List.DoubleClick += new System.EventHandler(this.Add_Offer_List_DoubleClick);
             // 
             // columnHeader6
             // 
