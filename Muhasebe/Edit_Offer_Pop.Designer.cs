@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Account_Box = new Muhasebe.Custom.SearchBox();
             this.Attn_Note = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -35,7 +36,7 @@
             this.Edit_Button = new System.Windows.Forms.Button();
             this.Cancel_Button = new System.Windows.Forms.Button();
             this.Save_Button = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.Edit_Offer_List = new System.Windows.Forms.ListView();
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -47,6 +48,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.Name_Box = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.Error_Provider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.Error_Provider)).BeginInit();
             this.SuspendLayout();
             // 
             // Account_Box
@@ -62,6 +65,7 @@
             // 
             // Attn_Note
             // 
+            this.Error_Provider.SetIconPadding(this.Attn_Note, -20);
             this.Attn_Note.Location = new System.Drawing.Point(427, 12);
             this.Attn_Note.Multiline = true;
             this.Attn_Note.Name = "Attn_Note";
@@ -89,6 +93,7 @@
             this.Delete_Button.TabIndex = 32;
             this.Delete_Button.Text = "Sil";
             this.Delete_Button.UseVisualStyleBackColor = true;
+            this.Delete_Button.Click += new System.EventHandler(this.Delete_Button_Click);
             // 
             // Edit_Button
             // 
@@ -113,6 +118,7 @@
             this.Cancel_Button.TabIndex = 35;
             this.Cancel_Button.Text = "İptal";
             this.Cancel_Button.UseVisualStyleBackColor = true;
+            this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
             // Save_Button
             // 
@@ -127,12 +133,12 @@
             this.Save_Button.UseVisualStyleBackColor = true;
             this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
             // 
-            // listView1
+            // Edit_Offer_List
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Edit_Offer_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Edit_Offer_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader6,
             this.columnHeader7,
             this.columnHeader8,
@@ -140,14 +146,16 @@
             this.columnHeader10,
             this.columnHeader1,
             this.columnHeader2});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(12, 90);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(688, 376);
-            this.listView1.TabIndex = 36;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.Edit_Offer_List.FullRowSelect = true;
+            this.Edit_Offer_List.GridLines = true;
+            this.Edit_Offer_List.Location = new System.Drawing.Point(12, 90);
+            this.Edit_Offer_List.Name = "Edit_Offer_List";
+            this.Edit_Offer_List.Size = new System.Drawing.Size(688, 376);
+            this.Edit_Offer_List.TabIndex = 36;
+            this.Edit_Offer_List.UseCompatibleStateImageBehavior = false;
+            this.Edit_Offer_List.View = System.Windows.Forms.View.Details;
+            this.Edit_Offer_List.SelectedIndexChanged += new System.EventHandler(this.Edit_Offer_List_SelectedIndexChanged);
+            this.Edit_Offer_List.DoubleClick += new System.EventHandler(this.Edit_Offer_List_DoubleClick);
             // 
             // columnHeader6
             // 
@@ -210,6 +218,7 @@
             // 
             // Name_Box
             // 
+            this.Error_Provider.SetIconPadding(this.Name_Box, -20);
             this.Name_Box.Location = new System.Drawing.Point(103, 12);
             this.Name_Box.Name = "Name_Box";
             this.Name_Box.Size = new System.Drawing.Size(216, 20);
@@ -224,6 +233,10 @@
             this.label1.TabIndex = 28;
             this.label1.Text = "Teklif Adı:";
             // 
+            // Error_Provider
+            // 
+            this.Error_Provider.ContainerControl = this;
+            // 
             // Edit_Offer_Pop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -236,7 +249,7 @@
             this.Controls.Add(this.Edit_Button);
             this.Controls.Add(this.Cancel_Button);
             this.Controls.Add(this.Save_Button);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.Edit_Offer_List);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Name_Box);
@@ -246,6 +259,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Edit_Offer_Pop";
             this.Load += new System.EventHandler(this.Edit_Offer_Pop_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.Error_Provider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,7 +274,7 @@
         private System.Windows.Forms.Button Edit_Button;
         private System.Windows.Forms.Button Cancel_Button;
         private System.Windows.Forms.Button Save_Button;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView Edit_Offer_List;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
@@ -272,5 +286,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox Name_Box;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ErrorProvider Error_Provider;
     }
 }
