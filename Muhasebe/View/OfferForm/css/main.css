@@ -1,0 +1,250 @@
+﻿body {
+    font-family: Tahoma;
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+
+div {
+    display: block;
+}
+
+.wrapper {
+    width: 900px;
+    text-align: left;
+    margin: 0px auto;
+}
+
+.top {
+    height: 100px;
+    border: 1px solid #DDD;
+}
+
+    .top .logo {
+        height: 90px;
+        margin: 5px 10px;
+    }
+
+    .top .company-tag {
+        float: right;
+        overflow: hidden;
+        padding-top: 7px;
+        padding-right: 5px;
+    }
+
+        .top .company-tag span {
+            clear: both;
+            display: block;
+        }
+
+.author, .attn {
+    border: 1px solid #bbb;
+    width: 32.0%;
+    margin-top: 5px;
+    margin-right: 5px;
+    float: left;
+    min-height: 104px;
+}
+    .author .header, .attn .header {
+        background-color: #DDD;
+        text-align: center;
+        font-weight: bold;
+        line-height: 20px;
+        height: 20px;
+        border-bottom: 1px solid #bbb;
+    }
+
+    .author span, .attn span {
+        display: block;
+        clear: both;
+        margin: 3px;
+    }
+
+    .author b, .attn b {
+        color: #ff0000;
+    }
+.form-details {
+    width: 308px;
+    margin-right: 0px;
+}
+.products {
+    width: 100%;
+    padding-top: 5px;
+    clear: both;
+    overflow: hidden;
+}
+
+.column-names {
+    width: 100%;
+    clear: both;
+    background-color: #ddd;
+    overflow: hidden;
+    line-height: 20px;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #bbb;
+    box-sizing: border-box;
+}
+
+    .column-names .img-col {
+        width: 136px;
+        float: left;
+        border-right: 1px solid #BBB;
+        box-sizing: border-box;
+    }
+
+    .column-names .code-col {
+        width: 127px;
+        float: left;
+        border-right: 1px solid #BBB;
+        box-sizing: border-box;
+    }
+
+    .column-names .name-col {
+        width: 182px;
+        float: left;
+        border-right: 1px solid #BBB;
+        box-sizing: border-box;
+    }
+
+    .column-names .quantity-col {
+        width: 91px;
+        float: left;
+        border-right: 1px solid #BBB;
+        box-sizing: border-box;
+    }
+
+    .column-names .base-col {
+        width: 91px;
+        float: left;
+        border-right: 1px solid #BBB;
+        box-sizing: border-box;
+    }
+
+    .column-names .total-col {
+        width: 91px;
+        float: left;
+        border-right: 1px solid #BBB;
+        box-sizing: border-box;
+    }
+
+    .column-names .desc-col {
+        width: 180px;
+        float: left;
+        box-sizing: border-box;
+    }
+
+.gray {
+    background-color: #f1f1f1;
+}
+
+table {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border-spacing: 0px 0px;
+}
+
+tbody {
+    border: none;
+}
+
+.item {
+    width: 100%;
+}
+
+    .item .pro-img {
+        width: 15%;
+        border-left: 1px solid #bbb;
+        border-bottom: 1px solid #bbb;
+        text-align: center;
+    }
+
+        .item .pro-img img {
+            max-width: 100%;
+            max-height: 50px;
+            margin: 0px;
+            padding: 0px;
+            vertical-align: middle;
+        }
+
+    .item .pro-code {
+        width: 14%;
+        border-left: 1px solid #bbb;
+        border-bottom: 1px solid #bbb;
+        text-align: center;
+    }
+
+    .item .pro-name {
+        width: 20%;
+        border-left: 1px solid #bbb;
+        border-bottom: 1px solid #bbb;
+        text-indent: 5px;
+    }
+
+    .item .pro-quantity {
+        width: 10%;
+        border-left: 1px solid #bbb;
+        border-bottom: 1px solid #bbb;
+        text-align: center;
+    }
+
+    .item .pro-base {
+         width: 10%;
+        border-left: 1px solid #bbb;
+        border-bottom: 1px solid #bbb;
+        text-align: center;
+    }
+
+    .item .pro-total {
+         width: 10%;
+        border-left: 1px solid #bbb;
+        border-bottom: 1px solid #bbb;
+        text-align: center;
+    }
+
+    .item .pro-desc {
+        width: 20%;
+        border-left: 1px solid #bbb;
+        border-right: 1px solid #bbb;
+        border-bottom: 1px solid #bbb;
+        padding: 5px;
+    }
+
+.bank {
+    width: 100%;
+    border: 1px solid #bbb;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+.bank .header {
+    line-height: 20px;
+    font-weight: bold;
+    background-color: #ddd;
+    border-bottom: 1px solid #bbb;
+    clear: both;
+    text-indent: 5px;
+}
+
+.bank span {
+    clear: both;
+    display: block;
+    margin: 3px;
+}
+    
+.footer {
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #bbb;
+    background-color: #f1f1f1;
+    position: relative;
+    margin-top: 5px;
+}
+
+.footer .logo { height: 35px; position: absolute; left: 5px; top: 2px; }
+.footer .desc { position: absolute; left: 150px; top: 4px; }
+.footer .link { position: absolute; left: 150px; bottom: 4px; }
+.footer .copyright { position: absolute; right: 5px; bottom: 10px;}

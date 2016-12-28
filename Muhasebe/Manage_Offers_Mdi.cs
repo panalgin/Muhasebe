@@ -181,7 +181,9 @@ namespace Muhasebe
                                     "<td class=\"pro-code\">{1}</td>" +
                                     "<td class=\"pro-name\">{2}</td>" +
                                     "<td class=\"pro-quantity\">{3}</td>" +
-                                    "<td class=\"pro-desc\">{4}</td>" +
+                                    "<td class=\"pro-base\">{4}</td>" +
+                                    "<td class=\"pro-total\">{5}</td>" +
+                                    "<td class=\"pro-desc\">{6}</td>" +
                                 "</tr>";
 
                         string m_Data = "";
@@ -193,7 +195,7 @@ namespace Muhasebe
 
                             string m_ProImgPath = Path.Combine(m_LocalPath, node.Item.LocalImagePath);
 
-                            m_Data += string.Format(m_Template, File.Exists(m_ProImgPath) ? m_ProImgPath : "", string.IsNullOrEmpty(node.Item.OrderCode) ? "Yok" : node.Item.OrderCode, node.Item.Product.Name, ItemHelper.GetFormattedAmount(node.Amount, node.Item.UnitType.DecimalPlaces, node.Item.UnitType.Name), node.Description);
+                            m_Data += string.Format(m_Template, File.Exists(m_ProImgPath) ? m_ProImgPath : "", node.Item.Product.Barcode, node.Item.Product.Name, ItemHelper.GetFormattedAmount(node.Amount, node.Item.UnitType.DecimalPlaces, node.Item.UnitType.Name), ItemHelper.GetFormattedPrice(node.BasePrice), ItemHelper.GetFormattedPrice(node.FinalPrice), node.Description);
 
                             return true;
                         });
