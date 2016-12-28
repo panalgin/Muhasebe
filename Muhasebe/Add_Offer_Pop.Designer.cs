@@ -32,7 +32,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.Delete_Button = new System.Windows.Forms.Button();
             this.Edit_Button = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.Add_Offer_List = new System.Windows.Forms.ListView();
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -91,12 +91,12 @@
             this.Edit_Button.UseVisualStyleBackColor = true;
             this.Edit_Button.Click += new System.EventHandler(this.Edit_Button_Click);
             // 
-            // listView1
+            // Add_Offer_List
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Add_Offer_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Add_Offer_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader6,
             this.columnHeader7,
             this.columnHeader8,
@@ -104,14 +104,15 @@
             this.columnHeader10,
             this.columnHeader1,
             this.columnHeader2});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(12, 90);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(688, 404);
-            this.listView1.TabIndex = 24;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.Add_Offer_List.FullRowSelect = true;
+            this.Add_Offer_List.GridLines = true;
+            this.Add_Offer_List.Location = new System.Drawing.Point(12, 90);
+            this.Add_Offer_List.Name = "Add_Offer_List";
+            this.Add_Offer_List.Size = new System.Drawing.Size(688, 404);
+            this.Add_Offer_List.TabIndex = 24;
+            this.Add_Offer_List.UseCompatibleStateImageBehavior = false;
+            this.Add_Offer_List.View = System.Windows.Forms.View.Details;
+            this.Add_Offer_List.SelectedIndexChanged += new System.EventHandler(this.Add_Offer_List_SelectedIndexChanged);
             // 
             // columnHeader6
             // 
@@ -235,7 +236,7 @@
             this.Controls.Add(this.Edit_Button);
             this.Controls.Add(this.Cancel_Button);
             this.Controls.Add(this.Save_Button);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.Add_Offer_List);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Name_Box);
@@ -260,7 +261,7 @@
         private System.Windows.Forms.Button Edit_Button;
         private System.Windows.Forms.Button Cancel_Button;
         private System.Windows.Forms.Button Save_Button;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView Add_Offer_List;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;

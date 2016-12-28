@@ -70,8 +70,6 @@
             this.Expenditure_Label = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.Export_Excel_Button = new System.Windows.Forms.Button();
-            this.Browse_Daily_Button = new System.Windows.Forms.Button();
             this.Tax_Label = new System.Windows.Forms.Label();
             this.Total_Label = new System.Windows.Forms.Label();
             this.Cost_Label = new System.Windows.Forms.Label();
@@ -95,6 +93,8 @@
             this.Image_List = new System.Windows.Forms.ImageList(this.components);
             this.BarcodeScannerMode_Combo = new System.Windows.Forms.ComboBox();
             this.BarcodeScannerMode_Label = new System.Windows.Forms.Label();
+            this.Export_Excel_Button = new System.Windows.Forms.Button();
+            this.Browse_Daily_Button = new System.Windows.Forms.Button();
             this.Downward_List = new Muhasebe.Custom.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -395,26 +395,6 @@
             this.label14.Size = new System.Drawing.Size(48, 13);
             this.label14.TabIndex = 24;
             this.label14.Text = "Giderler:";
-            // 
-            // Export_Excel_Button
-            // 
-            this.Export_Excel_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Export_Excel_Button.Image = global::Muhasebe.Properties.Resources.export_excel;
-            this.Export_Excel_Button.Location = new System.Drawing.Point(198, 194);
-            this.Export_Excel_Button.Name = "Export_Excel_Button";
-            this.Export_Excel_Button.Size = new System.Drawing.Size(24, 23);
-            this.Export_Excel_Button.TabIndex = 23;
-            this.Export_Excel_Button.UseVisualStyleBackColor = true;
-            // 
-            // Browse_Daily_Button
-            // 
-            this.Browse_Daily_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Browse_Daily_Button.Image = global::Muhasebe.Properties.Resources.magnifier;
-            this.Browse_Daily_Button.Location = new System.Drawing.Point(225, 194);
-            this.Browse_Daily_Button.Name = "Browse_Daily_Button";
-            this.Browse_Daily_Button.Size = new System.Drawing.Size(24, 23);
-            this.Browse_Daily_Button.TabIndex = 22;
-            this.Browse_Daily_Button.UseVisualStyleBackColor = true;
             // 
             // Tax_Label
             // 
@@ -744,6 +724,26 @@
             this.BarcodeScannerMode_Label.TabIndex = 14;
             this.BarcodeScannerMode_Label.Text = "Barkod Okuyucu Modu:";
             this.BarcodeScannerMode_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // Export_Excel_Button
+            // 
+            this.Export_Excel_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Export_Excel_Button.Image = global::Muhasebe.Properties.Resources.export_excel;
+            this.Export_Excel_Button.Location = new System.Drawing.Point(198, 194);
+            this.Export_Excel_Button.Name = "Export_Excel_Button";
+            this.Export_Excel_Button.Size = new System.Drawing.Size(24, 23);
+            this.Export_Excel_Button.TabIndex = 23;
+            this.Export_Excel_Button.UseVisualStyleBackColor = true;
+            // 
+            // Browse_Daily_Button
+            // 
+            this.Browse_Daily_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Browse_Daily_Button.Image = global::Muhasebe.Properties.Resources.magnifier;
+            this.Browse_Daily_Button.Location = new System.Drawing.Point(225, 194);
+            this.Browse_Daily_Button.Name = "Browse_Daily_Button";
+            this.Browse_Daily_Button.Size = new System.Drawing.Size(24, 23);
+            this.Browse_Daily_Button.TabIndex = 22;
+            this.Browse_Daily_Button.UseVisualStyleBackColor = true;
             // 
             // Downward_List
             // 

@@ -1,4 +1,5 @@
-﻿using Muhasebe.Events;
+﻿using Muhasebe.Custom;
+using Muhasebe.Events;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,6 +44,7 @@ namespace Muhasebe
                     if (m_Item != null)
                     {
                         OfferNode m_Node = new OfferNode();
+                        m_Node.Item = m_Item;
                         m_Node.ItemID = m_Item.ID;
                         m_Node.OfferID = this.Offer.ID;
                         m_Node.Offer = this.Offer;
@@ -65,9 +67,9 @@ namespace Muhasebe
 
         private void Edit_Button_Click(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedItems.Count > 0)
+            if (this.Add_Offer_List.SelectedItems.Count > 0)
             {
-                ListViewItem m_Item = this.listView1.SelectedItems[0];
+                ListViewItem m_Item = this.Add_Offer_List.SelectedItems[0];
                 int m_NodeID = Convert.ToInt32(m_Item.Tag);
 
                 OfferNode m_CurrentNode = this.Offer.Nodes.Where(q => q.ID == m_NodeID).FirstOrDefault();
@@ -85,13 +87,14 @@ namespace Muhasebe
 
         private void PopulateListView()
         {
-            this.listView1.Items.Clear();
+            this.Add_Offer_List.Items.Clear();
 
             using (MuhasebeEntities m_Context = new MuhasebeEntities())
             {
                 this.Offer.Nodes.All(delegate (OfferNode m_Node)
                 {
                     m_Node.Item = m_Context.Items.Where(q => q.ID == m_Node.ItemID).FirstOrDefault();
+                    m_Node.FinalPrice = m_Node.BasePrice * m_Node.Amount;
 
                     ListViewItem m_Item = new ListViewItem();
                     m_Item.Tag = m_Node.ID;
@@ -106,19 +109,29 @@ namespace Muhasebe
                     m_Item.Text = imageResult;
                     m_Item.SubItems.Add(m_Node.Item.Product.Barcode);
                     m_Item.SubItems.Add(m_Node.Item.Product.Name);
-
-                    int numberOfDecimalPlaces = m_Node.Item.UnitType.DecimalPlaces;
-                    string unitTypeName = m_Node.Item.UnitType.Name;
-
-                    string formatString = String.Concat("{0:F", numberOfDecimalPlaces, "} {1}");
-
-                    m_Item.SubItems.Add(string.Format(formatString, m_Node.Amount, unitTypeName, unitTypeName));
+                    m_Item.SubItems.Add(ItemHelper.GetFormattedAmount(m_Node.Amount, m_Node.Item.UnitType.DecimalPlaces, m_Node.Item.UnitType.Abbreviation));
+                    m_Item.SubItems.Add(ItemHelper.GetFormattedPrice(m_Node.BasePrice));
+                    m_Item.SubItems.Add(ItemHelper.GetFormattedPrice(m_Node.FinalPrice));
                     m_Item.SubItems.Add(m_Node.Description);
 
-                    this.listView1.Items.Add(m_Item);
+                    this.Add_Offer_List.Items.Add(m_Item);
 
                     return true;
                 });
+            }
+        }
+
+        private void Add_Offer_List_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.Add_Offer_List.SelectedItems.Count > 0)
+            {
+                this.Edit_Button.Enabled = true;
+                this.Delete_Button.Enabled = true;
+            }
+            else
+            {
+                this.Edit_Button.Enabled = false;
+                this.Delete_Button.Enabled = false;
             }
         }
     }
