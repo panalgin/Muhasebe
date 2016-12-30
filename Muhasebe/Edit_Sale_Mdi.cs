@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Muhasebe.Gumplings;
+using Muhasebe.Events;
 
 namespace Muhasebe
 {
@@ -473,6 +474,37 @@ namespace Muhasebe
                 PopulateListView();
 
                 this.Author_Label.Text = string.Format("Kasiyer: {0} {1}", Program.User.Name, Program.User.Surname);
+
+                EventSink.BarcodeScanned += EventSink_BarcodeScanned;
+            }
+        }
+
+        private void EventSink_BarcodeScanned(object sender, BarcodeScannedEventArgs args)
+        {
+            if (args.Barcode != string.Empty)
+            {
+                using (MuhasebeEntities m_Context = new MuhasebeEntities())
+                {
+                    string m_Barcode = args.Barcode;
+
+                    var m_Item = m_Context.Items.Where(q => q.Inventory.OwnerID == Program.User.WorksAtID && q.Product.Barcode == m_Barcode).FirstOrDefault();
+
+                    if (m_Item == null)
+                    {
+                        this.Invoke((MethodInvoker)delegate ()
+                        {
+                            Add_Item_Pop m_Pop = new Add_Item_Pop(m_Barcode);
+                            m_Pop.ShowDialog();
+                        });
+                    }
+                    else
+                    {
+                        InvoiceNode m_Node = new InvoiceNode(m_Item);
+                        m_Node.Amount = 1;
+                        m_Node.FinalPrice = m_Node.BasePrice * m_Node.Amount;
+                        this.Append(m_Node);
+                    }
+                }
             }
         }
 

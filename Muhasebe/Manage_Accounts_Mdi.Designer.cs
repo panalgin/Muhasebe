@@ -89,6 +89,8 @@
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Delete_Movement_Button = new System.Windows.Forms.Button();
             this.Save_Dialog = new System.Windows.Forms.SaveFileDialog();
+            this.Period_Combo = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -674,11 +676,37 @@
             this.Save_Dialog.DefaultExt = "pdf";
             this.Save_Dialog.Filter = "PDF Dosyası  (*.pdf)|*.pdf\";";
             // 
+            // Period_Combo
+            // 
+            this.Period_Combo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Period_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Period_Combo.FormattingEnabled = true;
+            this.Period_Combo.Items.AddRange(new object[] {
+            "Son 12 Ay",
+            "Tüm Zamanlar"});
+            this.Period_Combo.Location = new System.Drawing.Point(1005, 530);
+            this.Period_Combo.Name = "Period_Combo";
+            this.Period_Combo.Size = new System.Drawing.Size(75, 21);
+            this.Period_Combo.TabIndex = 49;
+            this.Period_Combo.SelectedIndexChanged += new System.EventHandler(this.Period_Combo_SelectedIndexChanged);
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(1001, 514);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(51, 13);
+            this.label10.TabIndex = 50;
+            this.label10.Text = "Gösterim:";
+            // 
             // Manage_Accounts_Mdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1092, 563);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.Period_Combo);
             this.Controls.Add(this.Delete_Movement_Button);
             this.Controls.Add(this.Accounts_Tab);
             this.Controls.Add(this.Edit_Movement_Button);
@@ -698,6 +726,7 @@
             this.contextMenuStrip2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -763,5 +792,7 @@
         private System.Windows.Forms.SaveFileDialog Save_Dialog;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem hesapÖzetiOluşturToolStripMenuItem;
+        private System.Windows.Forms.ComboBox Period_Combo;
+        private System.Windows.Forms.Label label10;
     }
 }

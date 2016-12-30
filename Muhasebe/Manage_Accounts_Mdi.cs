@@ -31,6 +31,7 @@ namespace Muhasebe
 
         private void Manage_Accounts_Mdi_Load(object sender, EventArgs e)
         {
+            this.Period_Combo.SelectedIndex = 0;
             PopulateList();
         }
 
@@ -283,9 +284,20 @@ namespace Muhasebe
 
                 if (account != null)
                 {
+                    string m_Period = this.Period_Combo.SelectedItem.ToString();
+
                     using (MuhasebeEntities m_Context = new MuhasebeEntities())
                     {
-                        var m_Movements = m_Context.AccountMovements.Where(q => q.AccountID == account.ID);
+                        DateTime m_BeginsAt = DateTime.Now.Subtract(TimeSpan.FromDays(365));
+                        DateTime m_EndsAt = DateTime.Now;
+
+                        if (m_Period != "Son 12 Ay")
+                        {
+                            m_BeginsAt = DateTime.MinValue;
+                            m_EndsAt = DateTime.MaxValue;
+                        }
+
+                        var m_Movements = m_Context.AccountMovements.Where(q => q.AccountID == account.ID && (q.CreatedAt >= m_BeginsAt && q.CreatedAt <= m_EndsAt));
 
                         int index = 0;
                         Color m_Shaded = Color.FromArgb(240, 240, 240);
@@ -915,6 +927,11 @@ namespace Muhasebe
             }
 
             this.PopulateAccountHistory(movement.Account);
+        }
+
+        private void Period_Combo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateList();
         }
     }
 }
